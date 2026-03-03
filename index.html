@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sébastien Maurice – CV Dynamique</title>
+<style>
+/* 🌓 Mode light/dark toggle */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #f7f7f7;
+    color: #222;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+    background: #142234;
+    color: #f7f7f7;
+}
+
+h1 { font-size: 32px; margin-bottom: 5px; }
+h2 { margin-top: 40px; font-size: 20px; }
+p { line-height: 1.6; }
+.section { margin-bottom: 30px; opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
+
+.bar-container {
+    background: #ccc;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 5px;
+    height: 15px;
+}
+.bar {
+    height: 100%;
+    width: 0;
+    background: #1b263b;
+    transition: width 1s ease-in-out;
+}
+
+.toggle-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #1b263b;
+    background: transparent;
+    margin-bottom: 20px;
+}
+body.dark .toggle-btn { border-color: #f7f7f7; color: #f7f7f7; }
+
+a { color: #000; text-decoration: none; border-bottom: 1px solid #ccc; }
+body.dark a { color: #f7f7f7; border-color: #f7f7f7; }
+</style>
+</head>
+
+<body>
+
+<button class="toggle-btn">🌙 Toggle Dark Mode</button>
+
+<h1>Sébastien Maurice</h1>
+<p><strong>UX Designer / Product Designer</strong></p>
+<p>Designer UX orienté terrain, habitué aux environnements PME. Conception d’interfaces pragmatiques, structuration des parcours et optimisation continue de l’expérience utilisateur.</p>
+
+<h2>Expérience</h2>
+
+<div class="section">
+<strong>Product Designer – Agence HOZ</strong>
+<p>Conception d’interfaces web centrées utilisateur, prototypage et optimisation UX.</p>
+</div>
+
+<div class="section">
+<strong>Responsable d’Agence – Digital & Communication</strong>
+<p>Pilotage de projets digitaux et coordination d’équipe.</p>
+</div>
+
+<h2>Compétences</h2>
+<div class="section">
+UX Design
+<div class="bar-container"><div class="bar" data-width="90%"></div></div>
+
+UI Design
+<div class="bar-container"><div class="bar" data-width="80%"></div></div>
+
+HTML / CSS / JS
+<div class="bar-container"><div class="bar" data-width="75%"></div></div>
+</div>
+
+<h2>Contact</h2>
+<p>Email : overseb75@gmail.com<br>
+LinkedIn : <a href="https://linkedin.com/in/sebastien-maurice">Profil LinkedIn</a></p>
+
+<script>
+// 🌙 Toggle dark mode
+document.querySelector('.toggle-btn').addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+});
+
+// Fade-in sections au scroll
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Animer barres de compétences
+            entry.target.querySelectorAll('.bar').forEach(bar => {
+                bar.style.width = bar.getAttribute('data-width');
+            });
+        }
+    });
+}, { threshold: 0.3 });
+
+sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
