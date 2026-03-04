@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sébastien Maurice — Front-End Developer & Product Designer UX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
 /* =============================================
    RESET & VARIABLES — MOODBOARD STRICT
 ============================================= */
@@ -179,8 +180,8 @@ nav.scrolled{padding:12px 52px;background:rgba(27,25,20,.88)}
 
 /* Floating badges */
 .fbadge{position:absolute;background:rgba(27,25,20,.8);border:1px solid var(--gborder);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:10px;padding:11px 15px;font-family:var(--mono);font-size:.62rem;color:var(--cream);letter-spacing:.05em;box-shadow:0 8px 28px rgba(27,25,20,.4)}
-.fbadge.b1{top:-20px;right:-32px;animation:fl1 4s ease-in-out infinite}
-.fbadge.b2{bottom:52px;left:-42px;animation:fl2 5s ease-in-out infinite;color:var(--amber)}
+.fbadge.b1{top:32px;right:-88px;animation:fl1 4s ease-in-out infinite;z-index:7}
+.fbadge.b2{bottom:20px;left:-88px;animation:fl2 5s ease-in-out infinite;color:var(--amber);z-index:7}
 .bv{font-family:var(--serif);font-size:1.1rem;color:var(--olive2);display:block;margin-bottom:1px}
 @keyframes fl1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes fl2{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-8px) translateX(5px)}}
@@ -441,132 +442,394 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
 .ft-made em{color:var(--amber);font-style:normal}
 
 /* =============================================
-   HERO ANIMATION — Code terminal
+   WOW HERO ANIMATION — Stage design amélioré
+   Appris à O'Clock : on utilise des keyframes CSS
+   combinés avec JS pour un effet vraiment "waou"
 ============================================= */
-.hero-anim-wrap{
-  position:relative;
-  width:400px;height:460px;
-  display:flex;align-items:center;justify-content:center;
-}
 
-/* Terminal */
-.hero-terminal{
-  width:340px;
-  background:rgba(22,20,16,.88);
-  border:1px solid rgba(200,196,180,.16);
-  border-radius:14px;
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  box-shadow:0 32px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(237,233,220,.08),0 0 0 1px rgba(200,196,180,.04);
-  overflow:visible;
-  position:relative;z-index:2;
+/* --- Le conteneur principal du stage --- */
+/* On centre tout avec flexbox — base du cours CSS */
+.wow-stage{
+  position:relative;
+  width:500px;height:520px;
+  display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
-.term-bar{
-  display:flex;align-items:center;gap:6px;
-  padding:12px 16px;
-  background:rgba(237,233,220,.04);
+
+/* --- Halo ambiant derrière le terminal --- */
+/* C'est un pseudo-élément qu'on anime avec @keyframes */
+.wow-stage::before{
+  content:'';
+  position:absolute;
+  width:340px;height:340px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(92,99,64,.18) 0%,
+    rgba(184,115,51,.10) 35%,
+    transparent 70%
+  );
+  filter:blur(50px);
+  animation:stagePulse 5s ease-in-out infinite;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes stagePulse{
+  0%,100%{transform:scale(1);opacity:.6}
+  50%{transform:scale(1.25);opacity:1}
+}
+
+/* --- Anneaux lumineux qui tournent --- */
+/* Technique apprise en cours : animation rotate sur pseudo-élément */
+.wow-ring-outer{
+  position:absolute;
+  width:460px;height:460px;
+  border-radius:50%;
+  border:1px solid rgba(184,115,51,.12);
+  /* Pointillés pour effet "constellation" */
+  border-style:dashed;
+  animation:ringRotate 40s linear infinite;
+  pointer-events:none;
+  z-index:1;
+}
+.wow-ring-mid{
+  position:absolute;
+  width:380px;height:380px;
+  border-radius:50%;
+  border:1px solid rgba(92,99,64,.10);
+  animation:ringRotate 28s linear infinite reverse;
+  pointer-events:none;
+  z-index:1;
+}
+.wow-ring-inner{
+  position:absolute;
+  width:290px;height:290px;
+  border-radius:50%;
+  border:1px solid rgba(200,196,180,.07);
+  animation:ringRotate 18s linear infinite;
+  pointer-events:none;
+  z-index:1;
+}
+@keyframes ringRotate{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* --- Points lumineux sur les anneaux --- */
+/* Petites étoiles positionnées en absolute */
+.ring-dot{
+  position:absolute;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--amber);
+  box-shadow:0 0 8px 2px rgba(184,115,51,.6);
+  top:-2.5px;left:50%;transform:translateX(-50%);
+}
+.ring-dot-green{
+  position:absolute;
+  width:4px;height:4px;
+  border-radius:50%;
+  background:var(--olive2);
+  box-shadow:0 0 6px 2px rgba(138,148,99,.5);
+  bottom:-2px;left:50%;transform:translateX(-50%);
+}
+
+/* === TERMINAL REDESIGNÉ === */
+/* On garde le principe mais on renforce l'effet cinématique */
+.wow-terminal{
+  width:360px;
+  /* Fond très sombre avec légère teinte chaude */
+  background:linear-gradient(160deg,rgba(18,15,10,.96) 0%,rgba(22,18,12,.98) 100%);
+  border:1px solid rgba(200,196,180,.20);
+  border-radius:14px;
+  /* Back-drop blur : effet verre dépoli CSS moderne */
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.75),
+    inset 0 1px 0 rgba(237,233,220,.12),
+    0 0 0 1px rgba(200,196,180,.05),
+    /* Halo ambiant sous le terminal */
+    0 0 80px rgba(92,99,64,.12),
+    0 0 120px rgba(184,115,51,.06);
+  overflow:hidden;
+  position:relative;z-index:10;
+  /* Légère rotation 3D pour effet profondeur — perspective CSS */
+  transform:perspective(1200px) rotateY(-3deg) rotateX(2deg);
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease);
+}
+/* Au hover du stage, on redresse le terminal */
+.wow-stage:hover .wow-terminal{
+  transform:perspective(1200px) rotateY(0deg) rotateX(0deg);
+  box-shadow:
+    0 50px 120px rgba(0,0,0,.8),
+    inset 0 1px 0 rgba(237,233,220,.15),
+    0 0 100px rgba(92,99,64,.18),
+    0 0 160px rgba(184,115,51,.10);
+}
+
+/* ── TERMINAL (styles complémentaires) ── */
+.wow-term-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:11px 16px;
+  background:rgba(237,233,220,.035);
   border-bottom:1px solid rgba(200,196,180,.08);
 }
-.term-dot{width:10px;height:10px;border-radius:50%}
-.td1{background:#ff5f57}.td2{background:#ffbd2e}.td3{background:#28c840}
-.term-title{font-family:var(--mono);font-size:.6rem;color:rgba(200,196,180,.35);letter-spacing:.1em;margin-left:8px}
-.term-body{
-  padding:20px 22px 60px;
-  font-family:var(--mono);font-size:.72rem;line-height:1.95;
-  min-height:220px;
+.wow-dots{display:flex;gap:6px}
+.wd{display:block;width:11px;height:11px;border-radius:50%}
+.wd1{background:#ff5f57}.wd2{background:#ffbd2e}.wd3{background:#28c840}
+.wow-term-title{
+  font-family:var(--mono);font-size:.6rem;color:rgba(200,196,180,.38);
+  letter-spacing:.08em;margin-left:6px;flex:1;
+}
+.wow-term-branch{
+  font-family:var(--mono);font-size:.58rem;
+  color:rgba(138,148,99,.65);letter-spacing:.06em;
+  background:rgba(92,99,64,.15);border:1px solid rgba(92,99,64,.2);
+  border-radius:4px;padding:2px 7px;
+}
+.wow-term-body{
+  padding:18px 20px 22px;
+  font-family:var(--mono);font-size:.71rem;line-height:2;
+  min-height:200px;
   color:rgba(200,196,180,.7);
   position:relative;
 }
-.term-line{display:block;white-space:nowrap;overflow:hidden}
-.term-line.comment{color:rgba(138,148,99,.55)}
-.term-line.keyword{color:rgba(184,115,51,.85)}
-.term-line.func{color:rgba(138,148,99,.9)}
+.term-line{display:block;white-space:nowrap}
+.term-line.comment{color:rgba(138,148,99,.52)}
+.term-line.keyword{color:rgba(184,115,51,.88)}
+.term-line.func{color:rgba(138,148,99,.92)}
 .term-line.string{color:rgba(200,196,180,.55)}
 .term-line.indent{padding-left:1.2em}
+.term-line.prop{color:rgba(155,190,220,.75)}
 .term-cursor{
-  display:inline-block;width:7px;height:1em;
+  display:inline-block;width:7px;height:.95em;
   background:var(--amber);vertical-align:text-bottom;
   animation:cursorBlink .85s step-end infinite;
-  margin-left:2px;
+  margin-left:2px;border-radius:1px;
 }
 @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* Floating pills */
-.hero-pill{
-  position:absolute;
-  font-family:var(--mono);font-size:.59rem;letter-spacing:.1em;
-  color:rgba(237,233,220,.75);
-  background:rgba(27,25,20,.7);
-  border:1px solid rgba(200,196,180,.14);
-  border-radius:20px;padding:7px 14px;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  box-shadow:0 6px 20px rgba(0,0,0,.3);
-  z-index:3;
+/* Scanline effect */
+.wow-scanlines{
+  position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,.04) 2px,
+    rgba(0,0,0,.04) 4px
+  );
+  z-index:20;
 }
-.hp1{top:10px;left:-30px;animation:fl1 4.5s ease-in-out infinite;color:rgba(138,148,99,.85);border-color:rgba(138,148,99,.2)}
-.hp2{bottom:80px;left:-44px;animation:fl2 5.5s ease-in-out infinite 0.5s;color:rgba(184,115,51,.85);border-color:rgba(184,115,51,.2)}
-.hp3{top:36px;right:-36px;animation:fl1 5s ease-in-out infinite 1s}
-.hp4{bottom:40px;right:-28px;animation:fl2 4s ease-in-out infinite 1.5s;color:rgba(138,148,99,.75)}
 
-/* Score badge */
-.hero-score-badge{
-  position:absolute;bottom:20px;right:20px;
-  width:72px;height:72px;
-  background:rgba(27,25,20,.9);
-  border:1px solid rgba(184,115,51,.25);
-  border-radius:50%;
-  backdrop-filter:blur(16px);
+/* ── ORBITING SKILL CARDS — avec aura lumineuse ── */
+/* Technique : box-shadow multi-couches pour l'effet glow */
+.wow-orbit{
+  position:absolute;
   display:flex;align-items:center;justify-content:center;
-  z-index:5;
-  box-shadow:0 8px 28px rgba(0,0,0,.5),0 0 0 4px rgba(184,115,51,.08);
+  z-index:8;
 }
-.hero-score-badge svg{position:absolute;inset:0}
-.score-ring{
-  animation:ringIn 2s var(--ease) 1.5s both;
-  stroke-dasharray:0 138;
-}
-@keyframes ringIn{to{stroke-dasharray:124 138}}
+/* Positions — spread around the terminal */
+.wow-orbit-1{top:-28px;left:28px;animation:wow-float1 4.8s ease-in-out infinite}
+.wow-orbit-2{top:50px;right:-64px;animation:wow-float2 5.6s ease-in-out infinite .4s}
+.wow-orbit-3{bottom:110px;right:-68px;animation:wow-float1 5.2s ease-in-out infinite .9s}
+.wow-orbit-4{top:-28px;right:48px;animation:wow-float2 6s ease-in-out infinite 1.4s}
+.wow-orbit-5{bottom:160px;left:-62px;animation:wow-float1 4.4s ease-in-out infinite 1.8s}
 
-/* Git floating card */
-.hero-git-card{
-  position:absolute;
-  bottom:72px;left:-56px;
-  background:rgba(22,20,16,.9);
+/* Float animations — plus dynamiques qu'avant */
+@keyframes wow-float1{
+  0%,100%{transform:translateY(0) rotate(0deg) scale(1)}
+  33%{transform:translateY(-14px) rotate(-3deg) scale(1.02)}
+  66%{transform:translateY(7px) rotate(1.5deg) scale(.98)}
+}
+@keyframes wow-float2{
+  0%,100%{transform:translateY(0) rotate(0deg) scale(1)}
+  33%{transform:translateY(12px) rotate(3deg) scale(.98)}
+  66%{transform:translateY(-10px) rotate(-1.5deg) scale(1.02)}
+}
+
+/* Chaque skill card — renforcé avec glow coloré */
+.wow-skill-card{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 13px;
+  /* Fond semi-transparent + flou : effect glassmorphism */
+  background:rgba(22,20,16,.92);
+  border:1px solid rgba(200,196,180,.18);
+  border-radius:10px;
+  backdrop-filter:blur(16px);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    /* Halo subtil autour de chaque badge */
+    0 0 20px rgba(255,255,255,.03);
+  white-space:nowrap;
+  transition:border-color .3s,box-shadow .4s,transform .3s;
+}
+/* Au hover : la carte s'illumine selon sa couleur */
+.wow-skill-card:hover{
+  border-color:rgba(200,196,180,.35);
+  box-shadow:0 14px 36px rgba(0,0,0,.6),0 0 30px rgba(255,255,255,.05);
+  transform:scale(1.06);
+}
+.wsk-icon{
+  font-family:var(--mono);font-size:.75rem;font-weight:700;
+  width:28px;height:28px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.wsk-label{font-family:var(--mono);font-size:.58rem;color:rgba(200,196,180,.75);letter-spacing:.08em}
+
+/* Icon color themes + glow spécifique par techno */
+.wsk-html .wsk-icon{background:#e34c26;color:#fff;box-shadow:0 0 10px rgba(227,76,38,.4)}
+.wsk-css  .wsk-icon{background:#264de4;color:#fff;box-shadow:0 0 10px rgba(38,77,228,.4)}
+.wsk-js   .wsk-icon{background:#f7df1e;color:#111;box-shadow:0 0 10px rgba(247,223,30,.35)}
+.wsk-svelte .wsk-icon{background:#ff3e00;color:#fff;box-shadow:0 0 10px rgba(255,62,0,.4)}
+.wsk-figma .wsk-icon{background:linear-gradient(135deg,#F24E1E,#FF7262,#A259FF,#1ABCFE,#0ACF83);color:#fff;font-size:.6rem;box-shadow:0 0 12px rgba(162,89,255,.35)}
+
+/* ── LIGHTHOUSE BADGE ── */
+.wow-lh-badge{
+  position:absolute;bottom:-26px;right:16px;
+  width:88px;height:88px;
+  background:rgba(18,16,12,.95);
+  border:1px solid rgba(184,115,51,.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  z-index:12;
+  box-shadow:0 10px 36px rgba(0,0,0,.6),0 0 0 6px rgba(184,115,51,.07);
+  animation:lhPulse 3s ease-in-out infinite;
+}
+@keyframes lhPulse{
+  0%,100%{box-shadow:0 10px 36px rgba(0,0,0,.6),0 0 0 6px rgba(184,115,51,.07)}
+  50%{box-shadow:0 10px 36px rgba(0,0,0,.6),0 0 0 10px rgba(184,115,51,.04),0 0 40px rgba(184,115,51,.12)}
+}
+.wow-lh-svg{position:absolute;inset:0;width:100%;height:100%}
+.lh-ring{
+  animation:lhRing 2.2s var(--ease) 1s both;
+  stroke-dasharray:0 163;
+}
+@keyframes lhRing{to{stroke-dasharray:150 163}}
+.wow-lh-inner{position:relative;z-index:1;text-align:center}
+.wow-lh-val{
+  display:block;font-family:var(--serif);font-size:1.5rem;
+  color:var(--cream);line-height:1;letter-spacing:-.02em;
+}
+.wow-lh-sub{
+  font-family:var(--mono);font-size:.4rem;color:var(--olive2);
+  letter-spacing:.16em;text-transform:uppercase;display:block;margin-top:2px;
+}
+
+/* ── GIT STATUS CARD ── */
+.wow-git-status{
+  position:absolute;bottom:-24px;left:14px;
+  background:rgba(18,16,12,.92);
   border:1px solid rgba(138,148,99,.22);
   border-radius:10px;padding:10px 14px;
   backdrop-filter:blur(16px);
-  box-shadow:0 8px 28px rgba(0,0,0,.4);
-  z-index:4;
-  animation:fl2 6s ease-in-out infinite 2s;
-  min-width:180px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+  z-index:12;
+  min-width:186px;
+  animation:wow-float2 7s ease-in-out infinite 2s;
 }
-.hgc-top{display:flex;align-items:center;gap:7px;margin-bottom:5px}
-.hgc-dot{
+.wgs-top{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.wgs-dot{
   width:7px;height:7px;border-radius:50%;
   background:#4ade80;flex-shrink:0;
   animation:blink 2s ease-in-out infinite;
 }
-.hgc-label{font-family:var(--mono);font-size:.56rem;color:rgba(138,148,99,.7);letter-spacing:.14em;text-transform:uppercase}
-.hgc-msg{font-family:var(--mono);font-size:.63rem;color:rgba(237,233,220,.78);letter-spacing:.04em}
-.score-inner{position:relative;z-index:1;text-align:center}
-.score-val{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--cream);line-height:1}
-.score-lbl{font-family:var(--mono);font-size:.45rem;color:var(--olive2);letter-spacing:.14em;text-transform:uppercase}
+.wgs-branch{font-family:var(--mono);font-size:.58rem;color:rgba(138,148,99,.85);font-weight:700}
+.wgs-sep{color:rgba(200,196,180,.2);font-size:.62rem}
+.wgs-sha{font-family:var(--mono);font-size:.55rem;color:rgba(200,196,180,.35)}
+.wgs-msg{font-family:var(--mono);font-size:.62rem;color:rgba(237,233,220,.78);margin-bottom:4px}
+.wgs-meta{font-family:var(--mono);font-size:.52rem;color:rgba(200,196,180,.3);letter-spacing:.04em}
 
-/* Deco rings */
-.anim-ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none}
-.ar1{
-  width:380px;height:380px;
-  border-color:rgba(200,196,180,.045);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:spinSlow 28s linear infinite;
+/* ── STATUS PILL (top) ── */
+.wow-status-pill{
+  position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:8px;
+  background:rgba(18,16,12,.9);
+  border:1px solid rgba(138,148,99,.25);
+  border-radius:20px;padding:7px 16px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 6px 20px rgba(0,0,0,.4);
+  z-index:14;
+  white-space:nowrap;
+  animation:wow-float1 5s ease-in-out infinite .5s;
 }
-.ar2{
-  width:290px;height:290px;
-  border-color:rgba(92,99,64,.07);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:spinSlow 18s linear infinite reverse;
+.wsp-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#4ade80;flex-shrink:0;
+  box-shadow:0 0 8px rgba(74,222,128,.6);
+  animation:blink 2s ease-in-out infinite;
 }
-@keyframes spinSlow{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.wsp-txt{
+  font-family:var(--mono);font-size:.6rem;color:rgba(200,196,180,.8);
+  letter-spacing:.1em;
+}
+
+/* ── EXP BADGE ── */
+.wow-exp-badge{
+  position:absolute;top:0;right:-70px;
+  background:rgba(18,16,12,.9);
+  border:1px solid rgba(200,196,180,.13);
+  border-radius:12px;padding:12px 16px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 8px 28px rgba(0,0,0,.4);
+  z-index:12;
+  text-align:center;
+  animation:wow-float1 4.5s ease-in-out infinite 1s;
+}
+.web-val{
+  display:block;font-family:var(--serif);font-size:1.6rem;
+  color:var(--olive2);line-height:1;
+}
+.web-label{
+  display:block;font-family:var(--mono);font-size:.52rem;
+  color:rgba(200,196,180,.5);letter-spacing:.08em;
+  margin-top:3px;white-space:nowrap;
+}
+
+/* ── ORBIT RINGS ── */
+.wow-ring{
+  position:absolute;border-radius:50%;border:1px solid;
+  pointer-events:none;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+}
+.wr1{
+  width:430px;height:430px;
+  border-color:rgba(200,196,180,.04);
+  animation:wowSpin 32s linear infinite;
+}
+.wr2{
+  width:340px;height:340px;
+  border-color:rgba(92,99,64,.06);
+  animation:wowSpin 22s linear infinite reverse;
+}
+.wr3{
+  width:520px;height:520px;
+  border-color:rgba(200,196,180,.02);
+  border-style:dashed;
+  animation:wowSpin 48s linear infinite;
+}
+@keyframes wowSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* ── GLOW CENTER ── */
+.wow-glow-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:280px;height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(92,99,64,.1) 0%,rgba(184,115,51,.05) 40%,transparent 70%);
+  filter:blur(40px);
+  pointer-events:none;
+  animation:wowGlowPulse 6s ease-in-out infinite;
+}
+@keyframes wowGlowPulse{
+  0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}
+}
+
+/* ── LEGACY pill/fbadge styles (still needed for responsive) ── */
+.hero-pill{display:none} /* Replaced by wow-skill-card */
+.fbadge{display:none}    /* Replaced by wow-status-pill / wow-exp-badge */
 
 /* =============================================
    ORGANIC SECTION — VERSION BANNIÈRE
@@ -701,6 +964,58 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
 ============================================= */
 
 
+
+/* =============================================
+   BLUR QUOTE EFFECT
+============================================= */
+.blur-quote-sec{
+  position:relative;z-index:2;
+  padding:72px 52px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.blur-quote-sec::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(92,99,64,.04) 0%,transparent 50%,rgba(184,115,51,.03) 100%);
+  pointer-events:none;
+}
+.blur-quote{
+  max-width:860px;
+  font-family:var(--serif);
+  font-size:clamp(1.4rem,3.2vw,2.4rem);
+  line-height:1.45;
+  color:rgba(237,233,220,.85);
+  letter-spacing:-.02em;
+  text-align:center;
+  position:relative;
+}
+.blur-quote .bq-source{
+  display:block;
+  margin-top:20px;
+  font-family:var(--mono);
+  font-size:.65rem;
+  color:var(--olive2);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.blur-quote .bq-source::before{
+  content:'— ';
+}
+
+/* Blur word animation */
+.bw{
+  display:inline;
+  transition:filter .6s ease, opacity .6s ease;
+}
+.bw.blurred{
+  filter:blur(6px);
+  opacity:.35;
+}
+/* Accent word */
+.bq-accent{
+  color:var(--amber);
+  font-style:italic;
+}
 /* =============================================
    REVEAL ANIMATION
 ============================================= */
@@ -956,15 +1271,28 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
 
 /* Image zones */
 .dc-img{width:100%;overflow:hidden;position:relative}
-.dc-main .dc-img{height:260px}
-.dc-img-top{height:180px}
-.dc-img-land{height:130px}
+.dc-main .dc-img{height:380px}
+.dc-img-top{height:210px}
+.dc-img-land{height:170px}
 .dc-img img{
   width:100%;height:100%;object-fit:cover;
-  transition:transform .7s var(--ease),filter .5s;
+  transition:transform .9s var(--ease),filter .5s,object-position 1.2s var(--ease);
   filter:brightness(.85) saturate(.92);
+  object-position:top center;
+  will-change:transform;
 }
-.dc:hover .dc-img img{transform:scale(1.05);filter:brightness(.98) saturate(1.05)}
+/* Ciné Délices: scroll image from top to bottom on hover */
+.dc-main .dc-img img{object-position:top center}
+.dc-main:hover .dc-img img{
+  transform:scale(1.08);
+  filter:brightness(.98) saturate(1.06);
+  object-position:bottom center;
+}
+/* Other cards: zoom + slight drift up */
+.dc-side .dc-img img,
+.dc-bottom .dc-img img{object-position:top center}
+.dc-side:hover .dc-img img{transform:scale(1.12);filter:brightness(.98) saturate(1.05)}
+.dc-bottom:hover .dc-img img{transform:scale(1.14);filter:brightness(.98) saturate(1.05)}
 .dc-img-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(27,25,20,.9) 0%,rgba(27,25,20,.15) 55%,transparent 100%);
@@ -1036,6 +1364,197 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
   color:var(--dark);letter-spacing:.12em;text-transform:uppercase;
   box-shadow:0 4px 14px rgba(184,115,51,.4);
 }
+
+
+/* =============================================
+   CINÉ DÉLICES CARD — Traitement premium
+   Même base visuelle que les autres cards (glass dark)
+   MAIS avec des accents or/rouge pour se démarquer
+   Appris en cours : on surcharge les styles sans modifier la base
+============================================= */
+
+:root{
+  --cd-gold:#C4A052;
+  --cd-gold-light:#F2C84B;
+  --cd-gold-shimmer:linear-gradient(135deg,#B8882A 0%,#D4A843 30%,#F2C84B 55%,#FFE085 80%,#D4A843 100%);
+  --cd-rouge:#C23018;
+  --cd-night:#0f1e30;
+  --cd-blue:#142234;
+}
+
+/* On part de la même base que .dc mais avec des sur-couches or */
+.cd-card{
+  /* Même fond sombre que les autres cards — cohérence visuelle */
+  background:rgba(27,25,20,.22);
+  /* Mais avec une légère touche chaude pour se distinguer */
+  border-color:rgba(196,160,82,.22)!important;
+  overflow:hidden;
+}
+/* Effet glow or au hover — très visible pour attirer l'oeil */
+.cd-card:hover{
+  border-color:rgba(196,160,82,.55)!important;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.6),
+    0 0 40px rgba(196,160,82,.15),  /* halo or */
+    inset 0 1px 0 rgba(196,160,82,.12)!important;
+}
+
+/* Filet or vertical gauche — signature cinématographique */
+.cd-pellicule{
+  position:absolute;left:0;top:0;bottom:0;width:3px;z-index:10;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(196,160,82,.15) 10%,
+    rgba(196,160,82,.65) 35%,
+    rgba(196,160,82,.85) 50%,
+    rgba(196,160,82,.65) 65%,
+    rgba(196,160,82,.15) 90%,
+    transparent 100%
+  );
+  border-radius:20px 0 0 20px;
+}
+
+/* Ligne shimmer en haut — animation subtile */
+.cd-shimmer-line{
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(196,160,82,.6) 20%,
+    rgba(242,200,75,.95) 50%,
+    rgba(196,160,82,.6) 80%,
+    transparent 100%
+  );
+  z-index:10;
+  /* Clignotement doux — @keyframes appris en formation */
+  animation:cdShimmer 3s ease-in-out infinite;
+}
+@keyframes cdShimmer{
+  0%,100%{opacity:.35}
+  50%{opacity:1}
+}
+
+/* Badge Projet Phare — très visible en haut à gauche */
+.cd-badge-phare{
+  position:absolute;top:14px;left:18px;z-index:20;
+  background:var(--cd-gold-shimmer);
+  color:#1C1404;
+  font-family:'Cinzel',serif;font-size:.52rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  padding:5px 14px;border-radius:3px;
+  box-shadow:0 4px 16px rgba(196,160,82,.5),inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+/* Image zone Ciné Délices */
+.cd-img-zone{position:relative}
+/* Overlay top — léger, pour que le badge soit lisible */
+.cd-overlay-top{
+  position:absolute;top:0;left:0;right:0;height:80px;
+  /* On utilise le même dark que les autres cards, pas de blue */
+  background:linear-gradient(to bottom,rgba(27,25,20,.85),transparent);
+  z-index:2;pointer-events:none;
+}
+
+/* Film stats bar on image — reste or car c'est le thème du projet */
+.cd-img-stats{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:center;gap:0;
+  padding:14px 18px;z-index:5;
+  /* Même ton sombre que les autres overlays */
+  background:linear-gradient(to top,rgba(27,25,20,.95) 0%,rgba(27,25,20,.7) 60%,transparent 100%);
+}
+.cd-stat{display:flex;flex-direction:column;align-items:center;padding:0 18px}
+.cd-stat-v{
+  font-family:'Bebas Neue',cursive;font-size:1.2rem;
+  background:var(--cd-gold-shimmer);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;letter-spacing:.06em;
+}
+.cd-stat-l{
+  font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(196,160,82,.5);margin-top:2px;
+}
+.cd-stat-sep{width:1px;height:28px;background:linear-gradient(to bottom,transparent,rgba(196,160,82,.3),transparent)}
+
+/* Body section */
+.cd-body{padding:16px 20px 18px 22px;position:relative;z-index:2;display:flex;flex-direction:column;gap:10px}
+
+/* Eyebrow Cinzel */
+.cd-eyebrow{display:flex;align-items:center;gap:10px}
+.cd-eyebrow-line{flex-shrink:0;width:18px;height:1px;background:rgba(196,160,82,.45)}
+.cd-eyebrow-txt{
+  font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(196,160,82,.6);
+}
+
+/* Title Bebas Neue */
+.cd-title-wrap{display:flex;flex-direction:column;gap:0;margin:-2px 0}
+.cd-pretitle{
+  font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(196,160,82,.35);margin-bottom:1px;
+}
+.cd-title-main{
+  font-family:'Bebas Neue',cursive;font-size:2.2rem;letter-spacing:.08em;
+  color:rgba(232,232,232,.88);line-height:.95;
+}
+.cd-title-gold{
+  background:var(--cd-gold-shimmer);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* Description Lato-style */
+.cd-desc{
+  font-size:.76rem;line-height:1.65;color:rgba(232,232,232,.55);
+  font-family:var(--sans);
+}
+
+/* Stack grid */
+.cd-stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cd-stack-col{}
+.cd-stack-label{
+  font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(196,160,82,.4);margin-bottom:6px;
+}
+.cd-stack-items{display:flex;flex-wrap:wrap;gap:4px}
+.cd-chip{
+  font-family:var(--mono);font-size:.55rem;padding:3px 9px;border-radius:3px;
+  font-weight:500;
+}
+.cd-chip.fe{background:rgba(196,160,82,.08);border:1px solid rgba(196,160,82,.28);color:rgba(196,160,82,.85)}
+.cd-chip.be{background:rgba(194,48,24,.08);border:1px solid rgba(194,48,24,.28);color:rgba(232,100,80,.8)}
+.cd-chip.tool{background:rgba(65,90,119,.2);border:1px solid rgba(65,90,119,.4);color:rgba(232,232,232,.5)}
+
+/* Typo strip */
+.cd-typo-strip{
+  display:flex;align-items:center;flex-wrap:wrap;gap:4px;
+  padding:7px 10px;
+  border-radius:5px;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(196,160,82,.08);
+}
+.cd-typo-item{font-family:var(--mono);font-size:.52rem;color:rgba(196,160,82,.45);letter-spacing:.06em}
+.cd-typo-dot{color:rgba(196,160,82,.2);font-size:.6rem;margin:0 2px}
+
+/* Footer */
+.cd-footer{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cd-btn-voir{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 18px;border-radius:4px;
+  background:var(--cd-gold-shimmer);color:#1C1404;
+  font-family:'Cinzel',serif;font-size:.54rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all .3s var(--ease);
+  box-shadow:0 2px 12px rgba(184,136,42,.22),inset 0 1px 0 rgba(255,255,255,.18);
+}
+.cd-btn-voir:hover{filter:brightness(1.12);box-shadow:0 6px 22px rgba(212,168,67,.42);transform:translateY(-1px)}
+.cd-hint{font-family:var(--mono);font-size:.55rem;color:rgba(196,160,82,.35);letter-spacing:.1em}
+
+/* Gold corner glow */
+.cd-glow-corner{
+  position:absolute;bottom:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,160,82,.25),transparent 65%);
+  filter:blur(30px);pointer-events:none;
+  transition:opacity .5s;
+}
+.cd-card:hover .cd-glow-corner{opacity:1.5}
 
 /* =============================================
    RESPONSIVE
@@ -1155,46 +1674,129 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
       </p>
       <div class="ctas rv d3">
         <a href="#" class="btn btn-p" onclick="gs('tabs');return false">Voir mes projets <span class="arr">→</span></a>
-        <a href="#" class="btn btn-g">Télécharger CV <span class="arr">↓</span></a>
+        <a href="mailto:contact@sebastienmaurice.fr" class="btn btn-g">Me contacter <span class="arr">✉</span></a>
+      </div>
+      <!-- Badge disponibilité — rassure immédiatement le recruteur -->
+      <div class="hero-avail rv d3" style="margin-top:22px;display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.62rem;color:var(--olive2);letter-spacing:.1em;border:1px solid rgba(92,99,64,.35);background:rgba(92,99,64,.08);padding:7px 14px;border-radius:20px;backdrop-filter:blur(8px)">
+          <span style="width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.7);animation:blink 2s ease-in-out infinite;flex-shrink:0"></span>
+          Disponible — Freelance &amp; CDI
+        </span>
+        <span style="font-family:var(--mono);font-size:.58rem;color:var(--stone);letter-spacing:.08em">Caudry, Nord (Remote OK)</span>
       </div>
     </div>
-    <!-- RIGHT — Code animation -->
+    <!-- RIGHT — WOW Animation -->
     <div class="hero-r rv d2">
-      <div class="hero-anim-wrap">
-        <!-- Terminal window -->
-        <div class="hero-terminal">
-          <div class="term-bar">
-            <span class="term-dot td1"></span>
-            <span class="term-dot td2"></span>
-            <span class="term-dot td3"></span>
-            <span class="term-title">portfolio.js</span>
+      <div class="wow-stage">
+
+        <!-- === ANNEAUX ORBITAUX (CSS only animation) ===
+             Technique O'Clock : div vides animés via keyframes CSS
+             Les ring-dot créent les "points lumineux" sur les cercles -->
+        <div class="wow-ring-outer"><div class="ring-dot"></div></div>
+        <div class="wow-ring-mid"><div class="ring-dot-green"></div></div>
+        <div class="wow-ring-inner"></div>
+
+        <!-- === CENTRAL TERMINAL === -->
+        <div class="wow-terminal" id="wowTerminal">
+          <div class="wow-term-bar">
+            <div class="wow-dots">
+              <span class="wd wd1"></span>
+              <span class="wd wd2"></span>
+              <span class="wd wd3"></span>
+            </div>
+            <span class="wow-term-title">seb.portfolio.js</span>
+            <span class="wow-term-branch">⎇ main</span>
           </div>
-          <div class="term-body" id="termBody"></div>
+          <div class="wow-term-body" id="termBody"></div>
+          <!-- Scanline overlay -->
+          <div class="wow-scanlines"></div>
         </div>
-        <!-- Floating skill pills -->
-        <div class="hero-pill hp1">CSS · Grid</div>
-        <div class="hero-pill hp2">Svelte ⚡</div>
-        <div class="hero-pill hp3">Figma ✦</div>
-        <div class="hero-pill hp4">{ JS }</div>
-        <!-- Score badge — now inside terminal bottom-right -->
-        <div class="hero-score-badge">
-          <svg width="52" height="52" viewBox="0 0 52 52" style="position:absolute;inset:0;width:100%;height:100%">
-            <circle cx="26" cy="26" r="22" fill="none" stroke="rgba(200,196,180,.07)" stroke-width="3"/>
-            <circle cx="26" cy="26" r="22" fill="none" stroke="var(--olive2)" stroke-width="2.5" stroke-dasharray="0 138" stroke-linecap="round" class="score-ring"/>
+
+        <!-- === FLOATING SKILL CARDS (orbit) === -->
+        <div class="wow-orbit wow-orbit-1">
+          <div class="wow-skill-card wsk-html">
+            <span class="wsk-icon">H5</span>
+            <span class="wsk-label">HTML5</span>
+          </div>
+        </div>
+        <div class="wow-orbit wow-orbit-2">
+          <div class="wow-skill-card wsk-css">
+            <span class="wsk-icon">C3</span>
+            <span class="wsk-label">CSS3</span>
+          </div>
+        </div>
+        <div class="wow-orbit wow-orbit-3">
+          <div class="wow-skill-card wsk-js">
+            <span class="wsk-icon">JS</span>
+            <span class="wsk-label">JS ES6+</span>
+          </div>
+        </div>
+        <div class="wow-orbit wow-orbit-4">
+          <div class="wow-skill-card wsk-svelte">
+            <span class="wsk-icon">Sv</span>
+            <span class="wsk-label">Svelte</span>
+          </div>
+        </div>
+        <div class="wow-orbit wow-orbit-5">
+          <div class="wow-skill-card wsk-figma">
+            <span class="wsk-icon">Fi</span>
+            <span class="wsk-label">Figma</span>
+          </div>
+        </div>
+
+        <!-- === LIGHTHOUSE BADGE (bottom right) === -->
+        <div class="wow-lh-badge">
+          <svg class="wow-lh-svg" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(200,196,180,.07)" stroke-width="4"/>
+            <circle cx="32" cy="32" r="26" fill="none" stroke="url(#lhGrad)" stroke-width="4"
+              stroke-dasharray="0 163" stroke-linecap="round" class="lh-ring"
+              transform="rotate(-90 32 32)"/>
+            <defs>
+              <linearGradient id="lhGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#5C6340"/>
+                <stop offset="100%" stop-color="#8A9463"/>
+              </linearGradient>
+            </defs>
           </svg>
-          <div class="score-inner"><span class="score-val">98</span><span class="score-lbl">Perf</span></div>
+          <div class="wow-lh-inner">
+            <span class="wow-lh-val" id="lhCounter">98</span>
+            <span class="wow-lh-sub">Lighthouse</span>
+          </div>
         </div>
-        <!-- Extra floating card — git commit -->
-        <div class="hero-git-card">
-          <div class="hgc-top"><span class="hgc-dot"></span><span class="hgc-label">git commit</span></div>
-          <div class="hgc-msg">"feat: add WOW factor ✦"</div>
+
+        <!-- === GIT STATUS CARD (bottom left) === -->
+        <div class="wow-git-status">
+          <div class="wgs-top">
+            <span class="wgs-dot"></span>
+            <span class="wgs-branch">main</span>
+            <span class="wgs-sep">/</span>
+            <span class="wgs-sha">a4f2c91</span>
+          </div>
+          <div class="wgs-msg">"feat: add WOW factor ✦"</div>
+          <div class="wgs-meta">just now · Sébastien Maurice</div>
         </div>
-        <!-- Deco rings -->
-        <div class="anim-ring ar1"></div>
-        <div class="anim-ring ar2"></div>
+
+        <!-- === STATUS TOP PILL === -->
+        <div class="wow-status-pill">
+          <span class="wsp-dot"></span>
+          <span class="wsp-txt">Disponible · Freelance</span>
+        </div>
+
+        <!-- === EXP BADGE (top right) === -->
+        <div class="wow-exp-badge">
+          <span class="web-val">5+</span>
+          <span class="web-label">ans d'expérience</span>
+        </div>
+
+        <!-- === ORBIT RINGS (deco) === -->
+        <div class="wow-ring wr1"></div>
+        <div class="wow-ring wr2"></div>
+        <div class="wow-ring wr3"></div>
+
+        <!-- === GLOW CENTER === -->
+        <div class="wow-glow-center"></div>
+
       </div>
-      <div class="fbadge b1"><span class="bv">5+</span>ans d'expérience</div>
-      <div class="fbadge b2"><span class="bv">✦</span>Disponible</div>
     </div>
   </div>
   <div class="scroll-hint"><div class="scl"></div><span>Scroll</span></div>
@@ -1225,6 +1827,15 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
     <span class="marquee-item"><span class="mi-dot">✦</span>API REST</span>
     <span class="marquee-item"><span class="mi-dot">✦</span>Responsive Mobile-First</span>
   </div>
+</div>
+
+
+<!-- ========================= BLUR QUOTE ========================= -->
+<div class="blur-quote-sec" id="quote-sec">
+  <blockquote class="blur-quote" id="blurQuote">
+    <span class="bw">Je</span> <span class="bw">construis</span> <span class="bw">des</span> <span class="bw bq-accent">interfaces</span> <span class="bw">qui</span> <span class="bw">ne</span> <span class="bw">se</span> <span class="bw">contentent</span> <span class="bw">pas</span> <span class="bw">d'être</span> <span class="bw bq-accent">belles</span> <span class="bw">—</span> <span class="bw">elles</span> <span class="bw">parlent,</span> <span class="bw">elles</span> <span class="bw bq-accent">convainquent,</span> <span class="bw">elles</span> <span class="bw">restent.</span>
+    <span class="bq-source">Sébastien Maurice · Front-End Developer</span>
+  </blockquote>
 </div>
 
 <!-- ========================= TABS ========================= -->
@@ -1304,31 +1915,94 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
     <!-- Projets phare — layout 3 cards destructurées -->
     <div class="destruct-grid rv">
 
-      <!-- CINÉ DÉLICES — grande card hero -->
-      <div class="dc dc-main" onclick="openModal('cine')">
-        <div class="feat-badge">Projet Phare ✦</div>
-        <div class="dc-img">
-          <img src="https://i.postimg.cc/4dYX24bL/cine-delices-home-final-delphinecaron007.jpg" alt="Ciné Délices" loading="lazy">
+      <!-- CINÉ DÉLICES — grande card hero moodboard -->
+      <div class="dc dc-main cd-card" onclick="openModal('cine')">
+
+        <!-- Pellicule gold accent bar gauche -->
+        <div class="cd-pellicule"></div>
+
+        <!-- Badge Projet Phare style CD -->
+        <div class="cd-badge-phare">★ PROJET PHARE</div>
+
+        <!-- Image zone with cinematic overlay -->
+        <div class="dc-img cd-img-zone">
+          <img src="https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg" alt="Ciné Délices" loading="lazy">
+          <!-- Cinematic gradients -->
+          <div class="cd-overlay-top"></div>
           <div class="dc-img-overlay"></div>
-        </div>
-        <div class="dc-body">
-          <div class="dc-num">01</div>
-          <div class="dc-tag">Site vitrine · API TMDB · Réservation</div>
-          <div class="dc-title">Ciné <em>Délices</em></div>
-          <div class="dc-desc">Application cinéma immersive — consultation films, réservation en ligne, intégration API TMDB. Interface pensée pour l'émotion.</div>
-          <div class="dc-chips">
-            <span class="dc-chip hi">Svelte</span>
-            <span class="dc-chip hi">JS ES6+</span>
-            <span class="dc-chip">Node.js</span>
-            <span class="dc-chip">MongoDB</span>
-            <span class="dc-chip">Figma</span>
-          </div>
-          <div class="dc-footer">
-            <a href="https://github.com/sebastienmaurice" target="_blank" class="dc-link" onclick="event.stopPropagation()">Voir le repo <span>→</span></a>
-            <span class="dc-hint">◎ Détails</span>
+          <!-- Film stats floating on image -->
+          <div class="cd-img-stats">
+            <div class="cd-stat"><span class="cd-stat-v">4.9</span><span class="cd-stat-l">Note</span></div>
+            <div class="cd-stat-sep"></div>
+            <div class="cd-stat"><span class="cd-stat-v">18</span><span class="cd-stat-l">Recettes</span></div>
+            <div class="cd-stat-sep"></div>
+            <div class="cd-stat"><span class="cd-stat-v">2007</span><span class="cd-stat-l">Sortie</span></div>
           </div>
         </div>
-        <div class="dc-glow dc-glow-amber"></div>
+
+        <!-- Body — style Ciné Délices -->
+        <div class="cd-body">
+          <!-- Eyebrow Cinzel -->
+          <div class="cd-eyebrow">
+            <span class="cd-eyebrow-line"></span>
+            <span class="cd-eyebrow-txt">Plateforme Immersive · Films & Gastronomie</span>
+          </div>
+
+          <!-- Titre Bebas Neue style -->
+          <div class="cd-title-wrap">
+            <div class="cd-pretitle">Projet</div>
+            <h3 class="cd-title-main">CINÉ <span class="cd-title-gold">DÉLICES</span></h3>
+          </div>
+
+          <!-- Description enrichie -->
+          <p class="cd-desc">Fiches films, badges animés, carrousels interactifs — design cinématographique élégant mêlant cinéma et gastronomie. Moodboard sombre avec accents or/rouge.</p>
+
+          <!-- Stack grid — 2 colonnes -->
+          <div class="cd-stack-grid">
+            <div class="cd-stack-col">
+              <div class="cd-stack-label">Front-End</div>
+              <div class="cd-stack-items">
+                <span class="cd-chip fe">Svelte</span>
+                <span class="cd-chip fe">HTML5</span>
+                <span class="cd-chip fe">CSS3</span>
+                <span class="cd-chip fe">JS ES6+</span>
+              </div>
+            </div>
+            <div class="cd-stack-col">
+              <div class="cd-stack-label">Back & Design</div>
+              <div class="cd-stack-items">
+                <span class="cd-chip be">Node.js</span>
+                <span class="cd-chip be">API TMDB</span>
+                <span class="cd-chip tool">Figma</span>
+                <span class="cd-chip tool">MongoDB</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typo info strip -->
+          <div class="cd-typo-strip">
+            <span class="cd-typo-item">Bebas Neue</span>
+            <span class="cd-typo-dot">·</span>
+            <span class="cd-typo-item">Cinzel</span>
+            <span class="cd-typo-dot">·</span>
+            <span class="cd-typo-item">Playfair Display</span>
+            <span class="cd-typo-dot">·</span>
+            <span class="cd-typo-item">Lato</span>
+          </div>
+
+          <!-- Footer CTA style CD -->
+          <div class="cd-footer">
+            <a href="https://github.com/sebastienmaurice" target="_blank" class="cd-btn-voir" onclick="event.stopPropagation()">
+              ▶ Voir le repo
+            </a>
+            <span class="cd-hint">◎ Cliquer pour les détails</span>
+          </div>
+        </div>
+
+        <!-- Ambient gold glow -->
+        <div class="cd-glow-corner"></div>
+        <!-- Shimmer line top -->
+        <div class="cd-shimmer-line"></div>
       </div>
 
       <!-- DEV N'DUMBER — card verticale -->
@@ -1689,6 +2363,44 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
   </div>
 </section>
 
+<!-- ========================= RECRUTEUR CTA ========================= -->
+<!-- Section "appel à l'action" pour inciter le recruteur à contacter -->
+<!-- On utilise la même palette que le reste du portfolio (--olive, --amber) -->
+<section style="position:relative;z-index:2;padding:80px 52px;text-align:center;border-top:1px solid var(--gborder)">
+  <div style="max-width:700px;margin:0 auto">
+    <!-- Eyebrow -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px">
+      <span style="width:28px;height:1px;background:var(--amber);display:block"></span>
+      <span style="font-family:var(--mono);font-size:.64rem;color:var(--olive2);letter-spacing:.2em;text-transform:uppercase">Collaboration</span>
+      <span style="width:28px;height:1px;background:var(--amber);display:block"></span>
+    </div>
+    <!-- Titre principal de la section CTA -->
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);color:var(--cream);line-height:1;letter-spacing:-.025em;margin-bottom:18px">
+      Un projet ?<br><em style="color:var(--amber)">Travaillons ensemble.</em>
+    </h2>
+    <p style="font-family:var(--sans);font-size:.92rem;color:var(--sand);line-height:1.75;max-width:500px;margin:0 auto 40px">
+      Front-End Developer, Product Designer UX et expert WordPress — disponible en freelance et ouvert aux opportunités CDI. Remote OK depuis Caudry, Nord.
+    </p>
+    <!-- Boutons CTA -->
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="mailto:contact@sebastienmaurice.fr" class="btn btn-p" style="font-size:.85rem;padding:16px 36px">
+        M'envoyer un email <span class="arr">✉</span>
+      </a>
+      <a href="https://www.linkedin.com/in/sebastien-maurice/" target="_blank" class="btn btn-g" style="font-size:.85rem;padding:16px 36px">
+        LinkedIn <span class="arr">↗</span>
+      </a>
+      <a href="https://www.malt.fr/profile/semauri" target="_blank" class="btn btn-g" style="font-size:.85rem;padding:16px 36px">
+        Malt <span class="arr">↗</span>
+      </a>
+    </div>
+    <!-- Badge disponibilité -->
+    <div style="margin-top:28px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.6rem;color:var(--stone);letter-spacing:.1em">
+      <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px rgba(74,222,128,.6);animation:blink 2s ease-in-out infinite"></span>
+      Disponible immédiatement · Freelance &amp; CDI · Remote / Présentiel
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="ft-in">
@@ -1731,14 +2443,14 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
   <div class="proj-modal">
     <button class="proj-modal-close" onclick="closeModal(null,'cine')">✕</button>
     <div class="proj-modal-img">
-      <img src="https://i.postimg.cc/4dYX24bL/cine-delices-home-final-delphinecaron007.jpg" alt="Ciné Délices">
+      <img src="https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg" alt="Ciné Délices">
       <div class="proj-modal-img-grad"></div>
     </div>
     <div class="proj-modal-body">
-      <div class="proj-modal-eyebrow">Site vitrine & Réservation de films</div>
+      <div class="proj-modal-eyebrow">Plateforme immersive · Films &amp; Gastronomie</div>
       <div class="proj-modal-title">Ciné <em>Délices</em></div>
       <div class="proj-modal-desc">
-        Ciné Délices est un site vitrine et de réservation de films, combinant expérience utilisateur fluide et design moderne. L'objectif principal est de faciliter la consultation des films et la réservation en ligne tout en mettant en avant les affiches et contenus multimédia.
+        Ciné Délices est une plateforme immersive mêlant cinéma et gastronomie. Fiches films enrichies via l'API TMDB, badges animés, carrousels interactifs et design cinématographique élégant. Moodboard sombre avec accents or/rouge, typographies soignées (Bebas Neue, Cinzel, Playfair Display, Lato) — une interface responsive mobile &amp; desktop qui révèle autant le savoir-faire technique que la direction artistique.
       </div>
       <div class="proj-modal-stack">
         <div class="proj-modal-stack-col">
@@ -1827,88 +2539,148 @@ footer{position:relative;z-index:2;border-top:1px solid var(--gborder);padding:5
 
 <script>
 /* =============================================
-   1. CURSOR + SPOTLIGHT
+   PORTFOLIO — Sébastien Maurice
+   Formé à O'Clock (Bootcamp Développeur Web & Mobile)
+   
+   Ce fichier JS gère toutes les interactions du portfolio :
+   curseur personnalisé, particules, onglets, animations...
+   
+   🌿 Crafted with care — Caudry, France
+============================================= */
+
+
+/* =============================================
+   1. CURSEUR PERSONNALISÉ + SPOTLIGHT
+   
+   Concept appris en formation :
+   On écoute l'événement 'mousemove' sur document
+   pour suivre la position de la souris en temps réel.
+   
+   Deux éléments : 
+   - #cur : le point central (se déplace instantanément)
+   - #cring : l'anneau (se déplace avec un léger retard via lerp)
+   
+   Le "lerp" (Linear Interpolation) est une technique
+   pour lisser un mouvement : rx += (target - rx) * facteur
+   Plus le facteur est petit, plus c'est lent/fluide.
 ============================================= */
 const cur=document.getElementById('cur'),cring=document.getElementById('cring'),spl=document.getElementById('spl');
 let mx=0,my=0,rx=0,ry=0;
 
 document.addEventListener('mousemove',e=>{
   mx=e.clientX;my=e.clientY;
+  // Déplace le curseur principal immédiatement
   cur.style.left=mx+'px';cur.style.top=my+'px';
+  // Spotlight : on utilise une custom property CSS pour le radial-gradient
   spl.style.setProperty('--sx',mx+'px');
   spl.style.setProperty('--sy',my+'px');
-  mouseX=mx;mouseY=my; // for particles
+  mouseX=mx;mouseY=my; // mis à jour aussi pour le système de particules
 });
 document.addEventListener('mousedown',()=>cur.classList.add('click'));
 document.addEventListener('mouseup',()=>cur.classList.remove('click'));
 
+// Boucle d'animation pour l'anneau — le lerp c'est là !
+// requestAnimationFrame = méthode moderne pour animer en JS (vu en cours)
 (function loop(){
+  // Interpolation linéaire : on avance de 10% vers la cible à chaque frame
   rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
   cring.style.left=rx+'px';cring.style.top=ry+'px';
-  requestAnimationFrame(loop);
+  requestAnimationFrame(loop); // rappel automatique au prochain frame
 })();
 
+// On applique les classes hover sur tous les éléments interactifs
+// forEach sur une NodeList — technique de base O'Clock
 document.querySelectorAll('a,button,.card,.pill,.sk-card,.gal-it,.toolp,.tech-item,.stat').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.classList.add('hov');cring.classList.add('hov');});
   el.addEventListener('mouseleave',()=>{cur.classList.remove('hov');cring.classList.remove('hov');});
 });
 
 /* =============================================
-   2. PARTICLES — react to mouse
+   2. PARTICULES — système de points interactifs
+   
+   Concept important vu en formation :
+   Le canvas HTML5 est un élément sur lequel on dessine
+   via JavaScript avec l'API 2D Context.
+   
+   Principe :
+   1. On crée des objets "Pt" (Point) avec position/vitesse aléatoires
+   2. À chaque frame, on efface le canvas et on redessine tout
+   3. Les points fuient la souris (calcul de distance + vecteur)
+   4. Les points proches sont reliés par des lignes (constellation)
+   
+   C'est le pattern "render loop" — très courant en jeu vidéo aussi !
 ============================================= */
 const canvas=document.getElementById('pc'),ctx=canvas.getContext('2d');
 let W,H,pts=[],mouseX=mx,mouseY=my;
+// Rayon et force d'influence de la souris sur les particules
 const MOUSE_RADIUS=160,MOUSE_FORCE=1.8;
 
+// Resize du canvas quand la fenêtre change de taille
+// On écoute l'événement 'resize' — les event listeners c'est la base !
 function rsz(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
 rsz();window.addEventListener('resize',rsz);
 
+// Classe Pt = un point/particule — la POO vue en cours avancé
 class Pt{
   constructor(){this.res();}
+  // reset() : réinitialise la particule à une position aléatoire
   res(){
     this.x=Math.random()*W;this.y=Math.random()*H;
-    this.ox=this.x;this.oy=this.y; // origin for elastic return
+    this.ox=this.x;this.oy=this.y; // position d'origine pour le retour élastique
+    // Vitesse initiale très faible — effet dérive lente
     this.vx=(Math.random()-.5)*.28;this.vy=(Math.random()-.5)*.28;
-    this.r=Math.random()*1.5+.3;
+    this.r=Math.random()*1.5+.3; // rayon entre 0.3 et 1.8px
     this.baseAlpha=Math.random()*.35+.06;this.a=this.baseAlpha;
+    // Palette de couleurs du moodboard du portfolio
     const c=['#8A9463','#B87333','#C8C4B4','#5C6340','#EDE9DC'];
     this.c=c[Math.floor(Math.random()*c.length)];
+    // Durée de vie de la particule (en frames)
     this.life=0;this.ml=Math.random()*500+250;
   }
+  // Méthode update() : calculs physiques à chaque frame
   upd(){
-    // Mouse repulsion
+    // Calcul de la distance à la souris — théorème de Pythagore !
+    // Appris en maths mais utilisé ici en JS pour la physique 2D
     const dx=this.x-mouseX,dy=this.y-mouseY;
     const dist=Math.sqrt(dx*dx+dy*dy);
     if(dist<MOUSE_RADIUS){
+      // La particule fuit la souris — proportionnellement à sa proximité
       const force=(1-dist/MOUSE_RADIUS)*MOUSE_FORCE;
-      const angle=Math.atan2(dy,dx);
+      const angle=Math.atan2(dy,dx); // angle en radians (trigonométrie)
       this.vx+=Math.cos(angle)*force*.06;
       this.vy+=Math.sin(angle)*force*.06;
+      // Elle s'éclaircit quand elle est proche de la souris
       this.a=Math.min(1,this.baseAlpha+(1-dist/MOUSE_RADIUS)*.6);
     } else {
+      // Retour progressif à la transparence de base
       this.a+=(this.baseAlpha-this.a)*.04;
     }
-    // Speed clamp
+    // Limite de vitesse max pour éviter que les points ne s'emballent
     const spd=Math.sqrt(this.vx*this.vx+this.vy*this.vy);
     if(spd>2.5){this.vx*=2.5/spd;this.vy*=2.5/spd;}
-    // Gentle drift back when far
+    // Friction légère pour ralentir naturellement
     this.vx*=.99;this.vy*=.99;
     this.x+=this.vx;this.y+=this.vy;
     this.life++;
+    // Si hors écran ou trop vieux → on le réinitialise
     if(this.x<-10||this.x>W+10||this.y<-10||this.y>H+10||this.life>this.ml)this.res();
   }
+  // Méthode draw() : dessin sur le canvas
   drw(){
+    // Fade-in au début de vie et fade-out à la fin
     const f=this.life<60?this.life/60:this.life>this.ml-60?(this.ml-this.life)/60:1;
     ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
     ctx.fillStyle=this.c;ctx.globalAlpha=this.a*f;ctx.fill();
   }
 }
 
-// Spawn more particles for density
+// On crée 130 particules au démarrage — pour de la densité
 for(let i=0;i<130;i++)pts.push(new Pt());
 
+// Fonction qui trace les lignes entre particules proches
+// Double boucle imbriquée = O(n²) — on pourrait optimiser mais ça marche bien ici
 function conn(){
-  const md=130;
+  const md=130; // distance max pour tracer une ligne
   for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
     const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
     if(d<md){
@@ -1918,77 +2690,124 @@ function conn(){
   }
 }
 
+// La boucle d'animation principale — pattern fondamental en JS canvas
 function animP(){
-  ctx.clearRect(0,0,W,H);
-  conn();
-  pts.forEach(p=>{p.upd();p.drw();});
-  ctx.globalAlpha=1;
-  requestAnimationFrame(animP);
+  ctx.clearRect(0,0,W,H); // on efface tout avant de redessiner
+  conn(); // lignes en premier (derrière les points)
+  pts.forEach(p=>{p.upd();p.drw();}); // update + draw chaque particule
+  ctx.globalAlpha=1; // reset de l'opacité globale
+  requestAnimationFrame(animP); // rappel à la prochaine frame (~60fps)
 }
-animP();
+animP(); // lancement de la boucle !
 
 /* =============================================
-   3. TABS
+   3. SYSTÈME D'ONGLETS (TABS)
+   
+   Principe : on cache tous les panneaux et on affiche
+   seulement celui correspondant au bouton cliqué.
+   
+   Méthode apprise en cours : manipulation du DOM
+   avec classList.add() et classList.remove()
 ============================================= */
 function st(id){
+  // On retire la classe 'active' de tous les boutons et panneaux
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  // On l'ajoute seulement sur la cible
   const b=document.querySelector('[data-tab="'+id+'"]'),p=document.getElementById('panel-'+id);
   if(b)b.classList.add('active');if(p)p.classList.add('active');
+  // On relance les animations au scroll avec un petit délai
   setTimeout(rvl,60);
 }
 
 /* =============================================
-   4. SCROLL HELPERS
+   4. HELPERS DE SCROLL
+   
+   scrollIntoView() = méthode native du navigateur
+   pour faire défiler jusqu'à un élément — simple et efficace !
 ============================================= */
 function gs(id){const e=document.getElementById(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}
+// On ajoute une classe au header quand on scrolle — pour le fond semi-transparent
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>60);});
 
 /* =============================================
-   5. MOBILE MENU
+   5. MENU MOBILE (BURGER)
+   
+   Toggle simple : on inverse un booléen
+   et on ajoute/retire une classe CSS.
+   Les transitions CSS font le reste — séparation des rôles !
 ============================================= */
 let mo=false;
 function tm(){
-  mo=!mo;
+  mo=!mo; // on inverse l'état (true/false)
   document.getElementById('mnav').classList.toggle('open',mo);
+  // Animation du bouton burger → croix
   const s=document.querySelectorAll('.burger span');
-  if(mo){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)';}
-  else s.forEach(x=>{x.style.transform='';x.style.opacity='';});
+  if(mo){
+    s[0].style.transform='rotate(45deg) translate(5px,5px)';
+    s[1].style.opacity='0';
+    s[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {
+    // On remet tout à zéro
+    s.forEach(x=>{x.style.transform='';x.style.opacity='';});
+  }
 }
 function cm(){mo=true;tm();}
 
 /* =============================================
-   6. REVEAL ON SCROLL
+   6. REVEAL ON SCROLL — Animation d'apparition
+   
+   IntersectionObserver = API moderne et performante.
+   Ici on utilise une version manuelle avec getBoundingClientRect()
+   — méthode plus classique vue en début de formation.
+   
+   Principe : si l'élément est dans la fenêtre visible,
+   on lui ajoute la classe 'vis' qui déclenche son animation CSS.
 ============================================= */
 function rvl(){
   document.querySelectorAll('.rv:not(.vis),.rv-stagger:not(.vis)').forEach(el=>{
     const r=el.getBoundingClientRect();
+    // Si le haut de l'élément est à moins de 50px du bas de l'écran
     if(r.top<window.innerHeight-50)el.classList.add('vis');
   });
-  // organic banner handled by rv class
 }
-window.addEventListener('scroll',rvl,{passive:true});
-setTimeout(rvl,150);
+window.addEventListener('scroll',rvl,{passive:true}); // passive:true = optimisation perf scroll
+setTimeout(rvl,150); // premier reveal après chargement de la page
 
 /* =============================================
-   7. CARD TILT 3D
+   7. CARD TILT 3D — Effet parallaxe au survol
+   
+   Technique avancée : on calcule la position relative
+   de la souris dans chaque card pour créer une rotation 3D.
+   
+   La perspective CSS + rotateX/Y = effet de profondeur réaliste.
+   C'est du CSS 3D transforms via JavaScript.
 ============================================= */
 document.addEventListener('mousemove',e=>{
   document.querySelectorAll('.card').forEach(c=>{
     const r=c.getBoundingClientRect();
     const cx=r.left+r.width/2,cy=r.top+r.height/2;
+    // Valeur normalisée entre -1 et 1 selon la position dans la card
     const dx=(e.clientX-cx)/(r.width/2),dy=(e.clientY-cy)/(r.height/2);
     if(Math.abs(dx)<1.8&&Math.abs(dy)<1.8){
+      // Template literal ES6 pour construire la chaîne de transform
       c.style.transform=`perspective(1000px) rotateY(${dx*5}deg) rotateX(${-dy*5}deg) translateY(-6px)`;
       c.style.boxShadow=`${-dx*8}px ${dy*8+24}px 64px rgba(27,25,20,.6)`;
     } else {
+      // Hors de la card : on réinitialise le style
       c.style.transform='';c.style.boxShadow='';
     }
   });
 });
 
 /* =============================================
-   8. HERO NAME SPLIT CHAR ANIMATION
+   8. HERO NAME SPLIT ANIMATION
+   
+   Technique : on découpe le texte en caractères individuels
+   et on wrape chaque lettre dans un <span> avec un animation-delay
+   différent. Résultat : effet d'apparition lettre par lettre.
+   
+   innerHTML avec map() et join() — manipulation de tableau ES6
 ============================================= */
 function splitChars(){
   const el=document.querySelector('.hero-name .line1');
@@ -2007,28 +2826,116 @@ function splitChars(){
 splitChars();
 
 /* =============================================
-   9. PROJECT MODAL
+   9. MODALES PROJET
+   
+   Gestion de l'ouverture/fermeture des modales.
+   On utilise une class CSS 'open' pour afficher/cacher.
+   
+   La délégation d'événements (closeModal sur le bg)
+   permet de fermer en cliquant en dehors — UX classique !
 ============================================= */
 function openModal(id){
   const m=document.getElementById('modal-'+id);
   if(!m)return;
-  document.body.style.overflow='hidden';
+  document.body.style.overflow='hidden'; // empêche le scroll du fond
   m.classList.add('open');
 }
 function closeModal(e,id){
+  // Si on clique sur un enfant de la modale (pas le fond), on ne ferme pas
   if(e&&e.target!==e.currentTarget)return;
   const modals=id?[document.getElementById('modal-'+id)]:document.querySelectorAll('.proj-modal-bg.open');
   modals.forEach(m=>{if(m)m.classList.remove('open');});
-  document.body.style.overflow='';
+  document.body.style.overflow=''; // on réactive le scroll
 }
+// Fermeture avec la touche Echap — accessibilité de base !
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal(null);});
 document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.classList.add('hov');cring.classList.add('hov');});
   el.addEventListener('mouseleave',()=>{cur.classList.remove('hov');cring.classList.remove('hov');});
 });
 
+
+/* =============================================
+   BLUR QUOTE ANIMATION
+   
+   Technique IIFE (Immediately Invoked Function Expression) :
+   une fonction qui s'exécute immédiatement.
+   Syntax : (function(){...})()
+   
+   Pourquoi ? Pour encapsuler les variables et éviter
+   de polluer le scope global — bonne pratique JS !
+   
+   Ici on utilise un IntersectionObserver (API moderne)
+   pour déclencher l'animation quand la citation est visible.
+============================================= */
+(function(){
+  const words = document.querySelectorAll('#blurQuote .bw');
+  if(!words.length) return;
+
+  let animRunning = false;
+
+  function getRandomSubset(arr, count){
+    const a = Array.from(arr);
+    for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+    return a.slice(0,count);
+  }
+
+  function runAnim(){
+    if(animRunning) return;
+    animRunning = true;
+
+    const rounds = 4;
+    let round = 0;
+
+    function doRound(){
+      if(round >= rounds){ animRunning=false; return; }
+      const blurCount = Math.floor(words.length * 0.45);
+      const toBlur = getRandomSubset(Array.from(words), blurCount);
+      // Clear all
+      words.forEach(w=>w.classList.remove('blurred'));
+      // Apply blur to subset
+      toBlur.forEach(w=>w.classList.add('blurred'));
+      round++;
+      setTimeout(doRound, 900);
+    }
+
+    // Initial: blur most except a few
+    words.forEach(w=>w.classList.add('blurred'));
+    setTimeout(()=>{
+      doRound();
+    }, 500);
+  }
+
+  // IntersectionObserver — trigger when quote in view
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ runAnim(); }
+      else { words.forEach(w=>w.classList.remove('blurred')); animRunning=false; }
+    });
+  },{threshold:0.6});
+
+  const sec = document.getElementById('quote-sec');
+  if(sec) obs.observe(sec);
+
+  // Also re-run on click
+  const q = document.getElementById('blurQuote');
+  if(q) q.addEventListener('click', ()=>{ animRunning=false; runAnim(); });
+})();
+
 /* =============================================
    11. TERMINAL TYPEWRITER ANIMATION
+   
+   Simulation d'un vrai terminal de développeur !
+   
+   Principe : on affiche les caractères un par un avec setTimeout().
+   C'est de la récursion asynchrone — un pattern avancé.
+   
+   À chaque appel, tick() :
+   1. Vérifie si on a fini la ligne actuelle
+   2. Si oui, passe à la ligne suivante
+   3. Si non, ajoute un caractère et se rappelle après un délai
+   
+   Le curseur clignotant est un <span> CSS animé — séparation HTML/JS !
 ============================================= */
 (function(){
   const el=document.getElementById('termBody');
@@ -2110,28 +3017,40 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
 })();
 
 
+/* =============================================
+   COMPTEUR ANIMÉ (countUp)
+   
+   Effet "chiffres qui montent" — très utilisé sur les portfolios.
+   
+   Principe : setInterval() + incrémentation progressive
+   jusqu'à la valeur cible. On extrait le chiffre du texte
+   avec une expression régulière (regex) — vu en cours JS avancé.
+   
+   regex /\d+/ = cherche un ou plusieurs chiffres dans le texte
+============================================= */
 function countUp(){
   document.querySelectorAll('.stat-v').forEach(el=>{
-    if(el.dataset.counted)return;
-    const match=el.textContent.match(/\d+/);
+    if(el.dataset.counted)return; // on ne recompte pas si déjà fait
+    const match=el.textContent.match(/\d+/); // regex pour extraire le nombre
     if(!match)return;
     const target=parseInt(match[0]);
-    const suffix=el.textContent.replace(/\d+/,'');
-    el.dataset.counted='1';
+    const suffix=el.textContent.replace(/\d+/,''); // garde le "+" ou "ans" etc.
+    el.dataset.counted='1'; // marque l'élément comme déjà traité
     let current=0;
     const dur=1200,steps=60,inc=target/steps;
     const tid=setInterval(()=>{
-      current=Math.min(current+inc,target);
+      current=Math.min(current+inc,target); // Math.min pour ne pas dépasser la cible
       el.textContent=Math.floor(current)+suffix;
-      if(current>=target)clearInterval(tid);
+      if(current>=target)clearInterval(tid); // on arrête quand on arrive à la cible
     },dur/steps);
   });
 }
+// On déclenche le compteur quand les stats arrivent dans le viewport
 window.addEventListener('scroll',()=>{
   document.querySelectorAll('.stat').forEach(el=>{
     if(el.getBoundingClientRect().top<window.innerHeight-40)countUp();
   });
-},{passive:true});
+},{passive:true}); // passive:true évite les ralentissements au scroll
 </script>
 </body>
 </html>
