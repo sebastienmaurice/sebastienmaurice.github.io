@@ -2923,66 +2923,132 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
 })();
 
 /* =============================================
-   TERMINAL TYPEWRITER ANIMATION — CLEAN VERSION
-   Sébastien Maurice
-   ============================================= */
+   ADVANCED TERMINAL EXPERIENCE
+============================================= */
 
 (function () {
   const el = document.getElementById("termBody");
   if (!el) return;
 
-  const cursor = document.createElement("span");
-  cursor.className = "term-cursor";
+  /* ------------------ CONFIG ------------------ */
 
-  const lines = [
+  const CONFIG = {
+    baseSpeed: 26,
+    fastSpeed: 6,
+    bootDelay: 800,
+    dramaticPause: 900,
+    restartDelay: 3500,
+    enableSound: false
+  };
+
+  /* ------------------ SOUND ------------------ */
+
+  let audioCtx;
+  function playKeySound() {
+    if (!CONFIG.enableSound) return;
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = "square";
+    osc.frequency.value = 900 + Math.random() * 200;
+
+    gain.gain.value = 0.02;
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.03);
+  }
+
+  /* ------------------ DATA ------------------ */
+
+  const bootLines = [
+    { cls: "comment", txt: "Booting system..." },
+    { cls: "comment", txt: "Loading UX modules..." },
+    { cls: "comment", txt: "Initializing performance layer..." },
+    { cls: "comment", txt: "System ready." },
+    { cls: "", txt: "" }
+  ];
+
+  const mainLines = [
     { cls: "comment", txt: "// portfolio.js — Sébastien Maurice" },
-    { cls: "comment", txt: "// Warning: UX inside 👀" },
     { cls: "", txt: "" },
 
     { cls: "keyword", txt: "const developer = {" },
     { cls: "indent string", txt: "  name: 'Sébastien Maurice'," },
     { cls: "indent string", txt: "  role: 'Front-End Developer / UX-Focused'," },
     { cls: "indent string", txt: "  stack: ['HTML','CSS','JavaScript','Svelte']," },
-    { cls: "indent string", txt: "  coffeeLevel: 'high ☕'," },
     { cls: "indent func", txt: "  mission: () => buildMeaningfulInterfaces()," },
     { cls: "keyword", txt: "};" },
     { cls: "", txt: "" },
 
     { cls: "func", txt: "function buildMeaningfulInterfaces(idea) {" },
-    { cls: "indent comment", txt: "  // from messy wireframe to pixel-perfect UI ✨" },
     { cls: "indent keyword", txt: "  if (!idea.userCentered) {" },
-    { cls: "indent indent string", txt: "    throw new Error('UX is not optional 😅');" },
+    { cls: "indent indent string dramatic", txt: "    throw new Error('UX is not optional 😅');" },
     { cls: "indent keyword", txt: "  }" },
     { cls: "indent keyword", txt: "  return idea.withPerformance().withAccessibility();" },
     { cls: "keyword", txt: "}" },
     { cls: "", txt: "" },
 
-    { cls: "comment", txt: "// Crafted with care — Caudry, France 🇫🇷" },
+    { cls: "comment", txt: "// Crafted with care — Caudry, France 🇫🇷" }
   ];
+
+  const lines = [...bootLines, ...mainLines];
+
+  /* ------------------ STATE ------------------ */
 
   let lineIndex = 0;
   let charIndex = 0;
   let currentLineEl = null;
   let timer = null;
+  let ultraFast = false;
 
-  const BASE_SPEED = 28;
+  const cursor = document.createElement("span");
+  cursor.className = "term-cursor";
 
-  function randomizeSpeed(base) {
-    return base + Math.random() * 20;
+  /* ------------------ SPEED CONTROL ------------------ */
+
+  window.addEventListener("scroll", () => {
+    ultraFast = window.scrollY > 50;
+  });
+
+  function getSpeed(text) {
+    if (ultraFast) return CONFIG.fastSpeed;
+
+    if (text.includes("throw new Error")) {
+      return CONFIG.baseSpeed * 1.4;
+    }
+
+    return CONFIG.baseSpeed + Math.random() * 20;
   }
 
-  function clearTimer() {
-    if (timer) clearTimeout(timer);
+  /* ------------------ DELETE EFFECT ------------------ */
+
+  function deleteLine(callback) {
+    let content = currentLineEl.textContent;
+
+    function erase() {
+      if (content.length > 0) {
+        content = content.slice(0, -1);
+        currentLineEl.textContent = content;
+        currentLineEl.appendChild(cursor);
+        timer = setTimeout(erase, 10);
+      } else {
+        callback();
+      }
+    }
+
+    erase();
   }
 
-  function placeCursor(target) {
-    target.appendChild(cursor);
-  }
+  /* ------------------ TYPE LOGIC ------------------ */
 
   function type() {
     if (lineIndex >= lines.length) {
-      // Animation terminée → pause puis restart
-      timer = setTimeout(start, 3000);
+      timer = setTimeout(start, CONFIG.restartDelay);
       return;
     }
 
@@ -2996,32 +3062,44 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
 
     if (charIndex <= txt.length) {
       currentLineEl.textContent = txt.slice(0, charIndex);
-      placeCursor(currentLineEl);
+      currentLineEl.appendChild(cursor);
+      playKeySound();
       charIndex++;
 
-      let speed = txt.length === 0
-        ? 40
-        : charIndex === 1
-        ? 120
-        : randomizeSpeed(BASE_SPEED);
-
-      timer = setTimeout(type, speed);
+      timer = setTimeout(type, getSpeed(txt));
     } else {
-      // Ligne terminée → petite pause
+
+      if (txt.includes("throw new Error")) {
+        // 🎬 Pause dramatique
+        timer = setTimeout(() => {
+          deleteLine(() => {
+            currentLineEl.textContent = "    console.warn('Better fix your UX 😉');";
+            currentLineEl.appendChild(cursor);
+            lineIndex++;
+            charIndex = 0;
+            timer = setTimeout(type, 300);
+          });
+        }, CONFIG.dramaticPause);
+        return;
+      }
+
       lineIndex++;
       charIndex = 0;
-      timer = setTimeout(type, 120);
+      timer = setTimeout(type, 100);
     }
   }
 
+  /* ------------------ START ------------------ */
+
   function start() {
-    clearTimer();
+    clearTimeout(timer);
     el.innerHTML = "";
     el.appendChild(cursor);
     lineIndex = 0;
     charIndex = 0;
     currentLineEl = null;
-    timer = setTimeout(type, 600);
+
+    timer = setTimeout(type, CONFIG.bootDelay);
   }
 
   start();
