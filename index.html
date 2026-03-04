@@ -2951,7 +2951,7 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
 
   function type() {
     if (li >= lines.length) {
-      return setTimeout(start, 2500);
+      return setTimeout(start, 4000); // pause finale plus longue
     }
 
     const { cls, txt } = lines[li];
@@ -2966,16 +2966,27 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
       lineEl.textContent = txt.slice(0, ci);
       lineEl.appendChild(cursor);
       ci++;
-      timer = setTimeout(type, 22 + Math.random() * 18);
+
+      // Rythme plus lent et plus naturel
+      let speed = 55 + Math.random() * 35;
+
+      // Première ligne légèrement plus lente
+      if (li === 0) speed = 90;
+
+      timer = setTimeout(type, speed);
+
     } else {
+
+      // Pause dramatique sur l'erreur
       if (txt.includes("Error")) {
         return setTimeout(() => {
           li++; ci = 0;
           type();
-        }, 600);
+        }, 1200);
       }
+
       li++; ci = 0;
-      timer = setTimeout(type, 100);
+      timer = setTimeout(type, 180);
     }
   }
 
@@ -2984,7 +2995,7 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
     el.innerHTML = "";
     el.appendChild(cursor);
     li = 0; ci = 0;
-    setTimeout(type, 500);
+    setTimeout(type, 700); // petite respiration au début
   }
 
   start();
