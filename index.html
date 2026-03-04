@@ -2945,22 +2945,31 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
   const cursor=document.createElement('span');
   cursor.className='term-cursor';
 
-  const lines=[
-    {cls:'comment',txt:'// portfolio.js — Sébastien Maurice'},
-    {cls:'',txt:''},
-    {cls:'keyword',txt:'const developer = {'},
-    {cls:'indent string',txt:"  name: 'Sébastien Maurice',"},
-    {cls:'indent string',txt:"  stack: ['HTML','CSS','JS','Svelte'],"},
-    {cls:'indent func',txt:"  passion: () => craft(),"},
-    {cls:'keyword',txt:'};'},
-    {cls:'',txt:''},
-    {cls:'func',txt:'function buildInterface(idea) {'},
-    {cls:'indent comment',txt:'  // wireframe → pixel final'},
-    {cls:'indent keyword',txt:'  return idea.withCare();'},
-    {cls:'keyword',txt:'}'},
-    {cls:'',txt:''},
-    {cls:'comment',txt:'// 🌿 Créé avec Amour — Caudry, France'},
-  ];
+  const lines = [
+  { cls: 'comment', txt: '// portfolio.js — Sébastien Maurice' },
+  { cls: 'comment', txt: '// Warning: UX inside 👀' },
+  { cls: '', txt: '' },
+
+  { cls: 'keyword', txt: 'const developer = {' },
+  { cls: 'indent string', txt: "  name: 'Sébastien Maurice'," },
+  { cls: 'indent string', txt: "  role: 'Front-End Developer / UX-Focused'," },
+  { cls: 'indent string', txt: "  stack: ['HTML','CSS','JavaScript','Svelte']," },
+  { cls: 'indent string', txt: "  coffeeLevel: 'high ☕'," },
+  { cls: 'indent func', txt: "  mission: () => buildMeaningfulInterfaces()," },
+  { cls: 'keyword', txt: '};' },
+  { cls: '', txt: '' },
+
+  { cls: 'func', txt: 'function buildMeaningfulInterfaces(idea) {' },
+  { cls: 'indent comment', txt: '  // from messy wireframe to pixel-perfect UI ✨' },
+  { cls: 'indent keyword', txt: '  if (!idea.userCentered) {' },
+  { cls: 'indent indent string', txt: "    throw new Error('UX is not optional 😅');" },
+  { cls: 'indent keyword', txt: '  }' },
+  { cls: 'indent keyword', txt: '  return idea.withPerformance().withAccessibility();' },
+  { cls: 'keyword', txt: '}' },
+  { cls: '', txt: '' },
+
+  { cls: 'comment', txt: '// Crafted with care — Caudry, France 🇫🇷' },
+];
 
   let li=0, ci=0, currentLine=null, timer=null;
   const SPEEDS={empty:30, first:150, normal:28, newline:90};
