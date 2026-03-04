@@ -2925,181 +2925,66 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
 /* =============================================
    ADVANCED TERMINAL EXPERIENCE
 ============================================= */
-
 (function () {
   const el = document.getElementById("termBody");
   if (!el) return;
 
-  /* ------------------ CONFIG ------------------ */
-
-  const CONFIG = {
-    baseSpeed: 26,
-    fastSpeed: 6,
-    bootDelay: 800,
-    dramaticPause: 900,
-    restartDelay: 3500,
-    enableSound: false
-  };
-
-  /* ------------------ SOUND ------------------ */
-
-  let audioCtx;
-  function playKeySound() {
-    if (!CONFIG.enableSound) return;
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = "square";
-    osc.frequency.value = 900 + Math.random() * 200;
-
-    gain.gain.value = 0.02;
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.03);
-  }
-
-  /* ------------------ DATA ------------------ */
-
-  const bootLines = [
-    { cls: "comment", txt: "Booting system..." },
-    { cls: "comment", txt: "Loading UX modules..." },
-    { cls: "comment", txt: "Initializing performance layer..." },
-    { cls: "comment", txt: "System ready." },
-    { cls: "", txt: "" }
-  ];
-
-  const mainLines = [
-    { cls: "comment", txt: "// portfolio.js — Sébastien Maurice" },
-    { cls: "", txt: "" },
-
-    { cls: "keyword", txt: "const developer = {" },
-    { cls: "indent string", txt: "  name: 'Sébastien Maurice'," },
-    { cls: "indent string", txt: "  role: 'Front-End Developer / UX-Focused'," },
-    { cls: "indent string", txt: "  stack: ['HTML','CSS','JavaScript','Svelte']," },
-    { cls: "indent func", txt: "  mission: () => buildMeaningfulInterfaces()," },
-    { cls: "keyword", txt: "};" },
-    { cls: "", txt: "" },
-
-    { cls: "func", txt: "function buildMeaningfulInterfaces(idea) {" },
-    { cls: "indent keyword", txt: "  if (!idea.userCentered) {" },
-    { cls: "indent indent string dramatic", txt: "    throw new Error('UX is not optional 😅');" },
-    { cls: "indent keyword", txt: "  }" },
-    { cls: "indent keyword", txt: "  return idea.withPerformance().withAccessibility();" },
-    { cls: "keyword", txt: "}" },
-    { cls: "", txt: "" },
-
-    { cls: "comment", txt: "// Crafted with care — Caudry, France 🇫🇷" }
-  ];
-
-  const lines = [...bootLines, ...mainLines];
-
-  /* ------------------ STATE ------------------ */
-
-  let lineIndex = 0;
-  let charIndex = 0;
-  let currentLineEl = null;
-  let timer = null;
-  let ultraFast = false;
-
   const cursor = document.createElement("span");
   cursor.className = "term-cursor";
 
-  /* ------------------ SPEED CONTROL ------------------ */
+  const lines = [
+    { cls: "comment", txt: "// Sébastien Maurice" },
+    { cls: "keyword", txt: "const dev = {" },
+    { cls: "indent string", txt: "  role: 'Front-End / UX'," },
+    { cls: "indent string", txt: "  stack: ['HTML','CSS','JS','Svelte']," },
+    { cls: "indent func", txt: "  mission: () => buildUsefulUI()," },
+    { cls: "keyword", txt: "};" },
+    { cls: "", txt: "" },
+    { cls: "func", txt: "function buildUsefulUI(idea) {" },
+    { cls: "indent keyword", txt: "  if (!idea.userFirst)" },
+    { cls: "indent indent string dramatic", txt: "    throw new Error('Fix UX.');" },
+    { cls: "indent keyword", txt: "  return idea.optimize();" },
+    { cls: "keyword", txt: "}" }
+  ];
 
-  window.addEventListener("scroll", () => {
-    ultraFast = window.scrollY > 50;
-  });
-
-  function getSpeed(text) {
-    if (ultraFast) return CONFIG.fastSpeed;
-
-    if (text.includes("throw new Error")) {
-      return CONFIG.baseSpeed * 1.4;
-    }
-
-    return CONFIG.baseSpeed + Math.random() * 20;
-  }
-
-  /* ------------------ DELETE EFFECT ------------------ */
-
-  function deleteLine(callback) {
-    let content = currentLineEl.textContent;
-
-    function erase() {
-      if (content.length > 0) {
-        content = content.slice(0, -1);
-        currentLineEl.textContent = content;
-        currentLineEl.appendChild(cursor);
-        timer = setTimeout(erase, 10);
-      } else {
-        callback();
-      }
-    }
-
-    erase();
-  }
-
-  /* ------------------ TYPE LOGIC ------------------ */
+  let li = 0, ci = 0, lineEl, timer;
 
   function type() {
-    if (lineIndex >= lines.length) {
-      timer = setTimeout(start, CONFIG.restartDelay);
-      return;
+    if (li >= lines.length) {
+      return setTimeout(start, 2500);
     }
 
-    const { cls, txt } = lines[lineIndex];
+    const { cls, txt } = lines[li];
 
-    if (charIndex === 0) {
-      currentLineEl = document.createElement("div");
-      currentLineEl.className = "term-line" + (cls ? " " + cls : "");
-      el.appendChild(currentLineEl);
+    if (ci === 0) {
+      lineEl = document.createElement("div");
+      lineEl.className = "term-line" + (cls ? " " + cls : "");
+      el.appendChild(lineEl);
     }
 
-    if (charIndex <= txt.length) {
-      currentLineEl.textContent = txt.slice(0, charIndex);
-      currentLineEl.appendChild(cursor);
-      playKeySound();
-      charIndex++;
-
-      timer = setTimeout(type, getSpeed(txt));
+    if (ci <= txt.length) {
+      lineEl.textContent = txt.slice(0, ci);
+      lineEl.appendChild(cursor);
+      ci++;
+      timer = setTimeout(type, 22 + Math.random() * 18);
     } else {
-
-      if (txt.includes("throw new Error")) {
-        // 🎬 Pause dramatique
-        timer = setTimeout(() => {
-          deleteLine(() => {
-            currentLineEl.textContent = "    console.warn('Better fix your UX 😉');";
-            currentLineEl.appendChild(cursor);
-            lineIndex++;
-            charIndex = 0;
-            timer = setTimeout(type, 300);
-          });
-        }, CONFIG.dramaticPause);
-        return;
+      if (txt.includes("Error")) {
+        return setTimeout(() => {
+          li++; ci = 0;
+          type();
+        }, 600);
       }
-
-      lineIndex++;
-      charIndex = 0;
+      li++; ci = 0;
       timer = setTimeout(type, 100);
     }
   }
-
-  /* ------------------ START ------------------ */
 
   function start() {
     clearTimeout(timer);
     el.innerHTML = "";
     el.appendChild(cursor);
-    lineIndex = 0;
-    charIndex = 0;
-    currentLineEl = null;
-
-    timer = setTimeout(type, CONFIG.bootDelay);
+    li = 0; ci = 0;
+    setTimeout(type, 500);
   }
 
   start();
