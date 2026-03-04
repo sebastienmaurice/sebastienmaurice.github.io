@@ -2923,108 +2923,109 @@ document.querySelectorAll('.proj-modal-btn,.proj-modal-close,.feat-card').forEac
 })();
 
 /* =============================================
-   11. TERMINAL TYPEWRITER ANIMATION
-   
-   Simulation d'un vrai terminal de développeur !
-   
-   Principe : on affiche les caractères un par un avec setTimeout().
-   C'est de la récursion asynchrone — un pattern avancé.
-   
-   À chaque appel, tick() :
-   1. Vérifie si on a fini la ligne actuelle
-   2. Si oui, passe à la ligne suivante
-   3. Si non, ajoute un caractère et se rappelle après un délai
-   
-   Le curseur clignotant est un <span> CSS animé — séparation HTML/JS !
-============================================= */
-(function(){
-  const el=document.getElementById('termBody');
-  if(!el)return;
+   TERMINAL TYPEWRITER ANIMATION — CLEAN VERSION
+   Sébastien Maurice
+   ============================================= */
 
-  // cursor el - always appended to active line text node, never moves el reference
-  const cursor=document.createElement('span');
-  cursor.className='term-cursor';
+(function () {
+  const el = document.getElementById("termBody");
+  if (!el) return;
+
+  const cursor = document.createElement("span");
+  cursor.className = "term-cursor";
 
   const lines = [
-  { cls: 'comment', txt: '// portfolio.js — Sébastien Maurice' },
-  { cls: 'comment', txt: '// Warning: UX inside 👀' },
-  { cls: '', txt: '' },
+    { cls: "comment", txt: "// portfolio.js — Sébastien Maurice" },
+    { cls: "comment", txt: "// Warning: UX inside 👀" },
+    { cls: "", txt: "" },
 
-  { cls: 'keyword', txt: 'const developer = {' },
-  { cls: 'indent string', txt: "  name: 'Sébastien Maurice'," },
-  { cls: 'indent string', txt: "  role: 'Front-End Developer / UX-Focused'," },
-  { cls: 'indent string', txt: "  stack: ['HTML','CSS','JavaScript','Svelte']," },
-  { cls: 'indent string', txt: "  coffeeLevel: 'high ☕'," },
-  { cls: 'indent func', txt: "  mission: () => buildMeaningfulInterfaces()," },
-  { cls: 'keyword', txt: '};' },
-  { cls: '', txt: '' },
+    { cls: "keyword", txt: "const developer = {" },
+    { cls: "indent string", txt: "  name: 'Sébastien Maurice'," },
+    { cls: "indent string", txt: "  role: 'Front-End Developer / UX-Focused'," },
+    { cls: "indent string", txt: "  stack: ['HTML','CSS','JavaScript','Svelte']," },
+    { cls: "indent string", txt: "  coffeeLevel: 'high ☕'," },
+    { cls: "indent func", txt: "  mission: () => buildMeaningfulInterfaces()," },
+    { cls: "keyword", txt: "};" },
+    { cls: "", txt: "" },
 
-  { cls: 'func', txt: 'function buildMeaningfulInterfaces(idea) {' },
-  { cls: 'indent comment', txt: '  // from messy wireframe to pixel-perfect UI ✨' },
-  { cls: 'indent keyword', txt: '  if (!idea.userCentered) {' },
-  { cls: 'indent indent string', txt: "    throw new Error('UX is not optional 😅');" },
-  { cls: 'indent keyword', txt: '  }' },
-  { cls: 'indent keyword', txt: '  return idea.withPerformance().withAccessibility();' },
-  { cls: 'keyword', txt: '}' },
-  { cls: '', txt: '' },
+    { cls: "func", txt: "function buildMeaningfulInterfaces(idea) {" },
+    { cls: "indent comment", txt: "  // from messy wireframe to pixel-perfect UI ✨" },
+    { cls: "indent keyword", txt: "  if (!idea.userCentered) {" },
+    { cls: "indent indent string", txt: "    throw new Error('UX is not optional 😅');" },
+    { cls: "indent keyword", txt: "  }" },
+    { cls: "indent keyword", txt: "  return idea.withPerformance().withAccessibility();" },
+    { cls: "keyword", txt: "}" },
+    { cls: "", txt: "" },
 
-  { cls: 'comment', txt: '// Crafted with care — Caudry, France 🇫🇷' },
-];
+    { cls: "comment", txt: "// Crafted with care — Caudry, France 🇫🇷" },
+  ];
 
-  let li=0, ci=0, currentLine=null, timer=null;
-  const SPEEDS={empty:30, first:150, normal:28, newline:90};
+  let lineIndex = 0;
+  let charIndex = 0;
+  let currentLineEl = null;
+  let timer = null;
 
-  function placeCursor(lineEl){
-    // append cursor as child of line so it stays with the text
-    if(lineEl) lineEl.appendChild(cursor);
-    else el.appendChild(cursor);
+  const BASE_SPEED = 28;
+
+  function randomizeSpeed(base) {
+    return base + Math.random() * 20;
   }
 
-  function tick(){
-    if(li>=lines.length){
-      // done — cursor stays on last line blinking
+  function clearTimer() {
+    if (timer) clearTimeout(timer);
+  }
+
+  function placeCursor(target) {
+    target.appendChild(cursor);
+  }
+
+  function type() {
+    if (lineIndex >= lines.length) {
+      // Animation terminée → pause puis restart
+      timer = setTimeout(start, 3000);
       return;
     }
 
-    const {cls,txt}=lines[li];
+    const { cls, txt } = lines[lineIndex];
 
-    if(ci===0){
-      // New line element
-      currentLine=document.createElement('div');
-      currentLine.className='term-line'+(cls?' '+cls:'');
-      el.appendChild(currentLine);
+    if (charIndex === 0) {
+      currentLineEl = document.createElement("div");
+      currentLineEl.className = "term-line" + (cls ? " " + cls : "");
+      el.appendChild(currentLineEl);
     }
 
-    if(ci<=txt.length){
-      // Update text content without touching cursor
-      const textNode=document.createTextNode(txt.slice(0,ci));
-      // clear and re-append text + cursor
-      currentLine.textContent='';
-      currentLine.appendChild(textNode);
-      placeCursor(currentLine);
-      ci++;
-      const delay=txt.length===0?SPEEDS.empty:ci===1?SPEEDS.first:SPEEDS.normal;
-      timer=setTimeout(tick,delay);
+    if (charIndex <= txt.length) {
+      currentLineEl.textContent = txt.slice(0, charIndex);
+      placeCursor(currentLineEl);
+      charIndex++;
+
+      let speed = txt.length === 0
+        ? 40
+        : charIndex === 1
+        ? 120
+        : randomizeSpeed(BASE_SPEED);
+
+      timer = setTimeout(type, speed);
     } else {
-      // line done
-      li++;ci=0;
-      const delay=li<lines.length&&lines[li].txt===''?SPEEDS.empty:SPEEDS.newline;
-      timer=setTimeout(tick,delay);
+      // Ligne terminée → petite pause
+      lineIndex++;
+      charIndex = 0;
+      timer = setTimeout(type, 120);
     }
   }
 
-  // Restart loop every ~12s for a continuous feel
-  function startLoop(){
-    el.innerHTML='';
+  function start() {
+    clearTimer();
+    el.innerHTML = "";
     el.appendChild(cursor);
-    li=0;ci=0;currentLine=null;
-    if(timer)clearTimeout(timer);
-    setTimeout(tick,600);
+    lineIndex = 0;
+    charIndex = 0;
+    currentLineEl = null;
+    timer = setTimeout(type, 600);
   }
-  startLoop();
-  setInterval(startLoop,13000);
-})();
 
+  start();
+})();
 
 /* =============================================
    COMPTEUR ANIMÉ (countUp)
