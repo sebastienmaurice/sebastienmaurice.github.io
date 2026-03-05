@@ -1057,8 +1057,14 @@ window.addEventListener(
 /* =============================================
    EASTER EGG — GIT DUMBER
    Déclenché au clic sur la card Dev N'Dumber
+   Mascotte qui apparaît + messages type terminal
 ============================================= */
+
 (function () {
+  /* ---------------------------------------------
+     LISTE DES MESSAGES POSSIBLES
+     Chaque message simule une sortie terminal
+  --------------------------------------------- */
   const MESSAGES = [
     {
       lines: [
@@ -1103,7 +1109,7 @@ window.addEventListener(
         '"wip2"',
         '"VRAI wip"',
         '"bon là c\'est le bon"',
-        '<span class="gdb-err">"dernier commit promis"  ← il ment</span>',
+        '<span class="gdb-err">"dernier commit promis" ← il ment</span>',
       ],
       commit: 'f00ba44 — "dernier commit promis"',
     },
@@ -1137,96 +1143,176 @@ window.addEventListener(
       ],
       commit: '0b5e3f7 — "debug: ici"',
     },
+
+    /* ---------------------------------------------
+       MESSAGE DÉDICACE — PROMO O'CLOCK
+    --------------------------------------------- */
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git crew --list</span>',
+        "Scanning open seas...",
+        "",
+        "<span class=\"gdb-ok\">🏴‍☠️ Les Pirates d'O'Clock détectés</span>",
+        "Dédicace à Anne-so, Richard, Ludo, Juju, Valou, Ced, Denis",
+        "et tous les autres moussaillons du code ⚓",
+      ],
+      commit: '0c10ck — "feat: pirates detected"',
+    },
   ];
 
-  let gdVisible = false;
-  let gdMsgIndex = -1;
-  let gdHideTimer = null;
+  /* ---------------------------------------------
+     VARIABLES D'ÉTAT
+  --------------------------------------------- */
 
-  // Choisir un message différent à chaque fois
+  let gdVisible = false; // indique si l'easter egg est visible
+  let gdMsgIndex = -1; // mémorise le dernier message affiché
+  let gdHideTimer = null; // timer pour cacher automatiquement
+
+  /* ---------------------------------------------
+     CHOISIR UN MESSAGE ALÉATOIRE
+     (mais différent du précédent)
+  --------------------------------------------- */
   function pickMessage() {
     let next;
+
     do {
       next = Math.floor(Math.random() * MESSAGES.length);
     } while (next === gdMsgIndex);
+
     gdMsgIndex = next;
     return MESSAGES[next];
   }
 
-  // Typewriter ligne par ligne
+  /* ---------------------------------------------
+     EFFET TYPEWRITER
+     Affiche les lignes une par une
+  --------------------------------------------- */
   function typeLines(el, lines, delay) {
     el.innerHTML = "";
     let lineIndex = 0;
+
     function nextLine() {
       if (lineIndex >= lines.length) return;
+
       const p = document.createElement("p");
+
+      // style léger pour fade-in
       p.style.cssText = "margin:2px 0;opacity:0;transition:opacity .25s";
+
       p.innerHTML = lines[lineIndex];
       el.appendChild(p);
+
+      // fade-in
       requestAnimationFrame(() => {
         p.style.opacity = "1";
       });
+
       lineIndex++;
-      if (lineIndex < lines.length) setTimeout(nextLine, delay);
+
+      // délai légèrement aléatoire pour effet terminal
+      if (lineIndex < lines.length) {
+        setTimeout(nextLine, delay + Math.random() * 120);
+      }
     }
+
     nextLine();
   }
 
+  /* ---------------------------------------------
+     FONCTION PRINCIPALE
+     Déclenche l'easter egg
+  --------------------------------------------- */
   window.triggerGitDumber = function () {
     const overlay = document.getElementById("gitDumberOverlay");
-    const wrap = document.getElementById("gitDumberWrap");
+    if (!overlay) return;
+
     const msgEl = document.getElementById("gitDumberMsg");
     const commitEl = document.getElementById("gitDumberCommit");
     const img = overlay.querySelector(".gitdumber-img");
 
-    // Déjà visible → shake + nouveau message
+    if (!msgEl || !commitEl || !img) return;
+
+    /* -----------------------------------------
+       SI L'EASTER EGG EST DÉJÀ VISIBLE
+       → secoue le personnage + nouveau message
+    ----------------------------------------- */
     if (gdVisible) {
       img.classList.remove("shake");
-      void img.offsetWidth; // reflow
+      void img.offsetWidth; // force reflow pour relancer l'animation
       img.classList.add("shake");
+
       const msg = pickMessage();
+
       typeLines(msgEl, msg.lines, 280);
       commitEl.textContent = msg.commit;
+
       if (gdHideTimer) clearTimeout(gdHideTimer);
       gdHideTimer = setTimeout(hideGitDumber, 9000);
+
       return;
     }
 
-    // Première apparition
+    /* -----------------------------------------
+       PREMIÈRE APPARITION
+    ----------------------------------------- */
+
     gdVisible = true;
+
     const msg = pickMessage();
+
     overlay.classList.add("active");
+
     typeLines(msgEl, msg.lines, 300);
     commitEl.textContent = msg.commit;
 
-    // Auto-hide après 9s
     if (gdHideTimer) clearTimeout(gdHideTimer);
     gdHideTimer = setTimeout(hideGitDumber, 9000);
 
-    // Easter egg console bonus
+    /* -----------------------------------------
+       EASTER EGG BONUS DANS LA CONSOLE
+    ----------------------------------------- */
+
     console.log(
       "%c🦊 Git Dumber a surgi du néant.",
       "font-size:14px;color:#B87333;font-family:monospace;font-weight:bold;",
     );
+
     console.log(
       '%c  git commit -m "easter egg discovered 🎉"',
       "font-size:12px;color:#8A9463;font-family:monospace;",
     );
+
+    console.log(
+      "%c🏴‍☠️ Les Pirates d'O'Clock sont dans la place.",
+      "font-size:12px;color:#B87333;font-family:monospace;",
+    );
   };
 
+  /* ---------------------------------------------
+     FERMER L'EASTER EGG
+  --------------------------------------------- */
   window.hideGitDumber = function () {
     if (!gdVisible) return;
+
     const overlay = document.getElementById("gitDumberOverlay");
+    if (!overlay) return;
+
     overlay.classList.remove("active");
+
     gdVisible = false;
+
     if (gdHideTimer) {
       clearTimeout(gdHideTimer);
       gdHideTimer = null;
     }
   };
 
-  // Fermer avec Escape
+  /* ---------------------------------------------
+     FERMER AVEC LA TOUCHE ESC
+  --------------------------------------------- */
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && gdVisible) hideGitDumber();
+    if (e.key === "Escape" && gdVisible) {
+      hideGitDumber();
+    }
   });
 })();
