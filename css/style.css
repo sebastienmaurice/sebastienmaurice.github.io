@@ -16,16 +16,14 @@
    11. Section CMS / CV / Design
    12. Organic bannière + Footer
    13. Modale projet
-   14. Mode Recruteur
-   15. Reveal animations
-   16. Responsive
+   14. Zoom image
+   15. Tooltip description
+   16. Reveal animations
+   17. Responsive
 ============================================= */
 
 /* =============================================
    1. RESET & VARIABLES CSS
-   On définit toutes nos couleurs et polices
-   via des custom properties (variables CSS)
-   pour pouvoir les réutiliser partout.
 ============================================= */
 *,
 *::before,
@@ -36,7 +34,6 @@
 }
 
 :root {
-  /* Palette moodboard — tons chauds et neutres */
   --sand: #c8c4b4;
   --stone: #9a9488;
   --warm: #f2ede4;
@@ -48,22 +45,18 @@
   --rust: #8b4a2e;
   --cream: #ede9dc;
 
-  /* Typographies */
   --serif: "DM Serif Display", Georgia, serif;
   --mono: "DM Mono", monospace;
   --sans: "Syne", sans-serif;
 
-  /* Glassmorphism helpers */
   --gb: rgba(237, 233, 220, 0.04);
   --gbh: rgba(237, 233, 220, 0.09);
   --gborder: rgba(200, 196, 180, 0.14);
   --gborderh: rgba(200, 196, 180, 0.3);
 
-  /* Easing curves personnalisées */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease2: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Variables Ciné Délices */
   --cd-gold: #c4a052;
   --cd-gold-shimmer: linear-gradient(
     135deg,
@@ -85,14 +78,11 @@ body {
   font-family: var(--sans);
   min-height: 100vh;
   overflow-x: hidden;
-  cursor: none; /* on remplace le curseur par notre custom cursor */
+  cursor: none;
 }
 
 /* =============================================
-   2. GRAIN — Texture de fond cinématique
-   Un SVG fractalNoise en position fixed
-   qui donne une texture "film grain" à la page.
-   opacity très faible pour rester subtil.
+   2. GRAIN
 ============================================= */
 body::after {
   content: "";
@@ -108,8 +98,6 @@ body::after {
 
 /* =============================================
    3. CURSEUR PERSONNALISÉ
-   Deux éléments : point central (#cur) et anneau (#cring)
-   Animés via JavaScript (voir main.js section 1)
 ============================================= */
 #cur,
 #cring {
@@ -157,9 +145,7 @@ body::after {
 }
 
 /* =============================================
-   4. CANVAS — Background particules
-   Position fixed pour rester visible en scrollant.
-   pointer-events:none = ne bloque pas les clics
+   4. CANVAS PARTICULES
 ============================================= */
 #pc {
   position: fixed;
@@ -169,8 +155,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
-/* Spotlight — suit la souris via CSS custom property */
 .spotlight {
   position: fixed;
   inset: 0;
@@ -275,7 +259,6 @@ nav.scrolled {
   opacity: 0.28;
 }
 
-/* Contact rapide dans la nav — visible sans cliquer */
 .nav-contact-quick {
   display: flex;
   align-items: center;
@@ -300,7 +283,6 @@ nav.scrolled {
   margin: 0 4px;
 }
 
-/* Burger mobile */
 .burger {
   display: none;
   flex-direction: column;
@@ -318,7 +300,6 @@ nav.scrolled {
   transition: all 0.35s var(--ease);
 }
 
-/* Menu mobile overlay */
 .m-nav {
   position: fixed;
   inset: 0;
@@ -384,8 +365,6 @@ nav.scrolled {
   z-index: 1;
   overflow: hidden;
 }
-
-/* Orbes de fond — lumières ambiantes */
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -435,7 +414,6 @@ nav.scrolled {
   z-index: 2;
 }
 
-/* Eyebrow — petite ligne décorative avant le titre */
 .eyebrow {
   display: flex;
   align-items: center;
@@ -456,7 +434,6 @@ nav.scrolled {
   text-transform: uppercase;
 }
 
-/* Nom — les caractères sont animés un par un (voir splitChars() en JS) */
 .hero-name {
   font-family: var(--serif);
   font-size: clamp(3rem, 5.5vw, 5.2rem);
@@ -511,9 +488,6 @@ nav.scrolled {
   flex-wrap: wrap;
 }
 
-/* =============================================
-   BOUTONS — 2 variants : primary (olive) et ghost
-============================================= */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -558,7 +532,6 @@ nav.scrolled {
     0 0 0 1px rgba(138, 148, 99, 0.3);
   transform: translateY(-3px) scale(1.02);
 }
-
 .btn-g {
   background: rgba(237, 233, 220, 0.04);
   color: var(--cream);
@@ -573,7 +546,6 @@ nav.scrolled {
   box-shadow: 0 8px 28px rgba(184, 115, 51, 0.2);
 }
 
-/* Bouton CV Download — version spéciale amber */
 .btn-cv {
   background: linear-gradient(
     135deg,
@@ -594,7 +566,6 @@ nav.scrolled {
   box-shadow: 0 8px 28px rgba(184, 115, 51, 0.25);
   transform: translateY(-3px);
 }
-
 .btn .arr {
   transition: transform 0.3s var(--ease);
   display: inline-block;
@@ -607,7 +578,6 @@ nav.scrolled {
   transform: translateY(3px);
 }
 
-/* Badge disponibilité hero */
 .hero-avail {
   margin-top: 22px;
   display: flex;
@@ -644,7 +614,6 @@ nav.scrolled {
   letter-spacing: 0.08em;
 }
 
-/* Scroll hint */
 .scroll-hint {
   position: absolute;
   bottom: 40px;
@@ -685,7 +654,7 @@ nav.scrolled {
 }
 
 /* =============================================
-   WOW HERO ANIMATION — Stage avec terminal + anneaux
+   WOW HERO — Terminal + rings
 ============================================= */
 .wow-stage {
   position: relative;
@@ -696,7 +665,6 @@ nav.scrolled {
   justify-content: center;
   flex-shrink: 0;
 }
-/* Halo ambiant derrière le terminal */
 .wow-stage::before {
   content: "";
   position: absolute;
@@ -726,7 +694,6 @@ nav.scrolled {
   }
 }
 
-/* Anneaux orbitaux CSS */
 .wow-ring-outer {
   position: absolute;
   width: 460px;
@@ -766,7 +733,6 @@ nav.scrolled {
   }
 }
 
-/* Points lumineux sur les anneaux */
 .ring-dot {
   position: absolute;
   width: 5px;
@@ -790,7 +756,6 @@ nav.scrolled {
   transform: translateX(-50%);
 }
 
-/* Terminal central */
 .wow-terminal {
   width: 360px;
   background: linear-gradient(
@@ -823,7 +788,6 @@ nav.scrolled {
     0 0 100px rgba(92, 99, 64, 0.18),
     0 0 160px rgba(184, 115, 51, 0.1);
 }
-
 .wow-term-bar {
   display: flex;
   align-items: center;
@@ -936,7 +900,6 @@ nav.scrolled {
   z-index: 20;
 }
 
-/* Skill cards orbitantes */
 .wow-orbit {
   position: absolute;
   display: flex;
@@ -1069,7 +1032,6 @@ nav.scrolled {
   box-shadow: 0 0 12px rgba(162, 89, 255, 0.35);
 }
 
-/* Lighthouse badge */
 .wow-lh-badge {
   position: absolute;
   bottom: -26px;
@@ -1140,7 +1102,6 @@ nav.scrolled {
   margin-top: 2px;
 }
 
-/* Git status card */
 .wow-git-status {
   position: absolute;
   bottom: -24px;
@@ -1197,7 +1158,6 @@ nav.scrolled {
   letter-spacing: 0.04em;
 }
 
-/* Status pill et exp badge */
 .wow-status-pill {
   position: absolute;
   top: -26px;
@@ -1231,6 +1191,7 @@ nav.scrolled {
   color: rgba(200, 196, 180, 0.8);
   letter-spacing: 0.1em;
 }
+
 .wow-exp-badge {
   position: absolute;
   top: 0;
@@ -1262,7 +1223,6 @@ nav.scrolled {
   white-space: nowrap;
 }
 
-/* Legacy anneaux (déco supplémentaires) */
 .wow-ring {
   position: absolute;
   border-radius: 50%;
@@ -1296,6 +1256,7 @@ nav.scrolled {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
 .wow-glow-center {
   position: absolute;
   top: 50%;
@@ -1325,8 +1286,6 @@ nav.scrolled {
     transform: translate(-50%, -50%) scale(1.15);
   }
 }
-
-/* Legacy — caches car remplacés */
 .hero-pill,
 .fbadge {
   display: none;
@@ -1380,10 +1339,7 @@ nav.scrolled {
 }
 
 /* =============================================
-   8. QUOTE BLUR EFFECT — Version avancée
-   Inspiré du CodePen "Quote Effect using CSS Blur Filter"
-   Chaque mot a ses propres data-attributes de durée/délai/flou
-   L'animation est orchestrée via JS (voir main.js)
+   8. BLUR QUOTE EFFECT
 ============================================= */
 .blur-quote-sec {
   position: relative;
@@ -1393,6 +1349,7 @@ nav.scrolled {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: pointer;
 }
 .blur-quote-sec::before {
   content: "";
@@ -1406,8 +1363,6 @@ nav.scrolled {
   );
   pointer-events: none;
 }
-
-/* Conteneur de la citation */
 .blur-quote {
   max-width: 900px;
   text-align: center;
@@ -1439,41 +1394,21 @@ nav.scrolled {
 .blur-quote cite.animate {
   opacity: 1;
 }
-
-/* Chaque mot est un <span> — animé individuellement */
-.blur-quote span {
+.blur-quote .bw {
   display: inline;
   will-change: opacity, filter;
   opacity: 0;
-  transition-property: filter, opacity;
-  transition-timing-function: ease-in;
 }
-.blur-quote span.animate {
+.blur-quote .bw.animate {
   opacity: 1;
-  filter: blur(0px) !important; /* on retire le flou défini en inline style */
+  filter: blur(0px) !important;
 }
-/* Mot accentué — couleur amber */
 .bq-accent {
   color: var(--amber);
   font-style: italic;
 }
-
-/* Hint clic */
-.quote-hint {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--mono);
-  font-size: 0.56rem;
-  color: rgba(200, 196, 180, 0.28);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: opacity 0.4s;
-}
-.blur-quote:hover .quote-hint {
-  opacity: 0.6;
+.blur-quote-sec:hover {
+  opacity: 0.95;
 }
 
 /* =============================================
@@ -1567,7 +1502,7 @@ nav.scrolled {
 }
 
 /* =============================================
-   SECTION HEADERS communs
+   SECTION HEADERS
 ============================================= */
 .sec-hd {
   margin-bottom: 52px;
@@ -1614,8 +1549,6 @@ nav.scrolled {
 /* =============================================
    10. CARDS PROJETS
 ============================================= */
-
-/* Stack pills */
 .stack-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -1663,7 +1596,6 @@ nav.scrolled {
   box-shadow: 0 6px 18px rgba(184, 115, 51, 0.2);
 }
 
-/* Cards standards (labs, CMS...) */
 .cgrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -1719,7 +1651,6 @@ nav.scrolled {
   opacity: 1;
 }
 
-/* Image des cards */
 .cimg {
   width: 100%;
   position: relative;
@@ -1760,7 +1691,6 @@ nav.scrolled {
   pointer-events: none;
 }
 
-/* Placeholder quand pas d'image */
 .ph {
   width: 100%;
   height: 100%;
@@ -1783,7 +1713,6 @@ nav.scrolled {
   z-index: 2;
 }
 
-/* Corps des cards */
 .cbody {
   padding: 22px;
   position: relative;
@@ -1855,7 +1784,7 @@ nav.scrolled {
   gap: 13px;
 }
 
-/* ===== GRID DESTRUCTURÉE — 3 projets phare ===== */
+/* ===== GRILLE DESTRUCTURÉE ===== */
 .destruct-grid {
   display: grid;
   grid-template-columns: 1.65fr 1fr;
@@ -1900,20 +1829,22 @@ nav.scrolled {
   grid-row: 2;
 }
 
-/* Zones image des dc-cards */
 .dc-img {
   width: 100%;
   overflow: hidden;
   position: relative;
 }
 .dc-main .dc-img {
-  height: 380px;
+  aspect-ratio: 14/9;
+  height: auto;
 }
 .dc-img-top {
-  height: 210px;
+  aspect-ratio: 14/9;
+  height: auto;
 }
 .dc-img-land {
-  height: 170px;
+  aspect-ratio: 14/9;
+  height: auto;
 }
 .dc-img img {
   width: 100%;
@@ -1950,7 +1881,6 @@ nav.scrolled {
   );
 }
 
-/* Corps des dc-cards */
 .dc-body {
   padding: 20px 22px 22px;
   position: relative;
@@ -2048,7 +1978,6 @@ nav.scrolled {
   opacity: 0.7;
 }
 
-/* Glow corner */
 .dc-glow {
   position: absolute;
   width: 200px;
@@ -2093,8 +2022,7 @@ nav.scrolled {
   box-shadow: 0 4px 14px rgba(184, 115, 51, 0.4);
 }
 
-/* ===== SLIDESHOW D'IMAGES DES PROJETS ===== */
-/* Pour Ciné Délices, Dev N'Dumber : défilement doux des images */
+/* ===== SLIDESHOW ===== */
 .dc-slideshow {
   position: relative;
   overflow: hidden;
@@ -2115,7 +2043,6 @@ nav.scrolled {
   object-fit: cover;
   filter: brightness(0.85) saturate(0.92);
 }
-/* Indicateurs de slide */
 .slide-dots {
   position: absolute;
   bottom: 10px;
@@ -2139,7 +2066,7 @@ nav.scrolled {
   transform: scale(1.3);
 }
 
-/* ===== CINÉ DÉLICES CARD — traitement premium or ===== */
+/* ===== CINÉ DÉLICES CARD ===== */
 .cd-card {
   background: rgba(27, 25, 20, 0.22);
   border-color: rgba(196, 160, 82, 0.22) !important;
@@ -2456,11 +2383,178 @@ nav.scrolled {
   opacity: 1.5;
 }
 
+/* ── Bandeau palette + métriques ── */
+/* ── Moodboard enrichi Ciné Délices ── */
+.cd-moodboard {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: rgba(200, 196, 180, 0.03);
+  border: 1px solid rgba(200, 196, 180, 0.08);
+  margin-top: 2px;
+}
+.cd-mb-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Ligne palette + typos */
+.cd-mb-row--palette {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cd-mb-label {
+  font-family: var(--mono);
+  font-size: 0.38rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--olive2);
+  flex-shrink: 0;
+}
+.cd-mb-swatches {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.cd-mb-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.cd-mb-swatch--gold {
+  width: 20px;
+}
+.cd-mb-swatch:hover {
+  transform: scale(1.3);
+}
+.cd-mb-typos {
+  display: flex;
+  gap: 5px;
+  margin-left: 4px;
+}
+.cd-mb-typo-bb {
+  font-family: "Bebas Neue", cursive;
+  font-size: 0.78rem;
+  color: rgba(196, 160, 82, 0.55);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+.cd-mb-typo-cz {
+  font-family: "Cinzel", serif;
+  font-size: 0.58rem;
+  color: rgba(196, 160, 82, 0.45);
+}
+.cd-mb-typo-pf {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 0.65rem;
+  color: rgba(232, 232, 232, 0.35);
+}
+.cd-mb-typo-la {
+  font-family: "Lato", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  color: rgba(232, 232, 232, 0.3);
+}
+
+/* Ligne badges */
+.cd-mb-row--badges {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.cd-mb-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+.cd-mb-badge--genre {
+  background: rgba(27, 38, 59, 0.7);
+  border-color: rgba(196, 160, 82, 0.35);
+  color: rgba(196, 160, 82, 0.8);
+}
+.cd-mb-badge--rouge {
+  background: rgba(194, 48, 24, 0.12);
+  border-color: rgba(194, 48, 24, 0.4);
+  color: rgba(232, 100, 80, 0.85);
+}
+.cd-mb-badge--bleu {
+  background: rgba(14, 24, 52, 0.6);
+  border-color: rgba(80, 120, 200, 0.32);
+  color: rgba(140, 175, 235, 0.85);
+}
+.cd-mb-badge--info {
+  background: rgba(65, 90, 119, 0.18);
+  border-color: rgba(65, 90, 119, 0.32);
+  color: rgba(232, 232, 232, 0.5);
+}
+.cd-mb-stars {
+  font-size: 0.72rem;
+  color: rgba(242, 200, 75, 0.75);
+  letter-spacing: 1px;
+  margin-left: 4px;
+}
+.cd-mb-star-e {
+  color: rgba(196, 160, 82, 0.2);
+}
+.cd-mb-rating {
+  font-family: var(--serif);
+  font-size: 0.65rem;
+  color: rgba(232, 232, 232, 0.5);
+}
+
+/* Ligne métriques */
+.cd-mb-row--metrics {
+  gap: 0;
+}
+.cd-mb-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 0 5px;
+  border-right: 1px solid rgba(200, 196, 180, 0.07);
+}
+.cd-mb-metric:last-child {
+  border-right: none;
+}
+.cd-mb-metric-v {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+.cd-mb-metric-l {
+  font-family: var(--mono);
+  font-size: 0.36rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-top: 1px;
+  opacity: 0.6;
+}
+.cd-mb-sep {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(200, 196, 180, 0.07);
+  flex-shrink: 0;
+}
+
 /* =============================================
    11. SECTION DESIGN / CMS / CV
 ============================================= */
-
-/* Icones tech */
 .tech-grid {
   display: flex;
   flex-wrap: wrap;
@@ -2546,7 +2640,6 @@ nav.scrolled {
   border: 1px solid rgba(247, 163, 0, 0.3);
 }
 
-/* Galerie design */
 .gal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2596,7 +2689,6 @@ nav.scrolled {
   pointer-events: none;
 }
 
-/* CMS expertise */
 .exp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2889,7 +2981,6 @@ nav.scrolled {
   color: var(--stone);
 }
 
-/* Skill cards */
 .sk-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
@@ -2929,8 +3020,7 @@ nav.scrolled {
   letter-spacing: 0.04em;
 }
 
-/* ===== SÉLECTEUR DE CV ===== */
-/* Permet de choisir entre CV Front-End et CV Product Designer */
+/* ===== SÉLECTEUR DE CV (uniquement dans le tab CV) ===== */
 .cv-selector {
   display: flex;
   gap: 10px;
@@ -2978,7 +3068,7 @@ nav.scrolled {
 }
 
 /* =============================================
-   12. ORGANIC BANNIÈRE + SECTION CTA + FOOTER
+   12. ORGANIC BANNIÈRE + FOOTER
 ============================================= */
 .organic-sec {
   position: relative;
@@ -3207,7 +3297,6 @@ nav.scrolled {
   }
 }
 
-/* Section CTA Recruteur */
 .cta-recruiter {
   position: relative;
   z-index: 2;
@@ -3274,7 +3363,6 @@ nav.scrolled {
   letter-spacing: 0.1em;
 }
 
-/* Footer */
 footer {
   position: relative;
   z-index: 2;
@@ -3440,7 +3528,7 @@ footer {
 }
 .proj-modal {
   width: 100%;
-  max-width: 680px;
+  max-width: 700px;
   background: rgba(27, 25, 20, 0.72);
   border: 1px solid rgba(200, 196, 180, 0.22);
   border-radius: 20px;
@@ -3453,13 +3541,15 @@ footer {
   transform: translateY(28px) scale(0.97);
   transition: transform 0.5s var(--ease);
   position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .proj-modal-bg.open .proj-modal {
   transform: translateY(0) scale(1);
 }
 .proj-modal-img {
   width: 100%;
-  height: 220px;
+  height: 260px;
   position: relative;
   overflow: hidden;
 }
@@ -3642,97 +3732,345 @@ footer {
 }
 
 /* =============================================
-   14. MODE PRÉSENTATION RECRUTEUR
-   Un toggle qui masque les détails techniques
-   pour ne montrer que projets et résultats.
-   Classe .recruiter-mode sur le body.
+   14. ZOOM IMAGE
+   Lightbox style pour zoomer sur les images de projets
 ============================================= */
-
-/* Bouton toggle flottant */
-.recruiter-toggle {
+.img-zoom-overlay {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
-  z-index: 8000;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(10, 8, 5, 0.92);
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 10px 18px;
-  border-radius: 20px;
-  background: rgba(27, 25, 20, 0.85);
-  border: 1px solid var(--gborder);
-  color: var(--stone);
-  backdrop-filter: blur(16px);
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
   cursor: none;
-  transition: all 0.35s var(--ease);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
 }
-.recruiter-toggle:hover {
-  border-color: var(--olive2);
-  color: var(--olive2);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
-  transform: translateY(-2px);
+.img-zoom-overlay.open {
+  opacity: 1;
+  pointer-events: all;
 }
-/* Quand le mode recruteur est activé */
-body.recruiter-mode .recruiter-toggle {
+.img-zoom-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.92);
+  transition: transform 0.5s var(--ease);
+}
+.img-zoom-overlay.open .img-zoom-inner {
+  transform: scale(1);
+}
+.img-zoom-inner img {
+  max-width: 90vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid rgba(200, 196, 180, 0.18);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+}
+.img-zoom-close {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(237, 233, 220, 0.08);
+  border: 1px solid rgba(200, 196, 180, 0.2);
+  color: var(--cream);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: all 0.3s;
+}
+.img-zoom-close:hover {
+  background: rgba(237, 233, 220, 0.15);
   border-color: var(--amber);
   color: var(--amber);
-  background: rgba(184, 115, 51, 0.12);
 }
-.rt-dot {
-  width: 7px;
-  height: 7px;
+.img-zoom-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--stone);
-  transition: background 0.3s;
+  background: rgba(27, 25, 20, 0.7);
+  border: 1px solid rgba(200, 196, 180, 0.2);
+  color: var(--cream);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: all 0.3s;
+  z-index: 2;
 }
-body.recruiter-mode .rt-dot {
-  background: #4ade80;
-  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+.img-zoom-nav:hover {
+  background: rgba(200, 196, 180, 0.15);
+  border-color: var(--amber);
+  color: var(--amber);
 }
-.rt-label {
-  transition: color 0.3s;
+.img-zoom-prev {
+  left: -56px;
+}
+.img-zoom-next {
+  right: -56px;
+}
+.img-zoom-caption {
+  position: absolute;
+  bottom: -38px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: rgba(200, 196, 180, 0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.img-zoom-counter {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: rgba(200, 196, 180, 0.35);
+  letter-spacing: 0.12em;
 }
 
-/* Éléments cachés en mode recruteur */
-body.recruiter-mode .stack-cloud,
-body.recruiter-mode .tech-grid,
-body.recruiter-mode .tech-item,
-body.recruiter-mode .dc-chips,
-body.recruiter-mode .cd-stack-grid,
-body.recruiter-mode .cd-typo-strip,
-body.recruiter-mode .cchips,
-body.recruiter-mode .chip,
-body.recruiter-mode .dc-chip,
-body.recruiter-mode .proj-modal-stack,
-body.recruiter-mode .wgs-sha,
-body.recruiter-mode .wow-term-branch,
-body.recruiter-mode .tl-desc,
-body.recruiter-mode .cv-ttl + .tools-c,
-body.recruiter-mode .fc-sch {
-  display: none !important;
+/* Indicateur de zoom sur les images */
+.img-zoomable {
+  cursor: none !important;
+  position: relative;
 }
-/* On met en valeur les titres et descriptions */
-body.recruiter-mode .dc-title,
-body.recruiter-mode .cttl,
-body.recruiter-mode .feat-card-title {
-  font-size: 1.55rem;
+.img-zoomable::after {
+  content: "⊕";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(27, 25, 20, 0.7);
+  border: 1px solid rgba(200, 196, 180, 0.2);
+  color: rgba(237, 233, 220, 0.6);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
-body.recruiter-mode .dc-desc,
-body.recruiter-mode .cdesc,
-body.recruiter-mode .feat-card-desc {
-  font-size: 0.9rem;
-  color: var(--cream);
+.img-zoomable:hover::after {
+  opacity: 1;
 }
 
 /* =============================================
-   15. REVEAL ANIMATIONS
-   Classe .rv = invisible par défaut
-   Classe .vis ajoutée par JS quand visible = animation entrée
+   15. TOOLTIP DESCRIPTION (popup au hover/clic)
+============================================= */
+.proj-desc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--stone);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--gb);
+  border: 1px solid var(--gborder);
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: none;
+  transition: all 0.3s;
+  position: relative;
+}
+.proj-desc-btn:hover {
+  border-color: var(--olive2);
+  color: var(--olive2);
+}
+.proj-desc-btn .desc-icon {
+  font-size: 0.7rem;
+}
+
+/* Popup de description */
+.proj-desc-popup {
+  position: fixed;
+  z-index: 9500;
+  max-width: 440px;
+  width: calc(100vw - 40px);
+  background: rgba(22, 20, 16, 0.96);
+  border: 1px solid rgba(200, 196, 180, 0.2);
+  border-radius: 14px;
+  backdrop-filter: blur(28px);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(237, 233, 220, 0.08);
+  padding: 24px 26px 22px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.97);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.35s var(--ease);
+}
+.proj-desc-popup.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1);
+}
+.proj-desc-popup-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.proj-desc-popup-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--cream);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.proj-desc-popup-title em {
+  color: var(--amber);
+  font-style: italic;
+}
+.proj-desc-popup-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(200, 196, 180, 0.07);
+  border: 1px solid rgba(200, 196, 180, 0.15);
+  color: var(--stone);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: all 0.3s;
+}
+.proj-desc-popup-close:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: rgba(184, 115, 51, 0.1);
+}
+.proj-desc-popup-tag {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--olive2);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.proj-desc-popup-tag::before {
+  content: "";
+  width: 12px;
+  height: 1px;
+  background: var(--olive2);
+}
+.proj-desc-popup-body {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--sand);
+  line-height: 1.72;
+  margin-bottom: 16px;
+}
+.proj-desc-popup-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.proj-desc-popup-features li {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--stone);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.proj-desc-popup-features li::before {
+  content: "→";
+  color: var(--olive2);
+  flex-shrink: 0;
+}
+.proj-desc-popup-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(200, 196, 180, 0.08);
+}
+.proj-desc-popup-chip {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(200, 196, 180, 0.1);
+  color: var(--stone);
+  background: rgba(200, 196, 180, 0.04);
+}
+.proj-desc-popup-chip.fe {
+  border-color: rgba(138, 148, 99, 0.3);
+  color: var(--olive2);
+}
+.proj-desc-popup-chip.be {
+  border-color: rgba(184, 115, 51, 0.3);
+  color: var(--amber);
+}
+.proj-desc-popup-chip.tool {
+  border-color: rgba(200, 196, 180, 0.15);
+  color: var(--stone);
+}
+
+/* =============================================
+   SLIDESHOW DANS LES MODALES
+============================================= */
+.modal-slideshow {
+  position: relative;
+  overflow: hidden;
+}
+.modal-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.modal-slideshow .slide.active {
+  opacity: 1;
+  position: relative;
+}
+.modal-slideshow .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.85);
+}
+
+/* =============================================
+   16. REVEAL ANIMATIONS
 ============================================= */
 .rv {
   opacity: 0;
@@ -3757,7 +4095,6 @@ body.recruiter-mode .feat-card-desc {
 .d4 {
   transition-delay: 0.38s;
 }
-
 .rv-stagger > * {
   opacity: 0;
   transform: translateY(18px);
@@ -3801,7 +4138,6 @@ body.recruiter-mode .feat-card-desc {
   transition-delay: 0.47s;
 }
 
-/* Helpers globaux */
 .mw {
   max-width: 1200px;
   margin: 0 auto;
@@ -3816,7 +4152,7 @@ body.recruiter-mode .feat-card-desc {
 }
 
 /* =============================================
-   16. RESPONSIVE
+   17. RESPONSIVE
 ============================================= */
 @media (max-width: 1024px) {
   nav,
@@ -3839,14 +4175,8 @@ body.recruiter-mode .feat-card-desc {
   .destruct-grid {
     grid-template-columns: 1fr;
   }
-  .dc-main {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .dc-side {
-    grid-column: 1;
-    grid-row: auto;
-  }
+  .dc-main,
+  .dc-side,
   .dc-bottom {
     grid-column: 1;
     grid-row: auto;
@@ -3928,11 +4258,11 @@ body.recruiter-mode .feat-card-desc {
     width: 220px;
     height: 220px;
   }
-  .recruiter-toggle {
-    bottom: 20px;
-    right: 20px;
-    font-size: 0.55rem;
-    padding: 9px 14px;
+  .img-zoom-prev {
+    left: -42px;
+  }
+  .img-zoom-next {
+    right: -42px;
   }
 }
 @media (max-width: 768px) {
@@ -4007,8 +4337,7 @@ body.recruiter-mode .feat-card-desc {
   .btn,
   .tab-btn,
   .card,
-  .ft-soc,
-  .recruiter-toggle {
+  .ft-soc {
     cursor: pointer;
   }
   .marquee-strip {
@@ -4036,82 +4365,18 @@ body.recruiter-mode .feat-card-desc {
   .cv-selector {
     flex-direction: column;
   }
-  .recruiter-toggle {
-    display: none;
-  } /* masqué sur mobile, trop petit */
-}
-
-/* =============================================
-   SLIDESHOW DANS LES MODALES
-============================================= */
-.modal-slideshow {
-  position: relative;
-  overflow: hidden;
-}
-.modal-slideshow .slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.4s ease-in-out;
-}
-.modal-slideshow .slide.active {
-  opacity: 1;
-  position: relative;
-}
-.modal-slideshow .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.8) saturate(0.85);
-}
-
-/* =============================================
-   BLUR QUOTE — styles complémentaires
-   (animation gérée entièrement en JS via data-attributes)
-============================================= */
-.blur-quote p {
-  font-family: var(--serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  font-style: italic;
-  font-weight: 300;
-  line-height: 1.5;
-  color: rgba(237, 233, 220, 0.9);
-  letter-spacing: -0.02em;
-  padding-bottom: 2rem;
-}
-.blur-quote cite {
-  display: block;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--olive2);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-style: normal;
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-.blur-quote cite.animate {
-  opacity: 1;
-}
-.blur-quote .bw {
-  display: inline;
-  will-change: opacity, filter;
-  opacity: 0;
-}
-.blur-quote .bw.animate {
-  opacity: 1;
-  filter: blur(0px) !important;
-}
-.bq-accent {
-  color: var(--amber);
-  font-style: italic;
-}
-
-/* Indication cliquable */
-.blur-quote-sec {
-  cursor: pointer;
-}
-.blur-quote-sec:hover {
-  opacity: 0.95;
+  .proj-modal {
+    max-width: 100%;
+  }
+  .img-zoom-prev {
+    left: -36px;
+  }
+  .img-zoom-next {
+    right: -36px;
+  }
+  .img-zoom-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
 }

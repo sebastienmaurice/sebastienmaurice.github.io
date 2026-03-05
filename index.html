@@ -12,17 +12,12 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- SPOTLIGHT — suit la souris via custom property CSS -->
     <div class="spotlight" id="spl"></div>
-
-    <!-- CURSEUR PERSONNALISÉ — point + anneau animé via JS -->
     <div id="cur"></div>
     <div id="cring"></div>
-
-    <!-- CANVAS PARTICULES — background interactif -->
     <canvas id="pc"></canvas>
 
-    <!-- MENU MOBILE OVERLAY -->
+    <!-- MENU MOBILE -->
     <div class="m-nav" id="mnav">
       <a
         href="#"
@@ -69,7 +64,6 @@
         "
         >Sébastien <em>Maurice</em></a
       >
-
       <ul class="nav-links">
         <li>
           <a
@@ -126,14 +120,11 @@
           >
         </li>
       </ul>
-
-      <!-- Contact visible sans cliquer — email + téléphone directement dans la nav -->
       <div class="nav-contact-quick">
         <a href="mailto:overseb75@gmail.com">overseb75@gmail.com</a>
         <span class="sep-dot">·</span>
         <a href="tel:+33620847801">+33 6 20 84 78 01</a>
       </div>
-
       <div class="nav-soc">
         <a href="https://github.com/sebastienmaurice" target="_blank">GitHub</a>
         <span class="sp">/</span>
@@ -152,19 +143,16 @@
     <section class="hero" id="hero">
       <div class="orb orb1"></div>
       <div class="orb orb2"></div>
-
       <div class="hero-in mw">
-        <!-- GAUCHE — Texte et CTA -->
+        <!-- GAUCHE -->
         <div class="hero-l">
           <div class="eyebrow rv">
             <span>Portfolio 2026 · Caudry, France</span>
           </div>
-
           <h1 class="hero-name rv d1" id="heroName">
             <span class="line1">Sébastien</span>
             <em><span class="line2">Maurice</span></em>
           </h1>
-
           <p class="hero-title rv d2">Front-End Developer</p>
           <p class="hero-sub rv d2">
             UX-Oriented<span class="dot">•</span>Interfaces modernes<span
@@ -172,8 +160,6 @@
               >•</span
             >Performantes
           </p>
-
-          <!-- CTA + boutons de téléchargement CV -->
           <div class="ctas rv d3">
             <a
               href="#"
@@ -188,79 +174,26 @@
               >Me contacter <span class="arr">✉</span></a
             >
           </div>
-
-          <!-- ===== SÉLECTEUR DE CV — 2 versions disponibles ===== -->
-          <!-- Le recruteur choisit le CV adapté à son poste -->
-          <div class="rv d3" style="margin-top: 28px">
-            <div
-              style="
-                font-family: var(--mono);
-                font-size: 0.6rem;
-                color: var(--stone);
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                margin-bottom: 10px;
-              "
-            >
-              Télécharger mon CV :
-            </div>
-            <div class="cv-selector">
-              <!-- Bouton CV Front-End — actif par défaut -->
-              <a
-                href="assets/cv/cv-frontend-developer.pdf"
-                download="CV_Sebastien_Maurice_Frontend.pdf"
-                class="cv-sel-btn btn-cv btn active"
-                data-cv="frontend"
-              >
-                <span class="cv-sel-icon">⚡</span>
-                <span>
-                  Front-End Developer
-                  <span class="cv-sel-label-sub">UX-Focused</span>
-                </span>
-                <span class="arr">↓</span>
-              </a>
-              <!-- Bouton CV Product Designer -->
-              <a
-                href="assets/cv/cv-product-designer.pdf"
-                download="CV_Sebastien_Maurice_ProductDesigner.pdf"
-                class="cv-sel-btn btn-cv btn"
-                data-cv="designer"
-              >
-                <span class="cv-sel-icon">🎨</span>
-                <span>
-                  Product Designer
-                  <span class="cv-sel-label-sub">UX Designer</span>
-                </span>
-                <span class="arr">↓</span>
-              </a>
-            </div>
-          </div>
-
           <!-- Badge disponibilité -->
           <div class="hero-avail rv d3">
             <span class="avail-badge">
-              <span class="avail-dot"></span>
-              Disponible — Freelance &amp; CDI
+              <span class="avail-dot"></span>Disponible — Freelance &amp; CDI
             </span>
             <span class="avail-loc">Caudry, Nord (Remote OK)</span>
           </div>
         </div>
 
-        <!-- DROITE — Animation WOW Terminal -->
+        <!-- DROITE — Terminal WOW -->
         <div class="hero-r rv d2">
           <div class="wow-stage">
-            <!-- Anneaux orbitaux CSS — rotation via @keyframes ringRotate -->
             <div class="wow-ring-outer"><div class="ring-dot"></div></div>
             <div class="wow-ring-mid"><div class="ring-dot-green"></div></div>
             <div class="wow-ring-inner"></div>
-
-            <!-- Terminal central -->
             <div class="wow-terminal" id="wowTerminal">
               <div class="wow-term-bar">
                 <div class="wow-dots">
-                  <span class="wd wd1"></span>
-                  <span class="wd wd2"></span>
-                  <span class="wd wd3"></span>
+                  <span class="wd wd1"></span><span class="wd wd2"></span
+                  ><span class="wd wd3"></span>
                 </div>
                 <span class="wow-term-title">seb.portfolio.js</span>
                 <span class="wow-term-branch">⎇ main</span>
@@ -268,8 +201,6 @@
               <div class="wow-term-body" id="termBody"></div>
               <div class="wow-scanlines"></div>
             </div>
-
-            <!-- Skill cards flottantes -->
             <div class="wow-orbit wow-orbit-1">
               <div class="wow-skill-card wsk-html">
                 <span class="wsk-icon">H5</span
@@ -300,7 +231,6 @@
                 ><span class="wsk-label">Figma</span>
               </div>
             </div>
-
             <!-- Lighthouse badge -->
             <div class="wow-lh-badge">
               <svg class="wow-lh-svg" viewBox="0 0 64 64">
@@ -336,7 +266,6 @@
                 <span class="wow-lh-sub">Lighthouse</span>
               </div>
             </div>
-
             <!-- Git status -->
             <div class="wow-git-status">
               <div class="wgs-top">
@@ -348,20 +277,14 @@
               <div class="wgs-msg">"feat: add WOW factor ✦"</div>
               <div class="wgs-meta">just now · Sébastien Maurice</div>
             </div>
-
-            <!-- Status pill top -->
             <div class="wow-status-pill">
               <span class="wsp-dot"></span>
               <span class="wsp-txt">Disponible · Freelance</span>
             </div>
-
-            <!-- Expérience badge -->
             <div class="wow-exp-badge">
               <span class="web-val">5+</span>
               <span class="web-label">ans d'expérience</span>
             </div>
-
-            <!-- Rings déco -->
             <div class="wow-ring wr1"></div>
             <div class="wow-ring wr2"></div>
             <div class="wow-ring wr3"></div>
@@ -369,14 +292,13 @@
           </div>
         </div>
       </div>
-
       <div class="scroll-hint">
         <div class="scl"></div>
         <span>Scroll</span>
       </div>
     </section>
 
-    <!-- ========================= MARQUEE STRIP ========================= -->
+    <!-- ========================= MARQUEE ========================= -->
     <div class="marquee-strip">
       <div class="marquee-track" id="mtrk">
         <span class="marquee-item"
@@ -434,15 +356,7 @@
       </div>
     </div>
 
-    <!-- ========================= BLUR QUOTE EFFECT ========================= -->
-    <!--
-  Chaque mot est un <span class="bw"> avec des data-attributes :
-  - data-duration : durée de la transition (secondes)
-  - data-delay    : délai avant l'apparition (secondes)
-  - data-blur     : valeur de départ du filtre blur (pixels)
-  Inspiré du CodePen "Quote Effect using a CSS Blur Filter"
-  Adapté en vanilla JS sans TweenLite
--->
+    <!-- ========================= BLUR QUOTE ========================= -->
     <div class="blur-quote-sec" id="quote-sec">
       <blockquote class="blur-quote" id="blurQuote">
         <p>
@@ -554,7 +468,6 @@
           </p>
         </div>
 
-        <!-- Tech icons -->
         <div class="tech-grid rv-stagger" style="margin-bottom: 40px">
           <div class="tech-item">
             <div
@@ -670,7 +583,6 @@
           </div>
         </div>
 
-        <!-- Stack pills -->
         <div class="stack-cloud rv-stagger">
           <span class="pill acc">HTML5</span><span class="pill acc">CSS3</span
           ><span class="pill acc">JavaScript ES6+</span>
@@ -684,7 +596,6 @@
           ><span class="pill">Node.js</span>
         </div>
 
-        <!-- Projets phare header -->
         <div class="sec-hd rv mt0" style="margin-bottom: 28px">
           <div class="sec-ey"><span>Projets Phare</span></div>
           <h3 class="sec-ttl" style="font-size: clamp(1.5rem, 3vw, 2.2rem)">
@@ -692,19 +603,16 @@
           </h3>
         </div>
 
-        <!-- ===== GRILLE DESTRUCTURÉE 3 PROJETS ===== -->
+        <!-- ===== GRILLE DESTRUCTURÉE ===== -->
         <div class="destruct-grid rv">
-          <!-- ═══ CINÉ DÉLICES — Grande card hero ═══ -->
+          <!-- ═══ CINÉ DÉLICES ═══ -->
           <div class="dc dc-main cd-card" onclick="openModal('cine')">
             <div class="cd-pellicule"></div>
             <div class="cd-badge-phare">★ PROJET PHARE</div>
-
-            <!-- Slideshow de 4 images Ciné Délices -->
             <div class="dc-img cd-img-zone dc-slideshow">
-              <!-- Slide 1 — Homepage -->
               <div class="slide active">
                 <img
-                  src="assets/img/cinedelices-homepage.jpg"
+                  src="assets/img/front-back/cinedelices-0.jpg"
                   onerror="
                     this.src =
                       'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
@@ -712,10 +620,9 @@
                   alt="Ciné Délices — Homepage"
                 />
               </div>
-              <!-- Slide 2 — Mood -->
               <div class="slide">
                 <img
-                  src="assets/img/cinedelices-mood.jpg"
+                  src="assets/img/front-back/cinedelices-1.jpg"
                   onerror="
                     this.src =
                       'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
@@ -723,10 +630,9 @@
                   alt="Ciné Délices — Ambiance"
                 />
               </div>
-              <!-- Slide 3 — Recette détail -->
               <div class="slide">
                 <img
-                  src="assets/img/cinedelices-recipe-detail-1.jpg"
+                  src="assets/img/front-back/cinedelices-2.jpg"
                   onerror="
                     this.src =
                       'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
@@ -734,10 +640,9 @@
                   alt="Ciné Délices — Recette détail"
                 />
               </div>
-              <!-- Slide 4 — Page recettes -->
               <div class="slide">
                 <img
-                  src="assets/img/cinedelices-recipe-page.jpg"
+                  src="assets/img/front-back/cinedelices-3.jpg"
                   onerror="
                     this.src =
                       'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
@@ -745,10 +650,8 @@
                   alt="Ciné Délices — Page recettes"
                 />
               </div>
-              <!-- Overlays cinématiques -->
               <div class="cd-overlay-top"></div>
               <div class="dc-img-overlay"></div>
-              <!-- Stats film sur l'image -->
               <div class="cd-img-stats">
                 <div class="cd-stat">
                   <span class="cd-stat-v">4.9</span
@@ -766,8 +669,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Body Ciné Délices -->
             <div class="cd-body">
               <div class="cd-eyebrow">
                 <span class="cd-eyebrow-line"></span>
@@ -782,27 +683,28 @@
                 </h3>
               </div>
               <p class="cd-desc">
-                Fiches films, badges animés, carrousels interactifs — design
-                cinématographique élégant mêlant cinéma et gastronomie.
-                Moodboard sombre avec accents or/rouge.
+                Plateforme immersive mêlant cinéma et gastronomie. Chaque film
+                emblématique est accompagné de suggestions culinaires inspirées
+                de son univers. Fiches détaillées via l'API TMDB, badges animés,
+                carrousels interactifs et design cinématographique or/rouge.
               </p>
               <div class="cd-stack-grid">
                 <div class="cd-stack-col">
                   <div class="cd-stack-label">Front-End</div>
                   <div class="cd-stack-items">
-                    <span class="cd-chip fe">Svelte</span>
-                    <span class="cd-chip fe">HTML5</span>
-                    <span class="cd-chip fe">CSS3</span>
-                    <span class="cd-chip fe">JS ES6+</span>
+                    <span class="cd-chip fe">Svelte</span
+                    ><span class="cd-chip fe">HTML5</span>
+                    <span class="cd-chip fe">CSS3</span
+                    ><span class="cd-chip fe">JS ES6+</span>
                   </div>
                 </div>
                 <div class="cd-stack-col">
                   <div class="cd-stack-label">Back &amp; Design</div>
                   <div class="cd-stack-items">
-                    <span class="cd-chip be">Node.js</span>
-                    <span class="cd-chip be">API TMDB</span>
-                    <span class="cd-chip tool">Figma</span>
-                    <span class="cd-chip tool">MongoDB</span>
+                    <span class="cd-chip be">Node.js</span
+                    ><span class="cd-chip be">API TMDB</span>
+                    <span class="cd-chip tool">Figma</span
+                    ><span class="cd-chip tool">PostgreSQL</span>
                   </div>
                 </div>
               </div>
@@ -823,20 +725,122 @@
                   onclick="event.stopPropagation()"
                   >▶ Voir le repo</a
                 >
-                <span class="cd-hint">◎ Cliquer pour les détails</span>
+                <!-- Bouton description popup -->
+                <button
+                  class="proj-desc-btn"
+                  data-project="cine-delices"
+                  onclick="
+                    event.stopPropagation();
+                    openDescPopup(this, 'cine-delices');
+                  "
+                >
+                  <span class="desc-icon">ℹ</span> Description
+                </button>
+              </div>
+
+              <!-- ── Détails design system moodboard ── -->
+              <div class="cd-moodboard">
+                <!-- Ligne 1 : Palette vraie du projet -->
+                <div class="cd-mb-row cd-mb-row--palette">
+                  <span class="cd-mb-label">Palette</span>
+                  <div class="cd-mb-swatches">
+                    <div
+                      class="cd-mb-swatch"
+                      style="background: #142234"
+                      title="Bleu Nuit — fond global"
+                    ></div>
+                    <div
+                      class="cd-mb-swatch"
+                      style="background: #0f1e30"
+                      title="Surface Card"
+                    ></div>
+                    <div
+                      class="cd-mb-swatch cd-mb-swatch--gold"
+                      style="
+                        background: linear-gradient(
+                          135deg,
+                          #b8882a,
+                          #d4a843,
+                          #f2c84b,
+                          #ffe085
+                        );
+                      "
+                      title="Gold gradient"
+                    ></div>
+                    <div
+                      class="cd-mb-swatch"
+                      style="background: #c4a052"
+                      title="Or Titre"
+                    ></div>
+                    <div
+                      class="cd-mb-swatch"
+                      style="background: #c23018"
+                      title="Rouge CTA"
+                    ></div>
+                    <div
+                      class="cd-mb-swatch"
+                      style="background: #e8e8e8"
+                      title="Argent texte"
+                    ></div>
+                  </div>
+                  <!-- Typos -->
+                  <div class="cd-mb-typos">
+                    <span class="cd-mb-typo-bb">Bb</span>
+                    <span class="cd-mb-typo-cz">Cz</span>
+                    <span class="cd-mb-typo-pf">Pf</span>
+                    <span class="cd-mb-typo-la">La</span>
+                  </div>
+                </div>
+                <!-- Ligne 2 : Badges + étoiles -->
+                <div class="cd-mb-row cd-mb-row--badges">
+                  <span class="cd-mb-badge cd-mb-badge--genre">Drame</span>
+                  <span class="cd-mb-badge cd-mb-badge--rouge">Entrée</span>
+                  <span class="cd-mb-badge cd-mb-badge--bleu">Dessert</span>
+                  <span class="cd-mb-badge cd-mb-badge--info">2h 02min</span>
+                  <span class="cd-mb-stars"
+                    >★★★★<span class="cd-mb-star-e">★</span></span
+                  >
+                  <span class="cd-mb-rating">4.9</span>
+                </div>
+                <!-- Ligne 3 : Métriques techniques -->
+                <div class="cd-mb-row cd-mb-row--metrics">
+                  <div class="cd-mb-metric">
+                    <span class="cd-mb-metric-v">API</span
+                    ><span class="cd-mb-metric-l">TMDB</span>
+                  </div>
+                  <div class="cd-mb-sep"></div>
+                  <div class="cd-mb-metric">
+                    <span class="cd-mb-metric-v">SPA</span
+                    ><span class="cd-mb-metric-l">Svelte</span>
+                  </div>
+                  <div class="cd-mb-sep"></div>
+                  <div class="cd-mb-metric">
+                    <span class="cd-mb-metric-v">~40h</span
+                    ><span class="cd-mb-metric-l">Design</span>
+                  </div>
+                  <div class="cd-mb-sep"></div>
+                  <div class="cd-mb-metric">
+                    <span class="cd-mb-metric-v">6</span
+                    ><span class="cd-mb-metric-l">Pages</span>
+                  </div>
+                  <div class="cd-mb-sep"></div>
+                  <div class="cd-mb-metric">
+                    <span class="cd-mb-metric-v">EJS</span
+                    ><span class="cd-mb-metric-l">Templates</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="cd-glow-corner"></div>
             <div class="cd-shimmer-line"></div>
           </div>
 
-          <!-- ═══ DEV N'DUMBER — Card avec slideshow ═══ -->
+          <!-- ═══ DEV N'DUMBER ═══ -->
           <div class="dc dc-side" onclick="openModal('devnd')">
-            <!-- Slideshow 3 images Dev N'Dumber -->
             <div class="dc-img dc-img-top dc-slideshow">
               <div class="slide active">
                 <img
-                  src="assets/img/devndumber-1.jpg"
+                  src="assets/img/front-back/devndumber-0.jpg"
                   onerror="
                     this.src = 'https://i.postimg.cc/cHTKt6kv/DEV_N_DUMBER.png'
                   "
@@ -845,7 +849,7 @@
               </div>
               <div class="slide">
                 <img
-                  src="assets/img/devndumber-2.jpg"
+                  src="assets/img/front-back/devndumber-1.jpg"
                   onerror="
                     this.src = 'https://i.postimg.cc/cHTKt6kv/DEV_N_DUMBER.png'
                   "
@@ -854,7 +858,7 @@
               </div>
               <div class="slide">
                 <img
-                  src="assets/img/devndumber-3.jpg"
+                  src="assets/img/front-back/devndumber-2.jpg"
                   onerror="
                     this.src = 'https://i.postimg.cc/cHTKt6kv/DEV_N_DUMBER.png'
                   "
@@ -868,14 +872,16 @@
               <div class="dc-tag">Full-Stack · Communautaire</div>
               <div class="dc-title">Dev <em>N'Dumber</em></div>
               <div class="dc-desc">
-                Plateforme freelance communautaire full-stack. Interface
-                moderne, architecture robuste.
+                Agence web fictive créée par une équipe de 4 développeurs.
+                Identité fun avec mascottes Git Dumber et Dev Lloyd.
+                Architecture MVC full-stack, site vitrine multi-services.
               </div>
               <div class="dc-chips">
-                <span class="dc-chip hi">HTML5</span>
-                <span class="dc-chip hi">CSS3</span>
-                <span class="dc-chip hi">JS</span>
-                <span class="dc-chip">SQL</span>
+                <span class="dc-chip hi">HTML5</span
+                ><span class="dc-chip hi">CSS3</span>
+                <span class="dc-chip hi">JS</span
+                ><span class="dc-chip">Node.js</span>
+                <span class="dc-chip">PostgreSQL</span>
               </div>
               <div class="dc-footer">
                 <a
@@ -885,40 +891,74 @@
                   onclick="event.stopPropagation()"
                   >Repo <span>→</span></a
                 >
-                <span class="dc-hint">◎ Détails</span>
+                <button
+                  class="proj-desc-btn"
+                  data-project="dev-ndumber"
+                  onclick="
+                    event.stopPropagation();
+                    openDescPopup(this, 'dev-ndumber');
+                  "
+                >
+                  <span class="desc-icon">ℹ</span> Description
+                </button>
               </div>
             </div>
             <div class="dc-glow dc-glow-olive"></div>
           </div>
 
-          <!-- ═══ LES PRÉSENTS D'ANGE'L — Card bas (image factice) ═══ -->
+          <!-- ═══ LES PRÉSENTS D'ANGE'L ═══ -->
           <div class="dc dc-bottom">
-            <div class="dc-img dc-img-land">
-              <!-- Image factice — à remplacer quand disponible -->
-              <img
-                src="https://i.postimg.cc/4NgTVQM2/1.webp"
-                alt="Les Présents d'Ange'L"
-              />
+            <div class="dc-img dc-img-land dc-slideshow">
+              <div class="slide active">
+                <img
+                  src="assets/img/front-back/lespresentsdangel-0.jpg"
+                  onerror="this.src = 'https://i.postimg.cc/4NgTVQM2/1.webp'"
+                  alt="Les Présents d'Ange'L — Accueil"
+                />
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/img/front-back/lespresentsdangel-1.jpg"
+                  onerror="this.src = 'https://i.postimg.cc/4NgTVQM2/1.webp'"
+                  alt="Les Présents d'Ange'L — Boutique"
+                />
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/img/front-back/lespresentsdangel-2.jpg"
+                  onerror="this.src = 'https://i.postimg.cc/4NgTVQM2/1.webp'"
+                  alt="Les Présents d'Ange'L — Produit"
+                />
+              </div>
               <div class="dc-img-overlay"></div>
             </div>
             <div class="dc-body dc-body-horiz">
               <div>
                 <div class="dc-num">03</div>
-                <div class="dc-tag">E-commerce · Front-End</div>
+                <div class="dc-tag">E-commerce · Bijoux</div>
                 <div class="dc-title" style="font-size: 1.15rem">
                   Les Présents <em>d'Ange'L</em>
                 </div>
               </div>
               <div>
                 <div class="dc-desc">
-                  Intégration front e-commerce, ajustements UI/UX ciblés,
-                  responsive complet et cohérence visuelle de marque.
+                  Boutique en ligne de bijoux en pierres naturelles. Intégration
+                  front e-commerce, ajustements UI/UX ciblés, responsive et
+                  cohérence visuelle de marque.
                 </div>
                 <div class="dc-chips">
                   <span class="dc-chip">CSS3</span
-                  ><span class="dc-chip">JS</span>
-                  <span class="dc-chip">Responsive</span>
+                  ><span class="dc-chip">JS</span
+                  ><span class="dc-chip">Responsive</span>
                 </div>
+                <button
+                  class="proj-desc-btn"
+                  style="margin-top: 10px"
+                  data-project="presents-angel"
+                  onclick="openDescPopup(this, 'presents-angel')"
+                >
+                  <span class="desc-icon">ℹ</span> Description
+                </button>
               </div>
             </div>
             <div class="dc-glow dc-glow-stone"></div>
@@ -938,7 +978,8 @@
           <div class="card">
             <div class="cimg r43">
               <img
-                src="https://i.postimg.cc/BQ0GHByB/2.webp"
+                src="assets/img/front-back/ghibliotheque-0.jpg"
+                onerror="this.src = 'https://i.postimg.cc/BQ0GHByB/2.webp'"
                 alt="Ghibliothèque"
                 loading="lazy"
               />
@@ -960,7 +1001,8 @@
           <div class="card">
             <div class="cimg r43">
               <img
-                src="https://i.postimg.cc/pXHtzJ7Z/3.webp"
+                src="assets/img/front-back/trombinoclock-0.jpg"
+                onerror="this.src = 'https://i.postimg.cc/pXHtzJ7Z/3.webp'"
                 alt="Trombinoclock"
                 loading="lazy"
               />
@@ -981,7 +1023,8 @@
           <div class="card">
             <div class="cimg r43">
               <img
-                src="https://i.postimg.cc/YqHwYzVb/4.webp"
+                src="assets/img/front-back/ocoffee-0.jpg"
+                onerror="this.src = 'https://i.postimg.cc/YqHwYzVb/4.webp'"
                 alt="O'Coffee"
                 loading="lazy"
               />
@@ -991,7 +1034,7 @@
               <div class="ctag">Lab</div>
               <div class="cttl">O'Coffee</div>
               <div class="cdesc">
-                Interface barista & commande en ligne. Design chaleureux,
+                Interface barista &amp; commande en ligne. Design chaleureux,
                 micro-interactions soignées.
               </div>
               <div class="cchips">
@@ -1080,8 +1123,8 @@
             <span class="sk-ico">🎨</span>
             <div class="sk-name">Branding</div>
             <div class="sk-desc">
-              Identité visuelle, charte graphique, déclinaisons supports print &
-              digital.
+              Identité visuelle, charte graphique, déclinaisons supports print
+              &amp; digital.
             </div>
           </div>
           <div class="sk-card">
@@ -1250,10 +1293,12 @@
           </h3>
         </div>
         <div class="cgrid rv-stagger">
+          <!-- Palimpseste Urbain -->
           <div class="card">
             <div class="cimg r169">
               <img
-                src="https://i.postimg.cc/YqHwYzVb/4.webp"
+                src="assets/img/cms/cms-palimpseste-urbain-1.jpg"
+                onerror="this.src = 'https://i.postimg.cc/YqHwYzVb/4.webp'"
                 alt="Palimpseste Urbain"
                 loading="lazy"
               />
@@ -1263,20 +1308,32 @@
               <div class="ctag">Architecture · Culture</div>
               <div class="cttl">Palimpseste Urbain</div>
               <div class="cdesc">
-                Site vitrine pour cabinet d'architecture. Design épuré,
-                portfolio visuel immersif, performance optimisée.
+                Refonte complète d'un site WordPress pour un cabinet
+                d'architecture et urbanisme. Plusieurs directions webdesign
+                proposées, migration OVH, Elementor, SEO optimisé.
               </div>
               <div class="cchips">
                 <span class="chip">WordPress</span
-                ><span class="chip">Elementor</span
-                ><span class="chip">SEO</span>
+                ><span class="chip">Elementor</span><span class="chip">SEO</span
+                ><span class="chip">Migration</span>
               </div>
+              <button
+                class="proj-desc-btn"
+                style="margin-top: 10px"
+                data-project="palimpseste"
+                onclick="openDescPopup(this, 'palimpseste')"
+              >
+                <span class="desc-icon">ℹ</span> Description
+              </button>
             </div>
           </div>
+
+          <!-- Petit Château Vercourt -->
           <div class="card">
             <div class="cimg r169">
               <img
-                src="https://i.postimg.cc/CLgVkstP/5.webp"
+                src="assets/img/cms/cms-petit-chateau-vercourt-1.jpg"
+                onerror="this.src = 'https://i.postimg.cc/CLgVkstP/5.webp'"
                 alt="Petit Château Vercourt"
                 loading="lazy"
               />
@@ -1286,20 +1343,33 @@
               <div class="ctag">Tourisme · Hébergement</div>
               <div class="cttl">Petit Château Vercourt</div>
               <div class="cdesc">
-                Site touristique &amp; réservation pour chambres d'hôtes.
-                Ambiance élégante, booking intégré, SEO local.
+                Création d'un site vitrine touristique élégant avec système de
+                réservation. WordPress Elementor, SEO local, interface sobre et
+                facilement administrable.
               </div>
               <div class="cchips">
                 <span class="chip">WordPress</span
                 ><span class="chip">WooCommerce</span
-                ><span class="chip">Divi</span>
+                ><span class="chip">Divi</span
+                ><span class="chip">SEO Local</span>
               </div>
+              <button
+                class="proj-desc-btn"
+                style="margin-top: 10px"
+                data-project="petit-chateau"
+                onclick="openDescPopup(this, 'petit-chateau')"
+              >
+                <span class="desc-icon">ℹ</span> Description
+              </button>
             </div>
           </div>
+
+          <!-- GSTI62 -->
           <div class="card">
             <div class="cimg r169">
               <img
-                src="https://i.postimg.cc/rFkLxNbh/6.webp"
+                src="assets/img/cms/cms-gsti62-1.jpg"
+                onerror="this.src = 'https://i.postimg.cc/rFkLxNbh/6.webp'"
                 alt="GSTI62"
                 loading="lazy"
               />
@@ -1309,20 +1379,33 @@
               <div class="ctag">Industrie · B2B</div>
               <div class="cttl">GSTI62</div>
               <div class="cdesc">
-                Site vitrine industriel B2B. Structure claire, formulaires de
-                contact, Core Web Vitals optimisés.
+                Migration Wix → WordPress pour une entreprise d'usinage de
+                précision. Fusion de deux entités, système de devis WooCommerce,
+                formation client, Core Web Vitals.
               </div>
               <div class="cchips">
                 <span class="chip">WordPress</span
+                ><span class="chip">WooCommerce</span
                 ><span class="chip">Elementor</span
-                ><span class="chip">Performance</span>
+                ><span class="chip">Migration Wix</span>
               </div>
+              <button
+                class="proj-desc-btn"
+                style="margin-top: 10px"
+                data-project="gsti62"
+                onclick="openDescPopup(this, 'gsti62')"
+              >
+                <span class="desc-icon">ℹ</span> Description
+              </button>
             </div>
           </div>
+
+          <!-- Alternativ' Uniforme -->
           <div class="card">
             <div class="cimg r169">
               <img
-                src="https://i.postimg.cc/4NgTVQM2/1.webp"
+                src="assets/img/cms/cms-alternativ-uniforme-1.jpg"
+                onerror="this.src = 'https://i.postimg.cc/4NgTVQM2/1.webp'"
                 alt="Alternativ' Uniforme"
                 loading="lazy"
               />
@@ -1332,14 +1415,24 @@
               <div class="ctag">Commerce · Uniformes</div>
               <div class="cttl">Alternativ' Uniforme</div>
               <div class="cdesc">
-                E-commerce sur mesure de vêtements professionnels. WooCommerce,
-                personnalisation produit, SEO complet.
+                E-commerce spécialisé vêtements professionnels. Personnalisation
+                produit sur mesure, WooCommerce, Prestashop, SEO complet et
+                maintenance continue.
               </div>
               <div class="cchips">
                 <span class="chip">WooCommerce</span
                 ><span class="chip">WordPress</span
+                ><span class="chip">Prestashop</span
                 ><span class="chip">SEO</span>
               </div>
+              <button
+                class="proj-desc-btn"
+                style="margin-top: 10px"
+                data-project="alternativ"
+                onclick="openDescPopup(this, 'alternativ')"
+              >
+                <span class="desc-icon">ℹ</span> Description
+              </button>
             </div>
           </div>
         </div>
@@ -1358,8 +1451,7 @@
           </p>
         </div>
 
-        <!-- ===== SÉLECTEUR DE CV DANS LE TAB CV ===== -->
-        <!-- Boutons pour choisir quel CV télécharger -->
+        <!-- ===== SÉLECTEUR DE CV — uniquement ici ===== -->
         <div class="rv" style="margin-bottom: 36px">
           <div
             style="
@@ -1392,12 +1484,11 @@
               data-cv="frontend"
             >
               <span class="cv-sel-icon">⚡</span>
-              <span>
-                Front-End Developer
-                <span class="cv-sel-label-sub"
+              <span
+                >Front-End Developer<span class="cv-sel-label-sub"
                   >UX-Focused · Développement web</span
-                >
-              </span>
+                ></span
+              >
               <span class="arr">↓</span>
             </a>
             <a
@@ -1407,12 +1498,11 @@
               data-cv="designer"
             >
               <span class="cv-sel-icon">🎨</span>
-              <span>
-                Product Designer UX
-                <span class="cv-sel-label-sub"
+              <span
+                >Product Designer UX<span class="cv-sel-label-sub"
                   >Design · Prototypage · Branding</span
-                >
-              </span>
+                ></span
+              >
               <span class="arr">↓</span>
             </a>
           </div>
@@ -1431,9 +1521,7 @@
         </div>
 
         <div class="cv-wrap rv">
-          <!-- Photo col -->
           <div class="cv-photo-col">
-            <!-- Photo de profil depuis assets/img/seb.png -->
             <img
               class="cv-photo"
               src="assets/img/seb.png"
@@ -1457,8 +1545,6 @@
               </div>
             </div>
           </div>
-
-          <!-- CV principal -->
           <div class="cv-main">
             <div class="cv-grid">
               <div>
@@ -1526,7 +1612,7 @@
                       <div class="tl-org">Eloustick</div>
                       <div class="tl-desc">
                         Sites web, identités visuelles, stratégie communication
-                        pour PME locales.
+                        pour PME locales. E-réputation 5/5 pendant 10 ans.
                       </div>
                     </div>
                   </div>
@@ -1632,7 +1718,7 @@
       </div>
     </section>
 
-    <!-- ========================= ORGANIC — JUSTE AU-DESSUS DU FOOTER ========================= -->
+    <!-- ========================= ORGANIC ========================= -->
     <section class="organic-sec" id="organic">
       <div class="organic-bg"></div>
       <div class="organic-banner rv">
@@ -1672,7 +1758,6 @@
             Front-End Developer · Product Designer UX<br />Expert WordPress
             &amp; CMS
           </div>
-          <!-- Contact visible directement dans le footer — sans cliquer -->
           <div class="ft-loc">Caudry, Hauts-de-France, France</div>
           <div
             style="
@@ -1692,9 +1777,8 @@
                 letter-spacing: 0.08em;
                 transition: color 0.3s;
               "
+              >✉ overseb75@gmail.com</a
             >
-              ✉ overseb75@gmail.com
-            </a>
             <a
               href="tel:+33620847801"
               style="
@@ -1705,9 +1789,8 @@
                 letter-spacing: 0.08em;
                 transition: color 0.3s;
               "
+              >☎ +33 6 20 84 78 01</a
             >
-              ☎ +33 6 20 84 78 01
-            </a>
           </div>
         </div>
         <div>
@@ -1766,7 +1849,8 @@
               href="https://github.com/sebastienmaurice"
               target="_blank"
               class="ft-soc"
-              ><div>
+            >
+              <div>
                 <div class="sp2">GitHub</div>
                 <div class="sh">sebastienmaurice</div>
               </div>
@@ -1778,13 +1862,14 @@
                   color: var(--stone);
                 "
                 >↗</span
-              ></a
-            >
+              >
+            </a>
             <a
               href="https://www.linkedin.com/in/sebastien-maurice/"
               target="_blank"
               class="ft-soc"
-              ><div>
+            >
+              <div>
                 <div class="sp2">LinkedIn</div>
                 <div class="sh">sebastien-maurice</div>
               </div>
@@ -1796,13 +1881,14 @@
                   color: var(--stone);
                 "
                 >↗</span
-              ></a
-            >
+              >
+            </a>
             <a
               href="https://www.malt.fr/profile/semauri"
               target="_blank"
               class="ft-soc"
-              ><div>
+            >
+              <div>
                 <div class="sp2">Malt</div>
                 <div class="sh">semauri</div>
               </div>
@@ -1814,8 +1900,8 @@
                   color: var(--stone);
                 "
                 >↗</span
-              ></a
-            >
+              >
+            </a>
           </div>
         </div>
       </div>
@@ -1837,36 +1923,45 @@
         <button class="proj-modal-close" onclick="closeModal(null, 'cine')">
           ✕
         </button>
-        <!-- Mini-slideshow dans la modale -->
         <div class="proj-modal-img modal-slideshow">
           <div class="slide active">
             <img
-              src="assets/img/cinedelices-homepage.jpg"
+              src="assets/img/front-back/cinedelices-0.jpg"
               onerror="
                 this.src =
                   'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
               "
-              alt="Ciné Délices"
+              alt="Ciné Délices — Homepage"
             />
           </div>
           <div class="slide">
             <img
-              src="assets/img/cinedelices-recipe-page.jpg"
-              onerror="
-                this.src =
-                  'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
-              "
-              alt="Ciné Délices — Recettes"
-            />
-          </div>
-          <div class="slide">
-            <img
-              src="assets/img/cinedelices-mood.jpg"
+              src="assets/img/front-back/cinedelices-1.jpg"
               onerror="
                 this.src =
                   'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
               "
               alt="Ciné Délices — Ambiance"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="assets/img/front-back/cinedelices-2.jpg"
+              onerror="
+                this.src =
+                  'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
+              "
+              alt="Ciné Délices — Recette détail"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="assets/img/front-back/cinedelices-3.jpg"
+              onerror="
+                this.src =
+                  'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
+              "
+              alt="Ciné Délices — Page recettes"
             />
           </div>
           <div class="proj-modal-img-grad"></div>
@@ -1877,19 +1972,24 @@
           </div>
           <div class="proj-modal-title">Ciné <em>Délices</em></div>
           <div class="proj-modal-desc">
-            Plateforme immersive mêlant cinéma et gastronomie. Fiches films
-            enrichies via l'API TMDB, badges animés, carrousels interactifs et
-            design cinématographique élégant. Moodboard sombre avec accents
-            or/rouge, typographies soignées — une interface responsive qui
-            révèle autant le savoir-faire technique que la direction artistique.
+            Ciné Délices est une plateforme web immersive qui associe deux
+            univers passionnants : le cinéma et la gastronomie. Chaque film
+            emblématique est accompagné de suggestions culinaires inspirées de
+            son univers ou de son ambiance. L'interface met l'accent sur une
+            expérience utilisateur riche et immersive : fiches films enrichies
+            via l'API TMDB, badges thématiques animés, carrousels interactifs et
+            navigation intuitive. Le design moodboard sombre avec accents
+            or/rouge et typographies soignées (Bebas Neue, Cinzel, Playfair
+            Display) révèle autant le savoir-faire technique que la direction
+            artistique.
           </div>
           <div class="proj-modal-stack">
             <div class="proj-modal-stack-col">
               <div class="proj-modal-stack-label">Front-End</div>
               <div class="proj-modal-stack-items">
                 <span class="proj-modal-chip fe">HTML</span
-                ><span class="proj-modal-chip fe">CSS</span
-                ><span class="proj-modal-chip fe">JavaScript</span
+                ><span class="proj-modal-chip fe">CSS</span>
+                <span class="proj-modal-chip fe">JavaScript ES6+</span
                 ><span class="proj-modal-chip fe">Svelte</span>
               </div>
               <div class="proj-modal-stack-label" style="margin-top: 14px">
@@ -1901,17 +2001,20 @@
               </div>
             </div>
             <div class="proj-modal-stack-col">
-              <div class="proj-modal-stack-label">Base de données</div>
+              <div class="proj-modal-stack-label">
+                Base de données &amp; API
+              </div>
               <div class="proj-modal-stack-items">
-                <span class="proj-modal-chip db">MongoDB</span>
+                <span class="proj-modal-chip db">PostgreSQL</span
+                ><span class="proj-modal-chip be">API TMDB</span>
               </div>
               <div class="proj-modal-stack-label" style="margin-top: 14px">
-                Outils &amp; Workflow
+                Outils
               </div>
               <div class="proj-modal-stack-items">
                 <span class="proj-modal-chip tool">Figma</span
-                ><span class="proj-modal-chip tool">Git / GitHub</span
-                ><span class="proj-modal-chip tool">Responsive</span>
+                ><span class="proj-modal-chip tool">Git / GitHub</span>
+                <span class="proj-modal-chip tool">Responsive</span>
               </div>
             </div>
           </div>
@@ -1942,7 +2045,7 @@
         <div class="proj-modal-img modal-slideshow">
           <div class="slide active">
             <img
-              src="assets/img/devndumber-1.jpg"
+              src="assets/img/front-back/devndumber-0.jpg"
               onerror="
                 this.src = 'https://i.postimg.cc/cHTKt6kv/DEV_N_DUMBER.png'
               "
@@ -1951,7 +2054,7 @@
           </div>
           <div class="slide">
             <img
-              src="assets/img/devndumber-2.jpg"
+              src="assets/img/front-back/devndumber-1.jpg"
               onerror="
                 this.src = 'https://i.postimg.cc/cHTKt6kv/DEV_N_DUMBER.png'
               "
@@ -1960,7 +2063,7 @@
           </div>
           <div class="slide">
             <img
-              src="assets/img/devndumber-3.jpg"
+              src="assets/img/front-back/devndumber-2.jpg"
               onerror="
                 this.src = 'https://i.postimg.cc/cHTKt6kv/DEV_N_DUMBER.png'
               "
@@ -1971,21 +2074,26 @@
         </div>
         <div class="proj-modal-body">
           <div class="proj-modal-eyebrow">
-            Plateforme communautaire · Full-Stack
+            Agence web fictive · Full-Stack collaboratif
           </div>
           <div class="proj-modal-title">Dev <em>N'Dumber</em></div>
           <div class="proj-modal-desc">
-            Plateforme web communautaire dédiée aux développeurs freelance.
-            Centralise les ressources, projets et échanges autour du
-            développement web full-stack dans un espace collaboratif moderne.
+            Dev N'Dumber est un projet d'agence web fictive créé par une équipe
+            de quatre développeurs afin de simuler un environnement
+            professionnel réel. Inspirée de l'univers du film "Dumb and Dumber",
+            l'agence adopte une identité fun et décalée incarnée par ses
+            mascottes Git Dumber et Dev Lloyd. Le site vitrine présente les
+            services proposés : développement full-stack, création de sites web,
+            intégration CMS, audit technique et optimisation SEO. Projet
+            collaboratif avec architecture MVC robuste.
           </div>
           <div class="proj-modal-stack">
             <div class="proj-modal-stack-col">
               <div class="proj-modal-stack-label">Front-End</div>
               <div class="proj-modal-stack-items">
                 <span class="proj-modal-chip fe">HTML5</span
-                ><span class="proj-modal-chip fe">CSS3</span
-                ><span class="proj-modal-chip fe">JavaScript ES6+</span>
+                ><span class="proj-modal-chip fe">CSS3</span>
+                <span class="proj-modal-chip fe">JavaScript ES6+</span>
               </div>
               <div class="proj-modal-stack-label" style="margin-top: 14px">
                 Back-End
@@ -1998,15 +2106,15 @@
             <div class="proj-modal-stack-col">
               <div class="proj-modal-stack-label">Base de données</div>
               <div class="proj-modal-stack-items">
-                <span class="proj-modal-chip db">SQL</span>
+                <span class="proj-modal-chip db">PostgreSQL</span>
               </div>
               <div class="proj-modal-stack-label" style="margin-top: 14px">
-                Outils &amp; Workflow
+                Outils
               </div>
               <div class="proj-modal-stack-items">
-                <span class="proj-modal-chip tool">Git / GitHub</span
-                ><span class="proj-modal-chip tool">Responsive</span
-                ><span class="proj-modal-chip tool">UX Design</span>
+                <span class="proj-modal-chip tool">Git / GitHub</span>
+                <span class="proj-modal-chip tool">WordPress</span
+                ><span class="proj-modal-chip tool">Responsive</span>
               </div>
             </div>
           </div>
@@ -2028,22 +2136,6 @@
       </div>
     </div>
 
-    <!-- ========================= BOUTON MODE RECRUTEUR (flottant) ========================= -->
-    <!--
-  Un toggle discret en bas à droite de l'écran.
-  Masque les détails techniques pour une présentation épurée.
-  La classe 'recruiter-mode' sur <body> active les règles CSS de masquage.
--->
-    <button
-      class="recruiter-toggle"
-      id="recruiterToggle"
-      title="Basculer le mode de présentation"
-    >
-      <span class="rt-dot"></span>
-      <span id="rt-label">Mode Recruteur</span>
-    </button>
-
-    <!-- Script JS externe — dernière chose chargée pour ne pas bloquer le rendu -->
     <script src="js/main.js"></script>
   </body>
 </html>
