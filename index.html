@@ -792,7 +792,14 @@
           </div>
 
           <!-- DEV N'DUMBER -->
-          <div class="dc dc-side" onclick="openModal('devnd')">
+          <div
+            class="dc dc-side"
+            id="devndCard"
+            onclick="
+              openModal('devnd');
+              triggerGitDumber();
+            "
+          >
             <div class="dc-img dc-img-top dc-slideshow">
               <div class="slide active">
                 <img
@@ -2890,6 +2897,48 @@
               Fermer
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= EASTER EGG — GIT DUMBER ========================= -->
+    <div
+      class="gitdumber-overlay"
+      id="gitDumberOverlay"
+      onclick="hideGitDumber()"
+    >
+      <div class="gitdumber-wrap" id="gitDumberWrap">
+        <!-- Bulle de dialogue -->
+        <div class="gitdumber-bubble" id="gitDumberBubble">
+          <div class="gdb-inner">
+            <div class="gdb-header">
+              <span class="gdb-badge">Git <strong>DUMBER</strong></span>
+              <button
+                class="gdb-close"
+                onclick="
+                  hideGitDumber();
+                  event.stopPropagation();
+                "
+              >
+                ✕
+              </button>
+            </div>
+            <div class="gdb-msg" id="gitDumberMsg"></div>
+            <div class="gdb-footer">
+              <span class="gdb-branch">⎇ main</span>
+              <span class="gdb-commit" id="gitDumberCommit"></span>
+            </div>
+          </div>
+          <div class="gdb-tail"></div>
+        </div>
+        <!-- Mascotte -->
+        <div class="gitdumber-char" id="gitDumberChar">
+          <img
+            src="assets/git-dumber-easter-egg.png"
+            alt="Git Dumber"
+            class="gitdumber-img"
+          />
+          <div class="gitdumber-shadow"></div>
         </div>
       </div>
     </div>

@@ -4591,3 +4591,263 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* =============================================
+   EASTER EGG — GIT DUMBER
+============================================= */
+.gitdumber-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 19999;
+  pointer-events: none;
+  /* pas de fond sombre — juste un catch-click invisible */
+}
+.gitdumber-overlay.active {
+  pointer-events: all;
+}
+
+.gitdumber-wrap {
+  position: fixed;
+  bottom: 0;
+  right: clamp(40px, 6vw, 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  transform: translateY(110%);
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: 20000;
+}
+.gitdumber-overlay.active .gitdumber-wrap {
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* ---- Mascotte ---- */
+.gitdumber-char {
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+  user-select: none;
+}
+.gitdumber-img {
+  width: 200px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 -8px 32px rgba(184, 115, 51, 0.35))
+    drop-shadow(0 0 60px rgba(92, 99, 64, 0.2));
+  animation: gdBob 3s ease-in-out infinite;
+  image-rendering: -webkit-optimize-contrast;
+}
+@keyframes gdBob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
+  60% {
+    transform: translateY(-4px) rotate(1deg);
+  }
+}
+.gitdumber-shadow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 14px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: gdShadow 3s ease-in-out infinite;
+}
+@keyframes gdShadow {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.45;
+  }
+  30% {
+    transform: translateX(-50%) scaleX(0.75);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translateX(-50%) scaleX(0.88);
+    opacity: 0.3;
+  }
+}
+
+/* ---- Bulle de dialogue ---- */
+.gitdumber-bubble {
+  position: relative;
+  margin-bottom: 6px;
+  margin-right: 24px;
+  max-width: 310px;
+  opacity: 0;
+  transform: scale(0.85) translateY(16px);
+  transition:
+    opacity 0.4s ease 0.35s,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+}
+.gitdumber-overlay.active .gitdumber-bubble {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.gdb-inner {
+  background: rgba(22, 20, 14, 0.97);
+  border: 1px solid rgba(184, 115, 51, 0.45);
+  border-radius: 16px;
+  padding: 16px 18px 14px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(184, 115, 51, 0.12) inset,
+    0 0 40px rgba(184, 115, 51, 0.12);
+  backdrop-filter: blur(20px);
+}
+.gdb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.gdb-badge {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(237, 233, 220, 0.6);
+  text-transform: uppercase;
+}
+.gdb-badge strong {
+  color: var(--amber);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.gdb-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(237, 233, 220, 0.06);
+  border: 1px solid rgba(237, 233, 220, 0.12);
+  color: var(--stone);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+.gdb-close:hover {
+  background: rgba(184, 115, 51, 0.2);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.gdb-msg {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: rgba(237, 233, 220, 0.88);
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  min-height: 48px;
+}
+.gdb-msg .gdb-cmd {
+  color: var(--olive2);
+  font-weight: 500;
+}
+.gdb-msg .gdb-err {
+  color: #f97316;
+}
+.gdb-msg .gdb-ok {
+  color: #4ade80;
+}
+.gdb-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(237, 233, 220, 0.06);
+}
+.gdb-branch {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--olive2);
+  background: rgba(92, 99, 64, 0.15);
+  border: 1px solid rgba(92, 99, 64, 0.25);
+  border-radius: 4px;
+  padding: 3px 8px;
+  letter-spacing: 0.08em;
+}
+.gdb-commit {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: rgba(200, 196, 180, 0.3);
+  letter-spacing: 0.06em;
+}
+
+/* Queue de la bulle */
+.gdb-tail {
+  position: absolute;
+  bottom: -10px;
+  right: 32px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 11px solid rgba(184, 115, 51, 0.45);
+}
+.gdb-tail::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: -9px;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid rgba(22, 20, 14, 0.97);
+}
+
+/* Shake d'attention si on reclique */
+@keyframes gdShake {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  20% {
+    transform: translateX(-6px) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(6px) rotate(2deg);
+  }
+  60% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(4px) rotate(1deg);
+  }
+}
+.gitdumber-img.shake {
+  animation:
+    gdShake 0.5s ease,
+    gdBob 3s ease-in-out 0.5s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gitdumber-char {
+    width: 150px;
+  }
+  .gitdumber-img {
+    width: 150px;
+  }
+  .gitdumber-wrap {
+    right: 16px;
+  }
+  .gitdumber-bubble {
+    max-width: 260px;
+  }
+}

@@ -1053,3 +1053,180 @@ window.addEventListener(
     s.sub,
   );
 })();
+
+/* =============================================
+   EASTER EGG — GIT DUMBER
+   Déclenché au clic sur la card Dev N'Dumber
+============================================= */
+(function () {
+  const MESSAGES = [
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git commit -m "fix: tout"</span>',
+        '<span class="gdb-err">⚠ 47 fichiers modifiés. Tu es sûr ?</span>',
+        '<span class="gdb-ok">✓ Poussé en prod. YOLO. 🤙</span>',
+      ],
+      commit: 'a4f2c91 — "fix: tout"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git push --force origin main</span>',
+        '<span class="gdb-err">Erreur : 403 Forbidden</span>',
+        "...",
+        '<span class="gdb-cmd">$ git push --force --force</span>',
+        '<span class="gdb-ok">✓ Ça marche pas mais j\'ai essayé 💪</span>',
+      ],
+      commit: 'b3e9d12 — "feat: essai encore"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ npm install</span>',
+        "added 1,337 packages in 4min 20s",
+        '<span class="gdb-err">⚠ 666 vulnérabilités critiques</span>',
+        '<span class="gdb-ok">✓ npm audit fix --force ← parfait 😎</span>',
+      ],
+      commit: 'c7a1b44 — "chore: node_modules"',
+    },
+    {
+      lines: [
+        "// TODO: refactorer ça un jour",
+        '<span class="gdb-err">← Ce jour n\'est pas arrivé depuis 2021</span>',
+        "",
+        '<span class="gdb-ok">✓ Fonctionne → ne pas toucher 🙏</span>',
+      ],
+      commit: 'dead420 — "temp: temporaire"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git log --oneline</span>',
+        '"wip"',
+        '"wip2"',
+        '"VRAI wip"',
+        '"bon là c\'est le bon"',
+        '<span class="gdb-err">"dernier commit promis"  ← il ment</span>',
+      ],
+      commit: 'f00ba44 — "dernier commit promis"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git stash</span>',
+        "Saved working directory... quelque part",
+        "",
+        '<span class="gdb-err">⚠ 3 stash oubliés depuis janvier</span>',
+        '<span class="gdb-ok">✓ C\'est des fonctionnalités futures 🚀</span>',
+      ],
+      commit: 'e2c8b91 — "feat: stash mystère"',
+    },
+    {
+      lines: [
+        "Ça marche pas.",
+        "Ça marche toujours pas.",
+        "Mais pourquoi ça marche pas.",
+        "",
+        '<span class="gdb-ok">✓ Ah. Un point-virgule manquait. 🐛</span>',
+      ],
+      commit: '1337c0d — "fix: ; manquant"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ console.log("ici")</span>',
+        '<span class="gdb-cmd">$ console.log("ici 2")</span>',
+        '<span class="gdb-cmd">$ console.log("ici 3 ?????")</span>',
+        "",
+        '<span class="gdb-err">→ Le bug était ailleurs. Évidemment.</span>',
+      ],
+      commit: '0b5e3f7 — "debug: ici"',
+    },
+  ];
+
+  let gdVisible = false;
+  let gdMsgIndex = -1;
+  let gdHideTimer = null;
+
+  // Choisir un message différent à chaque fois
+  function pickMessage() {
+    let next;
+    do {
+      next = Math.floor(Math.random() * MESSAGES.length);
+    } while (next === gdMsgIndex);
+    gdMsgIndex = next;
+    return MESSAGES[next];
+  }
+
+  // Typewriter ligne par ligne
+  function typeLines(el, lines, delay) {
+    el.innerHTML = "";
+    let lineIndex = 0;
+    function nextLine() {
+      if (lineIndex >= lines.length) return;
+      const p = document.createElement("p");
+      p.style.cssText = "margin:2px 0;opacity:0;transition:opacity .25s";
+      p.innerHTML = lines[lineIndex];
+      el.appendChild(p);
+      requestAnimationFrame(() => {
+        p.style.opacity = "1";
+      });
+      lineIndex++;
+      if (lineIndex < lines.length) setTimeout(nextLine, delay);
+    }
+    nextLine();
+  }
+
+  window.triggerGitDumber = function () {
+    const overlay = document.getElementById("gitDumberOverlay");
+    const wrap = document.getElementById("gitDumberWrap");
+    const msgEl = document.getElementById("gitDumberMsg");
+    const commitEl = document.getElementById("gitDumberCommit");
+    const img = overlay.querySelector(".gitdumber-img");
+
+    // Déjà visible → shake + nouveau message
+    if (gdVisible) {
+      img.classList.remove("shake");
+      void img.offsetWidth; // reflow
+      img.classList.add("shake");
+      const msg = pickMessage();
+      typeLines(msgEl, msg.lines, 280);
+      commitEl.textContent = msg.commit;
+      if (gdHideTimer) clearTimeout(gdHideTimer);
+      gdHideTimer = setTimeout(hideGitDumber, 9000);
+      return;
+    }
+
+    // Première apparition
+    gdVisible = true;
+    const msg = pickMessage();
+    overlay.classList.add("active");
+    typeLines(msgEl, msg.lines, 300);
+    commitEl.textContent = msg.commit;
+
+    // Auto-hide après 9s
+    if (gdHideTimer) clearTimeout(gdHideTimer);
+    gdHideTimer = setTimeout(hideGitDumber, 9000);
+
+    // Easter egg console bonus
+    console.log(
+      "%c🦊 Git Dumber a surgi du néant.",
+      "font-size:14px;color:#B87333;font-family:monospace;font-weight:bold;",
+    );
+    console.log(
+      '%c  git commit -m "easter egg discovered 🎉"',
+      "font-size:12px;color:#8A9463;font-family:monospace;",
+    );
+  };
+
+  window.hideGitDumber = function () {
+    if (!gdVisible) return;
+    const overlay = document.getElementById("gitDumberOverlay");
+    overlay.classList.remove("active");
+    gdVisible = false;
+    if (gdHideTimer) {
+      clearTimeout(gdHideTimer);
+      gdHideTimer = null;
+    }
+  };
+
+  // Fermer avec Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && gdVisible) hideGitDumber();
+  });
+})();
