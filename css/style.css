@@ -4373,3 +4373,221 @@ footer {
     height: 270px;
   }
 }
+
+/* =============================================
+   BOUTONS DESCRIPTION CMS — Amber visible
+============================================= */
+.cms-desc-btn {
+  background: rgba(184, 115, 51, 0.12) !important;
+  border-color: rgba(184, 115, 51, 0.5) !important;
+  color: var(--amber) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  padding: 7px 14px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s var(--ease) !important;
+  box-shadow: 0 0 0 0 rgba(184, 115, 51, 0) !important;
+}
+.cms-desc-btn:hover {
+  background: rgba(184, 115, 51, 0.24) !important;
+  border-color: var(--amber) !important;
+  color: var(--amber) !important;
+  box-shadow: 0 4px 16px rgba(184, 115, 51, 0.25) !important;
+  transform: translateY(-2px) !important;
+}
+.cms-desc-btn .desc-icon {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* Tab IA — accent */
+.tab-btn-ia {
+  color: var(--amber) !important;
+}
+.tab-btn-ia::after {
+  background: var(--amber) !important;
+}
+.tab-btn-ia.active {
+  color: var(--amber) !important;
+}
+
+/* =============================================
+   PANEL IA — Grille & Cards
+============================================= */
+.ia-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 0;
+}
+.ia-category {
+}
+.ia-cat-label {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--olive2);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gborder);
+}
+.ia-cat-icon {
+  font-size: 0.9rem;
+}
+.ia-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.ia-tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(27, 25, 20, 0.22);
+  border: 1px solid rgba(200, 196, 180, 0.13);
+  border-radius: 14px;
+  backdrop-filter: blur(4px);
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.ia-tool-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+.ia-tool-card:hover {
+  border-color: rgba(200, 196, 180, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(27, 25, 20, 0.4);
+}
+.ia-tool-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(200, 196, 180, 0.12);
+  background: rgba(27, 25, 20, 0.5);
+}
+.ia-tool-info {
+  flex: 1;
+  min-width: 0;
+}
+.ia-tool-name {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 2px;
+}
+.ia-tool-maker {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  color: var(--stone);
+  letter-spacing: 0.1em;
+  margin-bottom: 7px;
+}
+.ia-tool-desc {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--sand);
+  line-height: 1.6;
+}
+.ia-tool-badge {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 600;
+}
+.ia-badge-pro {
+  background: rgba(184, 115, 51, 0.15);
+  border: 1px solid rgba(184, 115, 51, 0.4);
+  color: var(--amber);
+}
+.ia-badge-dev {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #a5b4fc;
+}
+.ia-badge-lab {
+  background: rgba(92, 99, 64, 0.15);
+  border: 1px solid rgba(92, 99, 64, 0.4);
+  color: var(--olive2);
+}
+
+/* Couleurs accent par outil */
+.ia-card-claude {
+  border-left: 2px solid rgba(204, 120, 92, 0.5);
+}
+.ia-card-claude:hover {
+  border-color: rgba(204, 120, 92, 0.8);
+  border-left-color: rgba(204, 120, 92, 0.8);
+}
+.ia-card-gpt {
+  border-left: 2px solid rgba(16, 163, 127, 0.5);
+}
+.ia-card-gpt:hover {
+  border-color: rgba(16, 163, 127, 0.8);
+  border-left-color: rgba(16, 163, 127, 0.8);
+}
+.ia-card-cursor {
+  border-left: 2px solid rgba(99, 102, 241, 0.5);
+}
+.ia-card-cursor:hover {
+  border-color: rgba(99, 102, 241, 0.8);
+  border-left-color: rgba(99, 102, 241, 0.8);
+}
+.ia-card-gai {
+  border-left: 2px solid rgba(66, 133, 244, 0.5);
+}
+.ia-card-gai:hover {
+  border-color: rgba(66, 133, 244, 0.8);
+  border-left-color: rgba(66, 133, 244, 0.8);
+}
+.ia-card-mj {
+  border-left: 2px solid rgba(108, 92, 231, 0.5);
+}
+.ia-card-mj:hover {
+  border-color: rgba(108, 92, 231, 0.8);
+  border-left-color: rgba(108, 92, 231, 0.8);
+}
+.ia-card-veo {
+  border-left: 2px solid rgba(26, 115, 232, 0.5);
+}
+.ia-card-veo:hover {
+  border-color: rgba(26, 115, 232, 0.8);
+  border-left-color: rgba(26, 115, 232, 0.8);
+}
+.ia-card-kling {
+  border-left: 2px solid rgba(255, 76, 139, 0.5);
+}
+.ia-card-kling:hover {
+  border-color: rgba(255, 76, 139, 0.8);
+  border-left-color: rgba(255, 76, 139, 0.8);
+}
+
+@media (max-width: 768px) {
+  .ia-tools {
+    grid-template-columns: 1fr;
+  }
+}
