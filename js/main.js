@@ -232,8 +232,40 @@ function gs(id) {
 }
 window.addEventListener("scroll", () => {
   const nav = document.getElementById("nav");
-  if (nav) nav.classList.toggle("scrolled", window.scrollY > 60);
+  if (nav) {
+    nav.classList.toggle("scrolled", window.scrollY > 60);
+    // Sync tabs-bar top with actual nav height
+    document.documentElement.style.setProperty(
+      "--nav-h",
+      nav.getBoundingClientRect().height + "px",
+    );
+  }
 });
+// Set on load too
+(function () {
+  const nav = document.getElementById("nav");
+  if (nav) {
+    document.documentElement.style.setProperty(
+      "--nav-h",
+      nav.getBoundingClientRect().height + "px",
+    );
+    // Update during nav padding transition (400ms)
+    nav.addEventListener("transitionrun", () => {
+      const raf = () => {
+        document.documentElement.style.setProperty(
+          "--nav-h",
+          nav.getBoundingClientRect().height + "px",
+        );
+      };
+      let frames = 0;
+      const loop = () => {
+        raf();
+        if (++frames < 30) requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    });
+  }
+})();
 
 /* =============================================
    5. MENU MOBILE (BURGER)
