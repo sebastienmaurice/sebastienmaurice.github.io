@@ -1,29 +1,6 @@
 /* =============================================
    PORTFOLIO — Sébastien Maurice
-   js/main.js — Toutes les interactions JavaScript
-   
-   Formé à O'Clock (Bootcamp Développeur Web & Mobile)
-   
-   Sections :
-   1.  Curseur personnalisé + Spotlight
-   2.  Canvas Particules
-   3.  Onglets (Tabs)
-   4.  Scroll helpers + Navbar
-   5.  Menu mobile (Burger)
-   6.  Reveal on Scroll
-   7.  Card Tilt 3D
-   8.  Hero Name Split Animation
-   9.  Modales projet
-   10. Blur Quote Effect
-   11. Terminal Typewriter
-   12. Compteur animé (CountUp)
-   13. Slideshow images projets
-   14. Zoom image (Lightbox)
-   15. Popups description projet
-   16. Sélecteur de CV
-   17. Easter Egg Console
-   
-   🌿 Créé avec Amour — Caudry, France
+   js/main.js — v2.0 — 2026
 ============================================= */
 
 /* =============================================
@@ -32,12 +9,11 @@
 const cur = document.getElementById("cur");
 const cring = document.getElementById("cring");
 const spl = document.getElementById("spl");
-
 let mx = 0,
-  my = 0;
-let rx = 0,
-  ry = 0;
-let mouseX = 0,
+  my = 0,
+  rx = 0,
+  ry = 0,
+  mouseX = 0,
   mouseY = 0;
 
 document.addEventListener("mousemove", (e) => {
@@ -59,7 +35,6 @@ document.addEventListener(
   "mouseup",
   () => cur && cur.classList.remove("click"),
 );
-
 (function loop() {
   rx += (mx - rx) * 0.1;
   ry += (my - ry) * 0.1;
@@ -72,7 +47,7 @@ document.addEventListener(
 
 document
   .querySelectorAll(
-    "a, button, .card, .pill, .sk-card, .gal-it, .toolp, .tech-item, .stat, .dc, .wow-skill-card, .cv-sel-btn, .proj-desc-btn, .img-zoomable",
+    "a,button,.card,.pill,.sk-card,.gal-it,.toolp,.tech-item,.stat,.dc,.wow-skill-card,.cv-sel-btn,.proj-desc-btn,.img-zoomable,.wow-photo-wrap",
   )
   .forEach((el) => {
     el.addEventListener("mouseenter", () => {
@@ -112,8 +87,6 @@ class Pt {
   res() {
     this.x = Math.random() * W;
     this.y = Math.random() * H;
-    this.ox = this.x;
-    this.oy = this.y;
     this.vx = (Math.random() - 0.5) * 0.28;
     this.vy = (Math.random() - 0.5) * 0.28;
     this.r = Math.random() * 1.5 + 0.3;
@@ -234,14 +207,12 @@ window.addEventListener("scroll", () => {
   const nav = document.getElementById("nav");
   if (nav) {
     nav.classList.toggle("scrolled", window.scrollY > 60);
-    // Sync tabs-bar top with actual nav height
     document.documentElement.style.setProperty(
       "--nav-h",
       nav.getBoundingClientRect().height + "px",
     );
   }
 });
-// Set on load too
 (function () {
   const nav = document.getElementById("nav");
   if (nav) {
@@ -249,17 +220,13 @@ window.addEventListener("scroll", () => {
       "--nav-h",
       nav.getBoundingClientRect().height + "px",
     );
-    // Update during nav padding transition (400ms)
     nav.addEventListener("transitionrun", () => {
-      const raf = () => {
+      let frames = 0;
+      const loop = () => {
         document.documentElement.style.setProperty(
           "--nav-h",
           nav.getBoundingClientRect().height + "px",
         );
-      };
-      let frames = 0;
-      const loop = () => {
-        raf();
         if (++frames < 30) requestAnimationFrame(loop);
       };
       requestAnimationFrame(loop);
@@ -297,7 +264,7 @@ function cm() {
 ============================================= */
 function rvl() {
   document
-    .querySelectorAll(".rv:not(.vis), .rv-stagger:not(.vis)")
+    .querySelectorAll(".rv:not(.vis),.rv-stagger:not(.vis)")
     .forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 50) el.classList.add("vis");
@@ -314,8 +281,8 @@ document.addEventListener("mousemove", (e) => {
     const r = card.getBoundingClientRect();
     const cx = r.left + r.width / 2,
       cy = r.top + r.height / 2;
-    const dx = (e.clientX - cx) / (r.width / 2);
-    const dy = (e.clientY - cy) / (r.height / 2);
+    const dx = (e.clientX - cx) / (r.width / 2),
+      dy = (e.clientY - cy) / (r.height / 2);
     if (Math.abs(dx) < 1.8 && Math.abs(dy) < 1.8) {
       card.style.transform = `perspective(1000px) rotateY(${dx * 5}deg) rotateX(${-dy * 5}deg) translateY(-6px)`;
       card.style.boxShadow = `${-dx * 8}px ${dy * 8 + 24}px 64px rgba(27,25,20,.6)`;
@@ -379,20 +346,9 @@ document.addEventListener("keydown", (e) => {
     closeModal(null);
     closeZoom();
     closeAllDescPopups();
+    closePhotoZoom();
   }
 });
-document
-  .querySelectorAll(".proj-modal-btn, .proj-modal-close, .feat-card, .dc")
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cur && cur.classList.add("hov");
-      cring && cring.classList.add("hov");
-    });
-    el.addEventListener("mouseleave", () => {
-      cur && cur.classList.remove("hov");
-      cring && cring.classList.remove("hov");
-    });
-  });
 
 /* =============================================
    10. BLUR QUOTE EFFECT
@@ -403,7 +359,6 @@ document
   const words = quoteEl.querySelectorAll(".bw");
   const cite = quoteEl.querySelector("cite");
   if (!words.length) return;
-
   let isAnimating = false,
     restartTimeout = null;
 
@@ -539,7 +494,7 @@ document
 })();
 
 /* =============================================
-   12. COMPTEUR ANIMÉ (CountUp)
+   12. COMPTEUR ANIMÉ
 ============================================= */
 function countUp() {
   document.querySelectorAll(".stat-v").forEach((el) => {
@@ -629,36 +584,26 @@ document.querySelectorAll(".dc-slideshow").forEach((container) => {
 
 /* =============================================
    14. ZOOM IMAGE (LIGHTBOX)
-   
-   Crée une lightbox au clic sur les images zoomables.
-   Navigation entre images d'un même projet via flèches.
-   Fermeture par clic fond, croix ou Échap.
 ============================================= */
-let zoomImages = []; // tableau des srcs de la galerie courante
-let zoomIndex = 0; // index courant
-let zoomCaption = ""; // légende courante
-
-// Création de l'overlay lightbox (injecté une seule fois dans le DOM)
+let zoomImages = [],
+  zoomIndex = 0;
 const zoomOverlay = document.createElement("div");
 zoomOverlay.id = "imgZoomOverlay";
 zoomOverlay.className = "img-zoom-overlay";
 zoomOverlay.innerHTML = `
   <div class="img-zoom-inner" id="imgZoomInner">
-    <button class="img-zoom-close" id="imgZoomClose" title="Fermer">✕</button>
-    <button class="img-zoom-nav img-zoom-prev" id="imgZoomPrev" title="Précédent">‹</button>
-    <img src="" alt="Zoom" id="imgZoomImg" />
-    <button class="img-zoom-nav img-zoom-next" id="imgZoomNext" title="Suivant">›</button>
+    <button class="img-zoom-close" id="imgZoomClose">✕</button>
+    <button class="img-zoom-nav img-zoom-prev" id="imgZoomPrev">‹</button>
+    <img src="" alt="Zoom" id="imgZoomImg"/>
+    <button class="img-zoom-nav img-zoom-next" id="imgZoomNext">›</button>
     <div class="img-zoom-counter" id="imgZoomCounter"></div>
     <div class="img-zoom-caption" id="imgZoomCaption"></div>
-  </div>
-`;
+  </div>`;
 document.body.appendChild(zoomOverlay);
-
 const zoomImg = document.getElementById("imgZoomImg");
 const zoomCounter = document.getElementById("imgZoomCounter");
-const zoomCaptEl = document.getElementById("imgZoomCaption");
 
-function openZoom(images, startIndex, caption) {
+function openZoom(images, startIndex) {
   zoomImages = images;
   zoomIndex = startIndex || 0;
   updateZoomImg();
@@ -673,12 +618,10 @@ function updateZoomImg() {
   zoomImg.src = zoomImages[zoomIndex];
   zoomCounter.textContent =
     zoomImages.length > 1 ? `${zoomIndex + 1} / ${zoomImages.length}` : "";
-  const prevBtn = document.getElementById("imgZoomPrev");
-  const nextBtn = document.getElementById("imgZoomNext");
-  if (prevBtn)
-    prevBtn.style.visibility = zoomImages.length > 1 ? "visible" : "hidden";
-  if (nextBtn)
-    nextBtn.style.visibility = zoomImages.length > 1 ? "visible" : "hidden";
+  document.getElementById("imgZoomPrev").style.visibility =
+    zoomImages.length > 1 ? "visible" : "hidden";
+  document.getElementById("imgZoomNext").style.visibility =
+    zoomImages.length > 1 ? "visible" : "hidden";
 }
 function zoomPrev() {
   zoomIndex = (zoomIndex - 1 + zoomImages.length) % zoomImages.length;
@@ -688,7 +631,6 @@ function zoomNext() {
   zoomIndex = (zoomIndex + 1) % zoomImages.length;
   updateZoomImg();
 }
-
 document.getElementById("imgZoomClose").addEventListener("click", closeZoom);
 document.getElementById("imgZoomPrev").addEventListener("click", (e) => {
   e.stopPropagation();
@@ -701,15 +643,11 @@ document.getElementById("imgZoomNext").addEventListener("click", (e) => {
 zoomOverlay.addEventListener("click", (e) => {
   if (e.target === zoomOverlay) closeZoom();
 });
-
-// Navigation clavier
 document.addEventListener("keydown", (e) => {
   if (!zoomOverlay.classList.contains("open")) return;
   if (e.key === "ArrowLeft") zoomPrev();
   if (e.key === "ArrowRight") zoomNext();
 });
-
-// Swipe tactile
 let touchStartX = 0;
 zoomOverlay.addEventListener(
   "touchstart",
@@ -729,26 +667,24 @@ zoomOverlay.addEventListener(
   { passive: true },
 );
 
-/* ── Attacher le zoom à toutes les images des projets ── */
 function attachZoom() {
-  // Grille destructurée : on groupe les slides par conteneur
   document
-    .querySelectorAll(".dc-slideshow, .modal-slideshow")
+    .querySelectorAll(".dc-slideshow,.modal-slideshow")
     .forEach((container) => {
       const imgs = Array.from(container.querySelectorAll(".slide img"));
       imgs.forEach((img, idx) => {
         img.style.cursor = "zoom-in";
         img.addEventListener("click", (e) => {
           e.stopPropagation();
-          const srcs = imgs.map((i) => i.src);
-          openZoom(srcs, idx);
+          openZoom(
+            imgs.map((i) => i.src),
+            idx,
+          );
         });
       });
     });
-
-  // Cards CMS (images simples)
   document
-    .querySelectorAll(".cimg img, .dc-img img, .gal-it img")
+    .querySelectorAll(".cimg img,.dc-img img,.gal-it img")
     .forEach((img) => {
       if (img.closest(".dc-slideshow") || img.closest(".modal-slideshow"))
         return;
@@ -762,16 +698,26 @@ function attachZoom() {
 attachZoom();
 
 /* =============================================
-   15. POPUPS DESCRIPTION PROJET
-   
-   Chaque bouton .proj-desc-btn ouvre un popup positionné
-   dynamiquement près du bouton, avec la description du projet.
-   
-   Les données sont stockées dans data-project="id" sur le bouton.
-   La position est calculée via getBoundingClientRect().
+   15. LIGHTBOX PHOTO PROFIL (nouveau)
 ============================================= */
+function openPhotoZoom() {
+  const overlay = document.getElementById("photoZoomOverlay");
+  if (overlay) {
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+}
+function closePhotoZoom() {
+  const overlay = document.getElementById("photoZoomOverlay");
+  if (overlay) {
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+}
 
-// Base de données des descriptions projet
+/* =============================================
+   16. POPUPS DESCRIPTION PROJET
+============================================= */
 const projectDescriptions = {
   "cine-delices": {
     title: "Ciné <em>Délices</em>",
@@ -919,12 +865,10 @@ const projectDescriptions = {
   },
 };
 
-// Crée le conteneur du popup (injecté une fois dans le DOM)
 const descPopup = document.createElement("div");
 descPopup.id = "projDescPopup";
 descPopup.className = "proj-desc-popup";
 document.body.appendChild(descPopup);
-
 let activeDescBtn = null;
 
 function buildPopupHTML(data) {
@@ -932,82 +876,54 @@ function buildPopupHTML(data) {
     .map((c) => `<span class="proj-desc-popup-chip ${c.cls}">${c.label}</span>`)
     .join("");
   const feats = data.features.map((f) => `<li>${f}</li>`).join("");
-  return `
-    <div class="proj-desc-popup-header">
-      <div class="proj-desc-popup-title">${data.title}</div>
-      <button class="proj-desc-popup-close" onclick="closeAllDescPopups()">✕</button>
-    </div>
-    <div class="proj-desc-popup-tag">${data.tag}</div>
-    <div class="proj-desc-popup-body">${data.desc}</div>
-    <ul class="proj-desc-popup-features">${feats}</ul>
-    <div class="proj-desc-popup-chips">${chips}</div>
-  `;
+  return `<div class="proj-desc-popup-header"><div class="proj-desc-popup-title">${data.title}</div><button class="proj-desc-popup-close" onclick="closeAllDescPopups()">✕</button></div><div class="proj-desc-popup-tag">${data.tag}</div><div class="proj-desc-popup-body">${data.desc}</div><ul class="proj-desc-popup-features">${feats}</ul><div class="proj-desc-popup-chips">${chips}</div>`;
 }
-
 function openDescPopup(btn, projectId) {
   const data = projectDescriptions[projectId];
   if (!data) return;
-
-  // Si déjà ouvert sur le même bouton → ferme
   if (activeDescBtn === btn && descPopup.classList.contains("open")) {
     closeAllDescPopups();
     return;
   }
   activeDescBtn = btn;
-
   descPopup.innerHTML = buildPopupHTML(data);
   descPopup.classList.add("open");
-
-  // Positionnement dynamique
   positionPopup(btn);
 }
-
 function positionPopup(btn) {
   const rect = btn.getBoundingClientRect();
   const pW = 440,
-    pH = 380; // dimensions estimées du popup
-  const vw = window.innerWidth,
+    pH = 380,
+    vw = window.innerWidth,
     vh = window.innerHeight;
-
-  let top = rect.bottom + 10;
-  let left = rect.left;
-
-  // Débordement droite
+  let top = rect.bottom + 10,
+    left = rect.left;
   if (left + pW > vw - 20) left = vw - pW - 20;
   if (left < 20) left = 20;
-  // Débordement bas
   if (top + pH > vh - 20) top = rect.top - pH - 10;
   if (top < 20) top = 20;
-
   descPopup.style.top = top + "px";
   descPopup.style.left = left + "px";
 }
-
 function closeAllDescPopups() {
   descPopup.classList.remove("open");
   activeDescBtn = null;
 }
-
-// Ferme le popup en cliquant ailleurs
 document.addEventListener("click", (e) => {
-  if (!descPopup.contains(e.target) && !e.target.closest(".proj-desc-btn")) {
+  if (!descPopup.contains(e.target) && !e.target.closest(".proj-desc-btn"))
     closeAllDescPopups();
-  }
 });
-
-// Repositionne au scroll
 window.addEventListener(
   "scroll",
   () => {
-    if (activeDescBtn && descPopup.classList.contains("open")) {
+    if (activeDescBtn && descPopup.classList.contains("open"))
       positionPopup(activeDescBtn);
-    }
   },
   { passive: true },
 );
 
 /* =============================================
-   16. SÉLECTEUR DE CV (uniquement dans l'onglet CV)
+   17. SÉLECTEUR DE CV
 ============================================= */
 (function () {
   const cvFiles = {
@@ -1020,22 +936,17 @@ window.addEventListener(
       .forEach((b) => b.classList.remove("active"));
     const btn = document.querySelector('[data-cv="' + type + '"]');
     if (btn) btn.classList.add("active");
-    document.querySelectorAll(".cv-download-link").forEach((link) => {
-      link.href = cvFiles[type];
-      link.download = cvFiles[type].split("/").pop();
-    });
   }
   document.querySelectorAll(".cv-sel-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const type = btn.dataset.cv;
-      if (type) activateCvBtn(type);
+      if (btn.dataset.cv) activateCvBtn(btn.dataset.cv);
     });
   });
   activateCvBtn("frontend");
 })();
 
 /* =============================================
-   17. EASTER EGG CONSOLE
+   18. EASTER EGG CONSOLE
 ============================================= */
 (function () {
   const s = {

@@ -1,25 +1,6 @@
 /* =============================================
    PORTFOLIO — Sébastien Maurice
-   style.css — Tous les styles du portfolio
-   
-   Organisé en sections :
-   1. Reset & Variables CSS
-   2. Grain / Texture de fond
-   3. Curseur personnalisé
-   4. Canvas particules
-   5. Navbar + Menu mobile
-   6. Hero section
-   7. Marquee strip
-   8. Quote blur effect
-   9. Tabs / Onglets
-   10. Cards projets (standard + Ciné Délices)
-   11. Section CMS / CV / Design
-   12. Organic bannière + Footer
-   13. Modale projet
-   14. Zoom image
-   15. Tooltip description
-   16. Reveal animations
-   17. Responsive
+   style.css — v2.0 — 2026
 ============================================= */
 
 /* =============================================
@@ -44,19 +25,15 @@
   --amber: #b87333;
   --rust: #8b4a2e;
   --cream: #ede9dc;
-
   --serif: "DM Serif Display", Georgia, serif;
   --mono: "DM Mono", monospace;
   --sans: "Syne", sans-serif;
-
   --gb: rgba(237, 233, 220, 0.04);
   --gbh: rgba(237, 233, 220, 0.09);
   --gborder: rgba(200, 196, 180, 0.14);
   --gborderh: rgba(200, 196, 180, 0.3);
-
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease2: cubic-bezier(0.34, 1.56, 0.64, 1);
-
   --cd-gold: #c4a052;
   --cd-gold-shimmer: linear-gradient(
     135deg,
@@ -97,7 +74,7 @@ body::after {
 }
 
 /* =============================================
-   3. CURSEUR PERSONNALISÉ
+   3. CURSEUR
 ============================================= */
 #cur,
 #cring {
@@ -192,7 +169,6 @@ nav.scrolled {
   padding: 12px 52px;
   background: rgba(27, 25, 20, 0.88);
 }
-
 .nav-logo {
   font-family: var(--serif);
   font-size: 1.08rem;
@@ -204,7 +180,6 @@ nav.scrolled {
   color: var(--amber);
   font-style: italic;
 }
-
 .nav-links {
   display: flex;
   gap: 32px;
@@ -236,7 +211,6 @@ nav.scrolled {
 .nav-links a:hover::after {
   width: 100%;
 }
-
 .nav-soc {
   display: flex;
   gap: 13px;
@@ -258,7 +232,6 @@ nav.scrolled {
   color: var(--stone);
   opacity: 0.28;
 }
-
 .nav-contact-quick {
   display: flex;
   align-items: center;
@@ -282,7 +255,6 @@ nav.scrolled {
   opacity: 0.3;
   margin: 0 4px;
 }
-
 .burger {
   display: none;
   flex-direction: column;
@@ -299,7 +271,6 @@ nav.scrolled {
   background: var(--cream);
   transition: all 0.35s var(--ease);
 }
-
 .m-nav {
   position: fixed;
   inset: 0;
@@ -402,7 +373,6 @@ nav.scrolled {
     opacity: 0.75;
   }
 }
-
 .hero-in {
   max-width: 1200px;
   width: 100%;
@@ -413,7 +383,6 @@ nav.scrolled {
   position: relative;
   z-index: 2;
 }
-
 .eyebrow {
   display: flex;
   align-items: center;
@@ -433,7 +402,6 @@ nav.scrolled {
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
-
 .hero-name {
   font-family: var(--serif);
   font-size: clamp(3rem, 5.5vw, 5.2rem);
@@ -459,7 +427,6 @@ nav.scrolled {
     transform: translateY(0);
   }
 }
-
 .hero-title {
   font-family: var(--serif);
   font-size: clamp(1.25rem, 2vw, 1.8rem);
@@ -481,13 +448,11 @@ nav.scrolled {
   color: var(--amber);
   margin: 0 7px;
 }
-
 .ctas {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -518,7 +483,6 @@ nav.scrolled {
 .btn:hover::after {
   opacity: 1;
 }
-
 .btn-p {
   background: linear-gradient(135deg, var(--olive) 0%, var(--olive2) 100%);
   color: var(--cream);
@@ -545,7 +509,6 @@ nav.scrolled {
   transform: translateY(-3px);
   box-shadow: 0 8px 28px rgba(184, 115, 51, 0.2);
 }
-
 .btn-cv {
   background: linear-gradient(
     135deg,
@@ -577,7 +540,6 @@ nav.scrolled {
 .btn-cv:hover .arr {
   transform: translateY(3px);
 }
-
 .hero-avail {
   margin-top: 22px;
   display: flex;
@@ -613,7 +575,6 @@ nav.scrolled {
   color: var(--stone);
   letter-spacing: 0.08em;
 }
-
 .scroll-hint {
   position: absolute;
   bottom: 40px;
@@ -693,7 +654,6 @@ nav.scrolled {
     opacity: 1;
   }
 }
-
 .wow-ring-outer {
   position: absolute;
   width: 460px;
@@ -732,7 +692,6 @@ nav.scrolled {
     transform: rotate(360deg);
   }
 }
-
 .ring-dot {
   position: absolute;
   width: 5px;
@@ -755,7 +714,6 @@ nav.scrolled {
   left: 50%;
   transform: translateX(-50%);
 }
-
 .wow-terminal {
   width: 360px;
   background: linear-gradient(
@@ -899,7 +857,6 @@ nav.scrolled {
   );
   z-index: 20;
 }
-
 .wow-orbit {
   position: absolute;
   display: flex;
@@ -955,6 +912,148 @@ nav.scrolled {
   66% {
     transform: translateY(-10px) rotate(-1.5deg) scale(1.02);
   }
+}
+
+/* =============================================
+   PHOTO DE PROFIL — WOW Stage (nouveau)
+============================================= */
+.wow-orbit-photo {
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  animation: wow-float1 6.5s ease-in-out infinite 0.7s !important;
+}
+.wow-photo-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  position: relative;
+  cursor: none;
+  transition: transform 0.4s var(--ease2);
+}
+.wow-photo-wrap:hover {
+  transform: scale(1.12);
+}
+.wow-photo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 2px solid rgba(184, 115, 51, 0.5);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.6),
+    0 0 0 3px rgba(92, 99, 64, 0.25),
+    0 0 20px rgba(184, 115, 51, 0.15);
+  display: block;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.4s;
+}
+.wow-photo-wrap:hover .wow-photo-img {
+  border-color: var(--amber);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 0 0 4px rgba(184, 115, 51, 0.3),
+    0 0 30px rgba(184, 115, 51, 0.25);
+}
+.wow-photo-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(184, 115, 51, 0.35);
+  animation: ringRotate 12s linear infinite;
+  pointer-events: none;
+}
+.wow-photo-zoom-hint {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(27, 25, 20, 0.6);
+  color: rgba(237, 233, 220, 0.85);
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.wow-photo-wrap:hover .wow-photo-zoom-hint {
+  opacity: 1;
+}
+
+/* Lightbox photo profil */
+.photo-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10500;
+  background: rgba(10, 8, 5, 0.9);
+  backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  cursor: none;
+}
+.photo-zoom-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.photo-zoom-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transform: scale(0.92);
+  transition: transform 0.5s var(--ease);
+}
+.photo-zoom-overlay.open .photo-zoom-inner {
+  transform: scale(1);
+}
+.photo-zoom-img {
+  width: 280px;
+  height: 340px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 18px;
+  border: 1px solid rgba(200, 196, 180, 0.2);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+.photo-zoom-close {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(237, 233, 220, 0.08);
+  border: 1px solid rgba(200, 196, 180, 0.2);
+  color: var(--cream);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: all 0.3s;
+}
+.photo-zoom-close:hover {
+  background: rgba(237, 233, 220, 0.15);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.photo-zoom-caption {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(200, 196, 180, 0.45);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .wow-skill-card {
@@ -1031,7 +1130,6 @@ nav.scrolled {
   font-size: 0.6rem;
   box-shadow: 0 0 12px rgba(162, 89, 255, 0.35);
 }
-
 .wow-lh-badge {
   position: absolute;
   bottom: -26px;
@@ -1101,7 +1199,6 @@ nav.scrolled {
   display: block;
   margin-top: 2px;
 }
-
 .wow-git-status {
   position: absolute;
   bottom: -24px;
@@ -1157,7 +1254,6 @@ nav.scrolled {
   color: rgba(200, 196, 180, 0.3);
   letter-spacing: 0.04em;
 }
-
 .wow-status-pill {
   position: absolute;
   top: -26px;
@@ -1191,7 +1287,6 @@ nav.scrolled {
   color: rgba(200, 196, 180, 0.8);
   letter-spacing: 0.1em;
 }
-
 .wow-exp-badge {
   position: absolute;
   top: 0;
@@ -1222,7 +1317,6 @@ nav.scrolled {
   margin-top: 3px;
   white-space: nowrap;
 }
-
 .wow-ring {
   position: absolute;
   border-radius: 50%;
@@ -1256,7 +1350,6 @@ nav.scrolled {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-
 .wow-glow-center {
   position: absolute;
   top: 50%;
@@ -1285,10 +1378,6 @@ nav.scrolled {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.15);
   }
-}
-.hero-pill,
-.fbadge {
-  display: none;
 }
 
 /* =============================================
@@ -1339,16 +1428,19 @@ nav.scrolled {
 }
 
 /* =============================================
-   8. BLUR QUOTE EFFECT
+   8. BLUR QUOTE — déplacée après les tabs
 ============================================= */
 .blur-quote-sec {
   position: relative;
   z-index: 2;
-  padding: 90px 52px;
+  padding: 70px 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: rgba(27, 25, 20, 0.3);
+  border-top: 1px solid var(--gborder);
+  border-bottom: 1px solid var(--gborder);
   cursor: pointer;
 }
 .blur-quote-sec::before {
@@ -1357,9 +1449,9 @@ nav.scrolled {
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(92, 99, 64, 0.05) 0%,
+    rgba(92, 99, 64, 0.04) 0%,
     transparent 50%,
-    rgba(184, 115, 51, 0.04) 100%
+    rgba(184, 115, 51, 0.03) 100%
   );
   pointer-events: none;
 }
@@ -1371,7 +1463,7 @@ nav.scrolled {
 }
 .blur-quote p {
   font-family: var(--serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
   font-style: italic;
   font-weight: 300;
   line-height: 1.5;
@@ -1382,7 +1474,7 @@ nav.scrolled {
 .blur-quote cite {
   display: block;
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: var(--olive2);
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1406,9 +1498,6 @@ nav.scrolled {
 .bq-accent {
   color: var(--amber);
   font-style: italic;
-}
-.blur-quote-sec:hover {
-  opacity: 0.95;
 }
 
 /* =============================================
@@ -1502,9 +1591,7 @@ nav.scrolled {
   }
 }
 
-/* =============================================
-   SECTION HEADERS
-============================================= */
+/* Section headers */
 .sec-hd {
   margin-bottom: 52px;
 }
@@ -1596,19 +1683,14 @@ nav.scrolled {
   border-color: var(--amber);
   box-shadow: 0 6px 18px rgba(184, 115, 51, 0.2);
 }
-
 .cgrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 22px;
 }
-.cgrid.feat {
-  grid-template-columns: 1.55fr 1fr;
-}
 .cgrid.labs {
   grid-template-columns: repeat(3, 1fr);
 }
-
 .card {
   background: rgba(27, 25, 20, 0.22);
   border: 1px solid rgba(200, 196, 180, 0.13);
@@ -1651,7 +1733,6 @@ nav.scrolled {
 .card:hover::before {
   opacity: 1;
 }
-
 .cimg {
   width: 100%;
   position: relative;
@@ -1665,9 +1746,6 @@ nav.scrolled {
 }
 .cimg.r43 {
   aspect-ratio: 4/3;
-}
-.cimg.rh {
-  height: 260px;
 }
 .cimg img {
   width: 100%;
@@ -1691,29 +1769,6 @@ nav.scrolled {
   );
   pointer-events: none;
 }
-
-.ph {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(160deg, #13160e 0%, #1a1c12 100%);
-}
-.ph-lbl {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--cream);
-  opacity: 0.8;
-  z-index: 2;
-}
-
 .cbody {
   padding: 22px;
   position: relative;
@@ -1765,27 +1820,64 @@ nav.scrolled {
   color: var(--stone);
   background: rgba(200, 196, 180, 0.04);
 }
-.clink {
-  display: inline-flex;
+
+/* =============================================
+   AVIS CLIENTS (nouveau)
+============================================= */
+.client-review {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  background: rgba(92, 99, 64, 0.06);
+  border: 1px solid rgba(92, 99, 64, 0.2);
+  border-left: 2px solid var(--olive2);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 14px;
+  position: relative;
+}
+.cr-stars {
+  font-size: 0.75rem;
+  color: #f2c84b;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+  display: block;
+}
+.cr-text {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--sand);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 9px;
+  display: block;
+}
+.cr-author {
+  display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--mono);
-  font-size: 0.63rem;
-  color: var(--olive2);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition:
-    gap 0.3s,
-    color 0.3s;
-  margin-top: 13px;
+  flex-wrap: wrap;
 }
-.clink:hover {
-  color: var(--amber);
-  gap: 13px;
+.cr-name {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--olive2);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+.cr-role {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--stone);
+  letter-spacing: 0.08em;
+}
+.cr-role::before {
+  content: "·";
+  margin-right: 5px;
+  opacity: 0.4;
 }
 
-/* ===== GRILLE DESTRUCTURÉE ===== */
+/* =============================================
+   GRILLE DESTRUCTURÉE
+============================================= */
 .destruct-grid {
   display: grid;
   grid-template-columns: 1.65fr 1fr;
@@ -1829,20 +1921,13 @@ nav.scrolled {
   grid-column: 2;
   grid-row: 2;
 }
-
 .dc-img {
   width: 100%;
   overflow: hidden;
   position: relative;
 }
-.dc-main .dc-img {
-  aspect-ratio: 14/9;
-  height: auto;
-}
-.dc-img-top {
-  aspect-ratio: 14/9;
-  height: auto;
-}
+.dc-main .dc-img,
+.dc-img-top,
 .dc-img-land {
   aspect-ratio: 14/9;
   height: auto;
@@ -1863,12 +1948,9 @@ nav.scrolled {
   filter: brightness(0.98) saturate(1.06);
   object-position: bottom center;
 }
-.dc-side:hover .dc-img img {
-  transform: scale(1.12);
-  filter: brightness(0.98) saturate(1.05);
-}
+.dc-side:hover .dc-img img,
 .dc-bottom:hover .dc-img img {
-  transform: scale(1.14);
+  transform: scale(1.12);
   filter: brightness(0.98) saturate(1.05);
 }
 .dc-img-overlay {
@@ -1881,7 +1963,6 @@ nav.scrolled {
     transparent 100%
   );
 }
-
 .dc-body {
   padding: 20px 22px 22px;
   position: relative;
@@ -1971,14 +2052,6 @@ nav.scrolled {
   color: var(--amber);
   gap: 12px;
 }
-.dc-hint {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  color: var(--stone);
-  letter-spacing: 0.08em;
-  opacity: 0.7;
-}
-
 .dc-glow {
   position: absolute;
   width: 200px;
@@ -2007,23 +2080,8 @@ nav.scrolled {
     transparent 70%
   );
 }
-.dc .feat-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 4;
-  background: var(--amber);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  color: var(--dark);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  box-shadow: 0 4px 14px rgba(184, 115, 51, 0.4);
-}
 
-/* ===== SLIDESHOW ===== */
+/* SLIDESHOW */
 .dc-slideshow {
   position: relative;
   overflow: hidden;
@@ -2067,7 +2125,7 @@ nav.scrolled {
   transform: scale(1.3);
 }
 
-/* ===== CINÉ DÉLICES CARD ===== */
+/* CINÉ DÉLICES CARD */
 .cd-card {
   background: rgba(27, 25, 20, 0.22);
   border-color: rgba(196, 160, 82, 0.22) !important;
@@ -2358,12 +2416,6 @@ nav.scrolled {
   box-shadow: 0 6px 22px rgba(212, 168, 67, 0.42);
   transform: translateY(-1px);
 }
-.cd-hint {
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  color: rgba(196, 160, 82, 0.35);
-  letter-spacing: 0.1em;
-}
 .cd-glow-corner {
   position: absolute;
   bottom: -40px;
@@ -2383,9 +2435,6 @@ nav.scrolled {
 .cd-card:hover .cd-glow-corner {
   opacity: 1.5;
 }
-
-/* ── Bandeau palette + métriques ── */
-/* ── Moodboard enrichi Ciné Délices ── */
 .cd-moodboard {
   display: flex;
   flex-direction: column;
@@ -2401,8 +2450,6 @@ nav.scrolled {
   align-items: center;
   gap: 8px;
 }
-
-/* Ligne palette + typos */
 .cd-mb-row--palette {
   flex-wrap: wrap;
   gap: 6px;
@@ -2463,8 +2510,6 @@ nav.scrolled {
   font-weight: 300;
   color: rgba(232, 232, 232, 0.3);
 }
-
-/* Ligne badges */
 .cd-mb-row--badges {
   flex-wrap: wrap;
   gap: 5px;
@@ -2514,8 +2559,6 @@ nav.scrolled {
   font-size: 0.65rem;
   color: rgba(232, 232, 232, 0.5);
 }
-
-/* Ligne métriques */
 .cd-mb-row--metrics {
   gap: 0;
 }
@@ -2590,7 +2633,6 @@ nav.scrolled {
   font-size: 0.72rem;
   font-family: var(--mono);
   font-weight: 500;
-  letter-spacing: -0.01em;
 }
 .tech-name {
   font-family: var(--mono);
@@ -2640,7 +2682,6 @@ nav.scrolled {
   color: #f7a300;
   border: 1px solid rgba(247, 163, 0, 0.3);
 }
-
 .gal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2689,7 +2730,6 @@ nav.scrolled {
   text-transform: uppercase;
   pointer-events: none;
 }
-
 .exp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2766,8 +2806,6 @@ nav.scrolled {
   text-transform: uppercase;
   line-height: 1.5;
 }
-
-/* CV */
 .cv-wrap {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -2981,7 +3019,6 @@ nav.scrolled {
   font-size: 0.76rem;
   color: var(--stone);
 }
-
 .sk-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
@@ -3020,8 +3057,6 @@ nav.scrolled {
   line-height: 1.6;
   letter-spacing: 0.04em;
 }
-
-/* ===== SÉLECTEUR DE CV (uniquement dans le tab CV) ===== */
 .cv-selector {
   display: flex;
   gap: 10px;
@@ -3297,7 +3332,6 @@ nav.scrolled {
     box-shadow: 0 0 0 4px rgba(138, 148, 99, 0);
   }
 }
-
 .cta-recruiter {
   position: relative;
   z-index: 2;
@@ -3363,7 +3397,6 @@ nav.scrolled {
   color: var(--stone);
   letter-spacing: 0.1em;
 }
-
 footer {
   position: relative;
   z-index: 2;
@@ -3731,10 +3764,29 @@ footer {
   color: var(--amber);
   transform: translateY(-2px);
 }
+.modal-slideshow {
+  position: relative;
+  overflow: hidden;
+}
+.modal-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.modal-slideshow .slide.active {
+  opacity: 1;
+  position: relative;
+}
+.modal-slideshow .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.85);
+}
 
 /* =============================================
    14. ZOOM IMAGE
-   Lightbox style pour zoomer sur les images de projets
 ============================================= */
 .img-zoom-overlay {
   position: fixed;
@@ -3848,40 +3900,8 @@ footer {
   letter-spacing: 0.12em;
 }
 
-/* Indicateur de zoom sur les images */
-.img-zoomable {
-  cursor: none !important;
-  position: relative;
-}
-.img-zoomable::after {
-  content: "⊕";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(27, 25, 20, 0.7);
-  border: 1px solid rgba(200, 196, 180, 0.2);
-  color: rgba(237, 233, 220, 0.6);
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-}
-.img-zoomable:hover::after {
-  opacity: 1;
-}
-
 /* =============================================
-   15. TOOLTIP DESCRIPTION (popup au hover/clic)
+   15. TOOLTIP DESCRIPTION
 ============================================= */
 .proj-desc-btn {
   display: inline-flex;
@@ -3907,8 +3927,6 @@ footer {
 .proj-desc-btn .desc-icon {
   font-size: 0.7rem;
 }
-
-/* Popup de description */
 .proj-desc-popup {
   position: fixed;
   z-index: 9500;
@@ -4047,30 +4065,6 @@ footer {
 }
 
 /* =============================================
-   SLIDESHOW DANS LES MODALES
-============================================= */
-.modal-slideshow {
-  position: relative;
-  overflow: hidden;
-}
-.modal-slideshow .slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.4s ease-in-out;
-}
-.modal-slideshow .slide.active {
-  opacity: 1;
-  position: relative;
-}
-.modal-slideshow .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.8) saturate(0.85);
-}
-
-/* =============================================
    16. REVEAL ANIMATIONS
 ============================================= */
 .rv {
@@ -4138,7 +4132,6 @@ footer {
   transform: none;
   transition-delay: 0.47s;
 }
-
 .mw {
   max-width: 1200px;
   margin: 0 auto;
@@ -4194,12 +4187,6 @@ footer {
     padding-left: 28px;
     padding-right: 28px;
   }
-  .cgrid.feat {
-    grid-template-columns: 1fr;
-  }
-  .cgrid.labs {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .exp-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -4237,9 +4224,6 @@ footer {
   .org-banner-sep {
     display: none;
   }
-  .org-banner-stats {
-    gap: 16px;
-  }
   .wow-stage {
     width: 380px;
     height: 420px;
@@ -4259,11 +4243,15 @@ footer {
     width: 220px;
     height: 220px;
   }
-  .img-zoom-prev {
-    left: -42px;
+  .wow-orbit-photo {
+    right: -52px;
   }
-  .img-zoom-next {
-    right: -42px;
+  .wow-photo-wrap {
+    width: 58px;
+    height: 58px;
+  }
+  .blur-quote-sec {
+    padding: 52px 28px;
   }
 }
 @media (max-width: 768px) {
@@ -4310,13 +4298,6 @@ footer {
   .stats {
     grid-template-columns: 1fr;
   }
-  .tech-grid {
-    gap: 9px;
-  }
-  .tech-item {
-    min-width: 72px;
-    padding: 14px 12px;
-  }
   footer {
     padding: 34px 18px 26px;
   }
@@ -4345,10 +4326,10 @@ footer {
     display: none;
   }
   .blur-quote-sec {
-    padding: 60px 18px;
+    padding: 50px 18px;
   }
   .blur-quote p {
-    font-size: clamp(1.3rem, 5vw, 2rem);
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
   }
   .wow-stage {
     width: 320px;
@@ -4359,6 +4340,13 @@ footer {
   }
   .wow-exp-badge {
     right: -20px;
+  }
+  .wow-orbit-photo {
+    right: -30px;
+  }
+  .wow-photo-wrap {
+    width: 52px;
+    height: 52px;
   }
   .cta-recruiter {
     padding: 60px 18px;
@@ -4379,5 +4367,9 @@ footer {
     width: 36px;
     height: 36px;
     font-size: 0.85rem;
+  }
+  .photo-zoom-img {
+    width: 220px;
+    height: 270px;
   }
 }

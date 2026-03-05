@@ -201,6 +201,27 @@
               <div class="wow-term-body" id="termBody"></div>
               <div class="wow-scanlines"></div>
             </div>
+            <!-- Photo de profil flottante (droite du terminal) -->
+            <div
+              class="wow-profile-photo wow-orbit wow-orbit-photo"
+              id="profilePhotoOrbit"
+            >
+              <div
+                class="wow-photo-wrap"
+                id="profilePhotoWrap"
+                onclick="openPhotoZoom()"
+                title="Voir la photo"
+              >
+                <img
+                  src="assets/seb.png"
+                  alt="Sébastien Maurice"
+                  class="wow-photo-img"
+                  onerror="this.src = 'https://i.postimg.cc/7YsTfhtz/seb.png'"
+                />
+                <div class="wow-photo-ring"></div>
+                <div class="wow-photo-zoom-hint">⊕</div>
+              </div>
+            </div>
             <div class="wow-orbit wow-orbit-1">
               <div class="wow-skill-card wsk-html">
                 <span class="wsk-icon">H5</span
@@ -354,85 +375,6 @@
           ><span class="mi-dot">✦</span>Responsive Mobile-First</span
         >
       </div>
-    </div>
-
-    <!-- ========================= BLUR QUOTE ========================= -->
-    <div class="blur-quote-sec" id="quote-sec">
-      <blockquote class="blur-quote" id="blurQuote">
-        <p>
-          <span class="bw" data-duration="1.1" data-delay=".18" data-blur="7"
-            >Je</span
-          >
-          <span class="bw" data-duration="1.4" data-delay=".32" data-blur="4"
-            >construis</span
-          >
-          <span class="bw" data-duration="1.2" data-delay=".25" data-blur="8"
-            >des</span
-          >
-          <span
-            class="bw bq-accent"
-            data-duration="1.8"
-            data-delay=".44"
-            data-blur="5"
-            >interfaces</span
-          >
-          <span class="bw" data-duration="1.1" data-delay=".20" data-blur="6"
-            >qui</span
-          >
-          <span class="bw" data-duration="1.3" data-delay=".38" data-blur="9"
-            >ne</span
-          >
-          <span class="bw" data-duration="1.5" data-delay=".28" data-blur="3"
-            >se</span
-          >
-          <span class="bw" data-duration="1.7" data-delay=".42" data-blur="6"
-            >contentent</span
-          >
-          <span class="bw" data-duration="1.2" data-delay=".22" data-blur="4"
-            >pas</span
-          >
-          <span class="bw" data-duration="1.4" data-delay=".35" data-blur="8"
-            >d'être</span
-          >
-          <span
-            class="bw bq-accent"
-            data-duration="1.9"
-            data-delay=".50"
-            data-blur="5"
-            >belles&nbsp;—</span
-          >
-          <span class="bw" data-duration="1.3" data-delay=".15" data-blur="7"
-            >elles</span
-          >
-          <span class="bw" data-duration="1.6" data-delay=".30" data-blur="4"
-            >parlent,</span
-          >
-          <span class="bw" data-duration="1.2" data-delay=".40" data-blur="9"
-            >elles</span
-          >
-          <span
-            class="bw bq-accent"
-            data-duration="2.0"
-            data-delay=".55"
-            data-blur="6"
-            >convainquent,</span
-          >
-          <span class="bw" data-duration="1.4" data-delay=".25" data-blur="3"
-            >elles</span
-          >
-          <span
-            class="bw bq-accent"
-            data-duration="1.8"
-            data-delay=".48"
-            data-blur="10"
-            >restent.</span
-          >
-        </p>
-        <cite
-          >Sébastien Maurice · Front-End Developer &amp; Product Designer
-          UX</cite
-        >
-      </blockquote>
     </div>
 
     <!-- ========================= TABS ========================= -->
@@ -603,9 +545,9 @@
           </h3>
         </div>
 
-        <!-- ===== GRILLE DESTRUCTURÉE ===== -->
+        <!-- GRILLE DESTRUCTURÉE -->
         <div class="destruct-grid rv">
-          <!-- ═══ CINÉ DÉLICES ═══ -->
+          <!-- CINÉ DÉLICES -->
           <div class="dc dc-main cd-card" onclick="openModal('cine')">
             <div class="cd-pellicule"></div>
             <div class="cd-badge-phare">★ PROJET PHARE</div>
@@ -638,16 +580,6 @@
                       'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
                   "
                   alt="Ciné Délices — Recette détail"
-                />
-              </div>
-              <div class="slide">
-                <img
-                  src="assets/img/front-back/cinedelices-3.jpg"
-                  onerror="
-                    this.src =
-                      'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
-                  "
-                  alt="Ciné Délices — Page recettes"
                 />
               </div>
               <div class="cd-overlay-top"></div>
@@ -725,7 +657,6 @@
                   onclick="event.stopPropagation()"
                   >▶ Voir le repo</a
                 >
-                <!-- Bouton description popup -->
                 <button
                   class="proj-desc-btn"
                   data-project="cine-delices"
@@ -737,17 +668,14 @@
                   <span class="desc-icon">ℹ</span> Description
                 </button>
               </div>
-
-              <!-- ── Détails design system moodboard ── -->
               <div class="cd-moodboard">
-                <!-- Ligne 1 : Palette vraie du projet -->
                 <div class="cd-mb-row cd-mb-row--palette">
                   <span class="cd-mb-label">Palette</span>
                   <div class="cd-mb-swatches">
                     <div
                       class="cd-mb-swatch"
                       style="background: #142234"
-                      title="Bleu Nuit — fond global"
+                      title="Bleu Nuit"
                     ></div>
                     <div
                       class="cd-mb-swatch"
@@ -783,7 +711,6 @@
                       title="Argent texte"
                     ></div>
                   </div>
-                  <!-- Typos -->
                   <div class="cd-mb-typos">
                     <span class="cd-mb-typo-bb">Bb</span>
                     <span class="cd-mb-typo-cz">Cz</span>
@@ -791,7 +718,6 @@
                     <span class="cd-mb-typo-la">La</span>
                   </div>
                 </div>
-                <!-- Ligne 2 : Badges + étoiles -->
                 <div class="cd-mb-row cd-mb-row--badges">
                   <span class="cd-mb-badge cd-mb-badge--genre">Drame</span>
                   <span class="cd-mb-badge cd-mb-badge--rouge">Entrée</span>
@@ -802,7 +728,6 @@
                   >
                   <span class="cd-mb-rating">4.9</span>
                 </div>
-                <!-- Ligne 3 : Métriques techniques -->
                 <div class="cd-mb-row cd-mb-row--metrics">
                   <div class="cd-mb-metric">
                     <span class="cd-mb-metric-v">API</span
@@ -835,7 +760,7 @@
             <div class="cd-shimmer-line"></div>
           </div>
 
-          <!-- ═══ DEV N'DUMBER ═══ -->
+          <!-- DEV N'DUMBER -->
           <div class="dc dc-side" onclick="openModal('devnd')">
             <div class="dc-img dc-img-top dc-slideshow">
               <div class="slide active">
@@ -906,7 +831,7 @@
             <div class="dc-glow dc-glow-olive"></div>
           </div>
 
-          <!-- ═══ LES PRÉSENTS D'ANGE'L ═══ -->
+          <!-- LES PRÉSENTS D'ANGE'L -->
           <div class="dc dc-bottom">
             <div class="dc-img dc-img-land dc-slideshow">
               <div class="slide active">
@@ -1297,8 +1222,10 @@
           <div class="card">
             <div class="cimg r169">
               <img
-                src="assets/img/cms/cms-palimpseste-urbain-1.jpg"
-                onerror="this.src = 'https://i.postimg.cc/YqHwYzVb/4.webp'"
+                src="assets/img/cms/cms-palimpseste-1.gif"
+                onerror="
+                  this.src = 'assets/img/cms/cms-palimpseste-urbain-1.jpg'
+                "
                 alt="Palimpseste Urbain"
                 loading="lazy"
               />
@@ -1316,6 +1243,19 @@
                 <span class="chip">WordPress</span
                 ><span class="chip">Elementor</span><span class="chip">SEO</span
                 ><span class="chip">Migration</span>
+              </div>
+              <!-- Avis client -->
+              <div class="client-review">
+                <div class="cr-stars">★★★★★</div>
+                <blockquote class="cr-text">
+                  "Sébastien a réalisé un travail remarquable. Il a compris nos
+                  enjeux et proposé des conceptions pertinentes et percutantes.
+                  Un professionnel hors pair !"
+                </blockquote>
+                <div class="cr-author">
+                  <span class="cr-name">Ryad Asselah</span>
+                  <span class="cr-role">Directeur — 31/05/2024</span>
+                </div>
               </div>
               <button
                 class="proj-desc-btn"
@@ -1353,6 +1293,18 @@
                 ><span class="chip">Divi</span
                 ><span class="chip">SEO Local</span>
               </div>
+              <div class="client-review">
+                <div class="cr-stars">★★★★★</div>
+                <blockquote class="cr-text">
+                  "Travailler avec Sébastien a été un vrai plaisir. Rapide,
+                  efficace et expérimenté, il a su répondre parfaitement à nos
+                  besoins."
+                </blockquote>
+                <div class="cr-author">
+                  <span class="cr-name">Alexia</span>
+                  <span class="cr-role">18/07/2024</span>
+                </div>
+              </div>
               <button
                 class="proj-desc-btn"
                 style="margin-top: 10px"
@@ -1368,8 +1320,7 @@
           <div class="card">
             <div class="cimg r169">
               <img
-                src="assets/img/cms/cms-gsti62-1.jpg"
-                onerror="this.src = 'https://i.postimg.cc/rFkLxNbh/6.webp'"
+                src="assets/img/cms/cms-gsti62-1.gif"
                 alt="GSTI62"
                 loading="lazy"
               />
@@ -1389,6 +1340,18 @@
                 ><span class="chip">Elementor</span
                 ><span class="chip">Migration Wix</span>
               </div>
+              <div class="client-review">
+                <div class="cr-stars">★★★★★</div>
+                <blockquote class="cr-text">
+                  "Sébastien a parfaitement répondu à nos attentes.
+                  Professionnel, efficace et respectueux des délais. Très
+                  recommandé !"
+                </blockquote>
+                <div class="cr-author">
+                  <span class="cr-name">Virginie</span>
+                  <span class="cr-role">23/11/2023</span>
+                </div>
+              </div>
               <button
                 class="proj-desc-btn"
                 style="margin-top: 10px"
@@ -1405,7 +1368,6 @@
             <div class="cimg r169">
               <img
                 src="assets/img/cms/cms-alternativ-uniforme-1.jpg"
-                onerror="this.src = 'https://i.postimg.cc/4NgTVQM2/1.webp'"
                 alt="Alternativ' Uniforme"
                 loading="lazy"
               />
@@ -1435,6 +1397,117 @@
               </button>
             </div>
           </div>
+
+          <!-- Eloustick -->
+          <div class="card">
+            <div class="cimg r169">
+              <img
+                src="assets/img/cms/cms-eloustick-1.jpg"
+                onerror="this.src = 'assets/img/cms/cms-eloustick-2.JPG'"
+                alt="Eloustick"
+                loading="lazy"
+              />
+              <div class="cimg-overlay"></div>
+            </div>
+            <div class="cbody">
+              <div class="ctag">Agence · Digital</div>
+              <div class="cttl">Eloustick</div>
+              <div class="cdesc">
+                Sites web, identités visuelles, stratégie communication pour PME
+                locales. E-réputation 5/5 pendant 10 ans.
+              </div>
+              <div class="cchips">
+                <span class="chip">WordPress</span
+                ><span class="chip">Branding</span><span class="chip">SEO</span>
+              </div>
+              <div class="client-review">
+                <div class="cr-stars">★★★★★</div>
+                <blockquote class="cr-text">
+                  "Sébastien a parfaitement identifié mes besoins dès le premier
+                  rendez-vous. La refonte correspond totalement à ma vision
+                  numérique."
+                </blockquote>
+                <div class="cr-author">
+                  <span class="cr-name">ES — Gérant</span>
+                  <span class="cr-role">18/09/2023</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hache -->
+          <div class="card">
+            <div class="cimg r169">
+              <img
+                src="assets/img/cms/cms-geonomia-1.jpg"
+                onerror="this.src = 'https://i.postimg.cc/rFkLxNbh/6.webp'"
+                alt="Hache"
+                loading="lazy"
+              />
+              <div class="cimg-overlay"></div>
+            </div>
+            <div class="cbody">
+              <div class="ctag">Industrie · Services</div>
+              <div class="cttl">Hache</div>
+              <div class="cdesc">
+                Refonte et optimisation web pour une entreprise industrielle.
+                Design professionnel, performance et accessibilité.
+              </div>
+              <div class="cchips">
+                <span class="chip">WordPress</span
+                ><span class="chip">Elementor</span
+                ><span class="chip">Performance</span>
+              </div>
+              <div class="client-review">
+                <div class="cr-stars">★★★★★</div>
+                <blockquote class="cr-text">
+                  "Merci pour ton excellent travail : rapide, précis et
+                  efficace. Je ferai de nouveau appel à toi dès que j'aurai un
+                  nouveau projet."
+                </blockquote>
+                <div class="cr-author">
+                  <span class="cr-name">Eric Havard — Gérant</span>
+                  <span class="cr-role">17/04/2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Freelance Borealis -->
+          <div class="card">
+            <div class="cimg r169">
+              <img
+                src="assets/img/cms/cms-semauri-1.gif"
+                onerror="this.src = 'https://i.postimg.cc/BQ0GHByB/2.webp'"
+                alt="Freelance Borealis"
+                loading="lazy"
+              />
+              <div class="cimg-overlay"></div>
+            </div>
+            <div class="cbody">
+              <div class="ctag">SaaS · Freelance</div>
+              <div class="cttl">Freelance Borealis</div>
+              <div class="cdesc">
+                Plateforme SaaS pour freelances. Interface moderne, UX soignée,
+                accompagnement de A à Z.
+              </div>
+              <div class="cchips">
+                <span class="chip">WordPress</span><span class="chip">UX</span
+                ><span class="chip">SEO</span>
+              </div>
+              <div class="client-review">
+                <div class="cr-stars">★★★★★</div>
+                <blockquote class="cr-text">
+                  "Je recommande vivement Sébastien. Très sérieux et motivé, à
+                  l'écoute à chaque étape, il accompagne ses clients de A à Z."
+                </blockquote>
+                <div class="cr-author">
+                  <span class="cr-name">FB — CEO</span>
+                  <span class="cr-role">23/01/2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- /panel-cms -->
@@ -1451,7 +1524,7 @@
           </p>
         </div>
 
-        <!-- ===== SÉLECTEUR DE CV — uniquement ici ===== -->
+        <!-- SÉLECTEUR DE CV -->
         <div class="rv" style="margin-bottom: 36px">
           <div
             style="
@@ -1506,25 +1579,13 @@
               <span class="arr">↓</span>
             </a>
           </div>
-          <div
-            style="
-              margin-top: 12px;
-              font-family: var(--mono);
-              font-size: 0.58rem;
-              color: var(--stone);
-              letter-spacing: 0.08em;
-            "
-          >
-            💡 Placez vos fichiers PDF dans
-            <code style="color: var(--olive2)">assets/cv/</code>
-          </div>
         </div>
 
         <div class="cv-wrap rv">
           <div class="cv-photo-col">
             <img
               class="cv-photo"
-              src="assets/img/seb.png"
+              src="assets/seb.png"
               onerror="this.src = 'https://i.postimg.cc/7YsTfhtz/seb.png'"
               alt="Sébastien Maurice"
               loading="lazy"
@@ -1667,6 +1728,85 @@
       </div>
       <!-- /panel-cv -->
     </section>
+
+    <!-- ========================= BLUR QUOTE (déplacée après les tabs) ========================= -->
+    <div class="blur-quote-sec" id="quote-sec">
+      <blockquote class="blur-quote" id="blurQuote">
+        <p>
+          <span class="bw" data-duration="1.1" data-delay=".18" data-blur="7"
+            >Je</span
+          >
+          <span class="bw" data-duration="1.4" data-delay=".32" data-blur="4"
+            >construis</span
+          >
+          <span class="bw" data-duration="1.2" data-delay=".25" data-blur="8"
+            >des</span
+          >
+          <span
+            class="bw bq-accent"
+            data-duration="1.8"
+            data-delay=".44"
+            data-blur="5"
+            >interfaces</span
+          >
+          <span class="bw" data-duration="1.1" data-delay=".20" data-blur="6"
+            >qui</span
+          >
+          <span class="bw" data-duration="1.3" data-delay=".38" data-blur="9"
+            >ne</span
+          >
+          <span class="bw" data-duration="1.5" data-delay=".28" data-blur="3"
+            >se</span
+          >
+          <span class="bw" data-duration="1.7" data-delay=".42" data-blur="6"
+            >contentent</span
+          >
+          <span class="bw" data-duration="1.2" data-delay=".22" data-blur="4"
+            >pas</span
+          >
+          <span class="bw" data-duration="1.4" data-delay=".35" data-blur="8"
+            >d'être</span
+          >
+          <span
+            class="bw bq-accent"
+            data-duration="1.9"
+            data-delay=".50"
+            data-blur="5"
+            >belles&nbsp;—</span
+          >
+          <span class="bw" data-duration="1.3" data-delay=".15" data-blur="7"
+            >elles</span
+          >
+          <span class="bw" data-duration="1.6" data-delay=".30" data-blur="4"
+            >parlent,</span
+          >
+          <span class="bw" data-duration="1.2" data-delay=".40" data-blur="9"
+            >elles</span
+          >
+          <span
+            class="bw bq-accent"
+            data-duration="2.0"
+            data-delay=".55"
+            data-blur="6"
+            >convainquent,</span
+          >
+          <span class="bw" data-duration="1.4" data-delay=".25" data-blur="3"
+            >elles</span
+          >
+          <span
+            class="bw bq-accent"
+            data-duration="1.8"
+            data-delay=".48"
+            data-blur="10"
+            >restent.</span
+          >
+        </p>
+        <cite
+          >Sébastien Maurice · Front-End Developer &amp; Product Designer
+          UX</cite
+        >
+      </blockquote>
+    </div>
 
     <!-- ========================= CTA RECRUTEUR ========================= -->
     <section class="cta-recruiter" id="contact">
@@ -1916,7 +2056,6 @@
     </footer>
 
     <!-- ========================= MODALES PROJET ========================= -->
-
     <!-- Modale Ciné Délices -->
     <div class="proj-modal-bg" id="modal-cine" onclick="closeModal(event)">
       <div class="proj-modal">
@@ -1951,17 +2090,7 @@
                 this.src =
                   'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
               "
-              alt="Ciné Délices — Recette détail"
-            />
-          </div>
-          <div class="slide">
-            <img
-              src="assets/img/front-back/cinedelices-3.jpg"
-              onerror="
-                this.src =
-                  'https://i.postimg.cc/7ZpSqCdW/cine_delices_home_final_delphinecaron007.jpg'
-              "
-              alt="Ciné Délices — Page recettes"
+              alt="Ciné Délices — Recette"
             />
           </div>
           <div class="proj-modal-img-grad"></div>
@@ -2132,6 +2261,26 @@
               Fermer
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox photo profil -->
+    <div
+      class="photo-zoom-overlay"
+      id="photoZoomOverlay"
+      onclick="closePhotoZoom()"
+    >
+      <div class="photo-zoom-inner">
+        <button class="photo-zoom-close" onclick="closePhotoZoom()">✕</button>
+        <img
+          src="assets/seb.png"
+          onerror="this.src = 'https://i.postimg.cc/7YsTfhtz/seb.png'"
+          alt="Sébastien Maurice"
+          class="photo-zoom-img"
+        />
+        <div class="photo-zoom-caption">
+          Sébastien Maurice — Front-End Developer &amp; Product Designer UX
         </div>
       </div>
     </div>
