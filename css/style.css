@@ -4233,11 +4233,222 @@ footer {
 .mt0 {
   margin-top: 0;
 }
-/* =============================================
-   GALERIE GRAPHIC DESIGN — Onglets + Webdesign
-============================================= */
+/* =============================================================================
+   STYLE-ADDITIONS.CSS — Sébastien Maurice · Portfolio 2026
+   À AJOUTER à la fin de css/style.css
 
-/* --- BARRE D'ONGLETS --- */
+   Ce fichier contient tous les styles pour :
+   1. Le bento grid webdesign (section "Interfaces & Maquettes")
+   2. La galerie masonry avec onglets (section "Mockups & Créations")
+   3. La lightbox plein écran pour zoomer sur les images
+
+   Astuce O'Clock : on organise ses CSS en sections clairement séparées
+   pour s'y retrouver facilement quand le projet grandit !
+============================================================================= */
+
+/* =============================================================================
+   SECTION 1 — BENTO GRID WEBDESIGN
+   Inspiré du style "bento box" d'Apple : une grille asymétrique où
+   certaines cartes prennent plus de place que d'autres.
+
+   On utilise CSS Grid avec des colonnes fractionnelles (fr) pour définir
+   les proportions. La carte "hero" s'étire sur 2 lignes grâce à grid-row.
+============================================================================= */
+
+/*
+  Conteneur principal du bento.
+  3 colonnes : la gauche plus large (60%), les 2 autres se partagent le reste.
+  2 lignes de 240px chacune.
+*/
+.wd-bento {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 240px 240px;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Carte hero : elle s'étale sur les 2 lignes (span 2 rows) */
+.wd-hero {
+  grid-row: 1 / 3;
+}
+
+/* Carte "wide" : s'étale sur 2 colonnes en bas à droite */
+.wd-wide {
+  grid-column: span 2;
+}
+
+/* Carte "full" : prend toute la largeur sur une 3e ligne */
+.wd-full {
+  grid-column: 1 / -1; /* -1 = jusqu'à la dernière colonne */
+  height: 220px;
+}
+
+/* Chaque carte individuelle du bento */
+.wd-bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--gborder);
+  background: rgba(27, 25, 20, 0.5);
+  cursor: zoom-in;
+  transition:
+    transform 0.4s var(--ease),
+    border-color 0.3s,
+    box-shadow 0.4s;
+}
+
+.wd-bento-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 196, 180, 0.3);
+  box-shadow: 0 20px 60px rgba(8, 6, 3, 0.55);
+  z-index: 2;
+}
+
+/* L'image couvre toute la carte sans déformation */
+.wd-bento-item > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition:
+    transform 0.55s var(--ease),
+    filter 0.4s;
+  filter: brightness(0.85) saturate(0.85);
+}
+
+.wd-bento-item:hover > img {
+  transform: scale(1.04);
+  filter: brightness(1) saturate(1);
+}
+
+/*
+  Overlay avec dégradé noir en bas de chaque carte.
+  Contient les tags de catégorie (en haut) et le titre du projet (en bas).
+*/
+.wd-bento-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 6, 3, 0.88) 0%, transparent 55%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+  transition: background 0.35s;
+}
+
+.wd-bento-item:hover .wd-bento-overlay {
+  background: linear-gradient(to top, rgba(8, 6, 3, 0.92) 0%, transparent 45%);
+}
+
+/* Ligne du haut : tags de catégorie */
+.wd-bento-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.wd-tag {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(237, 233, 220, 0.75);
+  background: rgba(27, 25, 20, 0.65);
+  border: 1px solid rgba(200, 196, 180, 0.15);
+  border-radius: 20px;
+  padding: 3px 9px;
+
+  /* Tags cachés par défaut, apparaissent au hover */
+  opacity: 0;
+  transform: translateY(-5px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.wd-bento-item:hover .wd-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ligne du bas : titre + icône zoom */
+.wd-bento-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wd-bento-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(237, 233, 220, 0.85);
+}
+
+/* Icône ⊕ qui apparaît au hover */
+.wd-bento-zoom {
+  font-size: 1.1rem;
+  color: var(--amber);
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 0.3s,
+    transform 0.35s;
+}
+
+.wd-bento-item:hover .wd-bento-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =============================================================================
+   RESPONSIVE — BENTO GRID
+   Sur tablette : 2 colonnes. Sur mobile : 1 colonne empilée.
+============================================================================= */
+
+@media (max-width: 900px) {
+  .wd-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .wd-hero {
+    grid-row: auto;
+    grid-column: span 2;
+    height: 220px;
+  }
+
+  .wd-full {
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wd-bento {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+
+  .wd-hero,
+  .wd-wide,
+  .wd-full {
+    grid-column: auto;
+    grid-row: auto;
+    height: 200px;
+  }
+}
+
+/* =============================================================================
+   SECTION 2 — ONGLETS DE CATÉGORIES (galerie Mockups & Créations)
+   Système d'onglets entièrement piloté par JS + CSS.
+   La classe "active" est ajoutée/retirée par la fonction switchGdTab().
+============================================================================= */
+
+/* La barre qui contient tous les boutons d'onglets */
 .gd-tabs-bar {
   display: flex;
   flex-wrap: wrap;
@@ -4246,6 +4457,8 @@ footer {
   padding-bottom: 20px;
   border-bottom: 1px solid var(--gborder);
 }
+
+/* Style de base d'un bouton d'onglet */
 .gd-tab-btn {
   font-family: var(--mono);
   font-size: 0.6rem;
@@ -4257,26 +4470,33 @@ footer {
   border-radius: 30px;
   padding: 8px 16px;
   cursor: pointer;
-  transition: all 0.3s;
   display: flex;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  transition: all 0.3s;
 }
+
 .gd-tab-btn:hover {
   color: var(--cream);
   border-color: rgba(200, 196, 180, 0.3);
   background: rgba(200, 196, 180, 0.08);
 }
+
+/* Onglet sélectionné */
 .gd-tab-btn.active {
   color: var(--amber);
   background: rgba(184, 115, 51, 0.12);
   border-color: rgba(184, 115, 51, 0.4);
 }
+
+/* Petite icône étoile dans l'onglet "Logos" */
 .gd-tab-ico {
   font-size: 0.45rem;
   color: var(--amber);
 }
+
+/* Badge numérique (nombre de créations dans la catégorie) */
 .gd-tab-badge {
   font-family: var(--mono);
   font-size: 0.52rem;
@@ -4287,23 +4507,39 @@ footer {
   padding: 2px 8px;
   line-height: 1;
 }
+
 .gd-tab-btn.active .gd-tab-badge {
   background: rgba(184, 115, 51, 0.15);
   border-color: rgba(184, 115, 51, 0.35);
   color: var(--amber);
 }
 
-/* --- PANNEAUX ONGLETS --- */
+/* =============================================================================
+   PANNEAUX D'ONGLETS
+   Un seul panneau visible à la fois grâce à la classe "active".
+============================================================================= */
+
 .gd-tab-panels {
   margin-bottom: 20px;
 }
+
+/* Tous les panneaux sont cachés par défaut */
 .gd-tab-panel {
   display: none;
   animation: gdFadeIn 0.35s var(--ease);
 }
+
+/* Seul le panneau actif est visible */
 .gd-tab-panel.active {
   display: block;
 }
+
+/*
+  Animation d'entrée douce quand on change d'onglet.
+  @keyframes = on définit les étapes de l'animation par pourcentage.
+  from (0%) = état de départ
+  to (100%) = état final
+*/
 @keyframes gdFadeIn {
   from {
     opacity: 0;
@@ -4315,205 +4551,135 @@ footer {
   }
 }
 
-/* Grille images */
-.gd-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
+/* =============================================================================
+   GALERIE MASONRY (disposition en briques)
+
+   La technique CSS columns crée une galerie de type "maçonnerie" :
+   les images s'empilent naturellement dans des colonnes, sans espaces
+   vides comme avec une grille classique.
+
+   Parfait pour des images de formats variés (carré, paysage, portrait) !
+   La clé = "break-inside: avoid" sur chaque item pour ne pas couper une
+   image entre 2 colonnes.
+============================================================================= */
+
+.gd-masonry {
+  column-count: 4; /* 4 colonnes sur desktop */
+  column-gap: 10px; /* Espacement entre colonnes */
 }
 
-/* --- SECTION WEBDESIGN --- */
-.wd-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.wd-item {
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: zoom-in;
-  border: 1px solid var(--gborder);
-  transition:
-    border-color 0.3s,
-    transform 0.4s var(--ease),
-    box-shadow 0.4s;
-}
-.wd-item:hover {
-  border-color: rgba(200, 196, 180, 0.35);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(8, 6, 3, 0.55);
-}
-.wd-img-wrap {
-  position: relative;
-  aspect-ratio: 16/10;
-  overflow: hidden;
-}
-.wd-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  transition:
-    transform 0.55s var(--ease),
-    filter 0.4s;
-  filter: brightness(0.88) saturate(0.88);
-}
-.wd-item:hover .wd-img-wrap img {
-  transform: scale(1.04);
-  filter: brightness(1) saturate(1);
-}
-.wd-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(8, 6, 3, 0.85) 0%, transparent 55%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 16px;
-  opacity: 0;
-  transition: opacity 0.35s;
-}
-.wd-item:hover .wd-overlay {
-  opacity: 1;
-}
-.wd-zoom-ico {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.6rem;
-  color: rgba(237, 233, 220, 0.85);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-}
-.wd-label {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  color: rgba(237, 233, 220, 0.7);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-/* --- anciens styles compatibilité (unused mais gardés) --- */
-.gd-category {
-  margin-bottom: 0;
-}
-.gd-empty-placeholder {
-  display: none;
-}
-
-/* Item image */
+/* Chaque item de la galerie */
 .gd-item {
+  break-inside: avoid; /* IMPORTANT : évite qu'une image soit coupée en 2 colonnes */
   position: relative;
-  aspect-ratio: 4/3;
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--gborder);
   background: rgba(27, 25, 20, 0.4);
   cursor: zoom-in;
+  margin-bottom: 10px;
   transition:
     border-color 0.3s,
     transform 0.4s var(--ease),
     box-shadow 0.4s;
 }
+
 .gd-item:hover {
   border-color: rgba(200, 196, 180, 0.35);
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 16px 48px rgba(27, 25, 20, 0.6);
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 0 12px 40px rgba(27, 25, 20, 0.65);
   z-index: 2;
 }
+
+/* height: auto = on préserve le ratio naturel de l'image (crucial pour la masonry) */
 .gd-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
   display: block;
   transition:
     transform 0.5s var(--ease),
     filter 0.4s;
-  filter: brightness(0.9) saturate(0.9);
+  filter: brightness(0.88) saturate(0.9);
 }
+
 .gd-item:hover img {
   transform: scale(1.06);
   filter: brightness(1) saturate(1);
 }
+
+/* Overlay visible uniquement au hover */
 .gd-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(27, 25, 20, 0.88) 0%,
-    transparent 55%
+    rgba(27, 25, 20, 0.9) 0%,
+    transparent 60%
   );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding: 12px 10px 10px;
+  padding: 10px 8px 8px;
   opacity: 0;
-  transition: opacity 0.35s;
+  transition: opacity 0.3s;
 }
+
 .gd-item:hover .gd-overlay {
   opacity: 1;
 }
-.gd-zoom {
+
+/* Icône ⊕ au centre de l'image au hover */
+.gd-zoom-ico {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.4rem;
-  color: rgba(237, 233, 220, 0.85);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-size: 1.3rem;
+  color: rgba(237, 233, 220, 0.9);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
+
+/* Texte du label en bas */
 .gd-label {
   font-family: var(--mono);
-  font-size: 0.56rem;
-  color: rgba(237, 233, 220, 0.8);
+  font-size: 0.52rem;
+  color: rgba(237, 233, 220, 0.75);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.4;
 }
 
-/* Placeholder vide (Webdesign) */
-.gd-grid--webdesign {
-  min-height: 120px;
-  border: 1px dashed rgba(200, 196, 180, 0.15);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.gd-empty-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 32px;
-  text-align: center;
-}
-.gd-empty-icon {
-  font-size: 2rem;
-  opacity: 0.35;
-}
-.gd-empty-placeholder p {
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  color: var(--stone);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  line-height: 1.7;
-}
-.gd-empty-placeholder p em {
-  color: var(--olive2);
-  font-style: italic;
+/* =============================================================================
+   RESPONSIVE — GALERIE MASONRY
+============================================================================= */
+
+@media (max-width: 900px) {
+  .gd-masonry {
+    column-count: 3;
+  }
 }
 
-/* =============================================
-   LIGHTBOX GRAPHIC DESIGN
-============================================= */
+@media (max-width: 600px) {
+  .gd-masonry {
+    column-count: 2;
+    column-gap: 7px;
+  }
+  .gd-item {
+    margin-bottom: 7px;
+  }
+}
+
+/* =============================================================================
+   SECTION 3 — LIGHTBOX (VISIONNEUSE PLEIN ÉCRAN)
+   Affichée en position: fixed par-dessus tout le reste.
+   Invisible par défaut (opacity: 0), visible quand JS ajoute la classe "open".
+
+   Supporte la navigation clavier (← →) et le swipe tactile (géré en JS).
+============================================================================= */
+
+/* Fond sombre + flou derrière */
 .gd-zoom-overlay {
   position: fixed;
   inset: 0;
@@ -4528,10 +4694,14 @@ footer {
   transition: opacity 0.4s var(--ease);
   cursor: none;
 }
+
+/* Classe ajoutée par JS pour rendre la lightbox visible */
 .gd-zoom-overlay.open {
   opacity: 1;
   pointer-events: all;
 }
+
+/* Conteneur de l'image avec légère animation d'échelle */
 .gd-zoom-inner {
   position: relative;
   max-width: 88vw;
@@ -4543,9 +4713,12 @@ footer {
   transform: scale(0.93);
   transition: transform 0.5s var(--ease);
 }
+
 .gd-zoom-overlay.open .gd-zoom-inner {
   transform: scale(1);
 }
+
+/* Image agrandie */
 .gd-zoom-inner img {
   max-width: 88vw;
   max-height: 80vh;
@@ -4555,6 +4728,8 @@ footer {
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.85);
   display: block;
 }
+
+/* Bouton fermeture (×) */
 .gd-zoom-close {
   position: fixed;
   top: 20px;
@@ -4573,11 +4748,14 @@ footer {
   cursor: none;
   transition: all 0.3s;
 }
+
 .gd-zoom-close:hover {
   background: rgba(237, 233, 220, 0.15);
   border-color: var(--amber);
   color: var(--amber);
 }
+
+/* Boutons précédent / suivant */
 .gd-zoom-nav {
   position: fixed;
   top: 50%;
@@ -4596,17 +4774,21 @@ footer {
   transition: all 0.3s;
   z-index: 10;
 }
+
 .gd-zoom-nav:hover {
   background: rgba(184, 115, 51, 0.2);
   border-color: var(--amber);
   color: var(--amber);
 }
+
 .gd-zoom-prev {
   left: 20px;
 }
 .gd-zoom-next {
   right: 20px;
 }
+
+/* Légende sous l'image */
 .gd-zoom-caption {
   font-family: var(--mono);
   font-size: 0.62rem;
@@ -4615,6 +4797,8 @@ footer {
   text-transform: uppercase;
   text-align: center;
 }
+
+/* Compteur "3 / 16" en haut au centre */
 .gd-zoom-counter {
   position: fixed;
   top: 26px;
@@ -4626,11 +4810,11 @@ footer {
   letter-spacing: 0.12em;
 }
 
+/* =============================================================================
+   RESPONSIVE — LIGHTBOX
+============================================================================= */
+
 @media (max-width: 768px) {
-  .gd-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 7px;
-  }
   .gd-zoom-prev {
     left: 8px;
   }

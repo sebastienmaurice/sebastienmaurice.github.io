@@ -1257,104 +1257,198 @@ window.addEventListener(
     if (e.key === "Escape" && gdVisible) hideGitDumber();
   });
 })();
-/* =============================================
-   GALERIE GRAPHIC DESIGN — Lightbox par catégorie
-   À ajouter à la fin de js/main.js
-============================================= */
+/* =============================================================================
+   MAIN-ADDITIONS.JS — Sébastien Maurice · Portfolio 2026
+   À AJOUTER à la fin de js/main.js (après le bloc Easter Egg)
+
+   Ce fichier contient deux fonctionnalités :
+   1. La LIGHTBOX : agrandit une image au clic et permet de naviguer dans la galerie
+   2. Les ONGLETS : affiche la bonne catégorie de mockups quand on clique un bouton
+
+   Rappel O'Clock : on utilise une IIFE (Immediately Invoked Function Expression)
+   pour encapsuler notre code et éviter de polluer le scope global.
+   Syntaxe : (function() { ... })()
+============================================================================= */
 
 (function () {
-  let gdImages = []; // [{src, label}]
+  /*
+    LIGHTBOX — Variables de travail
+    On stocke :
+    - gdImages : le tableau de toutes les images de la catégorie active
+      Chaque entrée = { src: 'chemin/image.jpg', label: 'Nom du projet' }
+    - gdIndex : l'index de l'image actuellement affichée dans gdImages
+  */
+  let gdImages = [];
   let gdIndex = 0;
+
+  /*
+    On récupère les éléments HTML de la lightbox une seule fois au chargement.
+    C'est une bonne pratique : on évite de faire un getElementById()
+    à chaque ouverture de lightbox.
+  */
   const overlay = document.getElementById("gdZoomOverlay");
   const img = document.getElementById("gdZoomImg");
   const caption = document.getElementById("gdZoomCaption");
   const counter = document.getElementById("gdZoomCounter");
 
-  // Collecte toutes les images du conteneur parent (.gd-grid ou .wd-grid)
+  /*
+    collectCategory(clickedItem)
+    ----------------------------
+    Quand l'utilisateur clique sur une image, cette fonction remonte
+    dans le DOM pour trouver le conteneur parent (.gd-masonry ou .wd-bento)
+    et récupère toutes les images qu'il contient.
+
+    Pourquoi ? Pour pouvoir naviguer entre les images avec ← et →
+    dans la même catégorie.
+
+    Retourne un tableau d'objets : [{ src, label }, { src, label }, ...]
+  */
   function collectCategory(clickedItem) {
-    // Supporte .gd-item (dans .gd-grid) et .wd-item (dans .wd-grid)
+    /*
+      On cherche le parent selon le type de galerie :
+      - .gd-masonry = galerie mockups (onglets catégories)
+      - .wd-bento   = galerie webdesign (bento grid)
+    */
     const container =
-      clickedItem.closest(".gd-grid") || clickedItem.closest(".wd-grid");
+      clickedItem.closest(".gd-masonry") || clickedItem.closest(".wd-bento");
+
+    /* Si on ne trouve pas de conteneur parent, on renvoie un tableau vide */
     if (!container) return [];
-    const selector = container.classList.contains("wd-grid")
-      ? ".wd-item"
-      : ".gd-item";
-    const labelSel = container.classList.contains("wd-grid")
-      ? ".wd-label"
-      : ".gd-label";
-    return Array.from(container.querySelectorAll(selector)).map((item) => ({
-      src: item.querySelector("img").src,
-      label: item.querySelector(labelSel)
-        ? item.querySelector(labelSel).textContent
-        : "",
-    }));
+
+    /* On détermine le sélecteur d'item selon le type de conteneur */
+    const isWdBento = container.classList.contains("wd-bento");
+    const itemSel = isWdBento ? ".wd-bento-item" : ".gd-item";
+    const labelSel = isWdBento ? ".wd-bento-label" : ".gd-label";
+
+    /*
+      querySelectorAll() retourne une NodeList (pas un tableau).
+      Array.from() la convertit en vrai tableau pour pouvoir utiliser .map()
+      map() = on transforme chaque élément en objet { src, label }
+    */
+    return Array.from(container.querySelectorAll(itemSel)).map(function (item) {
+      return {
+        src: item.querySelector("img").src,
+        label: item.querySelector(labelSel)
+          ? item.querySelector(labelSel).textContent
+          : "",
+      };
+    });
   }
 
+  /*
+    updateZoom()
+    ------------
+    Met à jour l'image affichée dans la lightbox.
+    Appelée à chaque fois qu'on change d'image (ouverture, suivant, précédent).
+  */
   function updateZoom() {
-    if (!gdImages.length) return;
+    if (!gdImages.length) return; /* Sécurité : rien à afficher */
+
+    /* On met à jour l'image, la légende et le compteur */
     img.src = gdImages[gdIndex].src;
     caption.textContent = gdImages[gdIndex].label;
+
+    /* Le compteur n'est utile que s'il y a plusieurs images */
     counter.textContent =
       gdImages.length > 1 ? gdIndex + 1 + " / " + gdImages.length : "";
-    document.getElementById("gdZoomPrev").style.visibility =
-      gdImages.length > 1 ? "visible" : "hidden";
-    document.getElementById("gdZoomNext").style.visibility =
-      gdImages.length > 1 ? "visible" : "hidden";
+
+    /* On cache les boutons nav si une seule image dans la catégorie */
+    const navVisible = gdImages.length > 1 ? "visible" : "hidden";
+    document.getElementById("gdZoomPrev").style.visibility = navVisible;
+    document.getElementById("gdZoomNext").style.visibility = navVisible;
   }
 
+  /*
+    window.openGdZoom(item)
+    -----------------------
+    Ouvre la lightbox avec l'image cliquée.
+    Appelée dans le HTML via onclick="openGdZoom(this)"
+    "this" = l'élément cliqué (le .gd-item ou .wd-bento-item)
+
+    On met la fonction sur window pour la rendre accessible
+    depuis les attributs onclick dans le HTML.
+  */
   window.openGdZoom = function (item) {
-    const allInCategory = collectCategory(item);
+    /* On collecte toutes les images de la même catégorie */
+    const allImages = collectCategory(item);
+
+    /* On trouve l'index de l'image cliquée dans le tableau */
     const clickedSrc = item.querySelector("img").src;
-    gdImages = allInCategory;
-    gdIndex = allInCategory.findIndex((i) => i.src === clickedSrc);
+    gdImages = allImages;
+    gdIndex = allImages.findIndex(function (i) {
+      return i.src === clickedSrc;
+    });
+
+    /* Sécurité : si l'image n'est pas trouvée, on commence au début */
     if (gdIndex < 0) gdIndex = 0;
+
+    /* On affiche l'image et on ouvre la lightbox */
     updateZoom();
     overlay.classList.add("open");
+
+    /* On bloque le scroll de la page pendant que la lightbox est ouverte */
     document.body.style.overflow = "hidden";
   };
 
-  // --- Onglets catégories galerie ---
-  window.switchGdTab = function (tabId, btn) {
-    // Désactiver tous les panneaux et boutons
-    document
-      .querySelectorAll(".gd-tab-panel")
-      .forEach((p) => p.classList.remove("active"));
-    document
-      .querySelectorAll(".gd-tab-btn")
-      .forEach((b) => b.classList.remove("active"));
-    // Activer le bon panneau et bouton
-    const panel = document.getElementById("gdpanel-" + tabId);
-    if (panel) panel.classList.add("active");
-    if (btn) btn.classList.add("active");
-  };
-
+  /*
+    window.closeGdZoom()
+    --------------------
+    Ferme la lightbox et restore le scroll de la page.
+    Appelée par le bouton ✕ et par un clic sur le fond de la lightbox.
+  */
   window.closeGdZoom = function () {
     overlay.classList.remove("open");
     document.body.style.overflow = "";
   };
 
+  /*
+    window.gdZoomPrev(e) / window.gdZoomNext(e)
+    -------------------------------------------
+    Navigation entre images. L'opérateur % (modulo) crée une navigation
+    "circulaire" : quand on dépasse la dernière image, on revient à la première.
+
+    e.stopPropagation() empêche le clic de "remonter" jusqu'à l'overlay parent
+    qui fermerait la lightbox.
+  */
   window.gdZoomPrev = function (e) {
-    e && e.stopPropagation();
+    if (e) e.stopPropagation();
+    /* (index - 1 + total) % total = on revient à la fin si on est au début */
     gdIndex = (gdIndex - 1 + gdImages.length) % gdImages.length;
     updateZoom();
   };
 
   window.gdZoomNext = function (e) {
-    e && e.stopPropagation();
+    if (e) e.stopPropagation();
+    /* (index + 1) % total = on revient au début si on est à la fin */
     gdIndex = (gdIndex + 1) % gdImages.length;
     updateZoom();
   };
 
-  // Keyboard navigation
+  /*
+    NAVIGATION CLAVIER
+    addEventListener sur document = on écoute les touches partout sur la page.
+    On vérifie d'abord que la lightbox est ouverte (.contains('open'))
+    avant d'agir, pour ne pas interférer avec le reste de la page.
+  */
   document.addEventListener("keydown", function (e) {
     if (!overlay || !overlay.classList.contains("open")) return;
+
     if (e.key === "ArrowLeft") window.gdZoomPrev();
     if (e.key === "ArrowRight") window.gdZoomNext();
     if (e.key === "Escape") window.closeGdZoom();
   });
 
-  // Touch swipe
+  /*
+    NAVIGATION TACTILE (swipe sur mobile)
+    On enregistre la position X du doigt au début du toucher (touchstart),
+    puis on calcule le déplacement à la fin (touchend).
+    Si le déplacement dépasse 50px, on change d'image.
+
+    { passive: true } = indique au navigateur que l'événement ne bloquera
+    pas le scroll, ce qui améliore les performances mobiles.
+  */
   let touchStartX = 0;
+
   overlay &&
     overlay.addEventListener(
       "touchstart",
@@ -1363,15 +1457,53 @@ window.addEventListener(
       },
       { passive: true },
     );
+
   overlay &&
     overlay.addEventListener(
       "touchend",
       function (e) {
         const diff = touchStartX - e.changedTouches[0].clientX;
+
+        /* On demande un swipe d'au moins 50px pour éviter les faux positifs */
         if (Math.abs(diff) > 50) {
-          diff > 0 ? window.gdZoomNext() : window.gdZoomPrev();
+          if (diff > 0) {
+            window.gdZoomNext(); /* Swipe gauche = image suivante */
+          } else {
+            window.gdZoomPrev(); /* Swipe droite = image précédente */
+          }
         }
       },
       { passive: true },
     );
-})();
+
+  /*
+    window.switchGdTab(tabId, btn)
+    ------------------------------
+    Gère le système d'onglets de la galerie "Mockups & Créations".
+    Appelée dans le HTML via onclick="switchGdTab('logos', this)"
+
+    Paramètres :
+    - tabId : identifiant de la catégorie (ex: 'logos', 'flyers', 'cartes'...)
+    - btn   : le bouton cliqué (pour lui ajouter la classe "active")
+
+    Fonctionnement :
+    1. On retire "active" de tous les panneaux et boutons
+    2. On ajoute "active" uniquement sur le bon panneau et le bon bouton
+  */
+  window.switchGdTab = function (tabId, btn) {
+    /* Étape 1 : on désactive tout */
+    document.querySelectorAll(".gd-tab-panel").forEach(function (panel) {
+      panel.classList.remove("active");
+    });
+    document.querySelectorAll(".gd-tab-btn").forEach(function (button) {
+      button.classList.remove("active");
+    });
+
+    /* Étape 2 : on active le bon panneau */
+    const panel = document.getElementById("gdpanel-" + tabId);
+    if (panel) panel.classList.add("active");
+
+    /* Étape 3 : on active le bouton cliqué */
+    if (btn) btn.classList.add("active");
+  };
+})(); /* Fin de l'IIFE — le code s'exécute immédiatement au chargement */

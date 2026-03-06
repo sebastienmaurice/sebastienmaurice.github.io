@@ -986,8 +986,13 @@
         </div>
       </div>
 
-      <!-- ======= TAB 2 : DESIGN ======= -->
+      <!-- ============================================================
+           TAB 2 : GRAPHISME & DESIGN
+           Ce panneau s'affiche quand l'utilisateur clique sur "Graphisme"
+           dans la barre de navigation principale
+      ============================================================ -->
       <div class="tab-pane mw" id="panel-design">
+        <!-- En-tête de section avec animation d'apparition -->
         <div class="sec-hd rv">
           <div class="sec-ey"><span>Direction Artistique</span></div>
           <h2 class="sec-ttl">
@@ -999,6 +1004,8 @@
             convainquent autant qu'elles séduisent.
           </p>
         </div>
+
+        <!-- Grille des outils Adobe + Figma -->
         <div class="cv-ttl" style="margin-bottom: 20px">Outils de création</div>
         <div class="tech-grid rv-stagger">
           <div class="tech-item">
@@ -1034,7 +1041,10 @@
             <div class="tech-name">Sketch</div>
           </div>
         </div>
+
         <hr class="sep" />
+
+        <!-- Grille des compétences / savoir-faire design -->
         <div class="sk-grid rv-stagger">
           <div class="sk-card">
             <span class="sk-ico">✏️</span>
@@ -1091,22 +1101,156 @@
             </div>
           </div>
         </div>
+
         <hr class="sep" />
 
-        <!-- ==================== GALERIE GRAPHIC DESIGN — ONGLETS ==================== -->
+        <!-- ============================================================
+             SECTION 1 : WEBDESIGN — BENTO GRID
+             Inspirée des interfaces type "bento box" (Apple-style) :
+             une grande carte hero à gauche, des cartes plus petites
+             empilées à droite. Effet moderne et très visuel.
+        ============================================================ -->
+        <div class="sec-hd rv mt0">
+          <div class="sec-ey"><span>Webdesign &amp; UI</span></div>
+          <h3 class="sec-ttl" style="font-size: clamp(1.4rem, 3vw, 2rem)">
+            Interfaces &amp; <em>Maquettes</em>
+          </h3>
+          <p class="sec-desc" style="max-width: 560px">
+            Conception d'interfaces web sur mesure — du wireframe au prototype
+            haute fidélité. Chaque projet part d'une intention UX forte,
+            traduite en design cohérent, élégant et orienté conversion.
+          </p>
+        </div>
+
+        <!--
+          BENTO GRID WEBDESIGN
+          Structure CSS Grid asymétrique :
+          - Colonne gauche : 1 grande carte "hero" (2 lignes de hauteur)
+          - Colonne droite : 2 cartes côte à côte en haut + 1 grande en bas
+          La classe "wd-hero" définit le span de 2 lignes pour la carte principale
+        -->
+        <div class="wd-bento rv-stagger">
+          <!-- Carte hero : grande, prend 2 lignes de hauteur -->
+          <div class="wd-bento-item wd-hero" onclick="openGdZoom(this)">
+            <img
+              src="https://i.postimg.cc/4NgTVQM2/1.webp"
+              alt="Direction artistique — Portfolio"
+              loading="lazy"
+            />
+            <div class="wd-bento-overlay">
+              <div class="wd-bento-tags">
+                <span class="wd-tag">Direction artistique</span>
+                <span class="wd-tag">2024</span>
+              </div>
+              <div class="wd-bento-info">
+                <span class="wd-bento-label">Personal portfolio website</span>
+                <span class="wd-bento-zoom">⊕</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte top-right 1 -->
+          <div class="wd-bento-item" onclick="openGdZoom(this)">
+            <img
+              src="https://i.postimg.cc/BQ0GHByB/2.webp"
+              alt="E-commerce — Dashboard UI"
+              loading="lazy"
+            />
+            <div class="wd-bento-overlay">
+              <div class="wd-bento-tags">
+                <span class="wd-tag">E-commerce</span>
+                <span class="wd-tag">Dashboard UI</span>
+              </div>
+              <div class="wd-bento-info">
+                <span class="wd-bento-label">Good Sun — Shop</span>
+                <span class="wd-bento-zoom">⊕</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte top-right 2 -->
+          <div class="wd-bento-item" onclick="openGdZoom(this)">
+            <img
+              src="https://i.postimg.cc/pXHtzJ7Z/3.webp"
+              alt="Streaming — Design System"
+              loading="lazy"
+            />
+            <div class="wd-bento-overlay">
+              <div class="wd-bento-tags">
+                <span class="wd-tag">Streaming</span>
+                <span class="wd-tag">Design System</span>
+              </div>
+              <div class="wd-bento-info">
+                <span class="wd-bento-label">Ciné Délices — UI</span>
+                <span class="wd-bento-zoom">⊕</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte bottom-right large -->
+          <div class="wd-bento-item wd-wide" onclick="openGdZoom(this)">
+            <img
+              src="https://i.postimg.cc/rFkLxNbh/6.webp"
+              alt="Food delivery — Interface"
+              loading="lazy"
+            />
+            <div class="wd-bento-overlay">
+              <div class="wd-bento-tags">
+                <span class="wd-tag">Food App</span>
+                <span class="wd-tag">UX Research</span>
+              </div>
+              <div class="wd-bento-info">
+                <span class="wd-bento-label">GrabDrink — Mobile First</span>
+                <span class="wd-bento-zoom">⊕</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte bottom standalone -->
+          <div class="wd-bento-item wd-full" onclick="openGdZoom(this)">
+            <img
+              src="https://i.postimg.cc/YqHwYzVb/4.webp"
+              alt="Artist — Landing page"
+              loading="lazy"
+            />
+            <div class="wd-bento-overlay">
+              <div class="wd-bento-tags">
+                <span class="wd-tag">Landing Page</span>
+                <span class="wd-tag">Branding</span>
+              </div>
+              <div class="wd-bento-info">
+                <span class="wd-bento-label"
+                  >Chaunté Shayne — Artist Website</span
+                >
+                <span class="wd-bento-zoom">⊕</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /wd-bento -->
+
+        <hr class="sep" />
+
+        <!-- ============================================================
+             SECTION 2 : MOCKUPS & CRÉATIONS GRAPHIQUES — GALERIE ONGLETS
+             Navigation par catégorie sans rechargement de page.
+             La fonction switchGdTab() dans main.js gère l'affichage
+             des panneaux en ajoutant/retirant la classe "active".
+        ============================================================ -->
         <div class="sec-hd rv mt0">
           <div class="sec-ey"><span>Galerie</span></div>
           <h3 class="sec-ttl" style="font-size: clamp(1.4rem, 3vw, 2rem)">
             Mockups &amp; <em>Créations</em>
           </h3>
-          <p class="sec-desc" style="max-width: 560px">
-            Une sélection de projets graphiques : cartes de visite, flyers,
-            logos, packaging, enseignes et PLV, alliant design et impact visuel.
-            Section Webdesign à compléter.
-          </p>
         </div>
 
-        <!-- BARRE D'ONGLETS CATÉGORIES -->
+        <!--
+          BARRE D'ONGLETS
+          Chaque bouton appelle switchGdTab('id', this) :
+          - 'id' : identifiant du panneau à afficher
+          - 'this' : le bouton cliqué (pour activer la classe "active")
+          Le badge numérique indique le nombre de créations dans la catégorie.
+        -->
         <div class="gd-tabs-bar rv" id="gdTabsBar">
           <button
             class="gd-tab-btn active"
@@ -1141,11 +1285,18 @@
           </button>
         </div>
 
-        <!-- PANNEAUX PAR CATÉGORIE -->
+        <!--
+          PANNEAUX DE CATÉGORIES
+          Un seul panneau est visible à la fois grâce à la classe "active".
+          Chaque .gd-item appelle openGdZoom(this) au clic
+          pour ouvrir la lightbox et naviguer dans la catégorie entière.
+          L'attribut loading="lazy" évite de charger les images
+          qui ne sont pas encore visibles à l'écran (performance).
+        -->
         <div class="gd-tab-panels">
-          <!-- LOGOS -->
+          <!-- ====== LOGOS & IDENTITÉ VISUELLE ====== -->
           <div class="gd-tab-panel active" id="gdpanel-logos">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/Logo/logo-domaine-de-chavagnac-by-semauri-contraste.jpg"
@@ -1153,7 +1304,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Domaine de Chavagnac</span>
                 </div>
               </div>
@@ -1164,7 +1315,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Eloustick</span>
                 </div>
               </div>
@@ -1175,7 +1326,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Galaxy</span>
                 </div>
               </div>
@@ -1186,7 +1337,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">HOZ — Logotype</span>
                 </div>
               </div>
@@ -1197,7 +1348,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">HOZ — Variante 1</span>
                 </div>
               </div>
@@ -1208,7 +1359,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">HOZ — Variante 2</span>
                 </div>
               </div>
@@ -1219,7 +1370,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Le Rucher</span>
                 </div>
               </div>
@@ -1230,7 +1381,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">L'Iridologie</span>
                 </div>
               </div>
@@ -1241,7 +1392,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Création logo</span>
                 </div>
               </div>
@@ -1252,7 +1403,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">L'Iridologie — Présentation</span>
                 </div>
               </div>
@@ -1263,7 +1414,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Geonomia</span>
                 </div>
               </div>
@@ -1274,7 +1425,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">O'Dej</span>
                 </div>
               </div>
@@ -1285,7 +1436,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Qube</span>
                 </div>
               </div>
@@ -1296,7 +1447,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Reflet d'Hair</span>
                 </div>
               </div>
@@ -1307,7 +1458,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Rudy Lesaint Magnétiseur</span>
                 </div>
               </div>
@@ -1318,16 +1469,16 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Semauri</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- CARTES DE VISITE -->
+          <!-- ====== CARTES DE VISITE ====== -->
           <div class="gd-tab-panel" id="gdpanel-cartes">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/cartes visite/cartesvisite-carte-de-visite-rudy-lesaint-facebook.jpg"
@@ -1335,7 +1486,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Rudy Lesaint</span>
                 </div>
               </div>
@@ -1346,7 +1497,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Ces Petits Riens</span>
                 </div>
               </div>
@@ -1357,7 +1508,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Déclic Info</span>
                 </div>
               </div>
@@ -1368,7 +1519,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">EMAS</span>
                 </div>
               </div>
@@ -1379,7 +1530,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Guillemins</span>
                 </div>
               </div>
@@ -1390,7 +1541,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Jim Motor</span>
                 </div>
               </div>
@@ -1401,7 +1552,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">La Péniche</span>
                 </div>
               </div>
@@ -1412,7 +1563,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Reflet d'Hair</span>
                 </div>
               </div>
@@ -1423,16 +1574,16 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Toit et Nous</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- FLYERS -->
+          <!-- ====== FLYERS & DÉPLIANTS ====== -->
           <div class="gd-tab-panel" id="gdpanel-flyers">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/Flyers/flyers-depliant-blangis-immo.jpg"
@@ -1440,7 +1591,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Blangis Immo</span>
                 </div>
               </div>
@@ -1451,7 +1602,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Mon Store</span>
                 </div>
               </div>
@@ -1462,7 +1613,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Sophrologue</span>
                 </div>
               </div>
@@ -1473,7 +1624,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Toit et Nous</span>
                 </div>
               </div>
@@ -1484,7 +1635,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Rudy Lesaint A5</span>
                 </div>
               </div>
@@ -1495,7 +1646,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Gardopoil</span>
                 </div>
               </div>
@@ -1506,7 +1657,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Gardopoil — Présentation</span>
                 </div>
               </div>
@@ -1517,7 +1668,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Nain Jaune</span>
                 </div>
               </div>
@@ -1528,16 +1679,16 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Reflet d'Hair</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- ENSEIGNES -->
+          <!-- ====== ENSEIGNES & SIGNALÉTIQUE ====== -->
           <div class="gd-tab-panel" id="gdpanel-enseignes">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/Enseignes/enseignes-11402424_1416512132009240_2681619932211552805_o.jpg"
@@ -1545,7 +1696,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Enseigne lumineuse</span>
                 </div>
               </div>
@@ -1556,7 +1707,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Enseigne extérieure</span>
                 </div>
               </div>
@@ -1567,7 +1718,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Pose enseigne</span>
                 </div>
               </div>
@@ -1578,7 +1729,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">La Chapelle</span>
                 </div>
               </div>
@@ -1589,7 +1740,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Le Mykonos Cambrai</span>
                 </div>
               </div>
@@ -1600,7 +1751,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Taverne Elektrik</span>
                 </div>
               </div>
@@ -1611,16 +1762,16 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Vertigo</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- COVERING -->
+          <!-- ====== COVERING & MARQUAGE VÉHICULE ====== -->
           <div class="gd-tab-panel" id="gdpanel-covering">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/Covering/covering-cardon2.jpg"
@@ -1628,7 +1779,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Cardon</span>
                 </div>
               </div>
@@ -1639,7 +1790,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Covering véhicule</span>
                 </div>
               </div>
@@ -1650,7 +1801,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Côté véhicule</span>
                 </div>
               </div>
@@ -1661,7 +1812,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Securitest</span>
                 </div>
               </div>
@@ -1672,7 +1823,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Covering démo</span>
                 </div>
               </div>
@@ -1683,7 +1834,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Marquage véhicule</span>
                 </div>
               </div>
@@ -1694,16 +1845,16 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">De la Tête aux Ongles</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- PRINT (Dépliants + PLV) -->
+          <!-- ====== PRINT : Dépliants + PLV regroupés ====== -->
           <div class="gd-tab-panel" id="gdpanel-print">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/Dépliant/depliant-c-_users_seb_desktop_mwbrochure_mockup-geonomia.jpg"
@@ -1711,7 +1862,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Geonomia — Brochure</span>
                 </div>
               </div>
@@ -1722,7 +1873,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Ces Petits Riens</span>
                 </div>
               </div>
@@ -1733,7 +1884,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">De la Tête aux Ongles</span>
                 </div>
               </div>
@@ -1744,7 +1895,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Geonomia — Banner</span>
                 </div>
               </div>
@@ -1755,16 +1906,16 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Geonomia — Kakémono</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- DIVERS (Broderie + Packaging) -->
+          <!-- ====== DIVERS : Broderie + Packaging ====== -->
           <div class="gd-tab-panel" id="gdpanel-autres">
-            <div class="gd-grid">
+            <div class="gd-masonry">
               <div class="gd-item" onclick="openGdZoom(this)">
                 <img
                   src="assets/img/graphic-design/Broderie/broderie-erige.jpg"
@@ -1772,7 +1923,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Erigé — Broderie</span>
                 </div>
               </div>
@@ -1783,7 +1934,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">FLC Broderie</span>
                 </div>
               </div>
@@ -1794,7 +1945,7 @@
                   loading="lazy"
                 />
                 <div class="gd-overlay">
-                  <span class="gd-zoom">⊕</span
+                  <span class="gd-zoom-ico">⊕</span
                   ><span class="gd-label">Ces Petits Riens — Packaging</span>
                 </div>
               </div>
@@ -1802,89 +1953,6 @@
           </div>
         </div>
         <!-- /gd-tab-panels -->
-
-        <hr class="sep" />
-
-        <!-- ==================== SECTION WEBDESIGN ==================== -->
-        <div class="sec-hd rv mt0">
-          <div class="sec-ey"><span>Webdesign &amp; UI</span></div>
-          <h3 class="sec-ttl" style="font-size: clamp(1.4rem, 3vw, 2rem)">
-            Interfaces &amp; <em>Maquettes</em>
-          </h3>
-          <p class="sec-desc" style="max-width: 560px">
-            Conception d'interfaces web sur mesure — du wireframe au prototype
-            haute fidélité. Chaque projet part d'une intention UX forte,
-            traduite en design cohérent, élégant et orienté conversion.
-          </p>
-        </div>
-
-        <div class="wd-grid rv-stagger">
-          <div class="wd-item" onclick="openGdZoom(this)">
-            <div class="wd-img-wrap">
-              <img
-                src="https://i.postimg.cc/4NgTVQM2/1.webp"
-                alt="Webdesign projet 1"
-                loading="lazy"
-              />
-              <div class="wd-overlay">
-                <span class="wd-zoom-ico">⊕</span>
-                <span class="wd-label">Projet Web 01</span>
-              </div>
-            </div>
-          </div>
-          <div class="wd-item" onclick="openGdZoom(this)">
-            <div class="wd-img-wrap">
-              <img
-                src="https://i.postimg.cc/BQ0GHByB/2.webp"
-                alt="Webdesign projet 2"
-                loading="lazy"
-              />
-              <div class="wd-overlay">
-                <span class="wd-zoom-ico">⊕</span>
-                <span class="wd-label">Projet Web 02</span>
-              </div>
-            </div>
-          </div>
-          <div class="wd-item" onclick="openGdZoom(this)">
-            <div class="wd-img-wrap">
-              <img
-                src="https://i.postimg.cc/pXHtzJ7Z/3.webp"
-                alt="Webdesign projet 3"
-                loading="lazy"
-              />
-              <div class="wd-overlay">
-                <span class="wd-zoom-ico">⊕</span>
-                <span class="wd-label">Projet Web 03</span>
-              </div>
-            </div>
-          </div>
-          <div class="wd-item" onclick="openGdZoom(this)">
-            <div class="wd-img-wrap">
-              <img
-                src="https://i.postimg.cc/rFkLxNbh/6.webp"
-                alt="Webdesign projet 4"
-                loading="lazy"
-              />
-              <div class="wd-overlay">
-                <span class="wd-zoom-ico">⊕</span>
-                <span class="wd-label">Projet Web 04</span>
-              </div>
-            </div>
-          </div>
-          <div class="wd-item" onclick="openGdZoom(this)">
-            <div class="wd-img-wrap">
-              <img
-                src="https://i.postimg.cc/YqHwYzVb/4.webp"
-                alt="Webdesign projet 5"
-                loading="lazy"
-              />
-              <div class="wd-overlay">
-                <span class="wd-zoom-ico">⊕</span>
-                <span class="wd-label">Projet Web 05</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- /panel-design -->
 
