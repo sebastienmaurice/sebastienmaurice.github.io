@@ -1107,8 +1107,7 @@ window.addEventListener(
     {
       lines: [
         '<span class="gdb-cmd">$ git push origin main</span>',
-        '<span class="gdb-err">Erreur : Permission refusée 😬</span>',
-        "...",
+        '<span class="gdb-err">⚠ Erreur : Permission refusée 😬</span>',
         '<span class="gdb-cmd">$ git push --force</span>',
         '<span class="gdb-ok">✓ Bon, j’ai essayé, on verra bien 😅</span>',
       ],
@@ -1117,7 +1116,7 @@ window.addEventListener(
     {
       lines: [
         '<span class="gdb-cmd">$ npm install</span>',
-        "added 1337 packages… wow 😳",
+        '<span class="gdb-ok">added 1337 packages… wow 😳</span>',
         '<span class="gdb-err">⚠ 666 vulnérabilités 😱</span>',
         '<span class="gdb-ok">✓ npm audit fix… ou presque 😅</span>',
       ],
@@ -1125,7 +1124,7 @@ window.addEventListener(
     },
     {
       lines: [
-        "// TODO: comprendre ce code un jour",
+        '<span class="gdb-fun">// TODO: comprendre ce code un jour</span>',
         '<span class="gdb-err">← Toujours pas fait… 😅</span>',
         "",
         '<span class="gdb-ok">✓ Ça marche quand même 🙏</span>',
@@ -1135,10 +1134,10 @@ window.addEventListener(
     {
       lines: [
         '<span class="gdb-cmd">$ git log --oneline</span>',
-        '"final"',
-        '"final 2"',
-        '"maybe final 3"',
-        '"ok là je crois que c’est bon"',
+        '<span class="gdb-fun">"final"</span>',
+        '<span class="gdb-fun">"final 2"</span>',
+        '<span class="gdb-fun">"maybe final 3"</span>',
+        '<span class="gdb-fun">"ok là je crois que c’est bon"</span>',
         '<span class="gdb-err">"dernier commit ? pas sur..." 🤨</span>',
       ],
       commit: 'f00ba44 — "last commit maybe"',
@@ -1146,19 +1145,19 @@ window.addEventListener(
     {
       lines: [
         '<span class="gdb-cmd">$ git stash</span>',
-        "Saved… quelque part 😅",
+        '<span class="gdb-ok">Saved… quelque part 😅</span>',
         "",
         '<span class="gdb-err">⚠ 3 stash oubliés 😬</span>',
-        '<span class="gdb-ok">✓ Futures fonctionnalités </span>',
+        '<span class="gdb-ok">✓ Futures fonctionnalités 🚀</span>',
       ],
       commit: 'e2c8b91 — "stash mysteries"',
     },
     {
       lines: [
         '<span class="gdb-err">⚠️ 404 – Page introuvable !</span>',
-        '<span class="gdb-ok">Heureusement, Ludo va te faire ça bien 🧙‍♂️✨</span>',
-        '<span class="gdb-fun">“Pas de panique, visuellement ça va déchirer !”</span>',
-        '<span class="gdb-fun">Petit conseil de backeux : visuel économiquement viable 😉</span>',
+        '<span class="gdb-ok">✓ Heureusement, Ludo va te faire ça bien 🧙‍♂️✨</span>',
+        '<span class="gdb-fun">💡 Pas de panique, visuellement ça va déchirer !</span>',
+        '<span class="gdb-fun">💡 Petit conseil de backeux : visuel économiquement viable 😉</span>',
       ],
       commit: 'dead404 — "404 back Ludo"',
     },
@@ -1176,8 +1175,8 @@ window.addEventListener(
     },
     {
       lines: [
-        "Ça plante encore…",
-        "Toujours pas compris pourquoi…",
+        '<span class="gdb-err">⚠ Ça plante encore…</span>',
+        '<span class="gdb-err">Toujours pas compris pourquoi…</span>',
         "",
         '<span class="gdb-ok">✓ Ah, un point-virgule manquait 😅</span>',
       ],
@@ -1186,9 +1185,9 @@ window.addEventListener(
     {
       lines: [
         '<span class="gdb-cmd">$ git commit -m "projet presque fini"</span>',
-        '<span class="gdb-err">⚠ Anne-so dort presque devant son écran… yeux explosés 😵💻</span>',
+        '<span class="gdb-fun">⚠ Anne-so dort devant son écran avec ses oreilles de chat sur le nez 😵</span>',
         '<span class="gdb-ok">✓ Mais le projet avance ! Courage 💪</span>',
-        '<span class="gdb-fun">💡 Anne-so, ça bug à mort ! 🏴‍☠️</span>',
+        '<span class="gdb-err">💡 Anne-so, ça bug à mort ! 🏴‍☠️</span>',
       ],
       commit: 'deadzzz — "anne-so night coding"',
     },
@@ -1197,8 +1196,9 @@ window.addEventListener(
         '<span class="gdb-cmd">$ git merge front-branch</span>',
         '<span class="gdb-err">⚠ Cédric râle : "ce site pue le front !" 😤</span>',
         '<span class="gdb-ok">✓ Mais on progresse quand même 💻🚀</span>',
-        '<span class="gdb-fun">💡 Petit clin d’œil à Cédric, mon backeux préféré ! 🏴‍☠️</span>',
-        '<span class="gdb-fun">euh...lui répondre : L\'user voit 100% du front et 0% du back 🚀</span>',
+        '<span class="gdb-fun">😉 Petit clin d’œil à Cédric, mon backeux préféré ! 🏴‍☠️</span>',
+        '<span class="gdb-ok">💡 Répondre calement : Le back c\'est le moteur, le front la jolie carrosserie </span>',
+        '<span class="gdb-err">...que serait une Merco 300 SL sans sa carrosserie </span>',
       ],
       commit: 'rageback — "cedric front rant"',
     },
