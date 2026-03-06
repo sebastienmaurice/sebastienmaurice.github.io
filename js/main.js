@@ -772,8 +772,8 @@ const projectDescriptions = {
   },
   "dev-ndumber": {
     title: "Dev <em>N'Dumber</em>",
-    tag: "Agence Web fictive · Full-Stack collaboratif",
-    desc: "Dev N'Dumber est un projet d'agence web fictive créé par une équipe de quatre développeurs afin de simuler un environnement professionnel réel. Inspirée de l'univers du film \"Dumb and Dumber\", l'agence adopte une identité fun et décalée incarnée par ses mascottes Git Dumber et Dev Lloyd.",
+    tag: "Agence Web · Full-Stack collaboratif",
+    desc: "Dev N'Dumber est une agence web communautaire créée par une équipe de 4 développeurs full stack. Inspirée de l'univers du film \"Dumb and Dumber\", l'agence adopte une identité fun et décalée incarnée par ses mascottes Git Dumber et Dev Lloyd.",
     features: [
       "Site vitrine d'agence digitale moderne et responsive",
       "Présentation des services : dev full-stack, audit SEO, CMS",
@@ -1053,6 +1053,9 @@ window.addEventListener(
 /* =============================================
    18. EASTER EGG CONSOLE
 ============================================= */
+/* =============================================
+   18. EASTER EGG CONSOLE — JUNIOR PIRATE VERSION
+============================================= */
 (function () {
   const s = {
     big: "font-size:18px;font-weight:bold;color:#8A9463;font-family:monospace;",
@@ -1060,14 +1063,20 @@ window.addEventListener(
     sub: "font-size:12px;color:#C8C4B4;font-family:monospace;",
     link: "font-size:12px;color:#8A9463;font-family:monospace;text-decoration:underline;",
   };
-  console.log("%c👋 Salut, développeur curieux !", s.big);
+  console.log("%c👋 Salut toi ! Petit dev en herbe ici !", s.big);
   console.log("%c  Sébastien Maurice", s.name);
-  console.log("%c  Front-End Developer · Product Designer UX", s.sub);
+  console.log("%c  Junior Full-Stack Developer · UX Explorer", s.sub);
   console.log("%c  ──────────────────────────────────────────", s.sub);
-  console.log("%c  Tu inspectes le code ? Bonne curiosité !", s.sub);
-  console.log("%c  Ce portfolio est construit avec amour 🌿", s.sub);
+  console.log("%c  Tu explores le code ? Super curiosité !", s.sub);
+  console.log("%c  J'apprends encore tous les jours 🌱", s.sub);
+  console.log("%c  HTML · CSS · JS vanilla (oui, sans framework) 🚀", s.sub);
+  console.log("%c  ──────────────────────────────────────────", s.sub);
   console.log(
-    "%c  HTML · CSS · JavaScript vanilla — zéro framework front",
+    "%c  Un grand merci à mes collègues pirates de O’clock 🏴‍☠️ :",
+    s.sub,
+  );
+  console.log(
+    "%c  Anne-so, Ludo, Richard, Juju, Valou, Céd et tous les autres !",
     s.sub,
   );
   console.log("%c  ──────────────────────────────────────────", s.sub);
@@ -1076,7 +1085,7 @@ window.addEventListener(
   console.log("%c  💼 linkedin.com/in/sebastien-maurice/", s.link);
   console.log("%c  ──────────────────────────────────────────", s.sub);
   console.log(
-    "%c  Si tu cherches un dev curieux et passionné, on discute ? 😄",
+    "%c  Si tu veux échanger avec un dev motivé, on discute 😄",
     s.sub,
   );
 })();
@@ -1089,80 +1098,90 @@ window.addEventListener(
   const MESSAGES = [
     {
       lines: [
-        '<span class="gdb-cmd">$ git commit -m "fix: tout"</span>',
-        '<span class="gdb-err">⚠ 47 fichiers modifiés. Tu es sûr ?</span>',
-        '<span class="gdb-ok">✓ Poussé en prod. YOLO. 🤙</span>',
+        '<span class="gdb-cmd">$ git commit -m "first try"</span>',
+        '<span class="gdb-err">⚠ Trop de fichiers modifiés… Ooops 😅</span>',
+        '<span class="gdb-ok">✓ Commit envoyé… mes amis pirates de O’clock approuveraient 🏴‍☠️</span>',
       ],
-      commit: 'a4f2c91 — "fix: tout"',
+      commit: 'a4f2c91 — "first try"',
     },
     {
       lines: [
-        '<span class="gdb-cmd">$ git push --force origin main</span>',
-        '<span class="gdb-err">Erreur : 403 Forbidden</span>',
+        '<span class="gdb-cmd">$ git push origin main</span>',
+        '<span class="gdb-err">Erreur : Permission refusée 😬</span>',
         "...",
-        '<span class="gdb-cmd">$ git push --force --force</span>',
-        '<span class="gdb-ok">✓ Ça marche pas mais j\'ai essayé 💪</span>',
+        '<span class="gdb-cmd">$ git push --force</span>',
+        '<span class="gdb-ok">✓ Bon, j’ai essayé, on verra bien 😅</span>',
       ],
-      commit: 'b3e9d12 — "feat: essai encore"',
+      commit: 'b3e9d12 — "push attempt"',
     },
     {
       lines: [
         '<span class="gdb-cmd">$ npm install</span>',
-        "added 1,337 packages in 4min 20s",
-        '<span class="gdb-err">⚠ 666 vulnérabilités critiques</span>',
-        '<span class="gdb-ok">✓ npm audit fix --force ← parfait 😎</span>',
+        "added 1337 packages… wow 😳",
+        '<span class="gdb-err">⚠ 666 vulnérabilités 😱</span>',
+        '<span class="gdb-ok">✓ npm audit fix… ou presque 😅</span>',
       ],
-      commit: 'c7a1b44 — "chore: node_modules"',
+      commit: 'c7a1b44 — "node_modules adventure"',
     },
     {
       lines: [
-        "// TODO: refactorer ça un jour",
-        '<span class="gdb-err">← Ce jour n\'est pas arrivé depuis 2021</span>',
+        "// TODO: comprendre ce code un jour",
+        '<span class="gdb-err">← Toujours pas fait… 😅</span>',
         "",
-        '<span class="gdb-ok">✓ Fonctionne → ne pas toucher 🙏</span>',
+        '<span class="gdb-ok">✓ Ça marche quand même 🙏</span>',
       ],
-      commit: 'dead420 — "temp: temporaire"',
+      commit: 'dead420 — "temp stuff"',
     },
     {
       lines: [
         '<span class="gdb-cmd">$ git log --oneline</span>',
         '"wip"',
         '"wip2"',
-        '"VRAI wip"',
-        '"bon là c\'est le bon"',
-        '<span class="gdb-err">"dernier commit promis"  ← il ment</span>',
+        '"maybe final wip"',
+        '"ok là je crois que c’est bon"',
+        '<span class="gdb-err">"dernier commit ?" 🤨</span>',
       ],
-      commit: 'f00ba44 — "dernier commit promis"',
+      commit: 'f00ba44 — "last commit maybe"',
     },
     {
       lines: [
         '<span class="gdb-cmd">$ git stash</span>',
-        "Saved working directory... quelque part",
+        "Saved… quelque part 😅",
         "",
-        '<span class="gdb-err">⚠ 3 stash oubliés depuis janvier</span>',
-        '<span class="gdb-ok">✓ C\'est des fonctionnalités futures 🚀</span>',
+        '<span class="gdb-err">⚠ 3 stash oubliés 😬</span>',
+        '<span class="gdb-ok">✓ Futures fonctionnalités </span>',
       ],
-      commit: 'e2c8b91 — "feat: stash mystère"',
+      commit: 'e2c8b91 — "stash mysteries"',
     },
     {
       lines: [
-        "Ça marche pas.",
-        "Ça marche toujours pas.",
-        "Mais pourquoi ça marche pas.",
+        '<span class="gdb-cmd">$ console.log("debug")</span>',
+        '<span class="gdb-cmd">$ console.log("debug 2")</span>',
+        '<span class="gdb-cmd">$ console.log("debug 3 ???")</span>',
         "",
-        '<span class="gdb-ok">✓ Ah. Un point-virgule manquait. 🐛</span>',
+        '<span class="gdb-err">→ Le bug était ailleurs… évidemment 😅</span>',
+        '<span class="gdb-ok">✓ Merci à mes collègues pirates de O’clock : Anne-so, Ludo, Richard, Juju, Valou, Céd et tous les autres 🏴‍☠️</span>',
       ],
-      commit: '1337c0d — "fix: ; manquant"',
+      commit: '0b5e3f7 — "debug adventures"',
     },
     {
       lines: [
-        '<span class="gdb-cmd">$ console.log("ici")</span>',
-        '<span class="gdb-cmd">$ console.log("ici 2")</span>',
-        '<span class="gdb-cmd">$ console.log("ici 3 ?????")</span>',
+        "Ça plante encore…",
+        "Toujours pas compris pourquoi…",
         "",
-        '<span class="gdb-err">→ Le bug était ailleurs. Évidemment.</span>',
+        '<span class="gdb-ok">✓ Ah, un point-virgule manquait 😅</span>',
       ],
-      commit: '0b5e3f7 — "debug: ici"',
+      commit: '1337c0d — "fix missing semicolon"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ console.log("debug")</span>',
+        '<span class="gdb-cmd">$ console.log("debug 2")</span>',
+        '<span class="gdb-cmd">$ console.log("debug 3 ???")</span>',
+        "",
+        '<span class="gdb-err">→ Le bug était ailleurs… évidemment 😅</span>',
+      ],
+      commit: '0b5e3f7 — "debug adventures"',
     },
   ];
 
