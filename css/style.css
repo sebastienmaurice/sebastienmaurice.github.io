@@ -2682,6 +2682,95 @@ nav.scrolled {
   color: #f7a300;
   border: 1px solid rgba(247, 163, 0, 0.3);
 }
+
+/* ── IA Tech Icons dans CV ── */
+.ti-claude {
+  background: rgba(204, 120, 92, 0.1);
+  border: 1px solid rgba(204, 120, 92, 0.35);
+}
+.ti-gpt {
+  background: rgba(16, 163, 127, 0.1);
+  border: 1px solid rgba(16, 163, 127, 0.35);
+}
+.ti-cursor {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+.ti-gai {
+  background: rgba(66, 133, 244, 0.1);
+  border: 1px solid rgba(66, 133, 244, 0.35);
+}
+.ti-mj {
+  background: rgba(108, 92, 231, 0.1);
+  border: 1px solid rgba(108, 92, 231, 0.35);
+}
+.ti-veo {
+  background: rgba(26, 115, 232, 0.1);
+  border: 1px solid rgba(26, 115, 232, 0.35);
+}
+.ti-kling {
+  background: rgba(255, 76, 139, 0.1);
+  border: 1px solid rgba(255, 76, 139, 0.35);
+}
+
+/* Badge sous les icônes IA */
+.ia-badge-sq {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+.ia-badge-sq.ia-badge-pro {
+  background: rgba(184, 115, 51, 0.15);
+  border: 1px solid rgba(184, 115, 51, 0.4);
+  color: var(--amber);
+}
+.ia-badge-sq.ia-badge-dev {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #a5b4fc;
+}
+.ia-badge-sq.ia-badge-lab {
+  background: rgba(92, 99, 64, 0.15);
+  border: 1px solid rgba(92, 99, 64, 0.4);
+  color: var(--olive2);
+}
+
+/* Tooltip sur les icônes IA */
+.ia-tech-item {
+  position: relative;
+}
+.ia-tech-item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(20, 18, 12, 0.97);
+  border: 1px solid var(--gborder);
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--sand);
+  line-height: 1.5;
+  padding: 10px 14px;
+  width: 220px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+.ia-tech-item:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 .gal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

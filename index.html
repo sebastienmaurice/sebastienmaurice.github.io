@@ -47,14 +47,6 @@
         href="#"
         onclick="
           cm();
-          st('ia');
-        "
-        >IA &amp; Outils</a
-      >
-      <a
-        href="#"
-        onclick="
-          cm();
           st('cv');
         "
         >CV</a
@@ -120,17 +112,6 @@
           <a
             href="#"
             onclick="
-              st('ia');
-              gs('tabs');
-              return false;
-            "
-            >IA &amp; Outils</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            onclick="
               st('cv');
               gs('tabs');
               return false;
@@ -141,12 +122,14 @@
       </ul>
       <div class="nav-contact-quick">
         <a
-          href="/cdn-cgi/l/email-protection#6b041d0e19180e095c5e2b0c060a020745080406"
-          ><span
-            class="__cf_email__"
-            data-cfemail="0f60796a7d7c6a6d383a4f68626e6663216c6062"
-            >[email&#160;protected]</span
-          ></a
+          href="#"
+          id="nav-email-lnk"
+          onclick="
+            revealEmail(this);
+            return false;
+          "
+          title="Afficher l'email"
+          >✉ Email</a
         >
         <span class="sep-dot">·</span>
         <a href="tel:+33620847801">+33 6 20 84 78 01</a>
@@ -197,7 +180,11 @@
               >Voir mes projets <span class="arr">→</span></a
             >
             <a
-              href="/cdn-cgi/l/email-protection#dbb4adbea9a8beb9ecee9bbcb6bab2b7f5b8b4b6"
+              href="#"
+              onclick="
+                revealEmailBtn(this);
+                return false;
+              "
               class="btn btn-g"
               >Me contacter <span class="arr">✉</span></a
             >
@@ -421,11 +408,17 @@
         <button class="tab-btn" onclick="st('cms')" data-tab="cms">
           <span class="tab-num">03</span>CMS &amp; E-commerce
         </button>
-        <button class="tab-btn tab-btn-ia" onclick="st('ia')" data-tab="ia">
+        <button
+          class="tab-btn tab-btn-ia"
+          onclick="st('ia')"
+          data-tab="ia"
+          style="display: none"
+          aria-hidden="true"
+        >
           <span class="tab-num">04</span>IA &amp; Outils
         </button>
         <button class="tab-btn" onclick="st('cv')" data-tab="cv">
-          <span class="tab-num">05</span>CV Complet
+          <span class="tab-num">04</span>CV &amp; IA
         </button>
       </div>
 
@@ -1962,6 +1955,265 @@
             </div>
           </div>
         </div>
+        <!-- IA & OUTILS dans le CV -->
+        <hr class="sep" />
+        <div class="sec-hd rv mt0">
+          <div class="sec-ey"><span>Intelligence Artificielle</span></div>
+          <h3 class="sec-ttl" style="font-size: clamp(1.4rem, 3vw, 2rem)">
+            IA &amp; <em>Outils Modernes</em>
+          </h3>
+          <p class="sec-desc" style="margin-top: 12px">
+            Intégration native de l'IA dans mon workflow quotidien. Texte,
+            image, vidéo, code : je maîtrise les outils qui changent la façon de
+            concevoir et de produire.
+          </p>
+        </div>
+
+        <div class="cv-ttl" style="margin-bottom: 20px">Outils IA utilisés</div>
+        <div class="tech-grid rv-stagger ia-tech-grid">
+          <!-- Claude Pro -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="Rédaction, analyse, code review, aide au design et stratégie UX. Outil principal au quotidien."
+          >
+            <div class="tech-icon ti-claude">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <path
+                  d="M50 10C28 10 10 28 10 50s18 40 40 40 40-18 40-40S72 10 50 10z"
+                  fill="#CC785C"
+                  opacity=".18"
+                />
+                <path
+                  d="M34 65l8-30h4l6 20 6-20h4l8 30h-5l-5-20-6 20h-4l-6-20-5 20H34z"
+                  fill="#CC785C"
+                />
+              </svg>
+            </div>
+            <div class="tech-name">Claude Pro</div>
+            <div class="ia-badge-sq ia-badge-pro">Pro</div>
+          </div>
+          <!-- ChatGPT -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="Génération de contenu, recherche rapide, brainstorming et rédaction multilingue."
+          >
+            <div class="tech-icon ti-gpt">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <circle cx="50" cy="50" r="40" fill="#10a37f" opacity=".15" />
+                <path
+                  d="M50 22c-4 0-8 2-10 5l-14 8c-3 2-5 5-5 9v16c0 4 2 7 5 9l14 8c2 1 4 2 6 2v-8l-12-7V46l12-7V22z"
+                  fill="#10a37f"
+                />
+                <path
+                  d="M50 22c4 0 8 2 10 5l14 8c3 2 5 5 5 9v16c0 4-2 7-5 9l-14 8c-2 1-4 2-6 2v-8l12-7V46l-12-7V22z"
+                  fill="#10a37f"
+                  opacity=".6"
+                />
+              </svg>
+            </div>
+            <div class="tech-name">ChatGPT</div>
+            <div class="ia-badge-sq ia-badge-pro">Pro</div>
+          </div>
+          <!-- Cursor -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="IDE IA-first pour le développement assisté. Autocomplétion intelligente, refactoring et génération de code en contexte."
+          >
+            <div class="tech-icon ti-cursor">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <rect
+                  x="12"
+                  y="12"
+                  width="76"
+                  height="76"
+                  rx="14"
+                  fill="#6366f1"
+                  opacity=".15"
+                />
+                <path
+                  d="M30 70L50 20l20 50-20-10-20 10z"
+                  fill="#6366f1"
+                  stroke="#6366f1"
+                  stroke-width="3"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="tech-name">Cursor</div>
+            <div class="ia-badge-sq ia-badge-dev">Dev</div>
+          </div>
+          <!-- Google AI Studio -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="Prototypage et tests de prompts avec Gemini. Multimodal : texte, images, vidéo, audio."
+          >
+            <div class="tech-icon ti-gai">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <circle cx="50" cy="50" r="38" fill="#4285F4" opacity=".12" />
+                <path
+                  d="M50 20a30 30 0 100 60A30 30 0 0050 20z"
+                  stroke="#4285F4"
+                  stroke-width="4"
+                  fill="none"
+                />
+                <circle cx="50" cy="50" r="10" fill="#4285F4" />
+                <path
+                  d="M50 20v10M50 70v10M20 50h10M70 50h10"
+                  stroke="#4285F4"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="tech-name">AI Studio</div>
+            <div class="ia-badge-sq ia-badge-lab">Lab</div>
+          </div>
+          <!-- Midjourney -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="Génération d'images IA haute qualité pour moodboards, mockups, illustrations et direction artistique."
+          >
+            <div class="tech-icon ti-mj">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <rect
+                  x="10"
+                  y="10"
+                  width="80"
+                  height="80"
+                  rx="16"
+                  fill="#1a1a2e"
+                  stroke="#6c5ce7"
+                  stroke-width="2.5"
+                />
+                <circle cx="35" cy="50" r="12" fill="#6c5ce7" opacity=".9" />
+                <circle cx="65" cy="50" r="12" fill="#a29bfe" opacity=".8" />
+                <path
+                  d="M44 50h12"
+                  stroke="#fff"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="tech-name">Midjourney</div>
+            <div class="ia-badge-sq ia-badge-pro">Pro</div>
+          </div>
+          <!-- Veo3 -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="Génération vidéo IA text-to-video. Séquences réalistes, animations et contenus motion pour projets digitaux."
+          >
+            <div class="tech-icon ti-veo">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <rect
+                  x="8"
+                  y="8"
+                  width="84"
+                  height="84"
+                  rx="18"
+                  fill="#1a73e8"
+                  opacity=".12"
+                />
+                <rect
+                  x="8"
+                  y="8"
+                  width="84"
+                  height="84"
+                  rx="18"
+                  stroke="#1a73e8"
+                  stroke-width="2.5"
+                  fill="none"
+                />
+                <path d="M38 35l32 15-32 15V35z" fill="#1a73e8" />
+              </svg>
+            </div>
+            <div class="tech-name">Veo3</div>
+            <div class="ia-badge-sq ia-badge-lab">Lab</div>
+          </div>
+          <!-- Kling -->
+          <div
+            class="tech-item ia-tech-item"
+            data-tooltip="Vidéo IA image-to-video et text-to-video. Animations fluides, effets cinématiques et transitions créatives."
+          >
+            <div class="tech-icon ti-kling">
+              <svg viewBox="0 0 100 100" fill="none" width="22" height="22">
+                <circle cx="50" cy="50" r="40" fill="#ff4c8b" opacity=".12" />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="#ff4c8b"
+                  stroke-width="2.5"
+                  fill="none"
+                />
+                <path
+                  d="M30 30l20 20-20 20V30zM52 40l18 10-18 10V40z"
+                  fill="#ff4c8b"
+                />
+              </svg>
+            </div>
+            <div class="tech-name">Kling</div>
+            <div class="ia-badge-sq ia-badge-lab">Lab</div>
+          </div>
+        </div>
+
+        <hr class="sep" style="margin-top: 0" />
+        <div class="sec-hd rv mt0">
+          <div class="sec-ey"><span>Workflow IA</span></div>
+          <h3 class="sec-ttl" style="font-size: clamp(1.4rem, 3vw, 2rem)">
+            Comment j'intègre <em>l'IA</em>
+          </h3>
+        </div>
+        <div class="sk-grid rv-stagger">
+          <div class="sk-card">
+            <span class="sk-ico">⚡</span>
+            <div class="sk-name">Développement accéléré</div>
+            <div class="sk-desc">
+              Cursor + Claude pour générer, refactorer et déboguer du code
+              front-end plus vite et plus propre.
+            </div>
+          </div>
+          <div class="sk-card">
+            <span class="sk-ico">🎨</span>
+            <div class="sk-name">Direction artistique</div>
+            <div class="sk-desc">
+              Midjourney pour explorer des directions visuelles, tester des
+              ambiances et créer des moodboards clients.
+            </div>
+          </div>
+          <div class="sk-card">
+            <span class="sk-ico">📝</span>
+            <div class="sk-name">Contenu &amp; Copywriting</div>
+            <div class="sk-desc">
+              ChatGPT et Claude Pro pour la rédaction web, les textes UX et la
+              structuration des messages clés.
+            </div>
+          </div>
+          <div class="sk-card">
+            <span class="sk-ico">🎬</span>
+            <div class="sk-name">Motion &amp; Vidéo</div>
+            <div class="sk-desc">
+              Veo3 et Kling pour prototyper des animations, créer des visuels
+              motion pour réseaux sociaux et présentations.
+            </div>
+          </div>
+          <div class="sk-card">
+            <span class="sk-ico">🔬</span>
+            <div class="sk-name">Recherche &amp; Veille</div>
+            <div class="sk-desc">
+              Google AI Studio et Claude pour synthétiser rapidement des
+              recherches UX, tendances et données sectorielles.
+            </div>
+          </div>
+          <div class="sk-card">
+            <span class="sk-ico">🤝</span>
+            <div class="sk-name">Relation client</div>
+            <div class="sk-desc">
+              Rédaction de propositions commerciales, devis et briefs créatifs
+              assistés par IA pour gagner en précision.
+            </div>
+          </div>
+        </div>
       </div>
       <!-- /panel-cv -->
 
@@ -2455,7 +2707,11 @@
         </p>
         <div class="cta-btns rv d2">
           <a
-            href="/cdn-cgi/l/email-protection#97f8e1f2e5e4f2f5a0a2d7f0faf6fefbb9f4f8fa"
+            href="#"
+            onclick="
+              revealEmailBtn(this);
+              return false;
+            "
             class="btn btn-p"
             >M'envoyer un email <span class="arr">✉</span></a
           >
@@ -2539,7 +2795,12 @@
             "
           >
             <a
-              href="/cdn-cgi/l/email-protection#3659405344455354010376515b575f5a1855595b"
+              href="#"
+              id="footer-email-lnk"
+              onclick="
+                revealEmail(this);
+                return false;
+              "
               style="
                 font-family: var(--mono);
                 font-size: 0.62rem;
@@ -2548,12 +2809,7 @@
                 letter-spacing: 0.08em;
                 transition: color 0.3s;
               "
-              >✉
-              <span
-                class="__cf_email__"
-                data-cfemail="3758415245445255000277505a565e5b1954585a"
-                >[email&#160;protected]</span
-              ></a
+              >✉ Email</a
             >
             <a
               href="tel:+33620847801"
