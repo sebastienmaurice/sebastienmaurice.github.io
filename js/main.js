@@ -1135,11 +1135,11 @@ window.addEventListener(
     {
       lines: [
         '<span class="gdb-cmd">$ git log --oneline</span>',
-        '"wip"',
-        '"wip2"',
-        '"maybe final wip"',
+        '"final"',
+        '"final 2"',
+        '"maybe final 3"',
         '"ok là je crois que c’est bon"',
-        '<span class="gdb-err">"dernier commit ?" 🤨</span>',
+        '<span class="gdb-err">"dernier commit ? pas sur..." 🤨</span>',
       ],
       commit: 'f00ba44 — "last commit maybe"',
     },
@@ -1155,14 +1155,24 @@ window.addEventListener(
     },
     {
       lines: [
-        '<span class="gdb-cmd">$ console.log("debug")</span>',
-        '<span class="gdb-cmd">$ console.log("debug 2")</span>',
-        '<span class="gdb-cmd">$ console.log("debug 3 ???")</span>',
+        '<span class="gdb-err">⚠️ 404 – Page introuvable !</span>',
+        '<span class="gdb-ok">Heureusement, Ludo va te faire ça bien 🧙‍♂️✨</span>',
+        '<span class="gdb-fun">“Pas de panique, visuellement ça va déchirer !”</span>',
+        '<span class="gdb-fun">Petit conseil de backeux : visuel économiquement viable 😉</span>',
+      ],
+      commit: 'dead404 — "404 back Ludo"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ console.log("hey La Team !")</span>',
+        '<span class="gdb-cmd">$ console.log("Session debug qui dure 100 ans")</span>',
+        '<span class="gdb-cmd">$ console.log("et tous les pirates de O\'clock")</span>',
         "",
         '<span class="gdb-err">→ Le bug était ailleurs… évidemment 😅</span>',
         '<span class="gdb-ok">✓ Merci à mes collègues pirates de O’clock : Anne-so, Ludo, Richard, Juju, Valou, Céd et tous les autres 🏴‍☠️</span>',
+        '<span class="gdb-fun">💡 Nos fous rires m’aident à progresser chaque jour !</span>',
       ],
-      commit: '0b5e3f7 — "debug adventures"',
+      commit: '0b5e3f7 — "Pirates dev tribute"',
     },
     {
       lines: [
@@ -1172,6 +1182,34 @@ window.addEventListener(
         '<span class="gdb-ok">✓ Ah, un point-virgule manquait 😅</span>',
       ],
       commit: '1337c0d — "fix missing semicolon"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git commit -m "projet presque fini"</span>',
+        '<span class="gdb-err">⚠ Anne-so dort presque devant son écran… yeux explosés 😵💻</span>',
+        '<span class="gdb-ok">✓ Mais le projet avance ! Courage 💪</span>',
+        '<span class="gdb-fun">💡 Anne-so, ça bug à mort ! 🏴‍☠️</span>',
+      ],
+      commit: 'deadzzz — "anne-so night coding"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git merge front-branch</span>',
+        '<span class="gdb-err">⚠ Cédric râle : "ce site pue le front !" 😤</span>',
+        '<span class="gdb-ok">✓ Mais on progresse quand même 💻🚀</span>',
+        '<span class="gdb-fun">💡 Petit clin d’œil à Cédric, mon backeux préféré ! 🏴‍☠️</span>',
+        '<span class="gdb-fun">euh...lui répondre : L\'user voit 100% du front et 0% du back 🚀</span>',
+      ],
+      commit: 'rageback — "cedric front rant"',
+    },
+    {
+      lines: [
+        '<span class="gdb-cmd">$ git pull origin main</span>',
+        '<span class="gdb-err">⚠ Richard est encore en 56k… patience 😅</span>',
+        '<span class="gdb-ok">✓ Les commits arrivent, doucement mais sûrement 🐢</span>',
+        '<span class="gdb-fun">💡 Petit clin d’œil à Richard : tu finis toujours par récupérer le code, bravo ! 🏴‍☠️</span>',
+      ],
+      commit: 'dead56k — "richard slow pull"',
     },
     {
       lines: [
