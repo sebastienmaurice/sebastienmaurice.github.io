@@ -1257,3 +1257,121 @@ window.addEventListener(
     if (e.key === "Escape" && gdVisible) hideGitDumber();
   });
 })();
+/* =============================================
+   GALERIE GRAPHIC DESIGN — Lightbox par catégorie
+   À ajouter à la fin de js/main.js
+============================================= */
+
+(function () {
+  let gdImages = []; // [{src, label}]
+  let gdIndex = 0;
+  const overlay = document.getElementById("gdZoomOverlay");
+  const img = document.getElementById("gdZoomImg");
+  const caption = document.getElementById("gdZoomCaption");
+  const counter = document.getElementById("gdZoomCounter");
+
+  // Collecte toutes les images du conteneur parent (.gd-grid ou .wd-grid)
+  function collectCategory(clickedItem) {
+    // Supporte .gd-item (dans .gd-grid) et .wd-item (dans .wd-grid)
+    const container =
+      clickedItem.closest(".gd-grid") || clickedItem.closest(".wd-grid");
+    if (!container) return [];
+    const selector = container.classList.contains("wd-grid")
+      ? ".wd-item"
+      : ".gd-item";
+    const labelSel = container.classList.contains("wd-grid")
+      ? ".wd-label"
+      : ".gd-label";
+    return Array.from(container.querySelectorAll(selector)).map((item) => ({
+      src: item.querySelector("img").src,
+      label: item.querySelector(labelSel)
+        ? item.querySelector(labelSel).textContent
+        : "",
+    }));
+  }
+
+  function updateZoom() {
+    if (!gdImages.length) return;
+    img.src = gdImages[gdIndex].src;
+    caption.textContent = gdImages[gdIndex].label;
+    counter.textContent =
+      gdImages.length > 1 ? gdIndex + 1 + " / " + gdImages.length : "";
+    document.getElementById("gdZoomPrev").style.visibility =
+      gdImages.length > 1 ? "visible" : "hidden";
+    document.getElementById("gdZoomNext").style.visibility =
+      gdImages.length > 1 ? "visible" : "hidden";
+  }
+
+  window.openGdZoom = function (item) {
+    const allInCategory = collectCategory(item);
+    const clickedSrc = item.querySelector("img").src;
+    gdImages = allInCategory;
+    gdIndex = allInCategory.findIndex((i) => i.src === clickedSrc);
+    if (gdIndex < 0) gdIndex = 0;
+    updateZoom();
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+
+  // --- Onglets catégories galerie ---
+  window.switchGdTab = function (tabId, btn) {
+    // Désactiver tous les panneaux et boutons
+    document
+      .querySelectorAll(".gd-tab-panel")
+      .forEach((p) => p.classList.remove("active"));
+    document
+      .querySelectorAll(".gd-tab-btn")
+      .forEach((b) => b.classList.remove("active"));
+    // Activer le bon panneau et bouton
+    const panel = document.getElementById("gdpanel-" + tabId);
+    if (panel) panel.classList.add("active");
+    if (btn) btn.classList.add("active");
+  };
+
+  window.closeGdZoom = function () {
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  };
+
+  window.gdZoomPrev = function (e) {
+    e && e.stopPropagation();
+    gdIndex = (gdIndex - 1 + gdImages.length) % gdImages.length;
+    updateZoom();
+  };
+
+  window.gdZoomNext = function (e) {
+    e && e.stopPropagation();
+    gdIndex = (gdIndex + 1) % gdImages.length;
+    updateZoom();
+  };
+
+  // Keyboard navigation
+  document.addEventListener("keydown", function (e) {
+    if (!overlay || !overlay.classList.contains("open")) return;
+    if (e.key === "ArrowLeft") window.gdZoomPrev();
+    if (e.key === "ArrowRight") window.gdZoomNext();
+    if (e.key === "Escape") window.closeGdZoom();
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  overlay &&
+    overlay.addEventListener(
+      "touchstart",
+      function (e) {
+        touchStartX = e.touches[0].clientX;
+      },
+      { passive: true },
+    );
+  overlay &&
+    overlay.addEventListener(
+      "touchend",
+      function (e) {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? window.gdZoomNext() : window.gdZoomPrev();
+        }
+      },
+      { passive: true },
+    );
+})();
