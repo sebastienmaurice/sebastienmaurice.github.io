@@ -1,66 +1,54 @@
 # Portfolio — Sébastien Maurice
 
-**Front-End Developer / UX-Focused**  
-[Voir le portfolio en ligne](https://sebastienmaurice.github.io)
+Développeur front-end junior, sorti d'O'Clock en 2026.  
+Avant ça : designer graphique et communicant pendant 15 ans.  
+Ce trajet fait que je code différemment — je pense en hiérarchie visuelle avant de penser en composants.
 
-![Portfolio hero](assets/cinedelices-homepage.jpg)
-
----
-
-## 🎯 Qui je suis
-
-Designer graphique devenu développeur front-end, je construis des interfaces **UX-friendly** où le code rencontre le design.  
-Ce portfolio montre mon approche : **code propre, animations maison, design réfléchi**, le tout sans framework ni librairie externe.
+[→ Voir le portfolio en ligne](https://sebastienmaurice.github.io)
 
 ---
 
-## 💡 Ce que ce portfolio démontre
+## Ce que ce portfolio est
 
-- **CSS artisan** : animations, glassmorphism, typographies et effets faits main.
-- **JavaScript vanilla** : terminal animé, moteur de particules, scroll interactions, tout documenté et lisible.
-- **Profil hybride** : UX & design + front-end solide. Chaque décision visuelle a sa logique technique.
-
-![Ciné Délices](assets/cinedelices-mood.jpg)
-
----
-
-## ⚙️ Choix techniques
-
-- **HTML5 / CSS3 / JS (ES6+)** — zéro dépendance
-- **Canvas 2D** pour le système de particules
-- **CSS variables** pour palette, typographie et easing
-- **Git / GitHub Pages** pour versioning et déploiement
-- **Figma** pour maquettes et direction artistique
+Un projet front-end à part entière, pas une vitrine statique.  
+Tout est fait à la main — curseur custom, moteur de particules canvas, animations scroll, terminal typewriter.  
+Le code est commenté pour expliquer le **pourquoi**, pas juste le quoi.  
+Zéro framework externe sur le portfolio lui-même.
 
 ---
 
-## 📌 Points d’attention
+## Stack
 
-- Optimisé pour desktop : certaines animations peuvent être lourdes sur mobile.
-- Images projets : toutes locales dans `/assets/img`.
-- CV PDF et contenu à compléter.
+HTML5 · CSS3 (variables, Grid, Flexbox, animations) · JavaScript ES6+ vanilla  
+Canvas 2D · IntersectionObserver · requestAnimationFrame  
+Figma (maquettes) · Git / GitHub Pages
+
+Les projets présentés dans le portfolio utilisent aussi : **Svelte**, **Node.js**, **PostgreSQL**, **API REST**.
 
 ---
 
-## 📂 Organisation du projet
-
+## Organisation
 ```text
 index.html
-/css/style.css
-/js/main.js
-/assets/img/…
-
-
-📫 Me contacter
-
- · Email : overseb75@gmail.com
-
- · LinkedIn : https://www.linkedin.com/in/sebastien-maurice/
- · Malt : https://www.malt.fr/profile/semauri
- · GitHub : https://github.com/sebastienmaurice
-
-Disponible en freelance et ouvert aux opportunités CDI — Remote OK.
-Caudry, Nord, France
-
-Formé à O'Clock · Licence Design Graphique Paris VIII · DESS infographie et multimédia Paris VIII · 5+ ans d'expérience web
+style.css
+main.js
+assets/
+  img/        — captures projets
+  cv/         — PDF téléchargeables
 ```
+
+---
+
+## Note honnête
+
+Le portfolio est optimisé desktop-first — certaines animations canvas peuvent être lourdes sur mobile bas de gamme.  
+Les images projets sont hébergées localement dans `/assets/img`.
+
+---
+
+## Contact
+
+overseb75@gmail.com  
+[LinkedIn](https://www.linkedin.com/in/sebastien-maurice/) · [Malt](https://www.malt.fr/profile/semauri) · [GitHub](https://github.com/sebastienmaurice)
+
+Disponible en freelance et ouvert aux opportunités CDI — remote depuis Caudry, Nord.
