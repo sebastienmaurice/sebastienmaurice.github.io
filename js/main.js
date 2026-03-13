@@ -1,13 +1,55 @@
 /* =============================================
    PORTFOLIO — Sébastien Maurice
-   js/main.js — v2.0 — 2026
+   js/main.js — v3.0 — 2026
+   
+   ╔═══════════════════════════════════════════╗
+   ║  ORGANISATION DU FICHIER                  ║
+   ║  0. Email obfusqué                        ║
+   ║  1. Curseur custom + spotlight            ║
+   ║  2. Canvas particules (classe Pt)         ║
+   ║  3. Slideshow automatique                 ║
+   ║  4. Navbar scroll                         ║
+   ║  5. Navigation onglets (tabs)             ║
+   ║  6. Lightbox photo                        ║
+   ║  7. Lightbox galerie graphisme            ║
+   ║  8. Modals projets                        ║
+   ║  9. Easter egg Git Dumber                 ║
+   ║  10. Animations reveal au scroll          ║
+   ║  11. Terminal typewriter (hero)           ║
+   ║  12. Blur quote                           ║
+   ║  13. Marquee                              ║
+   ║  14. Description popup                    ║
+   ║  15. Lighthouse badge (SVG progress ring) ║
+   ╚═══════════════════════════════════════════╝
+   
+   Convention : les fonctions courtes (gs, st, tm, cm)
+   sont des abréviations intentionnelles pour les handlers
+   appelés en inline HTML. Les fonctions internes gardent
+   des noms longs et explicites.
 ============================================= */
 
 /* =============================================
    0. EMAIL — Obfuscation anti-scraping
+   
+   Pourquoi ne pas écrire l'email directement dans le HTML ?
+   → Les bots de scraping parcourent le HTML et collectent
+     les adresses pour les listes de spam.
+   
+   Technique : on reconstruit l'adresse en JS au runtime.
+   L'email n'est jamais présent en clair dans le code source
+   (View Source d'un navigateur), seulement dans la mémoire JS.
+   
+   Limites : un bot qui exécute le JS (headless Chrome) peut
+   quand même le récupérer. Mais ça filtre 90% du scraping basique.
+   
+   window._eml : stocké sur l'objet global pour être accessible
+   par revealEmail() et revealEmailBtn() sans passer de paramètre.
 ============================================= */
 (function () {
-  // Construit l'adresse à l'exécution sans jamais l'écrire en clair dans le DOM
+  // IIFE (Immediately Invoked Function Expression) :
+  // s'exécute immédiatement sans polluer le scope global.
+  // u = user, d = domain, t = tld — nommés courts exprès pour ne pas
+  // être trop lisibles si quelqu'un inspecte le JS minifié.
   const u = "overseb75",
     d = "gmail",
     t = "com";
@@ -32,6 +74,23 @@ function revealEmailBtn(el) {
 
 /* =============================================
    1. CURSEUR PERSONNALISÉ + SPOTLIGHT
+   
+   Architecture :
+   - mx/my : position exacte de la souris (mise à jour à chaque mousemove)
+   - rx/ry : position interpolée de l'anneau (lag naturel)
+   
+   Interpolation linéaire (lerp) :
+   rx += (mx - rx) * 0.1
+   → À chaque frame, rx se rapproche de mx de 10%.
+   → Résultat : si la souris est loin, l'anneau rattrape vite.
+     Si la souris est proche, l'anneau freine doucement.
+   → Cet effet s'appelle "easing exponentiel" — il converge vers la cible
+     sans jamais la dépasser (contrairement à un spring qui rebondit).
+   
+   requestAnimationFrame :
+   → Lance la boucle d'animation à ~60fps synchronisée avec le refresh écran.
+   → Bien plus efficace que setInterval() qui ne tient pas compte du repaint.
+   → Le navigateur peut même la mettre en pause si l'onglet est inactif.
 ============================================= */
 const cur = document.getElementById("cur");
 const cring = document.getElementById("cring");
@@ -89,6 +148,21 @@ document
 
 /* =============================================
    2. CANVAS PARTICULES
+   
+   Le canvas HTML5 est une surface de dessin 2D (ou WebGL pour la 3D).
+   On y dessine via le "contexte" 2D : ctx.fillRect(), ctx.arc(), etc.
+   À chaque frame, on efface et redessin tout (ctx.clearRect).
+   
+   Pourquoi une classe Pt (Point) ?
+   → La programmation orientée objet permet de créer des centaines d'instances
+     indépendantes avec chacune son propre état (position, vitesse, couleur).
+   → Alternative fonctionnelle possible (tableau d'objets + fonctions),
+     mais la classe rend le code plus lisible ici.
+   
+   MOUSE_RADIUS / MOUSE_FORCE :
+   → Les particules proches de la souris sont repoussées.
+   → La force est proportionnelle à la proximité (1 - dist/MOUSE_RADIUS).
+   → Cette physique simple donne une impression d'interactivité naturelle.
 ============================================= */
 const canvas = document.getElementById("pc");
 const ctx = canvas ? canvas.getContext("2d") : null;
@@ -208,6 +282,21 @@ if (ctx) animP();
 
 /* =============================================
    3. ONGLETS (TABS)
+   
+   Pattern "tab navigation" sans framework :
+   1. Enlever la classe .active de tous les boutons et panneaux
+   2. Ajouter .active sur le bouton et panneau cible
+   3. Relancer les animations reveal (rvl()) après 60ms
+      → le délai laisse le temps au panneau d'être visible
+        avant que l'IntersectionObserver ne le détecte
+   
+   data-tab="frontend" → attribut HTML5 custom.
+   querySelector('[data-tab="frontend"]') est plus robuste
+   qu'un index numérique qui changerait si on réordonne les onglets.
+   
+   Alternative moderne : le composant <details>/<summary> ou
+   les CSS-only tabs avec :target. Mais ici JS est déjà chargé,
+   autant l'utiliser pour garder un contrôle total.
 ============================================= */
 function st(id) {
   document
@@ -220,11 +309,27 @@ function st(id) {
   const panel = document.getElementById("panel-" + id);
   if (btn) btn.classList.add("active");
   if (panel) panel.classList.add("active");
+  // Petit délai avant de lancer les animations du nouveau panneau
+  // → le panneau doit être visible (display:block) AVANT que
+  //   l'IntersectionObserver ne calcule sa position dans le viewport
   setTimeout(rvl, 60);
 }
 
 /* =============================================
    4. SCROLL HELPERS + NAVBAR
+   
+   gs() = "goto section" — scrollIntoView() natif HTML5.
+   Pas besoin d'une librairie de smooth scroll en 2026 !
+   
+   La navbar compressée au scroll (.scrolled) :
+   → window.scrollY > 60 : plus précis que un seuil arbitraire,
+     on utilise classList.toggle(class, condition) qui ajoute
+     OU enlève la classe selon la condition (true/false).
+   
+   --nav-h : variable CSS mise à jour dynamiquement pour que
+   les sections en dessous puissent se décaler exactement
+   de la hauteur réelle de la navbar (qui change au scroll).
+   C'est une alternative à padding-top: 80px hardcodé.
 ============================================= */
 function gs(id) {
   const el = document.getElementById(id);
@@ -263,6 +368,15 @@ window.addEventListener("scroll", () => {
 
 /* =============================================
    5. MENU MOBILE (BURGER)
+   
+   Technique : 3 <span> dans le bouton .burger.
+   L'animation "X" est faite en JS inline ici (transform + opacity)
+   → Alternative CSS-only possible avec :checked + checkbox hidden,
+     mais l'approche JS est plus lisible et maintenable ici.
+   
+   tm() = "toggle menu"
+   cm() = "close menu" (appelé depuis les liens du menu mobile
+          pour fermer le menu avant de naviguer)
 ============================================= */
 let menuOpen = false;
 function tm() {
@@ -288,6 +402,24 @@ function cm() {
 
 /* =============================================
    6. REVEAL ON SCROLL
+   
+   Les éléments avec .rv (reveal) démarrent invisibles (opacity:0, translateY:30px)
+   et deviennent visibles (.vis) quand ils entrent dans le viewport.
+   
+   getBoundingClientRect().top < window.innerHeight - 50 :
+   → Déclenche l'animation quand l'élément est à 50px du bas de l'écran.
+   → Marge de 50px : l'animation commence un peu avant que l'élément
+     ne soit totalement visible, ce qui donne un effet plus naturel.
+   
+   { passive: true } sur l'event scroll :
+   → Performance : le navigateur sait qu'on ne va pas bloquer le scroll.
+   
+   Pourquoi rvl() en fonction plutôt qu'IntersectionObserver ?
+   → IntersectionObserver est plus moderne et performant pour beaucoup d'éléments.
+   → getBoundingClientRect() dans un event scroll est acceptable ici
+     car le nombre d'éléments .rv reste raisonnable.
+   → En production sur un site avec 100+ éléments animés, je passerais
+     à IntersectionObserver systématiquement.
 ============================================= */
 function rvl() {
   document
@@ -302,6 +434,23 @@ setTimeout(rvl, 150);
 
 /* =============================================
    7. CARD TILT 3D
+   
+   Effet "parallax 3D" sur les cards au survol de la souris.
+   
+   Calcul :
+   → dx = distance horizontale souris/centre de la card, normalisée [-1, +1]
+   → dy = même chose en vertical
+   → perspective(1000px) = profondeur de la scène 3D. Plus petit = effet +fort.
+   → rotateY(dx * 5deg) = inclinaison max de ±5 degrés
+   
+   La condition Math.abs(dx) < 1.8 :
+   → On n'applique le tilt QUE si la souris est "assez proche" de la card.
+   → Sans ça, la card continuerait à se tortiller même quand la souris
+     est à l'autre bout de l'écran (le calcul de distance dépasse 1).
+   
+   Pourquoi pas CSS :hover ?
+   → Le CSS ne peut pas calculer la position relative de la souris
+     dans l'élément. JS est obligatoire pour cet effet.
 ============================================= */
 document.addEventListener("mousemove", (e) => {
   document.querySelectorAll(".card").forEach((card) => {
@@ -322,6 +471,22 @@ document.addEventListener("mousemove", (e) => {
 
 /* =============================================
    8. HERO NAME SPLIT ANIMATION
+   
+   Technique "character splitting" :
+   On décompose le texte en <span> individuels, un par caractère.
+   Chaque <span class="char"> a un animation-delay progressif
+   → les lettres apparaissent l'une après l'autre (effet machine à écrire visuel).
+   
+   Pourquoi en JS plutôt qu'en HTML ?
+   → Écrire manuellement <span> pour chaque lettre serait illisible.
+   → Le JS génère ça dynamiquement depuis le textContent.
+   → Si le JS ne charge pas, le texte s'affiche quand même normalement
+     (dégradation gracieuse).
+   
+   innerHTML = ... : on écrase le contenu texte par des spans.
+   Attention : cette technique casse l'accessibilité screen reader
+   si on ne gère pas l'aria-label du parent. En prod, j'ajouterais
+   aria-label="Sébastien" sur le parent pour compenser.
 ============================================= */
 function splitChars() {
   const el1 = document.querySelector(".hero-name .line1");
@@ -349,6 +514,21 @@ splitChars();
 
 /* =============================================
    9. MODALES PROJET
+   
+   Pattern "modal" classique :
+   → Fond semi-transparent (#modal-id) avec overflow:hidden sur body
+     pour empêcher le scroll de la page derrière.
+   → La modale elle-même est centrée en CSS (flexbox + align-items:center).
+   
+   Fermeture intelligente avec closeModal(e, id) :
+   → Si e est fourni (clic sur fond), on vérifie que c'est bien le fond
+     qui a été cliqué (e.target === e.currentTarget), pas la modale elle-même.
+     Sans ça, cliquer à l'intérieur de la modale la fermerait aussi.
+   → Si id est fourni, on ferme seulement cette modale spécifique.
+   → Sinon, on ferme toutes les modales ouvertes (cas de la touche Escape).
+   
+   body.style.overflow = "hidden" → empêche le scroll de la page
+   pendant que la modale est ouverte. Rétabli à "" à la fermeture.
 ============================================= */
 function openModal(id) {
   const modal = document.getElementById("modal-" + id);
@@ -368,6 +548,7 @@ function closeModal(e, id) {
   });
   document.body.style.overflow = "";
 }
+// Fermeture universelle à la touche Escape — bonne pratique UX et accessibilité
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeModal(null);
@@ -379,6 +560,20 @@ document.addEventListener("keydown", (e) => {
 
 /* =============================================
    10. BLUR QUOTE EFFECT
+   
+   Animation de révélation mot par mot avec effet de flou.
+   Chaque <span class="bw"> a des attributs data-* (durée, délai, blur)
+   lus en JS pour varier l'animation de chaque mot.
+   
+   Pourquoi data-* et pas des classes CSS prédéfinies ?
+   → data-duration="1.4" permet une valeur continue (floating point)
+     impossible à représenter proprement avec des classes (.dur-140, etc.)
+   → Le JS lit ces valeurs avec dataset.duration et les applique
+     en style inline, ce qui override les classes CSS.
+   
+   IntersectionObserver (plus bas) déclenche animate() quand la citation
+   entre dans le viewport — pas au load de la page.
+   Après l'animation, on attend 4.5s puis on relance en boucle.
 ============================================= */
 (() => {
   const quoteEl = document.getElementById("blurQuote");
@@ -462,6 +657,25 @@ document.addEventListener("keydown", (e) => {
 
 /* =============================================
    11. TERMINAL TYPEWRITER
+   
+   Simule un terminal VS Code dans le hero.
+   Effet "machine à écrire" avec rythme irrégulier pour paraître humain.
+   
+   Architecture :
+   → lines[] : tableau de lignes avec classe CSS (pour la coloration)
+     et texte à taper.
+   → type() : récursive avec setTimeout (pas setInterval) pour
+     un contrôle précis du délai entre chaque caractère.
+   → 55 + Math.random() * 35 : délai variable entre 55ms et 90ms
+     → simule la variabilité naturelle de la frappe humaine.
+   
+   Coloration syntaxique "fausse" :
+   → Chaque ligne a une classe CSS (.keyword, .string, .func, .comment)
+     avec des couleurs différentes → illusion de syntax highlighting.
+   → C'est du CSS, pas un vrai parser de code. Suffisant pour l'effet.
+   
+   start() relance tout après 4.5s de pause → boucle infinie.
+   L'IIFE (() => { ... })() isole les variables de la portée globale.
 ============================================= */
 (function () {
   const el = document.getElementById("termBody");
@@ -522,6 +736,20 @@ document.addEventListener("keydown", (e) => {
 
 /* =============================================
    12. COMPTEUR ANIMÉ
+   
+   Les chiffres "20+", "95+", "15+" s'animent quand ils entrent
+   dans le viewport — pas au load de page (personne ne les voit encore).
+   
+   Technique "count up" :
+   → setInterval incrémente la valeur de 0 à target en 60 étapes sur 1200ms.
+   → Math.floor() pour éviter les décimales disgracieuses.
+   → dataset.counted = "1" : flag pour ne pas relancer l'animation
+     si l'élément sort et rentre dans le viewport (scroll back).
+   
+   { passive: true } sur l'event listener scroll :
+   → Indique au navigateur qu'on ne va pas appeler preventDefault().
+   → Il peut alors optimiser le scroll sans attendre notre callback.
+   → Performance : crucial sur mobile où le scroll doit être fluide à 60fps.
 ============================================= */
 function countUp() {
   document.querySelectorAll(".stat-v").forEach((el) => {
@@ -554,6 +782,18 @@ window.addEventListener(
 
 /* =============================================
    13. SLIDESHOW IMAGES PROJETS
+   
+   Chaque carte projet avec plusieurs images (.dc-slideshow, .modal-slideshow)
+   défile automatiquement toutes les 2.5s.
+   
+   Map() pour stocker les timers :
+   → slideshowTimers.get(el) / .set(el, timer) / .delete(el)
+   → Évite les conflits si plusieurs slideshows tournent en même temps.
+   → Sans ça, une variable globale unique ne pourrait gérer qu'un seul slideshow.
+   
+   Les slideshows s'arrêtent quand la carte perd le focus/hover (stopSlideshow)
+   et reprennent au survol (startSlideshow) — bonne pratique UX pour ne pas
+   distraire l'utilisateur qui lit le contenu de la carte.
 ============================================= */
 const slideshowTimers = new Map();
 
@@ -611,6 +851,26 @@ document.querySelectorAll(".dc-slideshow").forEach((container) => {
 
 /* =============================================
    14. ZOOM IMAGE (LIGHTBOX)
+   
+   La lightbox est créée dynamiquement en JS (pas en HTML).
+   Avantage : pas de HTML "mort" dans le DOM si JS ne charge pas.
+   
+   Architecture :
+   → zoomImages[] : tableau des URLs des images de la galerie en cours
+   → zoomIndex : position actuelle dans ce tableau
+   → updateZoomImg() : met à jour l'<img> et le compteur "2/5"
+   
+   Navigation clavier (ArrowLeft/Right) : accessibilité et UX.
+   Navigation tactile (touchstart/touchend) : swipe sur mobile.
+   → diff > 50px = seuil minimum pour considérer le geste comme volontaire.
+   
+   % zoomImages.length pour boucler en fin/début de galerie :
+   → (index - 1 + length) % length → jamais négatif (JS : -1 % 5 = -1, pas 4)
+   → (index + 1) % length → revient à 0 après le dernier élément
+   
+   e.stopPropagation() sur les boutons prev/next :
+   → Sans ça, le clic remonterait au fond de la lightbox
+     et la fermerait immédiatement.
 ============================================= */
 let zoomImages = [],
   zoomIndex = 0;
@@ -748,15 +1008,15 @@ function closePhotoZoom() {
 const projectDescriptions = {
   "cine-delices": {
     title: "Ciné <em>Délices</em>",
-    tag: "Plateforme immersive · Films & Gastronomie",
-    desc: "Ciné Délices est une plateforme web immersive qui associe cinéma et gastronomie. Chaque film emblématique est accompagné de suggestions culinaires inspirées de son univers. Le projet propose une expérience originale où l'on peut regarder un film tout en dégustant un plat en lien avec celui-ci.",
+    tag: "Projet O'Clock · Films & Gastronomie",
+    desc: "L'idée est née pendant la formation O'Clock : associer un film culte à une recette inspirée de son univers. Avant d'écrire la moindre ligne de code, j'ai conçu le design system complet sous Figma — palette or/noir/rouge, typographies Cinzel + Playfair Display, composants UI. J'ai géré seul la partie front : SPA Svelte, appels API TMDB avec gestion des erreurs et fallbacks d'images, carrousels interactifs et badges animés en CSS pur.",
     features: [
-      "Fiches films détaillées via l'API TMDB",
-      "Badges et catégories thématiques animés",
-      "Carrousels interactifs et navigation intuitive",
-      "Association film / expérience culinaire",
-      "Interface immersive avec micro-animations UI",
-      "Design moodboard sombre or/rouge, typographies soignées",
+      "Design system Figma complet avant le code",
+      "SPA Svelte avec routing côté client",
+      "Fiches films via API TMDB + gestion des erreurs",
+      "Badges animés et carrousels CSS/JS natifs",
+      "Palette or/noir/rouge — typographies cinématographiques",
+      "Responsive mobile-first, testé sur iOS et Android",
     ],
     chips: [
       { label: "Svelte", cls: "fe" },
@@ -765,22 +1025,22 @@ const projectDescriptions = {
       { label: "JavaScript ES6+", cls: "fe" },
       { label: "Node.js", cls: "be" },
       { label: "Express", cls: "be" },
-      { label: "MongoDB", cls: "tool" },
+      { label: "PostgreSQL", cls: "tool" },
       { label: "API TMDB", cls: "tool" },
       { label: "Figma", cls: "tool" },
     ],
   },
   "dev-ndumber": {
     title: "Dev <em>N'Dumber</em>",
-    tag: "Agence Web · Full-Stack collaboratif",
-    desc: "Dev N'Dumber est une agence web communautaire créée par une équipe de 4 développeurs full stack. Inspirée de l'univers du film \"Dumb and Dumber\", l'agence adopte une identité fun et décalée incarnée par ses mascottes Git Dumber et Dev Lloyd.",
+    tag: "Projet O'Clock · Full-Stack collaboratif",
+    desc: "Projet de fin de formation à 4 développeurs. J'ai pris en charge le lead front-end : charte graphique complète, design des mascottes Git Dumber & Dev Lloyd, et structuration des vues HTML/CSS. Première vraie expérience Git en équipe — branches feature, code review en PR, merge conflicts résolus en live. On a livré en 2 semaines, et j'en suis fier.",
     features: [
-      "Site vitrine d'agence digitale moderne et responsive",
-      "Présentation des services : dev full-stack, audit SEO, CMS",
-      "Identité visuelle originale avec mascottes",
-      "Architecture MVC collaborative (équipe de 4)",
-      "Accessibilité web et animations CSS",
-      "Méthodologie Agile et gestion GitHub",
+      "Lead front-end : charte + intégration HTML/CSS",
+      "Design des mascottes Git Dumber & Dev Lloyd",
+      "Workflow Git collaboratif : branches, PR, code review",
+      "Architecture MVC full-stack à 4 développeurs",
+      "Animations CSS et composants UI responsives",
+      "Livraison en 2 semaines avec méthodologie Agile",
     ],
     chips: [
       { label: "HTML5", cls: "fe" },
@@ -789,40 +1049,40 @@ const projectDescriptions = {
       { label: "Node.js", cls: "be" },
       { label: "Express", cls: "be" },
       { label: "PostgreSQL", cls: "tool" },
-      { label: "WordPress", cls: "tool" },
       { label: "Git / GitHub", cls: "tool" },
     ],
   },
   "presents-angel": {
     title: "Les Présents <em>d'Ange'L</em>",
-    tag: "E-commerce · Bijoux pierres naturelles",
-    desc: "Les Présents d'Ange'L est une boutique en ligne dédiée aux bijoux et accessoires réalisés à partir de pierres naturelles. Le projet porte sur l'intégration front-end et l'amélioration de l'interface utilisateur pour proposer une expérience fluide, responsive et adaptée à un site e-commerce.",
+    tag: "Mission freelance · E-commerce bijoux",
+    desc: "Première mission freelance réelle. La cliente avait un site WooCommerce fonctionnel mais peu vendeur : fiches produit surchargées, CTA noyés, responsive cassé sur mobile. J'ai ciblé les frictions UX une à une — hiérarchie visuelle, bouton panier repositionné, galerie produit retravaillée. Les retours clients ont été positifs dès la première semaine après mise en ligne.",
     features: [
-      "Présentation de collections de bijoux en pierres naturelles",
-      "Mise en valeur visuelle des produits",
-      "Navigation claire et intuitive",
-      "Interface responsive adaptée mobile et desktop",
-      "Ajustements UI/UX ciblés",
-      "Cohérence visuelle de marque",
+      "Audit UX complet : identification des frictions de conversion",
+      "Refonte fiches produit : hiérarchie visuelle et lisibilité",
+      "Repositionnement CTA et bouton panier",
+      "Correction responsive mobile (tests iOS et Android)",
+      "Cohérence de marque : couleurs et typographies harmonisées",
+      "Retours clients positifs à la mise en ligne",
     ],
     chips: [
       { label: "HTML5", cls: "fe" },
       { label: "CSS3", cls: "fe" },
       { label: "JavaScript", cls: "fe" },
+      { label: "WooCommerce", cls: "tool" },
       { label: "Responsive Design", cls: "tool" },
     ],
   },
   palimpseste: {
     title: "Palimpseste <em>Urbain</em>",
     tag: "Architecture · Culture · WordPress",
-    desc: "Refonte complète d'un site WordPress pour une structure spécialisée en architecture et urbanisme. Le projet a consisté à moderniser le site, améliorer l'expérience utilisateur et optimiser les performances. Plusieurs directions de webdesign ont été proposées avant validation client.",
+    desc: "Refonte d'un site WordPress pour une structure spécialisée en architecture et patrimoine urbain. J'ai proposé plusieurs directions de webdesign avant la validation client, puis j'ai géré la migration vers OVH et l'intégration complète sous Elementor. Le client voulait un site qu'il puisse maintenir lui-même — j'ai structuré l'arborescence pour ça.",
     features: [
-      "Proposition de plusieurs directions de webdesign",
-      "Migration vers un nouvel hébergement OVH",
+      "Plusieurs directions de webdesign proposées",
+      "Migration vers hébergement OVH",
       "Intégration complète avec Elementor",
+      "Structure pensée pour l'autonomie client",
       "Optimisation SEO on-page",
-      "Amélioration vitesse de chargement",
-      "Site responsive, moderne et administrable",
+      "Site responsive livré dans les délais",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
@@ -834,15 +1094,15 @@ const projectDescriptions = {
   },
   "petit-chateau": {
     title: "Petit Château <em>Vercourt</em>",
-    tag: "Tourisme · Hébergement · Booking",
-    desc: "Création d'un site vitrine pour une activité liée au tourisme et à l'hébergement. Le projet a été développé sous WordPress avec Elementor afin de proposer une interface élégante, facile à administrer et optimisée pour le référencement local.",
+    tag: "Tourisme · Hébergement · WordPress",
+    desc: "Site vitrine pour un gîte de charme en zone rurale. Le défi : un client non-technique qui voulait pouvoir mettre à jour ses tarifs et disponibilités lui-même. J'ai choisi Divi pour la flexibilité du back-office, travaillé le SEO local (mots-clés géolocalisés, Google My Business) et optimisé les images pour les connexions rurales.",
     features: [
-      "Développement selon le webdesign client",
-      "Intégration des contenus éditoriaux",
-      "Optimisation SEO local",
-      "Amélioration de la vitesse du site",
-      "Interface sobre et facilement administrable",
-      "Système de réservation en ligne intégré",
+      "Design élégant adapté à l'univers du tourisme rural",
+      "Back-office simplifié pour gestion en autonomie",
+      "SEO local ciblé : mots-clés + Google My Business",
+      "Optimisation images pour connexions limitées",
+      "Système de réservation intégré",
+      "Avis client 5 étoiles — Alexia",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
@@ -855,14 +1115,14 @@ const projectDescriptions = {
   gsti62: {
     title: "<em>GSTI62</em>",
     tag: "Industrie · B2B · Migration Wix → WordPress",
-    desc: "Refonte complète du site d'une entreprise spécialisée dans l'usinage de haute précision. Le projet a consisté à migrer un site Wix vers WordPress et à fusionner deux entités dans un seul site avec mise en place d'un système de devis en ligne.",
+    desc: "Deux entités industrielles, un seul site à construire depuis zéro. Migration complète depuis Wix, fusion des deux structures, création du webdesign sur mesure et mise en place d'un système de devis WooCommerce. J'ai aussi formé le client à son back-office WordPress — un investissement qui réduit les demandes de support.",
     features: [
-      "Migration complète Wix vers WordPress",
-      "Fusion de deux entités en un seul site",
-      "Création du webdesign sur mesure",
-      "Mise en place d'un système de devis WooCommerce",
-      "Formation du client au back-office",
-      "Optimisation SEO et Core Web Vitals",
+      "Migration complète Wix → WordPress",
+      "Fusion de deux entités en un seul site cohérent",
+      "Webdesign sur mesure orienté B2B",
+      "Système de devis en ligne WooCommerce",
+      "Formation client au back-office WordPress",
+      "Avis client 5 étoiles — Virginie",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
@@ -893,15 +1153,15 @@ const projectDescriptions = {
   },
   eloustick: {
     title: "<em>Eloustick</em>",
-    tag: "Agence · Digital · PrestaShop",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sites web, identités visuelles et stratégie digitale pour PME locales. E-réputation 5/5 pendant 10 ans, spécialiste WordPress et PrestaShop.",
+    tag: "Agence · Digital · PrestaShop & WordPress",
+    desc: "Ma propre agence de communication digitale, fondée en 2009. Pendant 6 ans, j'ai accompagné des PME locales sur leurs sites WordPress et boutiques PrestaShop — de la stratégie à la mise en ligne. Une e-réputation 5/5 sur Google maintenue pendant 10 ans, construite sur du travail sérieux et des clients qui restent.",
     features: [
-      "Sites vitrine WordPress sur mesure",
-      "Boutique PrestaShop personnalisée",
-      "Identité visuelle et branding",
+      "Sites vitrine WordPress sur mesure pour PME locales",
+      "Boutiques PrestaShop personnalisées",
+      "Identité visuelle et branding complet",
       "Stratégie de communication digitale",
       "SEO on-page et optimisation performances",
-      "E-réputation et avis clients",
+      "E-réputation 5/5 Google maintenue 10 ans",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
@@ -912,16 +1172,15 @@ const projectDescriptions = {
   },
   geonomia: {
     title: "<em>Geonomia</em>",
-    tag: "Environnement · Bureau d'études",
-    desc: "Conception du site web pour un bureau d'études spécialisé en ingénierie environnementale. Étude de lumière du jour, acoustique, Bilan Carbone®, assistance à maîtrise d'ouvrage et plan de gestion des déchets. Design épuré, professionnel et orienté conversion B2B.",
+    tag: "Environnement · Bureau d'études B2B",
+    desc: "Site pour un bureau d'études spécialisé en ingénierie environnementale (acoustique, lumière du jour, Bilan Carbone®). Le défi était de rendre des sujets techniques accessibles à un prospect non-expert. J'ai travaillé la hiérarchie des contenus, les appels à l'action et le design épuré pour un positionnement B2B crédible.",
     features: [
-      "Design sur mesure pour bureau d'études",
-      "Etude de lumière du jour",
-      "Etude acoustique",
-      "Bilan Carbone®",
-      "Assistance à maîtrise d'ouvrage",
-      "Plan de gestion des déchets",
+      "Design épuré et crédible pour positionnement B2B",
+      "Hiérarchisation des expertises techniques",
+      "Bilan Carbone®, acoustique, lumière du jour",
+      "Appels à l'action orientés prise de contact",
       "SEO local et performances optimisées",
+      "Avis client 5 étoiles — Eric Havard",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
@@ -932,15 +1191,15 @@ const projectDescriptions = {
   },
   semauri: {
     title: "<em>Semauri</em>",
-    tag: "Agence · Communication visuelle &amp; Web",
-    desc: "Agence de communication visuelle et graphique, prestation de conception web. Création de site WordPress sur mesure, identité visuelle complète, design print & digital. Accompagnement complet de A à Z — de la stratégie à la mise en ligne.",
+    tag: "Agence perso · Communication visuelle & Web",
+    desc: "Mon agence personnelle — l'enseigne sous laquelle j'exerce en freelance depuis plusieurs années. Semauri, c'est la traduction concrète de tout ce que je sais faire : design, intégration, stratégie éditoriale. Ce portfolio est d'ailleurs une production Semauri.",
     features: [
-      "Site WordPress sur mesure",
-      "Identité visuelle et charte graphique",
-      "Design print & digital",
-      "Stratégie de communication",
-      "Accompagnement complet client",
-      "SEO et performances",
+      "Site WordPress sur mesure + charte graphique",
+      "Identité visuelle complète (logo, couleurs, typographies)",
+      "Design print & digital cohérents",
+      "Stratégie de communication et référencement",
+      "Vitrine des projets clients et réalisations",
+      "Accompagnement client de A à Z",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
@@ -952,14 +1211,14 @@ const projectDescriptions = {
   "semauri-com": {
     title: "<em>Semauri.com</em>",
     tag: "Agence Web · Prestations graphiques et web",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Site vitrine complet d'une agence de prestations graphiques et web. WordPress sur mesure, design éditorial et identitaire, référencement naturel, optimisation des performances et maintenance.",
+    desc: "Le site de ma propre agence. J'ai conçu l'identité, rédigé les contenus et intégré l'ensemble sous WordPress. Un exercice particulier : être à la fois le client et le prestataire. Ça m'a appris à externaliser mon regard — à regarder mon propre travail comme si c'était celui de quelqu'un d'autre.",
     features: [
-      "Site vitrine agence web",
+      "Site vitrine agence web + charte graphique propre",
       "Design éditorial sur mesure",
-      "Référencement naturel complet",
+      "Référencement naturel et SEO on-page",
       "Optimisation Core Web Vitals",
-      "Maintenance et mises à jour",
-      "Formation client back-office",
+      "Maintenance et mises à jour régulières",
+      "Formation client back-office WordPress",
     ],
     chips: [
       { label: "WordPress", cls: "fe" },
