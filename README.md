@@ -1,4 +1,4 @@
-# Portfolio — Sébastien Maurice
+# Portfolio - Sébastien Maurice
 
 Développeur front-end junior, sorti d'O'Clock en 2026.  
 Avant ça : designer graphique et communicant pendant 15 ans.  
@@ -11,7 +11,7 @@ Ce trajet fait que je code différemment... je pense en hiérarchie visuelle ava
 ## Ce que ce portfolio est
 
 Un projet front-end à part entière, pas une vitrine statique.  
-Tout est fait à la main > curseur custom, moteur de particules canvas, animations scroll, terminal typewriter.  
+Tout est fait à la main ! curseur custom, moteur de particules canvas, animations scroll, terminal typewriter.  
 Le code est commenté pour expliquer le **pourquoi**, pas juste le quoi.  
 Zéro framework externe sur le portfolio lui-même.
 
