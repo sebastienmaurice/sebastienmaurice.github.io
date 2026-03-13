@@ -1055,20 +1055,19 @@ const projectDescriptions = {
   "presents-angel": {
     title: "Les Présents <em>d'Ange'L</em>",
     tag: "Mission freelance · E-commerce bijoux",
-    desc: "Première mission freelance réelle. La cliente avait un site WooCommerce fonctionnel mais peu vendeur : fiches produit surchargées, CTA noyés, responsive cassé sur mobile. J'ai ciblé les frictions UX une à une — hiérarchie visuelle, bouton panier repositionné, galerie produit retravaillée. Les retours clients ont été positifs dès la première semaine après mise en ligne.",
+    desc: "La cliente avait un site sur mesure fonctionnel et visuellement qui respecte son CDC. J'ai donc ciblé les frictions UX une à une hiérarchie visuelle, bouton panier repositionné, galerie produit retravaillée.",
     features: [
       "Audit UX complet : identification des frictions de conversion",
       "Refonte fiches produit : hiérarchie visuelle et lisibilité",
       "Repositionnement CTA et bouton panier",
-      "Correction responsive mobile (tests iOS et Android)",
+      "Correction responsive mobile (tests effectués)",
       "Cohérence de marque : couleurs et typographies harmonisées",
-      "Retours clients positifs à la mise en ligne",
+      "Retour cliente positif à la mise en ligne",
     ],
     chips: [
       { label: "HTML5", cls: "fe" },
       { label: "CSS3", cls: "fe" },
       { label: "JavaScript", cls: "fe" },
-      { label: "WooCommerce", cls: "tool" },
       { label: "Responsive Design", cls: "tool" },
     ],
   },
