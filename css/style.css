@@ -4377,7 +4377,7 @@ footer {
 
    Ce fichier contient tous les styles pour :
    1. Le bento grid webdesign (section "Interfaces & Maquettes")
-   2. La galerie masonry avec onglets (section "Mockups & Créations")
+   2. La galerie BENTO (section "Mockups & Créations")
    3. La lightbox plein écran pour zoomer sur les images
 
    Astuce O'Clock : on organise ses CSS en sections clairement séparées
@@ -4690,27 +4690,23 @@ footer {
 }
 
 /* =============================================================================
-   GALERIE MASONRY (disposition en briques)
+   GALERIE BENTO (disposition en grille asymétrique)
 
-   La technique CSS columns crée une galerie de type "maçonnerie" :
-   les images s'empilent naturellement dans des colonnes, sans espaces
-   vides comme avec une grille classique.
+   La technique CSS Grid remplace l'ancien système masonry.
+   Contrairement aux columns CSS qui empilaient les images naturellement
+   selon leur ratio, le bento impose une hauteur fixe à chaque cellule
+   et joue sur grid-row / grid-column pour créer une hiérarchie visuelle.
 
-   Parfait pour des images de formats variés (carré, paysage, portrait) !
-   La clé = "break-inside: avoid" sur chaque item pour ne pas couper une
-   image entre 2 colonnes.
+   La première image devient automatiquement la carte "hero" (span 2 lignes)
+   grâce au sélecteur :first-child — sans toucher au HTML.
+   La 4e image prend 2 colonnes via :nth-child(4) pour casser la symétrie.
+
+   Clé de la différence masonry → bento :
+   → Masonry : height: auto — chaque image garde son ratio naturel
+   → Bento   : height: 100% + object-fit: cover — toutes les cellules
+     ont une hauteur fixe définie par grid-auto-rows: 200px
 ============================================================================= */
 
-/* =============================================
-   BENTO GRID — Galerie Mockups & Créations
-   Remplace l'ancien système masonry
-============================================= */
-
-/*
-  Conteneur bento pour chaque panneau d'onglet.
-  grid-template-columns : 2 colonnes à gauche (hero) + 2 colonnes à droite
-  Toutes les largeurs fractionnelles pour rester fluides.
-*/
 .gd-bento-panel {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
