@@ -4701,21 +4701,51 @@ footer {
    image entre 2 colonnes.
 ============================================================================= */
 
-.gd-masonry {
-  column-count: 4; /* 4 colonnes sur desktop */
-  column-gap: 10px; /* Espacement entre colonnes */
+/* =============================================
+   BENTO GRID — Galerie Mockups & Créations
+   Remplace l'ancien système masonry
+============================================= */
+
+/*
+  Conteneur bento pour chaque panneau d'onglet.
+  grid-template-columns : 2 colonnes à gauche (hero) + 2 colonnes à droite
+  Toutes les largeurs fractionnelles pour rester fluides.
+*/
+.gd-bento-panel {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-auto-rows: 200px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/*
+  Le premier item devient la carte "hero" :
+  elle s'étend sur 2 lignes (donc 400px + gap en hauteur).
+  Le sélecteur :first-child cible automatiquement la première image
+  sans toucher au HTML.
+*/
+.gd-bento-panel .gd-item:first-child {
+  grid-row: span 2;
+}
+
+/*
+  La 4e image (juste après hero + 2 cartes) prend 2 colonnes
+  pour créer la carte "wide" en bas à droite — effet bento classique.
+*/
+.gd-bento-panel .gd-item:nth-child(4) {
+  grid-column: span 2;
 }
 
 /* Chaque item de la galerie */
 .gd-item {
-  break-inside: avoid; /* IMPORTANT : évite qu'une image soit coupée en 2 colonnes */
+  break-inside: avoid;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--gborder);
   background: rgba(27, 25, 20, 0.4);
   cursor: zoom-in;
-  margin-bottom: 10px;
   transition:
     border-color 0.3s,
     transform 0.4s var(--ease),
@@ -4729,10 +4759,16 @@ footer {
   z-index: 2;
 }
 
-/* height: auto = on préserve le ratio naturel de l'image (crucial pour la masonry) */
+/*
+  L'image couvre tout l'item — object-fit: cover + width/height 100%
+  c'est indispensable pour le bento où toutes les cases ont une hauteur fixe.
+  (Contrairement au masonry où height: auto préservait le ratio)
+*/
 .gd-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
   transition:
     transform 0.5s var(--ease),
@@ -4767,7 +4803,6 @@ footer {
   opacity: 1;
 }
 
-/* Icône ⊕ au centre de l'image au hover */
 .gd-zoom-ico {
   position: absolute;
   top: 50%;
@@ -4778,7 +4813,6 @@ footer {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Texte du label en bas */
 .gd-label {
   font-family: var(--mono);
   font-size: 0.52rem;
@@ -4789,23 +4823,40 @@ footer {
   line-height: 1.4;
 }
 
-/* =============================================================================
-   RESPONSIVE — GALERIE MASONRY
-============================================================================= */
-
+/* =============================================
+   RESPONSIVE — BENTO
+============================================= */
 @media (max-width: 900px) {
-  .gd-masonry {
-    column-count: 3;
+  .gd-bento-panel {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 180px;
+  }
+
+  /* Sur tablette : hero span 2 colonnes sur 1 ligne */
+  .gd-bento-panel .gd-item:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .gd-bento-panel .gd-item:nth-child(4) {
+    grid-column: span 2;
   }
 }
 
 @media (max-width: 600px) {
-  .gd-masonry {
-    column-count: 2;
-    column-gap: 7px;
+  .gd-bento-panel {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 150px;
+    gap: 7px;
   }
-  .gd-item {
-    margin-bottom: 7px;
+
+  .gd-bento-panel .gd-item:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .gd-bento-panel .gd-item:nth-child(4) {
+    grid-column: span 1;
   }
 }
 
