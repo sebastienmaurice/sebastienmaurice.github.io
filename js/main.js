@@ -1610,7 +1610,7 @@ window.addEventListener(
     collectCategory(clickedItem)
     ----------------------------
     Quand l'utilisateur clique sur une image, cette fonction remonte
-    dans le DOM pour trouver le conteneur parent (.gd-masonry ou .wd-bento)
+    dans le DOM pour trouver le conteneur parent (gd-bento-panel)
     et récupère toutes les images qu'il contient.
 
     Pourquoi ? Pour pouvoir naviguer entre les images avec ← et →
@@ -1621,11 +1621,11 @@ window.addEventListener(
   function collectCategory(clickedItem) {
     /*
       On cherche le parent selon le type de galerie :
-      - .gd-masonry = galerie mockups (onglets catégories)
+      - .gd-bento-panel = galerie mockups (onglets catégories)
       - .wd-bento   = galerie webdesign (bento grid)
     */
     const container =
-      clickedItem.closest(".gd-masonry") || clickedItem.closest(".wd-bento");
+      clickedItem.closest(".gd-bento-panel") || clickedItem.closest(".wd-bento");
 
     /* Si on ne trouve pas de conteneur parent, on renvoie un tableau vide */
     if (!container) return [];
