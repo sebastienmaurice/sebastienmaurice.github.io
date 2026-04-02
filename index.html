@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sébastien Maurice · Développeur Front-End & UI Designer</title>
-    <meta name="description" content="Sébastien Maurice — Développeur Front-End Junior, Designer UX & Graphiste. Bootcamp O'Clock 2026. HTML5, CSS3, JavaScript ES6+, Svelte, Node.js. 15 ans de design. Caudry, Nord. Disponible CDI & Freelance." />
+    <meta name="description" content="Sébastien Maurice — Développeur Front-End Junior, UI Designer & Graphiste. Bootcamp O'Clock 2026. HTML5, CSS3, JavaScript ES6+, Svelte, Node.js. 15 ans de design. Caudry, Nord. Disponible CDI & Freelance." />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,6 +13,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <!-- PATCH v2.0 — repositionnement recruteur front-end -->
+    <link rel="stylesheet" href="css/recruiter-patch.css" />
   </head>
   <body>
 
@@ -21,10 +23,15 @@
     <div id="cring"></div>
 
     <!-- ========================= MENU MOBILE ========================= -->
+    <!--
+      MODIF NAV MOBILE :
+      "Design"       → "UI & Design"    : signal interface, pas créatif seul
+      "Compétences"  → "Stack"          : vocabulaire développeur
+    -->
     <div class="m-nav" id="mnav">
       <a href="#" onclick="cm(); gs('projets'); return false;">Projets</a>
-      <a href="#" onclick="cm(); gs('competences'); return false;">Compétences</a>
-      <a href="#" onclick="cm(); gs('design'); return false;">Design</a>
+      <a href="#" onclick="cm(); gs('competences'); return false;">Stack</a>
+      <a href="#" onclick="cm(); gs('design'); return false;">UI &amp; Design</a>
       <a href="#" onclick="cm(); gs('cms'); return false;">CMS</a>
       <a href="#" onclick="cm(); gs('parcours'); return false;">Parcours</a>
       <a href="#" onclick="cm(); gs('contact'); return false;">Contact</a>
@@ -37,8 +44,19 @@
       </a>
       <ul class="nav-links">
         <li><a href="#" onclick="gs('projets'); return false;">Projets</a></li>
-        <li><a href="#" onclick="gs('competences'); return false;">Compétences</a></li>
-        <li><a href="#" onclick="gs('design'); return false;">Design</a></li>
+        <!--
+          MODIF : "Compétences" → "Stack"
+          Raison : "Stack" est le mot qu'un dev utilise nativement.
+          Un recruteur front lit "Stack" et range immédiatement le profil
+          dans la bonne case, avant même d'avoir cliqué.
+        -->
+        <li><a href="#" onclick="gs('competences'); return false;">Stack</a></li>
+        <!--
+          MODIF : "Design" → "UI & Design"
+          Raison : "Design" seul dans une nav évoque un portfolio de graphiste.
+          "UI & Design" ancre la section côté interface et développement.
+        -->
+        <li><a href="#" onclick="gs('design'); return false;">UI &amp; Design</a></li>
         <li><a href="#" onclick="gs('cms'); return false;">CMS</a></li>
         <li><a href="#" onclick="gs('parcours'); return false;">Parcours</a></li>
         <li><a href="#" onclick="gs('contact'); return false;">Contact</a></li>
@@ -60,6 +78,18 @@
     </nav>
 
     <!-- ========================= HERO ========================= -->
+    <!--
+      MODIFICATIONS HERO — résumé :
+      1. hero-role-sub : "UI Designer · Graphiste · Bases UX"
+                      → "avec un œil de designer · UI · UX"
+         → le design devient un atout DU dev, pas un second métier concurrent
+         → suppression de "Bases UX" qui sonnait comme une excuse
+
+      2. hero-pitch : phrase différenciatrice déplacée EN PREMIER
+         → "Je code avec le regard d'un designer" est le vrai pitch
+         → avant : biographie d'abord, pitch en dernier (invisible à 5s)
+         → après : pitch d'abord, contexte ensuite
+    -->
     <section class="hero" id="hero">
       <div class="hero-layout">
 
@@ -75,17 +105,33 @@
             Sébastien<br /><em>Maurice</em>
           </h1>
 
+          <!--
+            MODIF CLEF — hero-role-sub
+            AVANT : "UI Designer · Graphiste · Bases UX"
+              → liste 3 métiers concurrents → profil illisible
+              → "Bases UX" = aveu de faiblesse dans un premier contact
+            APRÈS : "avec un œil de designer · UI · UX"
+              → le design est qualifié comme ATOUT du développeur
+              → syntaxe "avec" = renforcement, pas liste parallèle
+          -->
           <p class="hero-role rv d2">
             Développeur Front-End
-            <span class="hero-role-sub">UI Designer · Graphiste · Bases UX</span>
+            <span class="hero-role-sub">avec un œil de designer · UI · UX</span>
           </p>
 
-          <!-- Pitch différenciateur -->
+          <!--
+            MODIF CLEF — ordre du pitch
+            AVANT : contexte biographique → phrase clé (invisible à 5s de scan)
+            APRÈS : phrase clé EN PREMIER → contexte ensuite
+            La règle journalistique de la pyramide inversée :
+            l'information la plus importante doit être en premier.
+          -->
           <div class="hero-pitch-block rv d3">
             <p class="hero-pitch">
-              Designer de formation (Paris VIII, 1999), 15 ans en communication visuelle,
-              développeur front-end depuis le bootcamp <strong>O'Clock 2026</strong>.
-              Je code avec le regard d'un designer — et je design en pensant à l'intégration.
+              Je code avec le regard d'un designer —
+              et je design en pensant à l'intégration.
+              15 ans de communication visuelle, formalisés par le bootcamp
+              <strong>O'Clock 2026</strong>. D.E.S.S. infographie Paris VIII.
             </p>
             <div class="hero-differentiator">
               <div class="diff-item">
@@ -103,7 +149,7 @@
             </div>
           </div>
 
-          <!-- Stack pills -->
+          <!-- Stack pills — inchangées -->
           <div class="hero-stack rv d3">
             <span class="pill-hero primary">HTML5</span>
             <span class="pill-hero primary">CSS3</span>
@@ -127,7 +173,7 @@
           </div>
         </div>
 
-        <!-- Colonne droite : photo + stats -->
+        <!-- Colonne droite : photo + stats — inchangée -->
         <div class="hero-visual rv d2">
           <div class="hero-photo-wrap">
             <img
@@ -139,7 +185,6 @@
             <div class="hero-photo-badge">
               <span class="avail-dot"></span> Disponible immédiatement
             </div>
-            <!-- Badge O'Clock -->
             <div class="hero-oclock-badge">
               <span class="oclock-ico">🎓</span>
               <div>
@@ -221,11 +266,17 @@
     </section>
 
     <!-- ========================= COMPÉTENCES ========================= -->
+    <!--
+      MODIF SECTION COMPÉTENCES :
+      eyebrow "Stack technique" → maintenant cohérent avec le renommage nav "Stack"
+      Ajout d'une .skill-cat-note sur le bloc Back-End
+      (montre que tu sais où tu en es sans prétendre être full-stack)
+    -->
     <section class="skills-sec" id="competences">
       <div class="mw">
         <div class="sec-hd rv">
           <div class="sec-ey"><span>Stack technique</span></div>
-          <h2 class="sec-ttl">Compétences &<br /><em>Technologies</em></h2>
+          <h2 class="sec-ttl">Stack &<br /><em>Compétences</em></h2>
           <p class="sec-desc">
             Bootcamp intensif O'Clock 2026 + 15 ans de pratique design.<br />
             Les barres reflètent mon niveau réel — pas ce que je veux vendre.
@@ -347,6 +398,13 @@
           </div>
 
           <!-- Back-End -->
+          <!--
+            MODIF : ajout d'une note de contexte sous les barres back-end
+            Objectif : anticiper la question du recruteur "mais tu sais faire du back ?"
+            et y répondre honnêtement avant qu'elle soit posée.
+            Un junior honnête sur ses limites inspire plus confiance
+            qu'un junior qui surenchérit.
+          -->
           <div class="skill-category">
             <div class="skill-cat-label">
               <span class="skill-cat-icon">⚙️</span>
@@ -400,6 +458,11 @@
                 </div>
               </div>
             </div>
+            <!-- NOUVEAU : note de contexte back-end -->
+            <p class="skill-cat-note">
+              Suffisant pour lire une API, comprendre un back existant
+              et ne pas bloquer une équipe sur l'intégration.
+            </p>
           </div>
 
         </div>
@@ -442,6 +505,11 @@
         <div class="proj-featured rv">
 
           <!-- CINÉ DÉLICES — carte principale -->
+          <!--
+            MODIF : ajout d'une ligne "Design → code" dans .wid-list
+            C'est la proposition de valeur unique de Sébastien.
+            Elle doit apparaître dans son projet phare, pas seulement dans le Hero.
+          -->
           <article class="proj-hero-card" onclick="openModal('cine')">
             <div class="proj-hero-img dc-slideshow">
               <div class="slide active">
@@ -475,7 +543,6 @@
                 Résultat : une SPA Svelte avec API TMDB, gestion d'état, routing client, PostgreSQL.
                 Premier projet full-stack géré seul côté front.
               </p>
-              <!-- Ce que j'ai fait côté technique -->
               <div class="proj-what-i-did">
                 <div class="wid-label">Ce que j'ai fait</div>
                 <ul class="wid-list">
@@ -484,6 +551,8 @@
                   <li>Consommation API TMDB + gestion des erreurs</li>
                   <li>Carrousels, badges animés en CSS/JS natif</li>
                   <li>Responsive mobile-first, testé iOS/Android</li>
+                  <!-- NOUVEAU : lien explicite design → code -->
+                  <li><strong>Design → code :</strong> chaque composant Figma a sa contrepartie HTML/CSS directe</li>
                 </ul>
               </div>
               <div class="proj-stack">
@@ -663,19 +732,44 @@
     </section>
 
     <!-- ========================= GRAPHISME / DESIGN ========================= -->
+    <!--
+      MODIFICATIONS SECTION DESIGN :
+      1. eyebrow "Superpower Design"   → "UI / Interface Design"
+         Raison : "Superpower Design" est sympa mais informel.
+         "UI / Interface Design" ancre immédiatement côté dev/interface.
+
+      2. H2 "Graphisme & Webdesign"   → "Design appliqué au développement"
+         Raison : "Graphisme" évoque le print, l'agence de comm, le logo.
+         "appliqué au développement" dit que ce design a une finalité technique.
+
+      3. Description : ajout de "dans le DOM"
+         Raison : un graphiste ne parle jamais de DOM.
+         Cette expression ancre la section côté dev sans changer le design.
+
+      4. Section Mockups : eyebrow + titre repositionnés
+         "Figma · Design System · Prototypes" au lieu de "Galerie"
+         → montre que les maquettes sont des livrables techniques, pas des créations
+
+      5. Tags .wd-tag : ajout de "→ Intégré" / "Figma → HTML/CSS"
+         → montre la continuité design → code sur les items qui le permettent
+    -->
     <section class="design-sec" id="design">
       <div class="mw">
         <div class="sec-hd rv">
-          <div class="sec-ey"><span>Superpower Design</span></div>
-          <h2 class="sec-ttl">Graphisme &<br /><em>Webdesign</em></h2>
+          <!-- MODIF eyebrow -->
+          <div class="sec-ey"><span>UI / Interface Design</span></div>
+          <!-- MODIF H2 -->
+          <h2 class="sec-ttl">Design appliqué<br />au <em>développement</em></h2>
+          <!-- MODIF description : "dans le DOM" ancre côté dev -->
           <p class="sec-desc">
             D.E.S.S. infographie à Paris VIII (1999), 15+ ans de communication
-            visuelle pour des PME. Ce background change ma façon de coder :
-            je pense hiérarchie visuelle et typographie avant de penser composants.
+            visuelle pour des PME. Ce background change directement la façon dont
+            je structure un composant, choisis une typographie ou hiérarchise
+            une information <em>dans le DOM</em>.
           </p>
         </div>
 
-        <!-- Outils de création -->
+        <!-- Outils de création — inchangés -->
         <div class="cv-ttl rv" style="margin-bottom:18px">Outils maîtrisés</div>
         <div class="tech-grid rv-stagger">
           <div class="tech-item"><div class="tech-icon ti-ps">Ps</div><div class="tech-name">Photoshop</div></div>
@@ -688,7 +782,7 @@
           <div class="tech-item"><div class="tech-icon ti-sk" style="font-size:0.8rem">Sk</div><div class="tech-name">Sketch</div></div>
         </div>
 
-        <!-- Compétences design -->
+        <!-- Compétences design — inchangées -->
         <div class="sk-grid rv-stagger" style="margin-top:40px">
           <div class="sk-card"><span class="sk-ico">✏️</span><div class="sk-name">Wireframing</div><div class="sk-desc">Structure et architecture de l'information avant le design visuel.</div></div>
           <div class="sk-card"><span class="sk-ico">🎯</span><div class="sk-name">Prototypage Figma</div><div class="sk-desc">Prototypes interactifs haute fidélité pour validation UX rapide.</div></div>
@@ -703,14 +797,19 @@
 
         <!-- Webdesign bento -->
         <div class="sec-hd rv mt0">
-          <div class="sec-ey"><span>Webdesign & UI</span></div>
-          <h3 class="sec-ttl-sm">Interfaces & <em>Maquettes</em></h3>
+          <!-- MODIF eyebrow webdesign -->
+          <div class="sec-ey"><span>Webdesign & Intégration</span></div>
+          <h3 class="sec-ttl-sm">Interfaces & <em>Maquettes UI</em></h3>
         </div>
         <div class="wd-bento rv-stagger">
+          <!--
+            MODIF : ajout de tags "→ Intégré" et "Figma → HTML/CSS"
+            pour montrer que les maquettes ont une suite concrète côté code
+          -->
           <div class="wd-bento-item wd-hero" onclick="openGdZoom(this)">
             <img src="https://i.postimg.cc/4NgTVQM2/1.webp" alt="Direction artistique — Portfolio" loading="lazy" />
             <div class="wd-bento-overlay">
-              <div class="wd-bento-tags"><span class="wd-tag">Direction artistique</span><span class="wd-tag">2024</span></div>
+              <div class="wd-bento-tags"><span class="wd-tag">Direction artistique</span><span class="wd-tag">→ Intégré</span></div>
               <div class="wd-bento-info"><span class="wd-bento-label">Personal portfolio website</span><span class="wd-bento-zoom">⊕</span></div>
             </div>
           </div>
@@ -724,7 +823,7 @@
           <div class="wd-bento-item" onclick="openGdZoom(this)">
             <img src="https://i.postimg.cc/pXHtzJ7Z/3.webp" alt="Streaming — Design System" loading="lazy" />
             <div class="wd-bento-overlay">
-              <div class="wd-bento-tags"><span class="wd-tag">Streaming</span><span class="wd-tag">Design System</span></div>
+              <div class="wd-bento-tags"><span class="wd-tag">Figma → HTML/CSS</span><span class="wd-tag">Design System</span></div>
               <div class="wd-bento-info"><span class="wd-bento-label">Ciné Délices — UI</span><span class="wd-bento-zoom">⊕</span></div>
             </div>
           </div>
@@ -738,7 +837,7 @@
           <div class="wd-bento-item wd-full" onclick="openGdZoom(this)">
             <img src="https://i.postimg.cc/YqHwYzVb/4.webp" alt="Artist — Landing page" loading="lazy" />
             <div class="wd-bento-overlay">
-              <div class="wd-bento-tags"><span class="wd-tag">Landing Page</span><span class="wd-tag">Branding</span></div>
+              <div class="wd-bento-tags"><span class="wd-tag">Landing Page</span><span class="wd-tag">→ Intégré</span></div>
               <div class="wd-bento-info"><span class="wd-bento-label">Chaunté Shayne — Artist Website</span><span class="wd-bento-zoom">⊕</span></div>
             </div>
           </div>
@@ -748,10 +847,13 @@
 
         <!-- Galerie créations graphiques -->
         <div class="sec-hd rv mt0">
-          <div class="sec-ey"><span>Galerie</span></div>
-          <h3 class="sec-ttl-sm">Mockups & <em>Créations</em></h3>
+          <!-- MODIF : "Galerie" → "Figma · Design System · Prototypes" -->
+          <div class="sec-ey"><span>Figma · Design System · Prototypes</span></div>
+          <!-- MODIF : "Mockups & Créations" → "Maquettes & Prototypes UI" -->
+          <h3 class="sec-ttl-sm">Maquettes & <em>Prototypes UI</em></h3>
         </div>
 
+        <!-- Onglets galerie — inchangés -->
         <div class="gd-tabs-bar rv" id="gdTabsBar">
           <button class="gd-tab-btn active" onclick="switchGdTab('logos', this)"><span class="gd-tab-ico">✦</span> Logos &amp; Identité <span class="gd-tab-badge">16</span></button>
           <button class="gd-tab-btn" onclick="switchGdTab('cartes', this)">Cartes de visite <span class="gd-tab-badge">9</span></button>
@@ -859,6 +961,7 @@
     </section>
 
     <!-- ========================= CMS & E-COMMERCE ========================= -->
+    <!-- Inchangée — section déjà bien positionnée -->
     <section class="cms-sec" id="cms">
       <div class="mw">
         <div class="sec-hd rv">
@@ -910,7 +1013,6 @@
 
         <hr class="sep" />
 
-        <!-- Projets CMS -->
         <div class="sec-hd rv mt0">
           <div class="sec-ey"><span>Réalisations</span></div>
           <h3 class="sec-ttl-sm">Projets <em>CMS</em></h3>
@@ -1004,7 +1106,6 @@
           </p>
         </div>
 
-        <!-- Téléchargement CV -->
         <div class="rv" style="margin-bottom:36px">
           <div class="cv-ttl" style="margin-bottom:16px">Télécharger le CV</div>
           <div class="cv-selector">
@@ -1024,7 +1125,6 @@
         </div>
 
         <div class="cv-wrap rv">
-          <!-- Photo -->
           <div class="cv-photo-col">
             <img class="cv-photo" src="assets/seb.png"
               onerror="this.src='https://i.postimg.cc/7YsTfhtz/seb.png'"
@@ -1039,7 +1139,6 @@
             </div>
           </div>
 
-          <!-- Timeline + Formation -->
           <div class="cv-main">
             <div class="cv-grid">
               <div>
@@ -1100,7 +1199,6 @@
               <div>
                 <div class="cv-ttl">Formation</div>
                 <div class="fc-cards">
-                  <!-- O'Clock en premier et mis en avant -->
                   <div class="fc-card fc-card-highlight">
                     <div class="fc-yr-badge">2026 · Récent</div>
                     <div class="fc-deg">Bootcamp Développeur Web & Web Mobile</div>
@@ -1134,7 +1232,6 @@
                   <div class="toolp">🌐 Apache</div>
                 </div>
 
-                <!-- Outils IA -->
                 <div class="cv-ttl" style="margin-top:28px">IA au quotidien</div>
                 <div class="tech-grid rv-stagger ia-tech-grid" style="margin-top:10px;margin-bottom:0">
                   <div class="tech-item ia-tech-item" data-tooltip="Rédaction, code review, aide au design et stratégie UX. Outil principal."><div class="tech-icon ti-claude"><svg viewBox="0 0 100 100" fill="none" width="22" height="22"><path d="M50 10C28 10 10 28 10 50s18 40 40 40 40-18 40-40S72 10 50 10z" fill="#CC785C" opacity=".18"/><path d="M34 65l8-30h4l6 20 6-20h4l8 30h-5l-5-20-6 20h-4l-6-20-5 20H34z" fill="#CC785C"/></svg></div><div class="tech-name">Claude Pro</div><div class="ia-badge-sq ia-badge-pro">Pro</div></div>
@@ -1180,11 +1277,20 @@
     </section>
 
     <!-- ========================= FOOTER ========================= -->
+    <!--
+      MODIF FOOTER :
+      AVANT : "UI Designer · Graphiste · Bases UX · Expert WordPress"
+        → "Bases UX" en dernière position = mauvaise impression de clôture
+      APRÈS : "UI / Interface Design · Expert WordPress · 15 ans de design · Bootcamp O'Clock 2026"
+        → suppression de "Bases UX", reformulation design côté interface
+        → O'Clock en dernier = signal formation récente et concret
+    -->
     <footer>
       <div class="ft-in">
         <div>
           <div class="ft-name">Sébastien<br /><em>Maurice</em></div>
-          <div class="ft-tag">Développeur Front-End Junior · UI Designer<br />Graphiste · Bases UX · Expert WordPress</div>
+          <!-- MODIF ft-tag -->
+          <div class="ft-tag">Développeur Front-End Junior · UI / Interface Design<br />Expert WordPress · 15 ans de design · Bootcamp O'Clock 2026</div>
           <div class="ft-loc">Caudry, Hauts-de-France (59), France</div>
           <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px">
             <a href="#" id="footer-email-lnk" onclick="revealEmail(this); return false;" style="font-family:var(--mono);font-size:.62rem;color:var(--olive2);text-decoration:none;letter-spacing:.08em">✉ Email</a>
@@ -1195,8 +1301,9 @@
           <div class="ft-col-t">Navigation</div>
           <ul class="ft-links">
             <li><a href="#" onclick="gs('projets'); return false;">Projets Front-End</a></li>
-            <li><a href="#" onclick="gs('competences'); return false;">Compétences</a></li>
-            <li><a href="#" onclick="gs('design'); return false;">Graphisme & Design</a></li>
+            <!-- MODIF : cohérent avec le renommage nav -->
+            <li><a href="#" onclick="gs('competences'); return false;">Stack technique</a></li>
+            <li><a href="#" onclick="gs('design'); return false;">UI & Interface Design</a></li>
             <li><a href="#" onclick="gs('cms'); return false;">CMS & E-commerce</a></li>
             <li><a href="#" onclick="gs('parcours'); return false;">CV Complet</a></li>
           </ul>
