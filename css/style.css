@@ -223,13 +223,40 @@ nav.scrolled {
 /* Hero text, orbs, animations */
 .hero-in { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; width: 100%; position: relative; z-index: 2; }
 
-/* ... (réécris ici toutes tes autres sections HERO, WOW, CARDS, etc.) ... */
-
 /* =====================================================
    7. CARDS PROJETS
    ===================================================== */
 .cgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px; }
 .card { /* styles complets */ }
+
+.hero-role-sub {
+  display: block;
+  font-size: .82em;
+  color: var(--stone);
+  font-style: normal;
+  font-family: var(--mono);
+  letter-spacing: .1em;
+  margin-top: 4px;
+}
+
+.skill-cat-note {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--stone);
+  margin-top: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  font-style: italic;
+  padding: 8px 12px;
+  border-left: 2px solid rgba(200, 196, 180, 0.15);
+  background: rgba(200, 196, 180, 0.02);
+  border-radius: 0 4px 4px 0;
+}
+
+.wd-tag:first-child {
+  /* Premier tag = catégorie → couleur par défaut */
+  /* Rien à modifier */
+}
 
 /* =====================================================
    8. ANIMATIONS
