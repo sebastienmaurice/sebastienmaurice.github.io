@@ -1,54 +1,67 @@
-# Portfolio - Sébastien Maurice
+# Portfolio - Sebastien Maurice
 
-Développeur front-end junior, sorti d'O'Clock en 2026.  
-Avant ça : designer graphique et communicant pendant 15 ans.  
-Ce trajet fait que je code différemment... je pense en hiérarchie visuelle avant de penser en composants.
+UI Developer / Designer front-end junior.  
+15 ans de design graphique et communication, reconverti au dev en 2025-2026.  
+Ce portfolio est un projet front-end a part entiere, pas une vitrine statique.
 
-[→ Voir le portfolio en ligne](https://sebastienmaurice.github.io)
-
----
-
-## Ce que ce portfolio est
-
-Un projet front-end à part entière, pas une vitrine statique.  
-Tout est fait à la main ! curseur custom, moteur de particules canvas, animations scroll, terminal typewriter.  
-Le code est commenté pour expliquer le **pourquoi**, pas juste le quoi.  
-Zéro framework externe sur le portfolio lui-même.
+[Voir le portfolio en ligne](https://sebastienmaurice.github.io)
 
 ---
 
-## Stack
+## Stack technique
 
-HTML5 · CSS3 (variables, Grid, Flexbox, animations) · JavaScript ES6+ vanilla  
-Canvas 2D · IntersectionObserver · requestAnimationFrame  
-Figma (maquettes) · Git / GitHub Pages
+HTML5 - CSS3 (custom properties, Grid, Flexbox, animations) - JavaScript ES6+ vanilla  
+IntersectionObserver - requestAnimationFrame  
+Figma - Git - GitHub Pages
 
-Les projets présentés dans le portfolio utilisent aussi : **Svelte**, **Node.js**, **PostgreSQL**, **API REST**.
+Projets presentes : Svelte, Node.js, PostgreSQL, API REST, CMS (WordPress, Wix, Webflow)
 
 ---
 
-## Organisation
+## Structure du projet
+
 ```text
-index.html
-style.css
-main.js
+index.html               page principale du portfolio
+cine-delices.html        etude de cas - Cine Delices
+css/
+  style.css              styles du portfolio
+  cine-delices.css       styles de l'etude de cas
+js/
+  main.js                scripts du portfolio
+  cine-delices.js        scripts de l'etude de cas
 assets/
-  img/        — captures projets
-  cv/         — PDF téléchargeables
+  img/                   captures projets et visuels
+  cv/                    CV PDF telechargeable
 ```
 
 ---
 
-## Note honnête
+## Fonctionnalites notables
 
-Le portfolio est optimisé desktop-first & certaines animations canvas peuvent être lourdes sur mobile bas de gamme.  
-Les images projets sont hébergées localement dans `/assets/img`.
+- Curseur custom avec ring de suivi (rAF + translate3d, pas de top/left)
+- Carousel bento infini avec clones fantomes et autoplay
+- Slider cinematique avec barre de progression, swipe touch, nav points
+- Tabs competences avec indicateurs de progression SVG
+- Scroll reveal via IntersectionObserver
+- Email obfusque (pas de mailto direct)
+- Design full responsive (desktop, tablette, mobile)
+
+---
+
+## Installation / usage
+
+Projet statique, aucun build requis.  
+Cloner le repo et ouvrir `index.html` dans un navigateur, ou laisser GitHub Pages servir directement.
+
+```bash
+git clone https://github.com/sebastienmaurice/sebastienmaurice.github.io.git
+```
 
 ---
 
 ## Contact
 
-overseb75@gmail.com  
-[LinkedIn](https://www.linkedin.com/in/sebastien-maurice/) · [Malt](https://www.malt.fr/profile/semauri) · [GitHub](https://github.com/sebastienmaurice)
+Email : contact (at) sebastienmaurice.fr  
+[LinkedIn](https://www.linkedin.com/in/sebastien-maurice/) - [Malt](https://www.malt.fr/profile/semauri) - [GitHub](https://github.com/sebastienmaurice)
 
-Disponible en freelance et ouvert aux opportunités CDI — remote depuis Caudry, Nord.
+Disponible en freelance et ouvert aux opportunites CDI - remote depuis Caudry, Nord.

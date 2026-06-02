@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ciné Délices · Case Study — Sébastien Maurice</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Cabinet+Grotesk:wght@400;700;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/cine-delices.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Portfolio
+  </a>
+  <span class="nav-sep"></span>
+  <span class="nav-title">Ciné <em>Délices</em></span>
+  <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="nav-cta">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+    GitHub
+  </a>
+</nav>
+
+<!-- HERO — Ciné Délices case study -->
+<section class="slider-section" aria-label="Ciné Délices — case study hero">
+  <div class="slider-viewport" id="sliderViewport">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide cd-slide is-active">
+        <img src="assets/img/front-back/cine-delices/cinedelices-1.jpg" alt="Ciné Délices — univers cinéma &amp; gastronomie" style="object-position:center center"/>
+      </div>
+    </div>
+
+    <div class="slider-head">
+      <div class="slider-head-text">
+        <div class="cd-eyebrow">Case Study · Ciné Délices · 2025</div>
+        <h1 class="cd-h1">
+          <span style="color:var(--mint)">Ciné Délices</span><br>
+          <em><span style="color:var(--coral)">du design</span> <span style="color:var(--mint-soft)">au déploiement.</span></em>
+        </h1>
+        <p class="cd-lead">Full-stack maison, sécurité OWASP, UX premium. Un projet de formation livré comme un vrai produit.</p>
+        <div class="cd-tech">
+          <span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Argon2</span><span>JWT</span><span>SCSS</span>
+        </div>
+        <div class="cd-ctas">
+          <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="cd-btn-coral">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Voir sur GitHub
+          </a>
+          <a href="#tabs" class="cd-btn-ghost3">Décisions techniques →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-bottom">
+      <div class="slider-counter" style="display:flex;align-items:baseline;gap:4px">
+        <strong id="slideNum">01</strong>
+        <span style="color:rgba(255,255,255,.35);font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em">/ 01</span>
+      </div>
+      <div class="slider-bottom-sep"></div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+    <div class="slider-progress"><div class="slider-progress-bar" id="sliderBar"></div></div>
+  </div>
+</section>
+
+<!-- DÉFI -->
+<section class="section section-mint section-defi">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Le défi</div>
+      <h2 class="section-title">Faire dépasser le projet le <em>cadre formation.</em></h2>
+      <p class="section-sub">Trois tensions à résoudre : un cahier des charges DWWM, une équipe de 5, et l'envie de produire un site qui ne ressemble pas à un exercice.</p>
+    </div>
+    <div class="pitch-grid">
+      <article class="pitch-card">
+        <div class="pitch-num">01</div>
+        <h3 class="pitch-title">Identité forte<br>vs minutage serré</h3>
+        <p class="pitch-desc">Direction artistique « pirate cinéma » : Bebas Neue, or, bleu nuit, Playfair italique. Aucune lib graphique, tout maison, parallaxe et carrousel codés à la main. 12 semaines pour livrer.</p>
+      </article>
+      <article class="pitch-card">
+        <div class="pitch-num">02</div>
+        <h3 class="pitch-title">Sécurité réelle<br>pas une checklist</h3>
+        <p class="pitch-desc">Argon2 sur tous les hashes, Helmet avec CSP custom, rate limiting par route, validation Joi serveur, sanitization XSS, JWT en cookie httpOnly. Couverture OWASP Top-10.</p>
+      </article>
+      <article class="pitch-card">
+        <div class="pitch-num">03</div>
+        <h3 class="pitch-title">UX premium<br>sur stack vanilla</h3>
+        <p class="pitch-desc">Pas de framework UI. Donc : debounce dynamique selon la longueur du texte, rating preview/committed à la state-machine, isProgrammatic flag pour distinguer scroll user du scroll auto. Browser internals.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TABS — 4 SNIPPETS -->
+<section class="section section-mint" id="tabs">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">4 décisions techniques</div>
+      <h2 class="section-title">Du code qu'on relit <em>parce qu'il a une raison d'être.</em></h2>
+      <p class="section-sub">Chaque snippet ci-dessous résout un problème concret. Pas du code-vitrine : du code qui tourne en prod sur la branche develop.</p>
+    </div>
+
+    <div class="tabs-shell">
+      <div class="tabs-bar" role="tablist">
+        <button class="tab active" data-tab="t1" role="tab" aria-selected="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9V3z"/></svg>
+          Parallaxe
+        </button>
+        <button class="tab" data-tab="t2" role="tab" aria-selected="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Debounce
+        </button>
+        <button class="tab" data-tab="t3" role="tab" aria-selected="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Rating
+        </button>
+        <button class="tab" data-tab="t4" role="tab" aria-selected="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 21 12 15 6"/><polyline points="9 6 3 12 9 18"/></svg>
+          Carrousel
+        </button>
+        <button class="tab" data-tab="t5" role="tab" aria-selected="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Sécurité
+        </button>
+      </div>
+
+      <div class="tab-panel-wrap">
+        <!-- T1 — PARALLAXE -->
+        <div class="tab-panel active" id="t1" role="tabpanel">
+          <div class="tab-meta">
+            <div class="tab-meta-eyebrow">Décision 01</div>
+            <h3>Parallaxe maison<br>avec <em>easing maths.</em></h3>
+            <p>Hero du site : trois plans qui dérivent à des vitesses différentes au scroll. Pas une lib. Ratio + easing cubic, requestAnimationFrame, will-change.</p>
+            <ul>
+              <li>Aucune dépendance, 40 lignes de JS lisibles</li>
+              <li>Compositor-only : transform3d, jamais de top/left</li>
+              <li>Easing cubic pour amortir aux extrêmes du scroll</li>
+              <li>rAF qui s'arrête en idle, ~70% moins de CPU</li>
+            </ul>
+            <div class="tab-meta-tags"><span>JavaScript</span><span>requestAnimationFrame</span><span>Performance</span><span>Math</span></div>
+          </div>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dots"><span></span><span></span><span></span></span>
+              <span class="code-file">js/parallax.js</span>
+              <button class="code-copy" data-copy="t1">Copy</button>
+            </div>
+            <div class="code-body"><pre><span class="tk-com">// Parallaxe scroll : 3 plans à vitesses différentes</span>
+<span class="tk-com">// Easing cubic + rAF + transform3d compositor-only</span>
+
+<span class="tk-key">const</span> layers = [
+  { el: <span class="tk-fn">$</span>(<span class="tk-str">'.hero-bg'</span>),    speed: <span class="tk-num">0.18</span> },
+  { el: <span class="tk-fn">$</span>(<span class="tk-str">'.hero-mid'</span>),   speed: <span class="tk-num">0.42</span> },
+  { el: <span class="tk-fn">$</span>(<span class="tk-str">'.hero-front'</span>), speed: <span class="tk-num">0.72</span> },
+];
+
+<span class="tk-key">let</span> targetY = <span class="tk-num">0</span>, currentY = <span class="tk-num">0</span>, raf = <span class="tk-num">0</span>;
+
+<span class="tk-com">// easeOutCubic : amortit les extrêmes du scroll</span>
+<span class="tk-key">const</span> <span class="tk-fn">easeOut</span> = (t) =&gt; <span class="tk-num">1</span> - <span class="tk-fn">Math.pow</span>(<span class="tk-num">1</span> - t, <span class="tk-num">3</span>);
+
+<span class="tk-key">function</span> <span class="tk-fn">tick</span>() {
+  <span class="tk-key">const</span> delta = targetY - currentY;
+  currentY += delta * <span class="tk-num">0.12</span>;
+
+  layers.<span class="tk-fn">forEach</span>(({ el, speed }) =&gt; {
+    <span class="tk-key">const</span> y = currentY * speed;
+    <span class="tk-key">const</span> eased = <span class="tk-fn">easeOut</span>(<span class="tk-fn">Math.min</span>(<span class="tk-num">1</span>, y / <span class="tk-num">800</span>)) * y;
+    el.style.transform = <span class="tk-str">`translate3d(0, ${eased}px, 0)`</span>;
+  });
+
+  raf = <span class="tk-fn">Math.abs</span>(delta) &gt; <span class="tk-num">0.4</span>
+    ? <span class="tk-fn">requestAnimationFrame</span>(tick)
+    : <span class="tk-num">0</span>;
+}
+
+<span class="tk-fn">addEventListener</span>(<span class="tk-str">'scroll'</span>, () =&gt; {
+  targetY = window.scrollY;
+  <span class="tk-key">if</span> (!raf) raf = <span class="tk-fn">requestAnimationFrame</span>(tick);
+}, { passive: <span class="tk-key">true</span> });</pre></div>
+          </div>
+        </div>
+
+        <!-- T2 — DEBOUNCE -->
+        <div class="tab-panel" id="t2" role="tabpanel">
+          <div class="tab-meta">
+            <div class="tab-meta-eyebrow">Décision 02</div>
+            <h3>Debounce <em>dynamique</em> selon la longueur</h3>
+            <p>Recherche live sur 500k+ films TMDB. Un debounce fixe à 300ms est trop lent pour « avatar » et inutilement prudent pour « z ».</p>
+            <ul>
+              <li>Délai adapté à la longueur de la query</li>
+              <li>1 caractère = 500ms (l'utilisateur tape encore)</li>
+              <li>4+ caractères = 150ms (la requête est utile)</li>
+              <li>AbortController : annule les requêtes obsolètes</li>
+            </ul>
+            <div class="tab-meta-tags"><span>UX engineering</span><span>AbortController</span><span>Fetch</span></div>
+          </div>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dots"><span></span><span></span><span></span></span>
+              <span class="code-file">js/search.js</span>
+              <button class="code-copy" data-copy="t2">Copy</button>
+            </div>
+            <div class="code-body"><pre><span class="tk-com">// Debounce dynamique : plus on tape, plus on est rapide</span>
+
+<span class="tk-key">const</span> input = <span class="tk-fn">$</span>(<span class="tk-str">'.search-input'</span>);
+<span class="tk-key">let</span> timer, controller;
+
+<span class="tk-key">function</span> <span class="tk-fn">delayFor</span>(query) {
+  <span class="tk-key">const</span> n = query.length;
+  <span class="tk-key">if</span> (n === <span class="tk-num">0</span>) <span class="tk-key">return</span> <span class="tk-num">0</span>;
+  <span class="tk-key">if</span> (n &lt; <span class="tk-num">2</span>)  <span class="tk-key">return</span> <span class="tk-num">500</span>;
+  <span class="tk-key">if</span> (n &lt; <span class="tk-num">4</span>)  <span class="tk-key">return</span> <span class="tk-num">280</span>;
+  <span class="tk-key">return</span> <span class="tk-num">150</span>;
+}
+
+input.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'input'</span>, (e) =&gt; {
+  <span class="tk-fn">clearTimeout</span>(timer);
+  controller?.<span class="tk-fn">abort</span>();
+
+  <span class="tk-key">const</span> q = e.target.value.<span class="tk-fn">trim</span>();
+  <span class="tk-key">if</span> (!q) <span class="tk-key">return</span> <span class="tk-fn">renderEmpty</span>();
+
+  timer = <span class="tk-fn">setTimeout</span>(<span class="tk-key">async</span> () =&gt; {
+    controller = <span class="tk-key">new</span> <span class="tk-cls">AbortController</span>();
+    <span class="tk-key">try</span> {
+      <span class="tk-key">const</span> res = <span class="tk-key">await</span> <span class="tk-fn">fetch</span>(
+        <span class="tk-str">`/api/search?q=${</span><span class="tk-fn">encodeURIComponent</span>(q)<span class="tk-str">}`</span>,
+        { signal: controller.signal }
+      );
+      <span class="tk-fn">render</span>(<span class="tk-key">await</span> res.<span class="tk-fn">json</span>());
+    } <span class="tk-key">catch</span> (err) {
+      <span class="tk-key">if</span> (err.name !== <span class="tk-str">'AbortError'</span>) <span class="tk-fn">renderError</span>();
+    }
+  }, <span class="tk-fn">delayFor</span>(q));
+});</pre></div>
+          </div>
+        </div>
+
+        <!-- T3 — RATING -->
+        <div class="tab-panel" id="t3" role="tabpanel">
+          <div class="tab-meta">
+            <div class="tab-meta-eyebrow">Décision 03</div>
+            <h3>Rating <em>preview / committed</em>, à la state-machine</h3>
+            <p>Étoiles cliquables avec preview au survol. Le piège classique : le hover modifie l'état réel et le clic n'est plus distinguable. Solution : deux états séparés.</p>
+            <ul>
+              <li><code style="font-family:var(--f-mono);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:4px;color:var(--mint)">committed</code> = la note enregistrée</li>
+              <li><code style="font-family:var(--f-mono);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:4px;color:var(--mint)">preview</code> = la note survolée (volatile)</li>
+              <li>L'affichage est toujours <code style="font-family:var(--f-mono);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:4px;color:var(--mint)">preview ?? committed</code></li>
+              <li>Accessible clavier : flèches gauche/droite</li>
+            </ul>
+            <div class="tab-meta-tags"><span>State design</span><span>A11y</span><span>Component patterns</span></div>
+          </div>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dots"><span></span><span></span><span></span></span>
+              <span class="code-file">js/rating.js</span>
+              <button class="code-copy" data-copy="t3">Copy</button>
+            </div>
+            <div class="code-body"><pre><span class="tk-com">// Rating : 2 états séparés (committed + preview)</span>
+
+<span class="tk-key">class</span> <span class="tk-cls">StarRating</span> {
+  <span class="tk-fn">constructor</span>(root, { initial = <span class="tk-num">0</span>, onChange } = {}) {
+    <span class="tk-key">this</span>.root = root;
+    <span class="tk-key">this</span>.committed = initial;
+    <span class="tk-key">this</span>.preview   = <span class="tk-key">null</span>;
+    <span class="tk-key">this</span>.onChange  = onChange;
+    <span class="tk-key">this</span>.<span class="tk-fn">bind</span>();
+    <span class="tk-key">this</span>.<span class="tk-fn">render</span>();
+  }
+
+  <span class="tk-key">get</span> <span class="tk-fn">displayed</span>() {
+    <span class="tk-key">return</span> <span class="tk-key">this</span>.preview ?? <span class="tk-key">this</span>.committed;
+  }
+
+  <span class="tk-fn">bind</span>() {
+    <span class="tk-key">this</span>.root.<span class="tk-fn">querySelectorAll</span>(<span class="tk-str">'[data-v]'</span>).<span class="tk-fn">forEach</span>(s =&gt; {
+      <span class="tk-key">const</span> v = +s.dataset.v;
+      s.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'mouseenter'</span>, () =&gt; { <span class="tk-key">this</span>.preview = v; <span class="tk-key">this</span>.<span class="tk-fn">render</span>(); });
+      s.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'click'</span>, () =&gt; <span class="tk-key">this</span>.<span class="tk-fn">commit</span>(v));
+    });
+    <span class="tk-key">this</span>.root.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'mouseleave'</span>, () =&gt; {
+      <span class="tk-key">this</span>.preview = <span class="tk-key">null</span>;
+      <span class="tk-key">this</span>.<span class="tk-fn">render</span>();
+    });
+    <span class="tk-key">this</span>.root.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'keydown'</span>, (e) =&gt; {
+      <span class="tk-key">if</span> (e.key === <span class="tk-str">'ArrowLeft'</span>)  <span class="tk-key">this</span>.<span class="tk-fn">commit</span>(<span class="tk-fn">Math.max</span>(<span class="tk-num">0</span>, <span class="tk-key">this</span>.committed - <span class="tk-num">1</span>));
+      <span class="tk-key">if</span> (e.key === <span class="tk-str">'ArrowRight'</span>) <span class="tk-key">this</span>.<span class="tk-fn">commit</span>(<span class="tk-fn">Math.min</span>(<span class="tk-num">5</span>, <span class="tk-key">this</span>.committed + <span class="tk-num">1</span>));
+    });
+  }
+
+  <span class="tk-fn">commit</span>(v) {
+    <span class="tk-key">this</span>.committed = v;
+    <span class="tk-key">this</span>.preview   = <span class="tk-key">null</span>;
+    <span class="tk-key">this</span>.<span class="tk-fn">render</span>();
+    <span class="tk-key">this</span>.onChange?.(v);
+  }
+
+  <span class="tk-fn">render</span>() {
+    <span class="tk-key">const</span> v = <span class="tk-key">this</span>.displayed;
+    <span class="tk-key">this</span>.root.<span class="tk-fn">querySelectorAll</span>(<span class="tk-str">'[data-v]'</span>).<span class="tk-fn">forEach</span>(s =&gt; {
+      s.classList.<span class="tk-fn">toggle</span>(<span class="tk-str">'on'</span>, +s.dataset.v &lt;= v);
+    });
+  }
+}</pre></div>
+          </div>
+        </div>
+
+        <!-- T4 — CAROUSEL -->
+        <div class="tab-panel" id="t4" role="tabpanel">
+          <div class="tab-meta">
+            <div class="tab-meta-eyebrow">Décision 04</div>
+            <h3>Carrousel avec <em>flag isProgrammatic</em></h3>
+            <p>Carrousel d'affiches avec navigation flèches + scroll natif. Bug subtil : quand on clique « next », le scrollIntoView déclenche un événement <code style="font-family:var(--f-mono);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:4px;color:var(--mint)">scroll</code> qui croit que c'est l'utilisateur. Solution : un flag.</p>
+            <ul>
+              <li>Flag levé pendant un scroll programmé</li>
+              <li>Le handler <code style="font-family:var(--f-mono);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:4px;color:var(--mint)">scroll</code> ignore les events tant que flag haut</li>
+              <li>Reset après <code style="font-family:var(--f-mono);background:rgba(255,255,255,.07);padding:1px 6px;border-radius:4px;color:var(--mint)">scrollend</code> (ou timeout fallback)</li>
+              <li>Plus de double-trigger, plus de saut visuel</li>
+            </ul>
+            <div class="tab-meta-tags"><span>Browser internals</span><span>scroll</span><span>scrollend</span><span>UX</span></div>
+          </div>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dots"><span></span><span></span><span></span></span>
+              <span class="code-file">js/carousel.js</span>
+              <button class="code-copy" data-copy="t4">Copy</button>
+            </div>
+            <div class="code-body"><pre><span class="tk-com">// Carrousel : flag isProgrammatic</span>
+
+<span class="tk-key">class</span> <span class="tk-cls">Carousel</span> {
+  <span class="tk-fn">constructor</span>(track) {
+    <span class="tk-key">this</span>.track = track;
+    <span class="tk-key">this</span>.isProgrammatic = <span class="tk-key">false</span>;
+    <span class="tk-key">this</span>.idx = <span class="tk-num">0</span>;
+    <span class="tk-key">this</span>.<span class="tk-fn">bind</span>();
+  }
+
+  <span class="tk-fn">bind</span>() {
+    <span class="tk-key">this</span>.track.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'scroll'</span>, () =&gt; {
+      <span class="tk-key">if</span> (<span class="tk-key">this</span>.isProgrammatic) <span class="tk-key">return</span>;
+      <span class="tk-key">this</span>.<span class="tk-fn">syncIndexFromScroll</span>();
+    }, { passive: <span class="tk-key">true</span> });
+
+    <span class="tk-fn">$</span>(<span class="tk-str">'.next'</span>).<span class="tk-fn">addEventListener</span>(<span class="tk-str">'click'</span>, () =&gt; <span class="tk-key">this</span>.<span class="tk-fn">go</span>(+<span class="tk-num">1</span>));
+    <span class="tk-fn">$</span>(<span class="tk-str">'.prev'</span>).<span class="tk-fn">addEventListener</span>(<span class="tk-str">'click'</span>, () =&gt; <span class="tk-key">this</span>.<span class="tk-fn">go</span>(-<span class="tk-num">1</span>));
+  }
+
+  <span class="tk-fn">go</span>(dir) {
+    <span class="tk-key">const</span> next = <span class="tk-fn">Math.max</span>(<span class="tk-num">0</span>, <span class="tk-fn">Math.min</span>(<span class="tk-key">this</span>.max, <span class="tk-key">this</span>.idx + dir));
+    <span class="tk-key">this</span>.idx = next;
+    <span class="tk-key">this</span>.<span class="tk-fn">scrollToIndex</span>(next);
+  }
+
+  <span class="tk-fn">scrollToIndex</span>(i) {
+    <span class="tk-key">this</span>.isProgrammatic = <span class="tk-key">true</span>;
+    <span class="tk-key">const</span> card = <span class="tk-key">this</span>.track.children[i];
+    <span class="tk-key">this</span>.track.<span class="tk-fn">scrollTo</span>({ left: card.offsetLeft - <span class="tk-num">12</span>, behavior: <span class="tk-str">'smooth'</span> });
+    <span class="tk-key">const</span> reset = () =&gt; { <span class="tk-key">this</span>.isProgrammatic = <span class="tk-key">false</span>; };
+    <span class="tk-key">this</span>.track.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'scrollend'</span>, reset, { once: <span class="tk-key">true</span> });
+    <span class="tk-fn">setTimeout</span>(reset, <span class="tk-num">700</span>);
+  }
+}</pre></div>
+          </div>
+        </div>
+
+        <!-- T5 — SECURITE -->
+        <div class="tab-panel" id="t5" role="tabpanel">
+          <div class="tab-meta">
+            <div class="tab-meta-eyebrow">Décision 05</div>
+            <h3>Sécurité <em>OWASP-grade,</em> pas un placebo</h3>
+            <p>Beaucoup de projets de formation cochent « auth + JWT » et s'arrêtent là. On a poussé jusqu'à la couverture OWASP Top-10 : XSS, CSRF, injections, brute-force, headers.</p>
+            <ul>
+              <li>Argon2id (et non bcrypt) avec coût adapté</li>
+              <li>Helmet + CSP custom + rate limiter par route sensible</li>
+              <li>JWT en cookie httpOnly + SameSite=Strict</li>
+              <li>Validation Joi + sanitization XSS sur 100% des inputs</li>
+            </ul>
+            <div class="tab-meta-tags"><span>OWASP</span><span>Argon2</span><span>Helmet</span><span>Joi</span><span>JWT</span></div>
+          </div>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-dots"><span></span><span></span><span></span></span>
+              <span class="code-file">server/middleware/security.js</span>
+              <button class="code-copy" data-copy="t5">Copy</button>
+            </div>
+            <div class="code-body"><pre><span class="tk-com">// Sécurité serveur : Helmet + rate limit + CSP</span>
+
+<span class="tk-key">import</span> helmet      <span class="tk-key">from</span> <span class="tk-str">'helmet'</span>;
+<span class="tk-key">import</span> rateLimit   <span class="tk-key">from</span> <span class="tk-str">'express-rate-limit'</span>;
+<span class="tk-key">import</span> argon2      <span class="tk-key">from</span> <span class="tk-str">'argon2'</span>;
+<span class="tk-key">import</span> { sanitize } <span class="tk-key">from</span> <span class="tk-str">'./xss.js'</span>;
+
+<span class="tk-key">export</span> <span class="tk-key">function</span> <span class="tk-fn">applySecurity</span>(app) {
+  app.<span class="tk-fn">use</span>(<span class="tk-fn">helmet</span>({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [<span class="tk-str">"'self'"</span>],
+        imgSrc:     [<span class="tk-str">"'self'"</span>, <span class="tk-str">"https://image.tmdb.org"</span>],
+        scriptSrc:  [<span class="tk-str">"'self'"</span>],
+        styleSrc:   [<span class="tk-str">"'self'"</span>, <span class="tk-str">"'unsafe-inline'"</span>],
+      },
+    },
+    crossOriginEmbedderPolicy: <span class="tk-key">false</span>,
+  }));
+
+  app.<span class="tk-fn">use</span>(<span class="tk-str">'/api/auth'</span>, <span class="tk-fn">rateLimit</span>({
+    windowMs: <span class="tk-num">15</span> * <span class="tk-num">60</span> * <span class="tk-num">1000</span>,
+    max: <span class="tk-num">5</span>,
+    standardHeaders: <span class="tk-key">true</span>,
+    message: { error: <span class="tk-str">'Trop de tentatives, réessayez plus tard.'</span> },
+  }));
+
+  app.<span class="tk-fn">use</span>(<span class="tk-fn">rateLimit</span>({ windowMs: <span class="tk-num">60_000</span>, max: <span class="tk-num">120</span> }));
+
+  app.<span class="tk-fn">use</span>((req, _res, next) =&gt; {
+    <span class="tk-key">if</span> (req.body &amp;&amp; <span class="tk-key">typeof</span> req.body === <span class="tk-str">'object'</span>) {
+      <span class="tk-key">for</span> (<span class="tk-key">const</span> k <span class="tk-key">in</span> req.body) {
+        <span class="tk-key">if</span> (<span class="tk-key">typeof</span> req.body[k] === <span class="tk-str">'string'</span>) {
+          req.body[k] = <span class="tk-fn">sanitize</span>(req.body[k]);
+        }
+      }
+    }
+    <span class="tk-fn">next</span>();
+  });
+}
+
+<span class="tk-key">export</span> <span class="tk-key">const</span> <span class="tk-fn">hashPassword</span> = (pw) =&gt; argon2.<span class="tk-fn">hash</span>(pw, {
+  type: argon2.argon2id,
+  memoryCost: <span class="tk-num">19456</span>,
+  timeCost:   <span class="tk-num">2</span>,
+  parallelism: <span class="tk-num">1</span>,
+});</pre></div>
+          </div>
+        </div>
+      </div><!-- /tab-panel-wrap -->
+    </div><!-- /tabs-shell -->
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Architecture</div>
+      <h2 class="section-title">Stack <em>volontairement vanilla</em>, back robuste.</h2>
+      <p class="section-sub">Pas de React côté front : prouver qu'on sait tenir un projet à la main. Côté serveur, Node + Express + PostgreSQL, éprouvé, scalable, debuggable.</p>
+    </div>
+    <div class="stack-row">
+      <div class="stack-pill">
+        <div class="stack-pill-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="#E34F26"><path d="M3 2l1.6 18 7.4 2 7.4-2L21 2H3zm14.6 6H8.4l.2 2.6h8.8l-.6 6.8L12 18.6 7.2 17.4l-.3-3.4h2.4l.2 1.7L12 16l2.5-.4.3-3.2H6.8L6.2 6.4h11.6l-.2 1.6z"/></svg></div>
+        <div class="stack-pill-name">HTML5 sémantique</div>
+        <div class="stack-pill-role">Front</div>
+      </div>
+      <div class="stack-pill">
+        <div class="stack-pill-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="#CC6699"><path d="M3 2l1.6 18 7.4 2 7.4-2L21 2H3zm14.6 6.4l-.2 2.4-5 2.1.8-2.4 4.4-2.1zM6.4 6.4h11.2l-.3 1.7H6.7L6.4 6.4zm.5 4h10.2l-.3 1.7H7.2l-.3-1.7z"/></svg></div>
+        <div class="stack-pill-name">SCSS · BEM</div>
+        <div class="stack-pill-role">Front</div>
+      </div>
+      <div class="stack-pill">
+        <div class="stack-pill-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="#F7DF1E"><rect width="24" height="24" rx="2"/><path d="M7 17.5l1.7-1c.3.6.6 1.1 1.4 1.1.7 0 1.2-.3 1.2-1.5V11h2.1v5.2c0 2.2-1.3 3.2-3.2 3.2-1.7 0-2.7-.9-3.2-1.9zm6.3-.2l1.7-1c.5.7 1 1.3 2 1.3.9 0 1.4-.4 1.4-1 0-.7-.5-1-1.4-1.4l-.5-.2c-1.4-.6-2.4-1.4-2.4-3 0-1.5 1.1-2.6 2.9-2.6 1.3 0 2.2.4 2.8 1.6l-1.5 1c-.4-.7-.8-1-1.3-1-.6 0-.9.4-.9.9 0 .6.4.9 1.3 1.3l.5.2c1.7.7 2.7 1.5 2.7 3 0 1.8-1.4 2.7-3.4 2.7-1.9 0-3.1-.9-3.7-2.1z" fill="#000"/></svg></div>
+        <div class="stack-pill-name">JavaScript</div>
+        <div class="stack-pill-role">Front · No-lib</div>
+      </div>
+      <div class="stack-pill">
+        <div class="stack-pill-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="#339933"><path d="M12 2L3 6.5v11L12 22l9-4.5v-11L12 2zm6 14.5L12 19l-6-2.5V8l6 3 6-3v8.5z"/></svg></div>
+        <div class="stack-pill-name">Node · Express</div>
+        <div class="stack-pill-role">Back</div>
+      </div>
+      <div class="stack-pill">
+        <div class="stack-pill-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="#336791"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm0-13c-1.7 0-3 1.3-3 3v4c0 1.7 1.3 3 3 3s3-1.3 3-3v-4c0-1.7-1.3-3-3-3zm1 7c0 .6-.4 1-1 1s-1-.4-1-1v-4c0-.6.4-1 1-1s1 .4 1 1v4z"/></svg></div>
+        <div class="stack-pill-name">PostgreSQL</div>
+        <div class="stack-pill-role">DB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY DETAIL -->
+<section class="section section-mint section-secu">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Sécurité</div>
+      <h2 class="section-title">Pas un cocher de cases :<br><em>une vraie défense en profondeur.</em></h2>
+    </div>
+    <div class="sec-grid">
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="sec-name">Argon2id</div>
+        <div class="sec-desc">Paramètres OWASP 2024. Le standard moderne pour le hashing, supérieur à bcrypt face aux GPU.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+        <div class="sec-name">Helmet · CSP</div>
+        <div class="sec-desc">Headers HTTP de sécurité, content security policy stricte, scriptSrc whitelistée.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="sec-name">Rate limiting</div>
+        <div class="sec-desc">5 tentatives auth / 15 min / IP. 120 req / min global. Brute-force et DoS basique bloqués.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="sec-name">Joi · Sanitize</div>
+        <div class="sec-desc">Validation serveur sur 100% des inputs. XSS sanitization automatique sur les strings du body.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="sec-name">JWT httpOnly</div>
+        <div class="sec-desc">Tokens en cookie httpOnly + SameSite=Strict + Secure. Inaccessibles au JS, immunisés CSRF.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1l3 5h6l-4.5 4 2 6L12 13l-6.5 3 2-6L3 6h6z"/></svg></div>
+        <div class="sec-name">Pas de SQL brut</div>
+        <div class="sec-desc">100% prepared statements. Injections SQL impossibles by design, pas de concaténation de query.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="sec-name">Errors muted</div>
+        <div class="sec-desc">Les erreurs serveur ne fuitent jamais la stack ou le SQL, un message générique côté client.</div>
+      </article>
+      <article class="sec-card">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></div>
+        <div class="sec-name">Auth stricte</div>
+        <div class="sec-desc">Middleware sur chaque route protégée. Roles user/admin granulaires, pas de bypass possible.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Évolutions prévues</div>
+      <h2 class="section-title">Ce qui est en cours, <em>ce qui suivra.</em></h2>
+      <p class="section-sub">Le projet finalise sa branche develop. La mise en ligne sur VPS Hostinger est imminente. Voici ce qui suit.</p>
+    </div>
+    <div class="road">
+      <div class="road-row">
+        <span class="road-tag next">En cours</span>
+        <div class="road-text">
+          <h4>Mise en ligne VPS Hostinger</h4>
+          <p>Setup du domaine cine-delices.fr, certificat Let's Encrypt, reverse proxy Nginx, PM2 process manager.</p>
+        </div>
+      </div>
+      <div class="road-row">
+        <span class="road-tag">Sprint+1</span>
+        <div class="road-text">
+          <h4>Recherche full-text Postgres</h4>
+          <p>Index GIN + tsvector pour passer la recherche films à la milliseconde, avec ranking par pertinence.</p>
+        </div>
+      </div>
+      <div class="road-row">
+        <span class="road-tag">Sprint+2</span>
+        <div class="road-text">
+          <h4>Recommandations contextuelles</h4>
+          <p>Système de scoring basé sur les genres + recettes appréciées + signaux d'engagement (temps, retours).</p>
+        </div>
+      </div>
+      <div class="road-row">
+        <span class="road-tag later">Refonte v2</span>
+        <div class="road-text">
+          <h4>Front React + API découplée</h4>
+          <p>Migration progressive : extraction de l'API, front React/TanStack Query, conservation du back actuel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="foot-eyebrow">Et la suite ?</div>
+  <h2 class="foot-title">D'autres projets <em>en route.</em></h2>
+  <p class="foot-sub">Retour au portfolio pour explorer d'autres réalisations, ou plonge directement dans le code de Ciné Délices sur GitHub.</p>
+  <div class="foot-actions">
+    <a href="index.html" class="btn btn-dark">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Retour au portfolio
+    </a>
+    <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      Code sur GitHub
+    </a>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Sébastien Maurice · Case study Ciné Délices</span>
+    <span>cine-delices.fr · <em style="color:var(--coral);font-style:italic">bientôt en ligne · VPS Hostinger</em></span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Aperçu image">
+  <button class="lightbox-close" aria-label="Fermer">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<script src="js/cine-delices.js"></script>
+</body>
+</html>
