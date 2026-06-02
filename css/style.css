@@ -115,7 +115,7 @@ nav.sitenav.solid{box-shadow:0 8px 40px rgba(10,30,46,.12),inset 0 1px 0 rgba(25
 .b-top-zone{display:grid;grid-template-columns:1fr 1.18fr;gap:var(--gap);min-height:520px}
 .b-left-col{display:flex;flex-direction:column;gap:var(--gap)}
 .b-mini-bento{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:160px 1fr;gap:var(--gap);min-height:340px}
-.b-bottom-row{position:relative;height:320px;flex-shrink:0;overflow:hidden}
+.b-bottom-row{position:relative;height:210px;flex-shrink:0;overflow:hidden}
 .b-carousel-track-wrap{width:100%;height:100%;overflow:hidden;border-radius:var(--radius)}
 .b-carousel-track{display:flex;gap:var(--gap);height:100%;transition:transform .55s cubic-bezier(.16,1,.3,1);will-change:transform}
 .b-carousel-track .b-card-proj{flex:0 0 calc(25% - 12px);min-width:calc(25% - 12px);height:100%}
@@ -216,6 +216,11 @@ nav.sitenav.solid{box-shadow:0 8px 40px rgba(10,30,46,.12),inset 0 1px 0 rgba(25
 .b-card:hover .b-card-hover-reveal,.b-card-proj:hover .b-card-hover-reveal{opacity:1;transform:translateY(0);pointer-events:auto}
 .b-hover-label{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid rgba(181,244,222,.15);padding-bottom:6px;margin-bottom:0}
 .b-hover-cta{margin-top:auto;padding-top:7px;font-family:var(--f-mono);font-size:9.5px;font-weight:700;color:var(--accent);letter-spacing:.04em;display:flex;align-items:center;gap:4px;text-transform:uppercase}
+.b-hover-btn{align-self:center;margin-top:auto;background:transparent;border:1.5px solid var(--mint-400);color:var(--mint-400);font-family:var(--f-mono);font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:6px 16px;border-radius:100px;white-space:nowrap;transition:background .22s,color .22s,border-color .22s}
+.b-card-hover-reveal:hover .b-hover-btn{background:rgba(253,147,124,.15);border-color:var(--coral-400);color:var(--coral-400)}
+.b-malt-badge{position:absolute;top:9px;right:9px;z-index:4;width:26px;height:26px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(255,255,255,.22);box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.b-malt-badge img{width:100%;height:100%;object-fit:cover;display:block}
+.b-carousel-dots{display:none}
 
 /* SEC-INNER + STACK SECTION */
 .sec-inner{width:100%;max-width:1600px;margin-left:auto;margin-right:auto;padding:0 clamp(24px,5vw,80px);box-sizing:border-box}
@@ -711,7 +716,7 @@ nav.sitenav.solid{box-shadow:0 8px 40px rgba(10,30,46,.12),inset 0 1px 0 rgba(25
   .cv-card-dispo{grid-column:1;grid-row:auto;flex-direction:column;align-items:flex-start}
   .cvd-sep{display:none}
   .b-top-zone{grid-template-columns:1fr}
-  .b-bottom-row{height:300px}
+  .b-bottom-row{height:190px}
   .b-carousel-track .b-card-proj{flex:0 0 calc(50% - 8px);min-width:calc(50% - 8px)}
   .bento-section{height:auto;min-height:100vh}
   .stack-approach{grid-template-columns:1fr;gap:20px}
@@ -761,7 +766,7 @@ nav.sitenav.solid{box-shadow:0 8px 40px rgba(10,30,46,.12),inset 0 1px 0 rgba(25
   .ia-philosophy-bar{padding:20px 18px;gap:20px}
   .cv-sec{padding:60px 0 0}
   .b-inner{padding:40px clamp(16px,4vw,28px) 40px}
-  .b-bottom-row{height:280px}
+  .b-bottom-row{height:175px}
   .b-carousel-track .b-card-proj{flex:0 0 calc(100% - 0px);min-width:calc(100% - 0px)}
   .stack-approach{padding:18px 20px;grid-template-columns:1fr;gap:16px}
   .approach-steps{flex-wrap:wrap;justify-content:center;gap:8px}
