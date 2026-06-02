@@ -38,7 +38,7 @@
 })();
 
 /* ── Email obfuscation ── */
-(function(){ const u='contact',d='sebastienmaurice',t='fr'; window._em=u+'@'+d+'.'+t; })();
+(function(){ const u='overseb75',d='gmail',t='com'; window._em=u+'@'+d+'.'+t; })();
 function revealEmail(btnEl, displayEl){
   if(displayEl) displayEl.textContent = window._em;
   btnEl.href = 'mailto:' + window._em;
@@ -189,7 +189,7 @@ function closeImgLightbox() {
   document.body.style.overflow = '';
 }
 
-/* ── Bento Carousel (infinite loop + autoplay) ── */
+/* ── Bento Carousel (infinite loop card-by-card + autoplay) ── */
 (function(){
   const track    = document.getElementById('bCarouselTrack');
   const prevBtn  = document.getElementById('bCarouselPrev');
@@ -198,21 +198,13 @@ function closeImgLightbox() {
   const carousel = document.getElementById('bCarousel');
   if (!track) return;
 
-  const AUTOPLAY_DELAY = 4000;
-  const TRANSITION_MS  = 550;
+  const AUTOPLAY_DELAY = 3500;
+  const TRANSITION_MS  = 500;
   let visibleCount = 4, current = 0, isTransitioning = false, autoTimer = null;
 
+  /* origCards captured once, before any clones exist */
   const origCards = Array.from(track.querySelectorAll('.b-card-proj'));
   const origLen   = origCards.length;
-
-  function cloneCards() {
-    track.querySelectorAll('.b-carousel-clone').forEach(c => c.remove());
-    const cloneCount = visibleCount;
-    origCards.slice(-cloneCount).map(c => { const cl = c.cloneNode(true); cl.classList.add('b-carousel-clone'); return cl; })
-             .forEach(c => track.insertBefore(c, track.firstChild));
-    origCards.slice(0, cloneCount).map(c => { const cl = c.cloneNode(true); cl.classList.add('b-carousel-clone'); return cl; })
-             .forEach(c => track.appendChild(c));
-  }
 
   function getVisible() {
     const w = window.innerWidth;
@@ -221,14 +213,29 @@ function closeImgLightbox() {
     return 4;
   }
 
+  function cloneCards() {
+    track.querySelectorAll('.b-carousel-clone').forEach(c => c.remove());
+    /* clone last visibleCount cards before first real card */
+    origCards.slice(-visibleCount).forEach(c => {
+      const cl = c.cloneNode(true); cl.classList.add('b-carousel-clone');
+      track.insertBefore(cl, track.firstChild);
+    });
+    /* clone first visibleCount cards after last real card */
+    origCards.slice(0, visibleCount).forEach(c => {
+      const cl = c.cloneNode(true); cl.classList.add('b-carousel-clone');
+      track.appendChild(cl);
+    });
+  }
+
   function allCards() { return Array.from(track.querySelectorAll('.b-card-proj')); }
 
   function setCardWidths() {
+    const gap = 16;
     allCards().forEach(c => {
       const pct = 100 / visibleCount;
-      const gapShare = (visibleCount - 1) * 16 / visibleCount;
-      c.style.flex = `0 0 calc(${pct}% - ${gapShare}px)`;
-      c.style.minWidth = c.style.flex.split(' ')[2];
+      const gs  = (visibleCount - 1) * gap / visibleCount;
+      c.style.flex     = `0 0 calc(${pct}% - ${gs}px)`;
+      c.style.minWidth = `calc(${pct}% - ${gs}px)`;
     });
   }
 
@@ -239,54 +246,44 @@ function closeImgLightbox() {
     return idx * (cardW + gap);
   }
 
-  function setTransition(on) {
+  function setTr(on) {
     track.style.transition = on ? `transform ${TRANSITION_MS}ms cubic-bezier(.16,1,.3,1)` : 'none';
   }
 
-  function totalRealSlides() { return Math.ceil(origLen / visibleCount); }
-
   function buildDots() {
     dotsWrap.innerHTML = '';
-    for (let i = 0; i < totalRealSlides(); i++) {
+    for (let i = 0; i < origLen; i++) {
       const d = document.createElement('button');
       d.className = 'b-carousel-dot';
       d.setAttribute('aria-label', 'Slide ' + (i + 1));
-      d.addEventListener('click', () => { stopAutoplay(); goToReal(i); startAutoplay(); });
+      d.addEventListener('click', () => { stopAutoplay(); goTo(visibleCount + i, true); startAutoplay(); });
       dotsWrap.appendChild(d);
     }
     updateDots();
   }
 
   function updateDots() {
-    const realIdx = Math.floor(((current - visibleCount) % origLen + origLen) % origLen / visibleCount);
-    dotsWrap.querySelectorAll('.b-carousel-dot').forEach((d, i) => d.classList.toggle('active', i === realIdx));
+    const ri = ((current - visibleCount) % origLen + origLen) % origLen;
+    dotsWrap.querySelectorAll('.b-carousel-dot').forEach((d, i) => d.classList.toggle('active', i === ri));
   }
 
-  function goToReal(realIdx) {
-    current = visibleCount + realIdx * visibleCount;
-    setTransition(true);
-    track.style.transform = `translateX(-${getOffset(current)}px)`;
-    updateDots();
-  }
-
-  function goTo(idx, withTransition = true) {
+  function goTo(idx, withTr = true) {
     if (isTransitioning) return;
     isTransitioning = true;
     current = idx;
-    setTransition(withTransition);
+    setTr(withTr);
     track.style.transform = `translateX(-${getOffset(current)}px)`;
     updateDots();
-    if (!withTransition) { isTransitioning = false; return; }
+    if (!withTr) { isTransitioning = false; return; }
     setTimeout(() => {
-      const cloneCount = visibleCount;
-      const total = allCards().length;
-      if (current < cloneCount) {
-        setTransition(false);
-        current = current + origLen;
+      /* seamless loop: teleport from clone to real counterpart */
+      if (current < visibleCount) {
+        setTr(false);
+        current += origLen;
         track.style.transform = `translateX(-${getOffset(current)}px)`;
-      } else if (current >= total - cloneCount) {
-        setTransition(false);
-        current = current - origLen;
+      } else if (current >= visibleCount + origLen) {
+        setTr(false);
+        current -= origLen;
         track.style.transform = `translateX(-${getOffset(current)}px)`;
       }
       updateDots();
@@ -294,8 +291,8 @@ function closeImgLightbox() {
     }, TRANSITION_MS + 20);
   }
 
-  function next() { goTo(current + visibleCount); }
-  function prev() { goTo(current - visibleCount); }
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
 
   function startAutoplay() {
     stopAutoplay();
@@ -307,8 +304,8 @@ function closeImgLightbox() {
     visibleCount = getVisible();
     cloneCards();
     setCardWidths();
-    current = visibleCount;
-    setTransition(false);
+    current = visibleCount;   /* start at real card 0 */
+    setTr(false);
     track.style.transform = `translateX(-${getOffset(current)}px)`;
     buildDots();
     isTransitioning = false;
@@ -322,7 +319,7 @@ function closeImgLightbox() {
 
   let startX = 0;
   track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAutoplay(); }, { passive: true });
-  track.addEventListener('touchend', e => {
+  track.addEventListener('touchend',   e => {
     const dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
     startAutoplay();
