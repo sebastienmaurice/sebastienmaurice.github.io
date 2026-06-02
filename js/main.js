@@ -1,6 +1,6 @@
 /* =============================================
-   PORTFOLIO — Sébastien Maurice
-   js/main.js — v7.3 — 2026
+   PORTFOLIO - Sébastien Maurice
+   js/main.js - v7.3 - 2026
 ============================================= */
 
 /* ── Tech Bar ── */
