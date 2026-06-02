@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<title>CV · Sébastien Maurice · UI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Cabinet+Grotesk:wght@300;400;700;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --mint-100:#d6f8e9;--mint-200:#b5f4de;--mint-300:#8fedd0;--mint-400:#72dfb8;--mint-600:#409787;
+  --coral-300:#ffb088;--coral-400:#fd937c;--coral-500:#ff7a59;
+  --ink-50:#f2f2f2;--ink-100:#fdfdfd;--ink-700:#0d2f47;--ink-800:#0d1e2d;--ink-900:#0a1e2e;
+  --color-surface:#f0fdf7;
+  --color-accent:var(--coral-500);
+  --color-accent-soft:var(--coral-300);
+  --color-accent-warm:var(--coral-400);
+  --color-primary-strong:var(--mint-600);
+  --border-dark:rgba(181,244,222,.14);
+  --f-disp:"Cabinet Grotesk",sans-serif;
+  --f-serif:"Fraunces",Georgia,serif;
+  --f-mono:"Geist Mono",ui-monospace,monospace;
+  --r:16px;--r-sm:10px;--r-xs:6px;
+  --bg-dark:var(--ink-900);
+  --bg-mid:var(--ink-800);
+  --text-mint:var(--mint-200);
+  --text-coral:var(--coral-300);
+  --sep:rgba(181,244,222,.1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4 portrait;margin:0}
+html,body{
+  width:210mm;height:297mm;overflow:hidden;
+  font-family:var(--f-disp);font-weight:300;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  background:var(--bg-dark);
+}
+
+@media print {
+  .eul li  { color:#1a2f40 !important; }
+  .eco     { color:#2d6b5a !important; }
+  .pitch p { color:#c8efe2 !important; }
+  .pd2     { color:#9dd4c4 !important; }
+  .fn      { color:#c8efe2 !important; }
+  .fs2     { color:#6aaa96 !important; }
+  .fd2     { color:#5a8878 !important; }
+  .lr span { color:#72dfb8 !important; }
+  .p       { color:#8ab8aa !important; border-color:#4a8878 !important; }
+  .p.s     { color:#b5f4de !important; border-color:#409787 !important; }
+  .p.c     { color:#ff9a6e !important; border-color:#d46040 !important; }
+  .etag    { color:#2d6b5a !important; }
+  .ptag    { color:#7ab8a8 !important; }
+  .pbtn    { display:none; }
+}
+
+.page{
+  width:210mm;height:297mm;
+  display:grid;
+  grid-template-columns:68mm 1fr;
+  grid-template-rows:auto 1fr auto;
+}
+
+/* HEADER */
+.hd{
+  grid-column:1/-1;
+  background:var(--bg-dark);
+  display:flex;align-items:stretch;
+  position:relative;overflow:hidden;
+}
+.hd::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(181,244,222,.12) 1px,transparent 1px);
+  background-size:22px 22px;pointer-events:none;z-index:0;
+}
+.hd::after{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--coral-500),var(--mint-400));z-index:2;
+}
+
+.hd-photo-wrap{
+  width:114px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:14px 0 14px 14px;
+  position:relative;z-index:1;
+}
+.hd-photo{
+  width:86px;height:86px;
+  object-fit:cover;object-position:center top;
+  border-radius:var(--r);
+  border:2.5px solid var(--mint-400);
+  display:block;
+}
+
+.hd-id{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:18px 0 18px 16px;
+  position:relative;z-index:1;flex:1;
+}
+.hd-tagline{
+  font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(181,244,222,.55);margin-bottom:5px;
+}
+.hd-name{
+  font-family:var(--f-serif);font-size:40px;font-weight:900;
+  letter-spacing:-.03em;line-height:.88;color:var(--text-mint);
+}
+.hd-name em{font-style:italic;color:#fff;}
+.hd-title{
+  margin-top:7px;font-family:var(--f-disp);font-size:9.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-coral);white-space:nowrap;
+}
+
+.hd-ct{
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+  align-items:flex-end;padding:18px 24px 18px 16px;
+  position:relative;z-index:1;flex-shrink:0;
+}
+.ci{
+  font-family:var(--f-mono);font-size:9.5px;
+  color:rgba(181,244,222,.58);
+  letter-spacing:.02em;display:flex;align-items:center;gap:6px;
+}
+.ci svg{opacity:.45;flex-shrink:0;}
+.ci a{color:inherit;text-decoration:none;}
+.ci.coral{color:var(--coral-300);}
+.ci.coral svg{opacity:.65;}
+.ci.phone{font-size:12px;font-weight:700;color:var(--coral-400);letter-spacing:.01em;}
+.ci.phone svg{opacity:.7;}
+
+/* SIDEBAR */
+.sb{
+  background:var(--bg-mid);
+  padding:22px 20px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.sb-block{margin-bottom:20px;}
+.sb-block:last-child{margin-bottom:0;margin-top:auto;}
+
+.sl{
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-coral);margin-bottom:12px;
+  display:flex;align-items:center;gap:6px;
+}
+.sl::after{content:"";flex:1;height:1px;background:var(--border-dark);}
+
+.db{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(64,151,135,.14);border:1px solid rgba(64,151,135,.28);
+  border-radius:100px;padding:6px 14px;
+  font-family:var(--f-mono);font-size:9px;color:var(--mint-400);
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.pd{width:6px;height:6px;border-radius:50%;background:var(--mint-600);flex-shrink:0;}
+
+.skg{margin-bottom:13px;}
+.skg:last-child{margin-bottom:0;}
+.skt{
+  font-family:var(--f-disp);font-size:10px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mint-400);margin-bottom:7px;
+}
+.pills{display:flex;flex-wrap:wrap;gap:5px;}
+
+/* Pill mint (défaut) */
+.p{
+  font-family:var(--f-mono);font-size:9px;
+  padding:3px 9px;border-radius:100px;
+  background:rgba(181,244,222,.06);border:1px solid var(--border-dark);
+  color:rgba(181,244,222,.65);white-space:nowrap;
+}
+.p.s{background:rgba(181,244,222,.14);border-color:rgba(181,244,222,.26);color:var(--text-mint);}
+/* Pill coral accent */
+.p.c{
+  background:rgba(255,122,89,.12);
+  border:1px solid rgba(255,122,89,.28);
+  color:var(--coral-300);
+}
+/* Pill coral fort */
+.p.cf{
+  background:rgba(253,147,124,.18);
+  border:1px solid rgba(253,147,124,.38);
+  color:var(--coral-400);
+  font-weight:500;
+}
+
+.fi{margin-bottom:12px;}
+.fi:last-child{margin-bottom:0;}
+.fn{font-family:var(--f-disp);font-size:11px;font-weight:700;color:var(--text-mint);line-height:1.2;}
+.fs2{font-family:var(--f-serif);font-size:10px;font-style:italic;color:rgba(181,244,222,.44);margin-top:2px;}
+.fd2{font-family:var(--f-disp);font-size:9.5px;color:rgba(181,244,222,.32);line-height:1.45;margin-top:3px;}
+
+.lr{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--f-mono);font-size:9.5px;color:rgba(181,244,222,.42);
+  margin-bottom:7px;text-decoration:none;
+}
+.lr span{color:var(--mint-300);}
+.lr svg{opacity:.35;flex-shrink:0;}
+
+/* MAIN */
+.mn{
+  background:var(--color-surface);
+  padding:22px 24px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.mn-block{margin-bottom:18px;}
+.mn-block:last-child{margin-bottom:0;}
+
+.pitch{
+  background:var(--bg-dark);border-radius:var(--r-sm);
+  padding:16px 20px;position:relative;overflow:hidden;
+}
+.pitch::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2.5px;
+  background:linear-gradient(90deg,var(--color-accent),var(--mint-400));
+}
+.pitch p{
+  font-family:var(--f-serif);font-size:11.5px;font-weight:400;
+  line-height:1.62;color:rgba(181,244,222,.85);
+}
+.pitch p strong{color:var(--text-mint);font-weight:700;}
+.pitch p em{font-style:italic;color:var(--text-coral);}
+
+.mlbl{
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--color-accent);margin-bottom:10px;
+  display:flex;align-items:center;gap:5px;
+}
+.mlbl::after{content:"";flex:1;height:1px;background:rgba(10,30,46,.09);}
+
+/* Carte projet */
+.pc{
+  background:var(--bg-dark);border-radius:var(--r-sm);
+  display:flex;align-items:stretch;
+  position:relative;overflow:hidden;min-height:120px;
+}
+.pc::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2.5px;
+  background:linear-gradient(90deg,var(--mint-400),var(--coral-400));z-index:1;
+}
+
+/* Image agrandie + mieux cadrée */
+.pc-img{
+  width:130px;flex-shrink:0;
+  object-fit:cover;
+  object-position:35% center;
+  display:block;
+  border-radius:0 0 0 var(--r-sm);
+  opacity:.94;
+}
+
+.pc-body{
+  flex:1;padding:13px 15px;
+  display:flex;flex-direction:column;
+}
+.pc-title-row{
+  display:flex;align-items:center;gap:9px;
+  margin-bottom:6px;
+}
+.pbadge{
+  font-family:var(--f-mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-coral);
+  background:rgba(255,176,136,.09);border:1px solid rgba(255,176,136,.18);
+  border-radius:var(--r-xs);
+  padding:2.5px 6px;white-space:nowrap;flex-shrink:0;
+}
+.pn{
+  font-family:var(--f-serif);font-size:15px;font-weight:700;
+  color:var(--text-mint);letter-spacing:-.02em;line-height:1.1;
+}
+.pn em{font-style:italic;color:var(--text-coral);}
+.pd2{
+  font-family:var(--f-disp);font-size:9.5px;
+  color:rgba(181,244,222,.52);line-height:1.48;
+}
+.pstack{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px;}
+.ptag{
+  font-family:var(--f-mono);font-size:7.5px;
+  padding:2px 6px;border-radius:var(--r-xs);
+  background:rgba(181,244,222,.07);border:1px solid var(--border-dark);
+  color:rgba(181,244,222,.55);
+}
+.purl{
+  font-family:var(--f-mono);font-size:9px;color:var(--mint-400);
+  text-decoration:none;margin-top:5px;display:inline-block;
+}
+
+.exps{display:flex;flex-direction:column;gap:14px;}
+.ei{display:grid;grid-template-columns:10px 1fr;gap:0 11px;}
+.etl{display:flex;flex-direction:column;align-items:center;padding-top:3px;}
+.edot{width:9px;height:9px;border-radius:50%;background:var(--mint-200);border:2px solid rgba(10,30,46,.1);flex-shrink:0;}
+.edot.a{background:var(--coral-400);}
+.eline{width:1px;flex:1;background:rgba(10,30,46,.09);margin-top:4px;}
+.ehd{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:3px;}
+.et{font-family:var(--f-disp);font-size:12.5px;font-weight:900;color:#0a1e2e;line-height:1.15;letter-spacing:-.01em;}
+.edate{
+  font-family:var(--f-mono);font-size:8.5px;color:rgba(10,30,46,.35);
+  padding:2px 8px;background:rgba(10,30,46,.06);border-radius:100px;white-space:nowrap;flex-shrink:0;
+}
+.eco{font-family:var(--f-serif);font-size:11px;font-style:italic;color:var(--mint-600);margin-bottom:5px;}
+.eul{list-style:none;display:flex;flex-direction:column;gap:3px;}
+.eul li{
+  font-family:var(--f-disp);font-size:10.5px;color:rgba(10,30,46,.72);
+  line-height:1.48;padding-left:12px;position:relative;
+}
+.eul li::before{content:"›";position:absolute;left:0;color:var(--coral-400);font-weight:700;font-size:13px;line-height:1.3;}
+.etags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.etag{
+  font-family:var(--f-mono);font-size:8px;
+  padding:2px 7px;border-radius:var(--r-xs);
+  background:rgba(64,151,135,.15);color:#2d7060;border:1px solid rgba(64,151,135,.22);
+}
+
+/* FOOTER - agrandi, centré, plus de coordonnées */
+.ft{
+  grid-column:1/-1;background:var(--bg-dark);
+  padding:10px 26px;
+  display:flex;align-items:center;justify-content:center;
+  border-top:1px solid var(--sep);
+}
+.ftc{
+  font-family:var(--f-mono);font-size:9.5px;
+  color:rgba(181,244,222,.42);
+  letter-spacing:.08em;text-align:center;
+}
+
+.pbtn{
+  position:fixed;bottom:20px;right:20px;
+  background:var(--color-accent);color:#fff;
+  font-family:var(--f-disp);font-size:14px;font-weight:700;
+  padding:10px 24px;border-radius:100px;border:none;cursor:pointer;
+  box-shadow:0 6px 22px rgba(255,122,89,.32);z-index:9999;transition:transform .2s;
+}
+.pbtn:hover{transform:translateY(-2px);}
+@media print{.pbtn{display:none;}}
+</style>
+</head>
+<body>
+
+<button class="pbtn" onclick="window.print()">Télécharger PDF</button>
+
+<div class="page">
+
+<!-- HEADER -->
+<header class="hd">
+  <div class="hd-photo-wrap">
+    <img class="hd-photo" src="../profil-seb-avril-2026.jpg" alt="Sébastien Maurice"/>
+  </div>
+  <div class="hd-id">
+    <div class="hd-tagline">15 ans de design &amp; front-end · Full-stack · Disponible</div>
+    <div class="hd-name">Sébastien<br><em>Maurice</em></div>
+    <div class="hd-title">UI Developer · Intégrateur Front-End · UI Designer</div>
+  </div>
+  <div class="hd-ct">
+    <div class="ci phone">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      06 20 84 78 01
+    </div>
+    <div class="ci coral">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      overseb75@gmail.com
+    </div>
+    <div class="ci" style="margin-top:4px;">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Caudry, 59 · Remote OK
+    </div>
+    <div class="ci">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10"/></svg>
+      <a href="https://sebastienmaurice.github.io">sebastienmaurice.github.io</a>
+    </div>
+    <div class="ci">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      <a href="https://linkedin.com/in/sebastien-maurice">linkedin.com/in/sebastien-maurice</a>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sb">
+
+  <div class="sb-block">
+    <div class="db"><span class="pd"></span>Disponible maintenant</div>
+  </div>
+
+  <div class="sb-block">
+    <div class="sl">Compétences</div>
+
+    <div class="skg">
+      <div class="skt">Intégration Front-End</div>
+      <div class="pills">
+        <span class="p s">HTML5</span>
+        <span class="p s">CSS3</span>
+        <span class="p s">JavaScript ES6+</span>
+        <span class="p">Responsive</span>
+        <span class="p">Accessibilité</span>
+        <span class="p">Svelte</span>
+      </div>
+    </div>
+
+    <div class="skg">
+      <div class="skt">UI Design &amp; UX</div>
+      <div class="pills">
+        <span class="p s">Figma</span>
+        <span class="p s">Design System</span>
+        <span class="p">Prototypage</span>
+        <span class="p">Maquettage</span>
+        <span class="p cf">Pixel-perfect</span>
+        <span class="p c">UX Research</span>
+      </div>
+    </div>
+
+    <div class="skg">
+      <div class="skt">CMS &amp; E-commerce</div>
+      <div class="pills">
+        <span class="p s">WordPress</span>
+        <span class="p s">WooCommerce</span>
+        <span class="p">PrestaShop</span>
+        <span class="p c">E-commerce</span>
+      </div>
+    </div>
+
+    <div class="skg">
+      <div class="skt">Back-end &amp; BDD</div>
+      <div class="pills">
+        <span class="p">Node.js</span>
+        <span class="p">Express</span>
+        <span class="p">APIs REST</span>
+        <span class="p">PostgreSQL</span>
+        <span class="p">MySQL</span>
+        <span class="p c">MVC</span>
+      </div>
+    </div>
+
+    <div class="skg">
+      <div class="skt">Workflow</div>
+      <div class="pills">
+        <span class="p s">Git / GitHub</span>
+        <span class="p">Vite</span>
+        <span class="p">npm</span>
+        <span class="p">VS Code</span>
+        <span class="p c">Agile</span>
+      </div>
+    </div>
+
+    <div class="skg">
+      <div class="skt">Création graphique</div>
+      <div class="pills">
+        <span class="p">Illustrator</span>
+        <span class="p">Photoshop</span>
+        <span class="p">InDesign</span>
+        <span class="p cf">Identité visuelle</span>
+        <span class="p c">Print</span>
+        <span class="p c">Direction artistique</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-block">
+    <div class="sl">Formation</div>
+    <div class="fi">
+      <div class="fn">Dev Web &amp; Web Mobile</div>
+      <div class="fs2">École O'Clock · 2026</div>
+      <div class="fd2">JS, Svelte, Node.js, Express, APIs REST<br>MySQL, PostgreSQL, Git</div>
+    </div>
+    <div class="fi">
+      <div class="fn">D.E.S.S.I.M Master 2</div>
+      <div class="fs2">Université Paris VIII</div>
+      <div class="fd2">Infographie et multimédia</div>
+    </div>
+    <div class="fi">
+      <div class="fn">Licence Design Graphique</div>
+      <div class="fs2">Université Paris VIII</div>
+      <div class="fd2">Conception visuelle · Typographie · Identité</div>
+    </div>
+  </div>
+
+  <div class="sb-block">
+    <div class="sl">Portfolio &amp; Liens</div>
+    <a class="lr" href="https://sebastienmaurice.github.io">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+      <span>sebastienmaurice.github.io</span>
+    </a>
+    <a class="lr" href="https://malt.fr/profile/semauri">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span>malt.fr/profile/semauri</span>
+    </a>
+    <a class="lr" href="https://cinedelices.com">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+      <span>cinedelices.com · projet phare</span>
+    </a>
+  </div>
+
+</aside>
+
+<!-- MAIN -->
+<main class="mn">
+
+  <div class="mn-block">
+    <div class="pitch">
+      <p>Du brief produit à la mise en ligne, <strong>en autonomie complète</strong> : conception UI, intégration front-end et développement web. 15 ans d&rsquo;expérience en production digitale (UI, e-commerce, UX, intégration pixel-perfect), avec une capacité à <em>livrer des interfaces complètes</em> sans séparation entre design et code. Formation Développeur Web Full Stack O&rsquo;Clock (2026) : Node.js, PostgreSQL, APIs REST.</p>
+    </div>
+  </div>
+
+  <div class="mn-block">
+    <div class="mlbl">Projet phare · 2025 / 2026</div>
+    <div class="pc">
+      <img class="pc-img" src="../../assets/img/front-back/cine-delices/couverture-cine-delices.png" alt="Ciné Délices"/>
+      <div class="pc-body">
+        <div class="pc-title-row">
+          <span class="pbadge">Full Stack</span>
+          <div class="pn">Ciné <em>Délices</em></div>
+        </div>
+        <div class="pd2">Plateforme communautaire cinéma &amp; gastronomie développée de A à Z en 12 semaines. Architecture full-stack Node.js / Express, PostgreSQL / Sequelize, auth JWT + Google OAuth, intégration TMDB &amp; Cloudinary. Direction artistique complète, CSS pur, déploiement Render. Zéro framework UI.</div>
+        <div class="pstack">
+          <span class="ptag">Node.js</span><span class="ptag">Express</span><span class="ptag">PostgreSQL</span>
+          <span class="ptag">Sequelize</span><span class="ptag">JWT</span><span class="ptag">OAuth</span>
+          <span class="ptag">EJS</span><span class="ptag">CSS pur</span><span class="ptag">Cloudinary</span><span class="ptag">Render</span>
+        </div>
+        <a class="purl" href="https://cinedelices.com">cinedelices.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mn-block">
+    <div class="mlbl">Expériences professionnelles</div>
+    <div class="exps">
+
+      <div class="ei">
+        <div class="etl"><div class="edot a"></div><div class="eline"></div></div>
+        <div>
+          <div class="ehd"><div class="et">Développeur Front-End / UI Designer</div><span class="edate">2022 · 2025</span></div>
+          <div class="eco">Agence HOZ, Caudry · Freelance</div>
+          <ul class="eul">
+            <li>Intégration pixel-perfect de maquettes Figma en HTML, CSS et JavaScript</li>
+            <li>Interfaces responsive et accessibles, optimisation des performances (Core Web Vitals)</li>
+            <li>Composants réutilisables, maintenance évolutive, pilotage projet en autonomie</li>
+            <li>Amélioration des parcours UX et de l&rsquo;expérience utilisateur</li>
+          </ul>
+          <div class="etags"><span class="etag">HTML5</span><span class="etag">CSS3</span><span class="etag">JavaScript</span><span class="etag">Figma</span><span class="etag">WordPress</span><span class="etag">Performance web</span><span class="etag">Responsive design</span></div>
+        </div>
+      </div>
+
+      <div class="ei">
+        <div class="etl"><div class="edot"></div><div class="eline"></div></div>
+        <div>
+          <div class="ehd"><div class="et">Responsable Agence · Production Web &amp; Print</div><span class="edate">2021 · 2022</span></div>
+          <div class="eco">Pano'Sign Service Group, Dechy</div>
+          <ul class="eul">
+            <li>Supervision web &amp; intégration front-end pour clients nationaux (McDonald&rsquo;s, Bureau Vallée)</li>
+            <li>Coordination créatifs &amp; développeurs, gestion planning, devis, facturation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ei">
+        <div class="etl"><div class="edot"></div><div class="eline"></div></div>
+        <div>
+          <div class="ehd"><div class="et">Développeur Front-End / UI Designer</div><span class="edate">2016 · 2020</span></div>
+          <div class="eco">Alternativ' Uniforme, Caudry · 4 ans</div>
+          <ul class="eul">
+            <li>Intégration et optimisation de sites e-commerce WordPress &amp; PrestaShop</li>
+            <li>Refonte UI orientée conversion, direction artistique complète, maintenance front-end</li>
+          </ul>
+          <div class="etags"><span class="etag">WooCommerce</span><span class="etag">PrestaShop</span><span class="etag">UI Design</span><span class="etag">SEO</span></div>
+        </div>
+      </div>
+
+      <div class="ei">
+        <div class="etl"><div class="edot"></div><div class="eline"></div></div>
+        <div>
+          <div class="ehd"><div class="et">Front-End Developer / UI Designer / Graphiste</div><span class="edate">2014 · 2015</span></div>
+          <div class="eco">Thymep, Ligny-en-Cambrésis</div>
+          <ul class="eul">
+            <li>Conception &amp; intégration de sites WordPress, développement front custom</li>
+            <li>Création de logos, identités visuelles et supports print</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ei">
+        <div class="etl"><div class="edot"></div></div>
+        <div>
+          <div class="ehd"><div class="et">Responsable Agence Digitale / Front-End Designer</div><span class="edate">2009 · 2015</span></div>
+          <div class="eco">Eloustick, Caudry</div>
+          <ul class="eul">
+            <li>Conception &amp; gestion de sites web et e-commerce PrestaShop en autonomie complète</li>
+            <li>Identités visuelles, supports print, signalétique, maquettage et intégration web</li>
+          </ul>
+          <div class="etags"><span class="etag">PrestaShop</span><span class="etag">Identité visuelle</span><span class="etag">Print</span><span class="etag">UX</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="ftc">Sébastien Maurice · CV 2026 · UI Developer · Intégrateur Front-End · UI Designer</div>
+</footer>
+
+</div>
+</body>
+</html>
