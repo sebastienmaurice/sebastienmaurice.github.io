@@ -537,6 +537,92 @@
         text-align: center;
         flex: 1;
       }
+
+      /* ══ TOOLTIP D'IMPRESSION ══ */
+      .print-tip {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        transform: translate(-50%, 0);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        max-width: calc(100vw - 40px);
+        background: var(--ink-900);
+        color: var(--mint-100);
+        padding: 14px 18px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(10, 30, 46, 0.35);
+        font-family: "Barlow", Arial, sans-serif;
+        font-size: 9.5pt;
+        line-height: 1.4;
+        z-index: 1000;
+        animation: print-tip-in 0.5s ease 0.5s both;
+      }
+      .print-tip-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .print-tip-text kbd {
+        display: inline-block;
+        background: var(--mint-400);
+        color: var(--ink-900);
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin: 0 1px;
+        font-family: Arial, sans-serif;
+        font-weight: 700;
+        font-size: 8.5pt;
+      }
+      .print-tip-close {
+        flex-shrink: 0;
+        margin-left: 4px;
+        background: none;
+        border: none;
+        color: var(--mint-100);
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0;
+      }
+      .print-tip.print-tip-hidden {
+        display: none;
+      }
+      @keyframes print-tip-in {
+        from {
+          opacity: 0;
+          transform: translate(-50%, 20px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+      @media (max-width: 600px) {
+        .print-tip {
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+          max-width: none;
+          transform: none;
+          animation-name: print-tip-in-mobile;
+        }
+        @keyframes print-tip-in-mobile {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+      @media print {
+        .print-tip {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -858,5 +944,29 @@
         </a>
       </footer>
     </div>
+
+    <div class="print-tip" id="printTip" role="status">
+      <span class="print-tip-icon" aria-hidden="true">🖨️</span>
+      <span class="print-tip-text">
+        Pour imprimer ou enregistrer ce CV en PDF&nbsp;: appuyez sur
+        <kbd>Ctrl</kbd> + <kbd>P</kbd> sur PC, ou
+        <kbd>Cmd</kbd> + <kbd>P</kbd> sur Mac.
+      </span>
+      <button
+        class="print-tip-close"
+        id="printTipClose"
+        aria-label="Fermer ce message"
+        type="button"
+      >
+        &times;
+      </button>
+    </div>
+    <script>
+      document
+        .getElementById("printTipClose")
+        .addEventListener("click", function () {
+          document.getElementById("printTip").classList.add("print-tip-hidden");
+        });
+    </script>
   </body>
 </html>
