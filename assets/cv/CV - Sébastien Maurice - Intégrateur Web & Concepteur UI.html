@@ -537,9 +537,68 @@
         text-align: center;
         flex: 1;
       }
+      /* ── Print hint ── */
+      .print-hint {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 9999;
+        background: #0a1e2e;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 9px 52px;
+        font-family: "Barlow", Arial, sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.01em;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+      }
+      .print-hint kbd {
+        display: inline-block;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.22);
+        border-radius: 4px;
+        padding: 1px 8px;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        color: #8fedd0;
+        margin: 0 2px;
+      }
+      .print-hint-close {
+        position: absolute;
+        right: 14px;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.45);
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 1;
+        padding: 2px 4px;
+      }
+      .print-hint-close:hover { color: #fff; }
+      @media screen { body { padding-top: 40px; } }
+      @media print {
+        .print-hint { display: none !important; }
+        body { padding-top: 0 !important; }
+      }
     </style>
   </head>
   <body>
+    <div class="print-hint" id="printHint">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7;flex-shrink:0"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1-2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <span>Imprimez ce CV ou enregistrez-le en PDF &nbsp;·&nbsp; <kbd id="ph-key">Ctrl&thinsp;P</kbd></span>
+      <button class="print-hint-close" onclick="document.getElementById('printHint').remove();document.body.style.paddingTop=''" aria-label="Fermer">×</button>
+    </div>
+    <script>
+      (function(){
+        var k=document.getElementById('ph-key');
+        if(k&&/Mac|iPhone|iPad|iPod/.test(navigator.platform||navigator.userAgent)){
+          k.innerHTML='&#8984;&thinsp;P';
+        }
+      })();
+    </script>
     <div class="page" role="document" aria-label="CV Sebastien Maurice">
       <!-- ══ HEADER ══ -->
       <header class="cv-header">
