@@ -963,6 +963,17 @@ nav.sitenav.solid {
 .b-card-mini2 {
   animation-delay: 0.28s;
 }
+.b-card-mini1 {
+  background: var(--coral-500);
+  border-color: rgba(255,255,255,0.18);
+}
+.b-card-mini1 .b-mini-num { color: #fff; }
+.b-card-mini1 .b-mini-label { color: rgba(255,255,255,0.8); }
+.b-card-mini1 .b-mini-icon {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.28);
+  color: #fff;
+}
 .b-mini-icon {
   width: 32px;
   height: 32px;
