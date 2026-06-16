@@ -953,9 +953,18 @@ nav.sitenav.solid {
 .b-card-mini1,
 .b-card-mini2 {
   display: flex;
-  align-items: center;
   gap: 12px;
   padding: 10px 15px;
+}
+.b-card-mini1 {
+  align-items: center;
+}
+.b-card-mini2 {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+  padding: 14px 15px 12px;
 }
 .b-card-mini1 {
   animation-delay: 0.22s;
@@ -975,11 +984,28 @@ nav.sitenav.solid {
   color: #fff;
 }
 .b-card-mini2::before {
-  background: radial-gradient(
-    ellipse 120px 80px at var(--gx) var(--gy),
-    rgba(255,255,255,0.14) 0%,
-    transparent 70%
-  );
+  display: none;
+}
+.b-mini2-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.b-mini2-cta {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  transition: color 0.18s, gap 0.18s;
+}
+.b-mini2-cta:hover {
+  color: #fff;
+  gap: 8px;
 }
 .b-card-mini2:hover {
   border-color: rgba(255,255,255,0.55);
