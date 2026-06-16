@@ -1257,7 +1257,7 @@ nav.sitenav.solid {
   font-size: clamp(28px, 3.1vw, 48px);
   font-weight: 700;
   line-height: 1;
-  color: var(--text);
+  color: var(--coral-500);
 }
 .b-project-desc {
   font-family: var(--f-disp);
@@ -1332,7 +1332,7 @@ nav.sitenav.solid {
   font-family: var(--f-disp);
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--coral-500);
   cursor: none;
   background: none;
   border: none;
@@ -3070,6 +3070,7 @@ nav.sitenav.solid {
 .cv-card-stats .cvs-val {
   color: var(--ink-900) !important;
   font-size: 2.2rem;
+  width: 72px;
 }
 .cv-card-stats .cvs-val sup {
   opacity: 0.45;
