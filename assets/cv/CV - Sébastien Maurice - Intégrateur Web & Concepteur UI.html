@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      CV - Sébastien Maurice - Développeur Front-End - Intégrateur Web -
-      Concepteur UI
+      CV - Sébastien Maurice - Intégrateur Web & Concepteur UI
     </title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap");
@@ -63,11 +62,10 @@
 
       .page {
         width: 210mm;
-        height: 297mm;
+        min-height: 297mm;
         margin: 1.5rem auto;
         background: var(--blanc);
         box-shadow: 0 6px 36px rgba(10, 30, 46, 0.15);
-        overflow: hidden;
         display: flex;
         flex-direction: column;
       }
@@ -82,6 +80,7 @@
           box-shadow: none;
           width: 210mm;
           height: 297mm;
+          overflow: hidden;
         }
         article.exp {
           page-break-inside: avoid;
@@ -185,7 +184,7 @@
           Arial Narrow,
           Arial,
           sans-serif;
-        font-size: 7.5pt;
+        font-size: 8pt;
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -223,13 +222,13 @@
       .cv-accroche {
         background: var(--blanc);
         border-left: 4px solid var(--mint-600);
-        padding: 5px 32px;
+        padding: 4px 32px;
         flex-shrink: 0;
       }
       .cv-accroche p {
         font-size: 9.5pt;
         color: var(--text-muted);
-        line-height: 1.42;
+        line-height: 1.4;
         font-style: italic;
       }
       .cv-accroche strong {
@@ -246,10 +245,10 @@
 
       /* ══ CORPS ══ */
       .cv-body {
-        padding: 6px 28px 4px;
+        padding: 5px 28px 3px;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
         flex: 1;
         overflow: hidden;
         background: var(--blanc);
@@ -305,7 +304,7 @@
       .exp-list {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 9px;
       }
 
       article.exp {
@@ -369,7 +368,7 @@
         color: var(--teal);
         font-style: italic;
         font-weight: 500;
-        margin-bottom: 1px;
+        margin-bottom: 2px;
         font-family: Arial, sans-serif;
       }
       article.exp ul {
@@ -377,12 +376,12 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 3px;
       }
       article.exp ul li {
-        font-size: 9pt;
+        font-size: 8.5pt;
         color: var(--text-muted);
-        line-height: 1.32;
+        line-height: 1.28;
         padding-left: 11px;
         position: relative;
         font-family: Arial, sans-serif;
@@ -423,17 +422,18 @@
           Arial Narrow,
           Arial,
           sans-serif;
-        font-size: 7.5pt;
+        font-size: 8pt;
         font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--teal);
         margin-bottom: 1px;
+        display: block;
       }
       .cv-formation-titre {
         font-size: 9pt;
         font-weight: 600;
-        color: var(--text-dark); /* texte sombre sur mint pâle */
+        color: var(--text-dark);
         line-height: 1.3;
         font-family: Arial, sans-serif;
         display: block;
@@ -447,9 +447,9 @@
         margin: 0;
       }
       .cv-formation-detail {
-        font-size: 7.5pt;
+        font-size: 8pt;
         color: var(--text-muted);
-        line-height: 1.2;
+        line-height: 1.3;
         font-family: Arial, sans-serif;
       }
 
@@ -471,7 +471,7 @@
           Arial Narrow,
           Arial,
           sans-serif;
-        font-size: 7.5pt;
+        font-size: 8pt;
         font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -492,7 +492,7 @@
         white-space: nowrap;
       }
       .cv-projet-detail {
-        font-size: 7.2pt;
+        font-size: 8pt;
         color: var(--text-muted);
         font-family: Arial, sans-serif;
         line-height: 1.38;
@@ -537,92 +537,6 @@
         text-align: center;
         flex: 1;
       }
-
-      /* ══ TOOLTIP D'IMPRESSION ══ */
-      .print-tip {
-        position: fixed;
-        left: 50%;
-        bottom: 24px;
-        transform: translate(-50%, 0);
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        max-width: calc(100vw - 40px);
-        background: var(--ink-900);
-        color: var(--mint-100);
-        padding: 14px 18px;
-        border-radius: 14px;
-        box-shadow: 0 10px 30px rgba(10, 30, 46, 0.35);
-        font-family: "Barlow", Arial, sans-serif;
-        font-size: 9.5pt;
-        line-height: 1.4;
-        z-index: 1000;
-        animation: print-tip-in 0.5s ease 0.5s both;
-      }
-      .print-tip-icon {
-        font-size: 18px;
-        flex-shrink: 0;
-      }
-      .print-tip-text kbd {
-        display: inline-block;
-        background: var(--mint-400);
-        color: var(--ink-900);
-        border-radius: 4px;
-        padding: 1px 6px;
-        margin: 0 1px;
-        font-family: Arial, sans-serif;
-        font-weight: 700;
-        font-size: 8.5pt;
-      }
-      .print-tip-close {
-        flex-shrink: 0;
-        margin-left: 4px;
-        background: none;
-        border: none;
-        color: var(--mint-100);
-        font-size: 20px;
-        line-height: 1;
-        cursor: pointer;
-        padding: 0;
-      }
-      .print-tip.print-tip-hidden {
-        display: none;
-      }
-      @keyframes print-tip-in {
-        from {
-          opacity: 0;
-          transform: translate(-50%, 20px);
-        }
-        to {
-          opacity: 1;
-          transform: translate(-50%, 0);
-        }
-      }
-      @media (max-width: 600px) {
-        .print-tip {
-          left: 12px;
-          right: 12px;
-          bottom: 12px;
-          max-width: none;
-          transform: none;
-          animation-name: print-tip-in-mobile;
-        }
-        @keyframes print-tip-in-mobile {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      }
-      @media print {
-        .print-tip {
-          display: none !important;
-        }
-      }
     </style>
   </head>
   <body>
@@ -642,8 +556,7 @@
               Maurice
             </h1>
             <p class="cv-titre-poste">
-              Développeur Front-End &nbsp;·&nbsp; Intégrateur Web &nbsp;·&nbsp;
-              Concepteur UI
+              Intégrateur Web &nbsp;·&nbsp; Concepteur UI &nbsp;·&nbsp; WordPress &nbsp;·&nbsp; E-commerce &nbsp;·&nbsp; UX
             </p>
             <span class="dispo-badge"
               >&#9679; Disponible immédiatement / CDI prioritaire /
@@ -669,19 +582,7 @@
       <!-- ══ ACCROCHE ══ -->
       <section class="cv-accroche" aria-label="Profil professionnel">
         <p>
-          <strong>Développeur Front-End et Intégrateur Web</strong> avec
-          <strong>15 ans d'expérience</strong> en conception UI, intégration web
-          et production digitale. Spécialiste de la transformation de maquettes
-          <strong>Figma en interfaces HTML5, CSS3, JavaScript</strong> :
-          pixel-perfect, architecture orientée composants, responsive,
-          accessibilité WCAG, optimisation <strong>Core Web Vitals</strong>.
-          Double compétence
-          <strong>conception UI/UX, système de design</strong> et
-          <strong>e-commerce</strong> (WordPress, WooCommerce, PrestaShop, SEO).
-          Formation <strong>Développeur Web O'Clock 2026</strong> : Node.js,
-          intégration API REST, PostgreSQL, Svelte. Mobilité :
-          <strong>télétravail, hybride ou présentiel</strong>, Permis B, Caudry
-          (59).
+          <strong>Intégrateur Web & Concepteur UI</strong> avec <strong>15 ans d'expérience</strong> dans la conception et la réalisation d'interfaces web, e-commerce et expériences digitales. Autonome sur l'ensemble de la chaîne de production : <strong>design UI, maquettage Figma, intégration HTML/CSS pixel-perfect</strong>, accessibilité WCAG, optimisation SEO et Core Web Vitals. Expertise e-commerce <strong>WordPress, WooCommerce, PrestaShop</strong> et création de design systems orientés conversion. Mobilité : <strong>télétravail, hybride ou présentiel</strong>, Permis B, Caudry (59).
         </p>
       </section>
 
@@ -694,34 +595,33 @@
           <h2 id="comp-h">Compétences techniques</h2>
           <div class="comp-grid">
             <div class="comp-bloc">
-              <h3>Intégration Front-End &amp; Développement Web</h3>
+              <h3>Conception UI & Expérience Utilisateur</h3>
               <p>
-                HTML5, CSS3, JavaScript ES6+, Svelte<br />
-                Responsive Design, Mobile First<br />
-                Architecture orientée composants<br />
+                Figma, Design System, Prototypage interactif<br />
+                Maquettage UX, parcours utilisateur, wireframes<br />
                 Accessibilité web (WCAG 2.1)<br />
-                Intégration UI pixel-perfect depuis Figma<br />
-                Optimisation performance web, Core Web Vitals<br />
-                Node.js, Express, API REST, PostgreSQL
+                Responsive Design, Mobile First<br />
+                CRO (Conversion Rate Optimization)<br />
+                Direction artistique, identité visuelle
               </p>
             </div>
             <div class="comp-bloc">
-              <h3>UI / UX Design &amp; E-commerce</h3>
+              <h3>Intégration Web & E-commerce</h3>
               <p>
-                Figma, Design System, Prototypage interactif<br />
-                UX Design, Maquettage UX, Direction artistique<br />
-                SEO on-page, CRO (Conversion Rate Optimization)<br />
+                HTML5, CSS3, JavaScript ES6+<br />
+                Intégration pixel-perfect depuis Figma<br />
                 WordPress, WooCommerce, PrestaShop<br />
-                Personnalisation de thèmes, maintenance évolutive
+                Personnalisation de thèmes, développement sur mesure<br />
+                SEO on-page, optimisation Core Web Vitals<br />
+                Svelte, Node.js, API REST, PostgreSQL
               </p>
             </div>
             <div class="comp-bloc wide">
-              <h3>Outils, méthodes &amp; environnement technique</h3>
-              <p style="font-size: 7.8pt">
-                Git, GitHub &nbsp;—&nbsp; Vite, npm, VS Code &nbsp;—&nbsp;
-                Méthodologie Agile / Scrum &nbsp;—&nbsp; MySQL, Sequelize,
-                Authentification JWT, OAuth &nbsp;—&nbsp; Adobe Photoshop,
-                Illustrator, InDesign
+              <h3>Outils, méthodes & environnement technique</h3>
+              <p style="font-size: 8pt">
+                Git, GitHub &nbsp;·&nbsp; Vite, npm, VS Code &nbsp;·&nbsp;
+                Méthodologie Agile / Scrum &nbsp;·&nbsp; Adobe Photoshop,
+                Illustrator, InDesign &nbsp;·&nbsp; MySQL, Sequelize, JWT, OAuth
               </p>
             </div>
           </div>
@@ -733,51 +633,42 @@
           <div class="exp-list">
             <article class="exp">
               <div class="exp-head">
-                <h3>Développeur Front-End / Intégrateur Web</h3>
+                <h3>Concepteur UI & Intégrateur Web</h3>
                 <time datetime="2022/2025">2022 - 2025</time>
               </div>
               <p class="exp-entreprise">Agence HOZ, Caudry (59) / Freelance</p>
               <ul>
                 <li>
-                  Intégration pixel-perfect de maquettes Figma en HTML5, CSS3 et
-                  JavaScript pour clients agence
+                  Conception UI et intégration pixel-perfect de maquettes Figma en HTML5/CSS3/JS pour clients agence, de la réflexion UX jusqu'à la mise en ligne
                 </li>
                 <li>
-                  Développement d'interfaces responsive et accessibles,
-                  optimisation des performances (Core Web Vitals)
+                  Création et refonte de sites WordPress pour PME, artisans et indépendants : développement sur mesure, SEO, Core Web Vitals et accessibilité WCAG
                 </li>
                 <li>
-                  Conception de composants réutilisables, maintenance évolutive,
-                  pilotage projet en autonomie complète
-                </li>
-                <li>
-                  Amélioration des parcours utilisateurs et de l'expérience
-                  utilisateur, suivi client direct
+                  Pilotage de projets web en autonomie complète : relation client, maquettage, intégration, livraison dans les délais, satisfaction client 100%
                 </li>
               </ul>
             </article>
 
             <article class="exp">
               <div class="exp-head">
-                <h3>Responsable Agence / Production Web et Print</h3>
+                <h3>Responsable Web & Production Digitale</h3>
                 <time datetime="2021/2022">2021 - 2022</time>
               </div>
               <p class="exp-entreprise">Pano'Sign Service Group, Dechy (59)</p>
               <ul>
                 <li>
-                  Supervision web et intégration front-end pour grands comptes
-                  nationaux (McDonald's, Bureau Vallée)
+                  Supervision des productions web et intégration front-end pour grands comptes nationaux (McDonald's, Bureau Vallée)
                 </li>
                 <li>
-                  Encadrement équipe créative, coordination développeurs,
-                  gestion planning, devis et facturation
+                  Direction artistique, coordination de l'équipe créative, gestion planning et relation client
                 </li>
               </ul>
             </article>
 
             <article class="exp">
               <div class="exp-head">
-                <h3>Développeur Front-End / Concepteur UI</h3>
+                <h3>Concepteur UI & Intégrateur Web E-commerce</h3>
                 <time datetime="2016/2020">2016 - 2020</time>
               </div>
               <p class="exp-entreprise">
@@ -785,58 +676,39 @@
               </p>
               <ul>
                 <li>
-                  Intégration et optimisation de sites e-commerce WordPress et
-                  PrestaShop orientée conversion (CRO)
+                  Conception UI et refonte complète des plateformes e-commerce WordPress / PrestaShop, avec focus sur l'expérience utilisateur et la conversion (CRO)
                 </li>
                 <li>
-                  Refonte UI, direction artistique complète, maintenance et
-                  optimisation SEO des plateformes
-                </li>
-                <li>
-                  Création d'éléments graphiques cohérents avec la charte de
-                  marque
+                  Direction artistique, création de la charte graphique digitale, optimisation SEO on-page... trafic organique en progression constante sur 4 ans
                 </li>
               </ul>
             </article>
 
             <article class="exp">
               <div class="exp-head">
-                <h3>Développeur Front-End / Concepteur UI / Graphiste</h3>
+                <h3>Concepteur UI & Intégrateur Web</h3>
                 <time datetime="2014/2015">2014 - 2015</time>
               </div>
               <p class="exp-entreprise">Thymep, Ligny-en-Cambrésis (59)</p>
               <ul>
                 <li>
-                  Conception et intégration de sites WordPress, développement
-                  front-end sur mesure
-                </li>
-                <li>
-                  Création graphique : logos, identités visuelles, supports
-                  print et signalétique
+                  Conception et intégration de sites WordPress sur mesure, direction artistique et création d'identités visuelles
                 </li>
               </ul>
             </article>
 
             <article class="exp">
               <div class="exp-head">
-                <h3>
-                  Responsable Agence Digitale / Concepteur UI / Développeur Web
-                </h3>
+                <h3>Fondateur & Concepteur Web, Agence Digitale</h3>
                 <time datetime="2009/2015">2009 - 2015</time>
               </div>
               <p class="exp-entreprise">Eloustick, Caudry (59)</p>
               <ul>
                 <li>
-                  Création et gestion de sites e-commerce PrestaShop en
-                  autonomie complète, de la conception au déploiement
+                  Création et direction d'une agence digitale : conception UI, intégration web, sites e-commerce PrestaShop, de la maquette au déploiement, en autonomie complète
                 </li>
                 <li>
-                  Conception d'identités visuelles complètes : logos, chartes
-                  graphiques, supports print et signalétique
-                </li>
-                <li>
-                  Maquettage UX, intégration web front-end et optimisation SEO
-                  des boutiques en ligne
+                  Création d'un site e-commerce PrestaShop personnel de A à Z : conception UI, catalogue produits, acquisition client 100% organique via SEO. Identités visuelles et chartes graphiques pour PME
                 </li>
               </ul>
             </article>
@@ -855,11 +727,7 @@
           ></span
         >
         <span class="cv-projet-detail"
-          >Plateforme communautaire cinéma &amp; gastronomie développée de A à Z
-          en 12 semaines. UI en CSS pur, gamification (niveaux, badges,
-          animations CSS/SVG), audit WCAG AA, SEO dynamique. Stack : Node.js /
-          Express, PostgreSQL, JWT + OAuth Google, API TMDB &amp;
-          Cloudinary.</span
+          >Plateforme communautaire cinéma & gastronomie conçue et développée de A à Z en 12 semaines. Conception UI complète en CSS pur, gamification (système de niveaux, badges, animations CSS/SVG), audit accessibilité WCAG AA, SEO dynamique et expérience utilisateur soignée. Stack : Node.js / Express, PostgreSQL, OAuth Google, API TMDB & Cloudinary.</span
         >
       </div>
 
@@ -870,12 +738,11 @@
         aria-label="Formation et diplômes"
       >
         <div class="cv-formation-item">
-          <span class="cv-formation-label">Formation</span>
-          <span class="cv-formation-titre">Développeur Web et Web Mobile</span>
-          <span class="cv-formation-ecole">École O'Clock, 2026</span>
+          <span class="cv-formation-label">Mise à niveau</span>
+          <span class="cv-formation-titre">Formation Full Stack DWWM — Développeur Web et Web Mobile</span>
+          <span class="cv-formation-ecole">École O'Clock, 2026 · Titre Professionnel Développeur Web et Web Mobile (RNCP)</span>
           <span class="cv-formation-detail"
-            >HTML, CSS, JavaScript, Svelte, Node.js, APIs REST, PostgreSQL,
-            Git</span
+            >JavaScript ES6+, Svelte, Node.js, API REST, PostgreSQL, Git, Docker</span
           >
         </div>
         <div class="cv-formation-item">
@@ -944,29 +811,5 @@
         </a>
       </footer>
     </div>
-
-    <div class="print-tip" id="printTip" role="status">
-      <span class="print-tip-icon" aria-hidden="true">🖨️</span>
-      <span class="print-tip-text">
-        Pour imprimer ou enregistrer ce CV en PDF&nbsp;: appuyez sur
-        <kbd>Ctrl</kbd> + <kbd>P</kbd> sur PC, ou
-        <kbd>Cmd</kbd> + <kbd>P</kbd> sur Mac.
-      </span>
-      <button
-        class="print-tip-close"
-        id="printTipClose"
-        aria-label="Fermer ce message"
-        type="button"
-      >
-        &times;
-      </button>
-    </div>
-    <script>
-      document
-        .getElementById("printTipClose")
-        .addEventListener("click", function () {
-          document.getElementById("printTip").classList.add("print-tip-hidden");
-        });
-    </script>
   </body>
 </html>
