@@ -326,7 +326,7 @@ nav.sitenav.solid {
   overflow: hidden;
   display: flex;
   align-items: stretch;
-  background: var(--mint);
+  background: linear-gradient(180deg, #d6f8e9 0%, #b5f4de 100%);
 }
 .hero-inner {
   width: 100%;
@@ -679,7 +679,7 @@ nav.sitenav.solid {
   display: flex;
   flex-direction: column;
   overflow: visible;
-  background: var(--ink-900);
+  background: linear-gradient(180deg, #0f2d45 0%, #0c2538 100%);
 }
 .bento-section {
   --bg: var(--color-text);
@@ -1734,7 +1734,7 @@ nav.sitenav.solid {
   box-sizing: border-box;
 }
 .stack-sec-wrap {
-  background: transparent;
+  background: linear-gradient(180deg, #0a2030 0%, #0a1e2e 100%);
   position: relative;
 }
 .stack-sec {
@@ -2392,7 +2392,7 @@ nav.sitenav.solid {
 
 /* IA SECTION */
 .ia-sec-wrap {
-  background: var(--mint);
+  background: linear-gradient(160deg, #d6f8e9 0%, #8fedd0 55%, #72dfb8 100%);
 }
 .ia-sec {
   padding: 80px 0 60px;
@@ -3941,7 +3941,7 @@ nav.sitenav.solid {
 
 /* TECH BAR (story bar) */
 .story-bar {
-  background: var(--mint);
+  background: transparent;
   padding: 14px 0;
   overflow: hidden;
 }
@@ -3962,11 +3962,11 @@ nav.sitenav.solid {
 }
 .story-bar-inner::before {
   left: 0;
-  background: linear-gradient(to right, var(--mint), transparent);
+  background: linear-gradient(to right, #b5f4de, transparent);
 }
 .story-bar-inner::after {
   right: 0;
-  background: linear-gradient(to left, var(--mint), transparent);
+  background: linear-gradient(to left, #b5f4de, transparent);
 }
 .techbar-track-wrap {
   overflow: hidden;
@@ -4045,7 +4045,7 @@ nav.sitenav.solid {
 
 /* PROFIL SECTION */
 .profil-sec {
-  background: var(--mint);
+  background: linear-gradient(180deg, #b5f4de 0%, #8fedd0 100%);
   position: relative;
 }
 .profil-inner {
@@ -5265,7 +5265,7 @@ nav.sitenav.solid {
 ============================================= */
 
 .prestations-sec {
-  background: var(--ink-900);
+  background: linear-gradient(180deg, #0c2538 0%, #0a2030 100%);
   padding: 80px 0 72px;
   position: relative;
 }
