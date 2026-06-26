@@ -2731,6 +2731,26 @@ nav.sitenav.solid {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(181, 244, 222, 0.25);
 }
+.btn-vivid {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-disp);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #ff8a6e 0%, #ff7a59 100%);
+  color: #fff;
+  border-radius: var(--r-sm);
+  box-shadow: 0 4px 20px rgba(255, 122, 89, 0.35);
+  cursor: none;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s;
+  white-space: nowrap;
+}
+.btn-vivid:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255, 122, 89, 0.5);
+}
 .btn-ghost-mint {
   display: inline-flex;
   align-items: center;
