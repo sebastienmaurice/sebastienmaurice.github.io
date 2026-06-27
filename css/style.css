@@ -5431,6 +5431,28 @@ nav.sitenav.solid {
   color: rgba(10, 30, 46, 0.45);
 }
 
+/* Card mise en avant */
+.prest-card-featured {
+  border: 1.5px solid var(--mint-400);
+  box-shadow: 0 8px 32px rgba(64,151,135,0.18);
+  position: relative;
+}
+.prest-featured-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mint-400);
+  margin-bottom: 6px;
+}
+.prest-card-sub {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: rgba(181,244,222,0.5);
+  margin-top: -4px;
+  margin-bottom: 8px;
+}
+
 /* Séparateur */
 .prest-divider {
   width: 100%;
@@ -5495,6 +5517,52 @@ nav.sitenav.solid {
   box-shadow: none;
 }
 
+/* ─── Bannière Pack Lancement Web ─── */
+.prest-banner-launch {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  gap: 40px;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(64,151,135,0.14) 0%, rgba(10,30,46,0.9) 100%);
+  border: 1px solid rgba(114,223,184,0.22);
+  border-radius: var(--r);
+  padding: 36px 40px;
+}
+.prest-banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.prest-banner-title {
+  font-family: var(--f-disp);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.2;
+}
+.prest-banner-includes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+.prest-banner-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-family: var(--f-disp);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.45;
+}
+.prest-banner-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
 @media (max-width: 768px) {
   .prestations-grid {
     grid-template-columns: 1fr;
@@ -5505,5 +5573,25 @@ nav.sitenav.solid {
   }
   .prestations-lead {
     margin-bottom: 32px;
+  }
+  .prest-banner-launch {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .prest-banner-includes {
+    grid-template-columns: 1fr;
+  }
+  .prest-banner-includes li {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .prest-banner-right {
+    align-items: stretch;
+  }
+  .prest-banner-right .prest-cta {
+    width: 100%;
+    justify-content: center;
   }
 }
