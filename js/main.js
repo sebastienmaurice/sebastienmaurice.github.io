@@ -289,7 +289,9 @@ function closeImgLightbox() {
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function startAutoplay() {
+    if (prefersReducedMotion) return;   /* respecte l'accessibilité vestibulaire */
     stopAutoplay();
     autoTimer = setInterval(() => { if (!isTransitioning) next(); }, AUTOPLAY_DELAY);
   }

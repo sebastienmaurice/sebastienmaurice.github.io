@@ -51,6 +51,12 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* Filet de sécurité : éléments révélés au scroll restent visibles
+     même sans animation (et si le JS d'observation ne s'exécute pas) */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .skip-to-content {
@@ -5275,8 +5281,17 @@ nav.sitenav.solid {
   .ia-kpi {
     flex: 0 0 100%;
   }
+  /* CTA de conversion conservé sur mobile (logo + CTA tiennent à 375px) */
+  nav.sitenav {
+    padding: 5px 6px 5px 12px;
+  }
+  .nav-logo {
+    font-size: 0.85rem;
+    margin-right: 8px;
+  }
   .nav-cta {
-    display: none;
+    padding: 7px 12px;
+    font-size: 0.72rem;
   }
 }
 
