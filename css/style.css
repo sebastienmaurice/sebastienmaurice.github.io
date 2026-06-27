@@ -5524,11 +5524,20 @@ nav.sitenav.solid {
   grid-template-columns: 1fr 1.6fr 1fr;
   gap: 40px;
   align-items: center;
-  background: linear-gradient(135deg, rgba(64,151,135,0.14) 0%, rgba(10,30,46,0.9) 100%);
-  border: 1px solid rgba(114,223,184,0.22);
+  background: linear-gradient(135deg, var(--mint-100) 0%, var(--mint-300) 100%);
+  border: 1px solid rgba(64,151,135,0.25);
   border-radius: var(--r);
   padding: 36px 40px;
 }
+.prest-banner-launch .prest-featured-label { color: var(--mint-600); }
+.prest-banner-launch .prest-banner-title { color: var(--ink-900); }
+.prest-banner-launch .prest-card-sub { color: rgba(10,30,46,0.55); }
+.prest-banner-launch .prest-check {
+  background: rgba(64,151,135,0.15);
+  color: var(--mint-600);
+}
+.prest-banner-launch .prest-banner-includes li { color: rgba(10,30,46,0.68); }
+.prest-banner-launch .prest-payment-note { color: rgba(10,30,46,0.5); }
 .prest-banner-left {
   display: flex;
   flex-direction: column;
