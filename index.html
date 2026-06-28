@@ -525,20 +525,20 @@
     </div>
 
     <div class="skill-tabs-wrap">
-      <div class="skill-tabs-nav">
-        <button class="skill-tab-btn active" data-tab="front" aria-selected="true">
+      <div class="skill-tabs-nav" role="tablist" aria-label="Compétences techniques">
+        <button class="skill-tab-btn active" role="tab" id="tab-front" data-tab="front" aria-selected="true" aria-controls="panel-front">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Front-end
         </button>
-        <button class="skill-tab-btn" data-tab="design" aria-selected="false">
+        <button class="skill-tab-btn" role="tab" id="tab-design" data-tab="design" aria-selected="false" aria-controls="panel-design">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="6.5" cy="17.5" r="1.5"/></svg>Design &amp; UI
         </button>
-        <button class="skill-tab-btn" data-tab="back" aria-selected="false">
+        <button class="skill-tab-btn" role="tab" id="tab-back" data-tab="back" aria-selected="false" aria-controls="panel-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Back-end
         </button>
       </div>
 
       <!-- FRONT-END -->
-      <div class="skill-tabs-panel" data-panel="front">
+      <div class="skill-tabs-panel" role="tabpanel" id="panel-front" data-panel="front" aria-labelledby="tab-front" tabindex="0">
         <div class="skill-tab-pane active" data-pane="front">
           <div class="skill-tab-left">
             <div class="skill-tab-header"><div class="skill-tab-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="skill-tab-titles"><div class="skill-tab-title">Front-end</div><div class="skill-tab-sub">Cœur de métier</div></div></div>
@@ -568,7 +568,7 @@
       </div>
 
       <!-- DESIGN & UI -->
-      <div class="skill-tabs-panel" data-panel="design" style="display:none">
+      <div class="skill-tabs-panel" role="tabpanel" id="panel-design" data-panel="design" aria-labelledby="tab-design" tabindex="0" style="display:none">
         <div class="skill-tab-pane active" data-pane="design">
           <div class="skill-tab-left">
             <div class="skill-tab-header"><div class="skill-tab-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="6.5" cy="17.5" r="1.5"/></svg></div><div class="skill-tab-titles"><div class="skill-tab-title">Design &amp; UI</div><div class="skill-tab-sub">Superpower · 15 ans</div></div></div>
@@ -598,7 +598,7 @@
       </div>
 
       <!-- BACK-END -->
-      <div class="skill-tabs-panel" data-panel="back" style="display:none">
+      <div class="skill-tabs-panel" role="tabpanel" id="panel-back" data-panel="back" aria-labelledby="tab-back" tabindex="0" style="display:none">
         <div class="skill-tab-pane active" data-pane="back">
           <div class="skill-tab-left">
             <div class="skill-tab-header"><div class="skill-tab-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="skill-tab-titles"><div class="skill-tab-title">Back-end</div><div class="skill-tab-sub">Bases solides</div></div></div>
@@ -641,7 +641,7 @@
       </div>
       <div class="approach-cta">
         <a href="#contact" class="btn-dark-sm">M'écrire →</a>
-        <div class="btn-ghost-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="btn-ghost-sm" aria-hidden="true" tabindex="-1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
       </div>
     </div>
   </div>
