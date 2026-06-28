@@ -3816,7 +3816,7 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
 .cv-bottom-bar {
   margin-top: 40px;
   margin-bottom: 80px;
-  background: var(--mint);
+  background: linear-gradient(to right, var(--mint) 0%, var(--mint) 15%, #9aeacf 38%, #9aeacf 62%, var(--mint) 85%, var(--mint) 100%);
   border-radius: var(--r);
   padding: 56px clamp(28px, 4vw, 56px) 56px;
   display: grid;
@@ -3890,10 +3890,40 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
   max-width: 380px;
 }
 .cvb-sep-area {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   flex-shrink: 0;
+  overflow: visible;
+}
+.cvb-img {
+  display: block;
+  height: 400px;
+  width: auto;
+  margin-bottom: -56px;
+  position: relative;
+  z-index: 1;
+}
+.cvb-sep-area::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  width: 72px;
+  background: linear-gradient(to right, transparent, #9aeacf);
+  pointer-events: none;
+}
+.cvb-sep-area::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  width: 72px;
+  background: linear-gradient(to left, transparent, #9aeacf);
+  pointer-events: none;
 }
 .cvb-cards {
   display: flex;
