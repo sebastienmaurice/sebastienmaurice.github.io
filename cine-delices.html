@@ -20,6 +20,10 @@
   </a>
   <span class="nav-sep"></span>
   <span class="nav-title">Ciné <em>Délices</em></span>
+  <a href="https://cinedelices.com/" target="_blank" rel="noopener" class="nav-cta-live">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    Voir le site
+  </a>
   <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="nav-cta">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
     GitHub
@@ -47,9 +51,9 @@
           <span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Argon2</span><span>JWT</span><span>SCSS</span>
         </div>
         <div class="cd-ctas">
-          <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="cd-btn-coral">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            Voir sur GitHub
+          <a href="https://cinedelices.com/" target="_blank" rel="noopener" class="cd-btn-coral">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir le site
           </a>
           <a href="#tabs" class="cd-btn-ghost3">Décisions techniques →</a>
         </div>
@@ -102,7 +106,7 @@
     <div class="section-head">
       <div class="section-eyebrow">4 décisions techniques</div>
       <h2 class="section-title">Du code qu'on relit <em>parce qu'il a une raison d'être.</em></h2>
-      <p class="section-sub">Chaque snippet ci-dessous résout un problème concret. Pas du code-vitrine : du code qui tourne en prod sur la branche develop.</p>
+      <p class="section-sub">Chaque snippet ci-dessous résout un problème concret. Pas du code-vitrine : du code qui tourne en production sur <a href="https://cinedelices.com/" target="_blank" rel="noopener" style="color:var(--coral);border-bottom:1px solid currentColor;padding-bottom:1px">cinedelices.com</a>.</p>
     </div>
 
     <div class="tabs-shell">
@@ -538,15 +542,15 @@ input.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'input'</
   <div class="section-inner">
     <div class="section-head">
       <div class="section-eyebrow">Évolutions prévues</div>
-      <h2 class="section-title">Ce qui est en cours, <em>ce qui suivra.</em></h2>
-      <p class="section-sub">Le projet finalise sa branche develop. La mise en ligne sur VPS Hostinger est imminente. Voici ce qui suit.</p>
+      <h2 class="section-title">Ce qui est livré, <em>ce qui suivra.</em></h2>
+      <p class="section-sub">Le site est en ligne sur <a href="https://cinedelices.com/" target="_blank" rel="noopener" style="color:var(--mint);border-bottom:1px solid rgba(181,244,222,0.5);padding-bottom:1px">cinedelices.com</a>, hébergé sur Render. Voici les prochaines évolutions.</p>
     </div>
     <div class="road">
       <div class="road-row">
-        <span class="road-tag next">En cours</span>
+        <span class="road-tag done">Livré</span>
         <div class="road-text">
-          <h4>Mise en ligne VPS Hostinger</h4>
-          <p>Setup du domaine cine-delices.fr, certificat Let's Encrypt, reverse proxy Nginx, PM2 process manager.</p>
+          <h4>Déployé sur Render</h4>
+          <p>Hébergement Node.js sur Render, base PostgreSQL managée, déploiement continu depuis GitHub, domaine cinedelices.com.</p>
         </div>
       </div>
       <div class="road-row">
@@ -578,20 +582,24 @@ input.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'input'</
 <footer class="foot">
   <div class="foot-eyebrow">Et la suite ?</div>
   <h2 class="foot-title">D'autres projets <em>en route.</em></h2>
-  <p class="foot-sub">Retour au portfolio pour explorer d'autres réalisations, ou plonge directement dans le code de Ciné Délices sur GitHub.</p>
+  <p class="foot-sub">Retour au portfolio pour explorer d'autres réalisations, ou découvre Ciné Délices en ligne et son code source sur GitHub.</p>
   <div class="foot-actions">
     <a href="index.html" class="btn btn-dark">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
       Retour au portfolio
     </a>
-    <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="btn btn-primary">
+    <a href="https://cinedelices.com/" target="_blank" rel="noopener" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Voir le site
+    </a>
+    <a href="https://github.com/sebastienmaurice/cinedelices" target="_blank" rel="noopener" class="btn btn-ghost">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-      Code sur GitHub
+      GitHub
     </a>
   </div>
   <div class="foot-bottom">
     <span>© 2026 Sébastien Maurice · Case study Ciné Délices</span>
-    <span>cine-delices.fr · <em style="color:var(--coral);font-style:italic">bientôt en ligne · VPS Hostinger</em></span>
+    <span><a href="https://cinedelices.com/" target="_blank" rel="noopener" style="border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:1px">cinedelices.com</a> · En ligne · Render</span>
   </div>
 </footer>
 

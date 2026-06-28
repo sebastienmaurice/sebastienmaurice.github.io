@@ -40,8 +40,8 @@ button {
   --f-serif: "Fraunces", Georgia, serif;
   --f-mono: "Geist Mono", ui-monospace, monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --r: 16px;
-  --r-sm: 10px;
+  --r: 24px;
+  --r-sm: 12px;
 }
 
 html {
@@ -50,7 +50,8 @@ html {
 body {
   font-family: var(--f-disp);
   font-weight: 300;
-  background: var(--mint);
+  background: linear-gradient(180deg, var(--mint-soft) 0%, var(--mint) 60%);
+  min-height: 100vh;
   color: var(--ink);
   line-height: 1.6;
   overflow-x: hidden;
@@ -160,6 +161,28 @@ body::after {
 }
 .nav-cta:hover {
   background: var(--ink-700);
+  transform: scale(1.04);
+}
+.nav-cta-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-disp);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 9px 16px;
+  border-radius: 100px;
+  margin-left: 6px;
+  border: 1.5px solid rgba(10, 30, 46, 0.2);
+  transition:
+    background 0.3s,
+    border-color 0.3s,
+    transform 0.3s var(--ease);
+}
+.nav-cta-live:hover {
+  background: rgba(10, 30, 46, 0.07);
+  border-color: rgba(10, 30, 46, 0.38);
   transform: scale(1.04);
 }
 
@@ -1276,6 +1299,10 @@ body::after {
 .road-tag.later {
   background: rgba(10, 30, 46, 0.08);
   color: var(--muted);
+}
+.road-tag.done {
+  background: var(--mint-strong);
+  color: #fff;
 }
 .road-text h4 {
   font-family: var(--f-serif);
