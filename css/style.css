@@ -4411,7 +4411,7 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
   font-size: 0.56rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(181, 244, 222, 0.5);
+  color: var(--mint-200);
 }
 .va-capot-chips {
   display: flex;
@@ -4423,9 +4423,19 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
   font-size: 0.58rem;
   padding: 3px 9px;
   border-radius: 100px;
-  background: rgba(181, 244, 222, 0.08);
-  border: 1px solid rgba(181, 244, 222, 0.16);
-  color: rgba(181, 244, 222, 0.82);
+  background: rgba(181, 244, 222, 0.1);
+  border: 1px solid rgba(181, 244, 222, 0.24);
+  color: var(--mint-300);
+}
+.va-capot-chips.chips-coral span {
+  background: rgba(255, 122, 89, 0.1);
+  border-color: rgba(255, 122, 89, 0.28);
+  color: var(--coral-300, #ffb088);
+}
+.va-capot-chips.chips-sky span {
+  background: rgba(147, 197, 253, 0.1);
+  border-color: rgba(147, 197, 253, 0.28);
+  color: #93c5fd;
 }
 .va-capot-note {
   font-family: var(--f-serif);
