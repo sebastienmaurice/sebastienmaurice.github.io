@@ -422,14 +422,15 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
 }
 .hero-eyebrow-tag {
   font-family: var(--f-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--dark);
   padding: 6px 14px;
   background: rgba(10, 30, 46, 0.1);
   border: 1px solid rgba(10, 30, 46, 0.18);
   border-radius: 100px;
+  white-space: nowrap;
 }
 .hero-eyebrow-dot {
   width: 6px;
