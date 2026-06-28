@@ -5595,10 +5595,23 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
   grid-template-columns: 1fr 1.6fr 1fr;
   gap: 40px;
   align-items: center;
-  background: linear-gradient(135deg, var(--mint-100) 0%, var(--mint-300) 100%);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to right, var(--mint-100) 0%, var(--mint-100) 32%, rgba(154,224,200,0) 66%);
+  background-color: #9ae0c8;
   border: 1px solid rgba(64,151,135,0.25);
   border-radius: var(--r);
-  padding: 36px 40px;
+  padding: 36px 340px 36px 40px;
+}
+.prest-banner-launch::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 340px;
+  background: url('../assets/img/prestations/img-banner-artisans.png') right center / auto 100% no-repeat;
+  pointer-events: none;
 }
 .prest-banner-launch .prest-featured-label { color: var(--mint-600); }
 .prest-banner-launch .prest-banner-title { color: var(--ink-900); }
@@ -5609,6 +5622,23 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
 }
 .prest-banner-launch .prest-banner-includes li { color: rgba(10,30,46,0.68); }
 .prest-banner-launch .prest-payment-note { color: rgba(10,30,46,0.5); }
+.prest-banner-launch .prest-price {
+  color: var(--coral-500);
+  font-size: 3.6rem;
+  margin-bottom: 0;
+}
+.prest-banner-launch .prest-price .prest-price-unit {
+  opacity: 1;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.prest-banner-launch .prest-banner-right {
+  justify-self: end;
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 28px;
+  gap: 10px;
+}
 .prest-banner-left {
   display: flex;
   flex-direction: column;
@@ -5659,6 +5689,11 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
     gap: 24px;
     padding: 28px 24px;
     text-align: center;
+    background: linear-gradient(135deg, var(--mint-100) 0%, var(--mint-300) 100%);
+    background-color: transparent;
+  }
+  .prest-banner-launch::after {
+    display: none;
   }
   .prest-banner-includes {
     grid-template-columns: 1fr;
