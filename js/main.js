@@ -43,11 +43,13 @@ function revealEmail(btnEl, displayEl){
 /* ── Cursor · compositor-only rAF ── */
 const cur = document.getElementById('cur'), cring = document.getElementById('cring');
 let mx = -200, my = -200, rx = -200, ry = -200, raf = 0;
+let magX = 0, magY = 0; /* pull magnétique sur l'anneau (mis à jour par l'IIFE magnet) */
 const tick = () => {
-  rx += (mx - rx) * .18; ry += (my - ry) * .18;
+  const tx = mx + magX, ty = my + magY;
+  rx += (tx - rx) * .18; ry += (ty - ry) * .18;
   cur.style.transform  = `translate3d(${mx}px,${my}px,0)`;
   cring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
-  raf = (Math.hypot(mx - rx, my - ry) > .4) ? requestAnimationFrame(tick) : 0;
+  raf = (Math.hypot(tx - rx, ty - ry) > .4) ? requestAnimationFrame(tick) : 0;
 };
 addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
@@ -62,10 +64,16 @@ if (bentoSec) {
   }, { threshold: 0, rootMargin: '-30% 0px -30% 0px' }).observe(bentoSec);
 }
 
-/* ── Hover large ring ── */
-document.querySelectorAll('.b-card,.b-btn-link,.b-btn-accent,.btn-dark,.btn-outline-dark,.btn-dark-sm,.btn-mint,.btn-ghost-sm,.btn-ghost-mint,.nav-cta').forEach(el => {
-  el.addEventListener('mouseenter', () => cring.classList.add('lg'));
-  el.addEventListener('mouseleave', () => cring.classList.remove('lg'));
+/* ── Hover curseur · toutes zones cliquables ── */
+document.querySelectorAll('a[href], button, .b-card, .b-card-proj, .b-btn-accent, .va-case-card, .prest-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cring.classList.add('lg', 'on-btn');
+    cur.classList.add('on-btn');
+  });
+  el.addEventListener('mouseleave', () => {
+    cring.classList.remove('lg', 'on-btn');
+    cur.classList.remove('on-btn');
+  });
 });
 document.querySelectorAll('.b-card').forEach(card => {
   card.addEventListener('mousemove', e => {
@@ -93,9 +101,73 @@ document.querySelectorAll('.b-card-proj').forEach(card => {
   card.addEventListener('mouseleave', () => card.style.transform = '');
 });
 
+/* ── Curseur magnétique · anneau attiré vers le bouton le plus proche ── */
+(function(){
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const RADIUS = 130; /* px depuis le centre du bouton */
+  const FORCE  = 0.5; /* force d'attraction max */
+  const SEL = '.btn-dark,.btn-outline-dark,.btn-dark-sm,.btn-mint,.btn-ghost-sm,.btn-ghost-mint,.nav-cta,.b-btn-link,.b-btn-accent';
+  let els = [], rafId = 0;
+  function refreshEls() { els = Array.from(document.querySelectorAll(SEL)); }
+  function frame() {
+    rafId = 0;
+    let pullX = 0, pullY = 0, minD = Infinity, anyNear = false;
+    els.forEach(el => {
+      const r  = el.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      const dx = cx - mx, dy = cy - my; /* vecteur curseur → centre bouton */
+      const d  = Math.hypot(dx, dy);
+      if (d < RADIUS && d < minD) {
+        minD = d;
+        const t = (1 - d / RADIUS) * FORCE;
+        pullX = dx * t;
+        pullY = dy * t;
+        anyNear = true;
+      }
+    });
+    magX = pullX;
+    magY = pullY;
+    if (!raf) raf = requestAnimationFrame(tick);
+    cring.classList.toggle('near', anyNear);
+  }
+  addEventListener('mousemove', () => {
+    if (!rafId) rafId = requestAnimationFrame(frame);
+  }, { passive: true });
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', refreshEls)
+    : refreshEls();
+  window.addEventListener('resize', refreshEls);
+}());
+
 /* ── Nav scroll ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 30));
+
+/* ── Nav adaptive bg selon section ── */
+(function(){
+  const navEl = document.getElementById('nav');
+  if (!navEl) return;
+  const darkIds = ['projets','prestations','stack','parcours'];
+  const order   = ['top','profil','projets','prestations','stack','ia','parcours','contact'];
+  const visible  = {};
+  let current = '';
+  function applyNavTheme() {
+    const activeId = [...order].reverse().find(id => visible[id]);
+    const cls = darkIds.includes(activeId) ? 'nav-on-dark' : '';
+    if (cls === current) return;
+    navEl.classList.remove('nav-on-dark');
+    if (cls) navEl.classList.add(cls);
+    current = cls;
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { visible[e.target.id] = e.isIntersecting; });
+    applyNavTheme();
+  }, { threshold: 0.3 });
+  order.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  visible['top'] = true;
+  applyNavTheme();
+}());
 
 /* ── Scroll Reveal ── */
 document.addEventListener('DOMContentLoaded', () => {

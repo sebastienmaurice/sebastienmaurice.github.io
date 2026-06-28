@@ -189,10 +189,27 @@ body::after {
     margin 0.4s var(--ease);
   background: transparent;
 }
+#cring.near {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-color: rgba(143, 237, 208, 0.55);
+  background: rgba(143, 237, 208, 0.04);
+}
 #cring.lg {
   width: 50px;
   height: 50px;
   margin: -25px 0 0 -25px;
+}
+#cur.on-btn {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+}
+#cring.on-btn {
+  border-color: rgba(255, 255, 255, 0.6);
 }
 .in-bento #cur {
   background: var(--mint);
@@ -231,9 +248,7 @@ nav.sitenav {
     0 2px 28px rgba(10, 30, 46, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   white-space: nowrap;
-  transition:
-    box-shadow 0.4s var(--ease),
-    background 0.3s;
+  transition: all 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 nav.sitenav.solid {
   box-shadow:
@@ -323,6 +338,47 @@ nav.sitenav.solid {
   background: #0d2f47;
   transform: scale(1.04);
   box-shadow: 0 8px 24px rgba(10, 30, 46, 0.28);
+}
+nav.sitenav .nav-logo,
+nav.sitenav .nav-links a,
+nav.sitenav .nav-avail,
+nav.sitenav .nav-sep {
+  transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1), background 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+nav.sitenav .nav-cta {
+  transition: background 320ms cubic-bezier(0.16, 1, 0.3, 1), color 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s var(--ease);
+}
+/* ── Nav adaptive · section bg ── */
+nav.sitenav.nav-on-dark {
+  background: rgba(10, 30, 46, 0.72);
+  backdrop-filter: blur(28px) saturate(160%);
+  border-color: rgba(181, 244, 222, 0.12);
+  box-shadow:
+    0 2px 28px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(181, 244, 222, 0.07);
+}
+nav.sitenav.nav-on-dark .nav-logo,
+nav.sitenav.nav-on-dark .nav-links a,
+nav.sitenav.nav-on-dark .nav-avail {
+  color: var(--mint-300);
+}
+nav.sitenav.nav-on-dark .nav-links a:hover {
+  color: var(--mint-200);
+}
+nav.sitenav.nav-on-dark .nav-sep {
+  background: rgba(143, 237, 208, 0.2);
+}
+nav.sitenav.nav-on-dark .nav-avail {
+  border-left-color: rgba(143, 237, 208, 0.2);
+}
+nav.sitenav.nav-on-dark .nav-cta {
+  background: var(--mint-400);
+  color: var(--ink-900);
+  box-shadow: 0 4px 16px rgba(114, 223, 184, 0.25);
+}
+nav.sitenav.nav-on-dark .nav-cta:hover {
+  background: var(--mint-300);
+  box-shadow: 0 8px 24px rgba(114, 223, 184, 0.4);
 }
 
 /* HERO */
