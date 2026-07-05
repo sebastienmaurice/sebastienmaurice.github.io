@@ -5186,6 +5186,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     grid-template-columns: 1fr;
     padding: 28px 24px;
   }
+  .skill-chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .skill-tab-img-wrap {
     aspect-ratio: 16/9;
   }
