@@ -2759,7 +2759,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-family: var(--f-serif);
   font-size: 1.7rem;
   font-weight: 800;
-  color: var(--coral);
+  color: var(--mint-400);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -4551,7 +4551,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--coral-300, #ffb088);
+  color: var(--mint-300, #8fedd0);
   margin-bottom: 8px;
 }
 .va-proj-anchor {
@@ -5578,7 +5578,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transition: background 0.32s var(--ease), color 0.32s, border-color 0.32s;
 }
 .prest-badge-mint  { background: var(--mint-600); color: #fff; }
-.prest-badge-coral { background: var(--coral-500); color: #fff; }
+.prest-badge-coral { background: var(--stat-sky); color: var(--ink-900); }
 .prest-badge-ink   {
   background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.72);
@@ -5609,15 +5609,19 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--ink-900);
 }
 
-/* Prix — coral reste lisible sur mint et sur dark */
+/* Prix — mint sur fond dark, ink-900 au survol (fond mint) */
 .prest-price {
   font-family: var(--f-serif);
   font-size: 2.6rem;
   font-weight: 900;
-  color: var(--coral-500);
+  color: var(--mint-400);
   line-height: 1;
   letter-spacing: -0.04em;
   margin-bottom: 6px;
+  transition: color 0.32s var(--ease);
+}
+.prest-card:hover .prest-price {
+  color: var(--ink-900);
 }
 .prest-price-unit {
   font-size: 1.3rem;
@@ -5760,7 +5764,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .prest-banner-launch .prest-banner-includes li { color: rgba(10,30,46,0.88); }
 .prest-banner-launch .prest-payment-note { color: rgba(10,30,46,0.5); }
 .prest-banner-launch .prest-price {
-  color: var(--coral-500);
+  color: var(--ink-900);
   font-size: 3.6rem;
   margin-bottom: 0;
 }
