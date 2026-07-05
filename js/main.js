@@ -144,6 +144,34 @@ document.querySelectorAll('.b-card-proj').forEach(card => {
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 30));
 
+/* ── Nav burger (mobile) ── */
+(function () {
+  const burger = document.getElementById('navBurger');
+  const links = document.getElementById('navLinks');
+  if (!burger || !links || !nav) return;
+
+  function closeMenu() {
+    nav.classList.remove('nav-open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu() {
+    const open = nav.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', String(open));
+  }
+
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+  links.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('nav-open') && !nav.contains(e.target)) closeMenu();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1100) closeMenu();
+  });
+}());
+
 /* ── Nav adaptive bg selon section ── */
 (function(){
   const navEl = document.getElementById('nav');
