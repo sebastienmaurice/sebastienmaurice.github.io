@@ -5000,13 +5000,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-radius: 20px;
   padding: 2px 9px;
   font-family: var(--f-mono);
-  font-size: 9px;
+  font-size: 11px;
   color: rgba(181, 244, 222, 0.7);
   letter-spacing: 0.08em;
 }
 .cms-sc-review {
   font-family: var(--f-mono);
-  font-size: 9.5px;
+  font-size: 11px;
   color: rgba(181, 244, 222, 0.4);
   line-height: 1.55;
   margin-bottom: 14px;
@@ -5018,7 +5018,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   gap: 5px;
   font-family: var(--f-mono);
-  font-size: 10px;
+  font-size: 11px;
   color: rgba(181, 244, 222, 0.7);
   text-decoration: none;
   border: 1px solid rgba(181, 244, 222, 0.2);
