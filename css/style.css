@@ -5201,6 +5201,24 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   .ia-philosophy-bar {
     grid-template-columns: 1fr;
   }
+  .cv-top {
+    grid-template-columns: 1fr;
+  }
+  .cv-quote-box {
+    max-width: none;
+    min-height: auto;
+  }
+  .cv-quote-hero-photo {
+    position: static;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .cv-quote-text {
+    max-width: 100%;
+  }
   .cv-main {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
