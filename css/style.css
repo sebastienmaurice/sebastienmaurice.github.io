@@ -2284,6 +2284,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.6);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sk-ring {
   display: block;
@@ -5158,6 +5160,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     flex-shrink: 0;
     z-index: 1;
     align-self: stretch;
+    margin-top: 76px;
+  }
+  .hero-eyebrow-tag {
+    white-space: normal;
   }
   .hero-circles {
     width: 100%;
@@ -5354,6 +5360,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   }
   .sec-inner {
     padding: 0 clamp(16px, 4vw, 32px);
+  }
+  .skill-chips {
+    grid-template-columns: 1fr;
   }
   .stack-sec {
     padding: 60px 0 52px;
