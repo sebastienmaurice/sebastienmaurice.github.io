@@ -3235,8 +3235,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-direction: column;
   justify-content: center;
   gap: 0;
-  background: var(--stat-coral);
-  border: 1.5px solid rgba(220, 120, 70, 0.3);
+  background: var(--stat-sand);
+  border: 1.5px solid rgba(180, 140, 40, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -3253,9 +3253,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 0;
 }
 .cv-card-stats:hover {
-  border-color: rgba(220, 120, 70, 0.55);
+  border-color: rgba(180, 140, 40, 0.55);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(200, 100, 50, 0.2);
+  box-shadow: 0 16px 40px rgba(180, 140, 40, 0.2);
 }
 .cv-card-stats .cvs-item {
   border-bottom-color: rgba(10, 30, 46, 0.12);
