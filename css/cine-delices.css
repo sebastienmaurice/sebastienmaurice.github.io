@@ -1507,6 +1507,23 @@ body::after {
   .slider-viewport {
     height: min(480px, 100svh) !important;
   }
+  .nav-back-label,
+  .nav-cta-label {
+    display: none;
+  }
+  .nav-back {
+    padding: 8px 10px;
+  }
+  .nav-cta-live {
+    padding: 9px 10px;
+  }
+  .nav-cta {
+    padding: 9px 10px;
+    margin-left: 6px;
+  }
+  .nav-title {
+    font-size: 0.82rem;
+  }
 }
 
 .cd-logo-float {
