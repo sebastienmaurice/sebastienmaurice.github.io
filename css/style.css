@@ -841,7 +841,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-bottom-row {
   position: relative;
-  height: 210px;
+  height: 320px;
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -907,11 +907,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   right: 10px;
 }
 .b-carousel-dots {
+  display: none;
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
   gap: 5px;
   z-index: 10;
 }
@@ -1586,13 +1586,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   left: 0;
   right: 0;
   z-index: 2;
-  padding: 30px 13px 11px;
+  padding: 16px 13px 10px;
   background: linear-gradient(
     to top,
-    rgba(6, 16, 28, 0.97) 0%,
-    rgba(6, 16, 28, 0.85) 50%,
+    rgba(6, 16, 28, 0.92) 0%,
+    rgba(6, 16, 28, 0.55) 60%,
     transparent 100%
   );
+}
+.b-card-proj .b-proj-desc,
+.b-card-proj .b-proj-footer {
+  display: none;
 }
 .b-proj-name {
   font-family: var(--f-disp);
@@ -1739,13 +1743,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: linear-gradient(
-    to top,
-    rgba(3, 9, 18, 1) 0%,
-    rgba(3, 9, 18, 0.97) 40%,
-    rgba(3, 9, 18, 0.6) 65%,
-    transparent 100%
-  );
+  background: rgba(6, 16, 28, 0.8);
   border-radius: var(--radius);
   padding: 11px 12px 10px;
   display: flex;
@@ -5267,7 +5265,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     display: none;
   }
   .b-bottom-row {
-    height: 190px;
+    height: 290px;
   }
   .b-carousel-track .b-card-proj {
     flex: 0 0 calc(50% - 8px);
@@ -5444,7 +5442,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     padding: 40px clamp(16px, 4vw, 28px) 40px;
   }
   .b-bottom-row {
-    height: 175px;
+    height: 260px;
   }
   .b-carousel-track .b-card-proj {
     flex: 0 0 calc(100% - 0px);
