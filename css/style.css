@@ -68,7 +68,7 @@ html {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--coral);
+  background: var(--coral-accent);
   color: var(--dark);
   font-family: var(--f-disp);
   font-size: 0.85rem;
@@ -132,7 +132,7 @@ html {
   --stat-sand: #fde68a;
   --mint: var(--color-primary);
   --mint-title: var(--mint-400);
-  --coral: var(--color-accent-soft);
+  --coral-accent: var(--color-accent-soft);
   --dark: var(--color-text);
   --light: var(--color-surface);
   --card-bg: var(--ink-800);
@@ -172,7 +172,7 @@ body::after {
   width: 8px;
   height: 8px;
   margin: -4px 0 0 -4px;
-  background: var(--coral);
+  background: var(--coral-accent);
   box-shadow: 0 0 8px rgba(255, 176, 136, 0.5);
   transition:
     width 0.15s var(--ease),
@@ -1001,7 +1001,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-hero-title em {
   font-style: normal;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .b-hero-subtitle {
   font-family: var(--f-disp);
@@ -1095,8 +1095,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: var(--coral-500);
   border-color: rgba(255,255,255,0.18);
 }
-.b-card-mini2 .b-mini-num { color: #fff; }
-.b-card-mini2 .b-mini-label { color: rgba(255,255,255,0.8); }
+.b-card-mini2 .b-mini-num { color: var(--ink-900); }
+.b-card-mini2 .b-mini-label { color: var(--ink-900); }
 .b-card-mini2 .b-mini-icon {
   background: rgba(255,255,255,0.18);
   border-color: rgba(255,255,255,0.28);
@@ -1123,7 +1123,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transition: color 0.18s, gap 0.18s;
 }
 .b-mini2-cta:hover {
-  color: #fff;
+  color: var(--ink-900);
   gap: 8px;
 }
 .b-card-mini2:hover {
@@ -1834,6 +1834,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     opacity 0.2s,
     box-shadow 0.2s;
 }
+.b-malt-badge::after {
+  content: "";
+  position: absolute;
+  inset: -9px -6.5px -16px -6.5px;
+}
 .b-malt-badge:hover {
   opacity: 0.82;
   box-shadow: 0 3px 11px rgba(0, 0, 0, 0.55);
@@ -1947,7 +1952,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .s-philosophy-quote strong {
   font-weight: 700;
   font-style: normal;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .s-signature {
   font-family: var(--f-serif);
@@ -2807,7 +2812,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .ia-quote-text strong {
   font-style: normal;
   font-weight: 700;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .ia-brain-area {
   display: flex;
@@ -2957,7 +2962,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .cv-subtitle {
   font-family: var(--f-disp);
@@ -3015,7 +3020,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-quote-text strong {
   font-weight: 700;
   font-style: normal;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .cv-quote-sig {
   font-family: var(--f-serif);
@@ -3033,7 +3038,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   justify-content: space-between;
   width: 54%;
   padding: 12px 16px;
-  background: var(--coral);
+  background: var(--coral-accent);
   border: none;
   border-radius: var(--r-sm);
   cursor: pointer;
@@ -3499,7 +3504,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cvh-title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .cvh-desc {
   font-family: var(--f-disp);
@@ -3716,7 +3721,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cvp-title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--coral);
+  color: var(--coral-accent);
 }
 .cvp-divider {
   width: 100%;
@@ -3743,7 +3748,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   margin-top: 5px;
 }
 .cvp-item:nth-child(1) .cvp-item-dot {
-  background: var(--coral);
+  background: var(--coral-accent);
 }
 .cvp-item:nth-child(2) .cvp-item-dot {
   background: var(--mint);
@@ -5618,7 +5623,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   width: fit-content;
   transition: background 0.32s var(--ease), color 0.32s, border-color 0.32s;
 }
-.prest-badge-mint  { background: var(--mint-600); color: #fff; }
+.prest-badge-mint  { background: var(--mint-600); color: var(--ink-900); }
 .prest-badge-coral { background: var(--stat-sky); color: var(--ink-900); }
 .prest-badge-ink   {
   background: rgba(255, 255, 255, 0.08);
