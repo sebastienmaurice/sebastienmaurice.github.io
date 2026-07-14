@@ -5919,6 +5919,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+.profil-account-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--f-disp);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: var(--mint-300);
+  color: var(--ink-900);
+}
 @media (max-width: 768px) {
   .profil-bento,
   .profil-side-by-side {
