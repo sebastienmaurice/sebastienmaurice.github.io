@@ -5905,9 +5905,23 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 
 /* profils */
-.profil-timeline {
-  display: flex;
-  flex-direction: column;
+.profil-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-top: 40px;
+}
+.profil-bento-feature {
+  grid-column: 1 / -1;
+}
+.profil-side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .profil-bento,
+  .profil-side-by-side {
+    grid-template-columns: 1fr;
+  }
 }
