@@ -5903,3 +5903,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     justify-content: center;
   }
 }
+
+/* profils */
+.profil-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
