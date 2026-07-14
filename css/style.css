@@ -3770,6 +3770,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-weight: 300;
   color: rgba(255, 255, 255, 0.45);
   line-height: 1.6;
+  transition: color 0.32s var(--ease);
 }
 .cvp-item-text strong {
   font-weight: 700;
@@ -5657,6 +5658,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transition: color 0.32s var(--ease);
 }
 .prest-card:hover .prest-card-name {
+  color: var(--ink-900);
+}
+.prest-card:hover .cvp-item-text {
+  color: rgba(10, 30, 46, 0.72);
+}
+.prest-card:hover .cvp-item-text strong {
   color: var(--ink-900);
 }
 
