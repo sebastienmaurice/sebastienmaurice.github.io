@@ -5721,6 +5721,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: rgba(181,244,222,0.5);
   margin-top: -4px;
   margin-bottom: 8px;
+  transition: color 0.32s var(--ease);
+}
+.prest-card:hover .prest-card-sub {
+  color: rgba(10, 30, 46, 0.55);
 }
 
 /* Séparateur */
