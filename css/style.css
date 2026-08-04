@@ -688,7 +688,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: absolute;
   bottom: 0;
   right: 0;
-  height: calc(100svh - 70px);
+  height: calc(100svh - 120px);
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -715,7 +715,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   top: 0;
   bottom: 0;
   margin: auto 0;
-  width: clamp(560px, 48vw, 820px);
+  width: clamp(640px, 55vw, 920px);
   height: auto;
   aspect-ratio: 1375 / 1071;
   object-fit: contain;
@@ -725,7 +725,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 @media (min-width: 1101px) {
   .hero--alt-photo .hero-h1 {
-    font-size: clamp(2.3rem, 3.3vw, 4.4rem);
+    font-size: clamp(2.4rem, 3.5vw, 4.6rem);
   }
 }
 .hero-float {
