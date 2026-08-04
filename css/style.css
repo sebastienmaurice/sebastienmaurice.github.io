@@ -724,11 +724,28 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   animation: h-photoIn 1.2s var(--ease) 0.25s both;
 }
 @media (min-width: 1101px) {
+  .hero--alt-photo {
+    align-items: flex-start;
+  }
   .hero--alt-photo .hero-l {
     justify-content: flex-start;
+    padding-top: 110px;
+    padding-bottom: 56px;
+  }
+  .hero--alt-photo .hero-h1 {
+    font-size: clamp(2.1rem, 3.2vw, 4.2rem);
+  }
+  .hero--alt-photo .hero-eyebrow {
+    margin-bottom: 32px;
+  }
+  .hero--alt-photo .hero-desc {
+    margin-bottom: 28px;
+  }
+  .hero--alt-photo .hero-kpis {
+    margin-bottom: 28px;
   }
   .hero--alt-photo .hero-photo-card {
-    top: 140px;
+    top: 110px;
     bottom: auto;
     margin: 0;
   }
