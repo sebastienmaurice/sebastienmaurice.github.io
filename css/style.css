@@ -715,14 +715,25 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   top: 0;
   bottom: 0;
   margin: auto 0;
-  width: min(40vw, 620px);
+  width: min(46vw, 700px);
   height: fit-content;
   aspect-ratio: 1672 / 940;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(10, 30, 46, 0.18);
+  border: 10px solid var(--ink-900);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(10, 30, 46, 0.22);
   z-index: 3;
   animation: h-photoIn 1.2s var(--ease) 0.25s both;
+}
+@media (min-width: 1101px) {
+  .hero--framed .hero-l {
+    justify-content: flex-start;
+  }
+  .hero--framed .hero-photo-card {
+    top: 140px;
+    bottom: auto;
+    margin: 0;
+  }
 }
 .hero-float {
   position: absolute;
