@@ -708,6 +708,22 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     transform: translateY(0);
   }
 }
+/* Photo hero encadrée (image rectangulaire, pages profils) */
+.hero-photo-card {
+  position: absolute;
+  right: clamp(24px, 5vw, 80px);
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: min(40vw, 620px);
+  height: fit-content;
+  aspect-ratio: 1672 / 940;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(10, 30, 46, 0.18);
+  z-index: 3;
+  animation: h-photoIn 1.2s var(--ease) 0.25s both;
+}
 .hero-float {
   position: absolute;
   z-index: 3;
@@ -5170,6 +5186,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     object-fit: contain;
     object-position: bottom center;
     flex-shrink: 0;
+    z-index: 1;
+    align-self: stretch;
+    margin-top: 76px;
+  }
+  .hero-photo-card {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    order: 0;
+    width: 100%;
+    height: auto;
     z-index: 1;
     align-self: stretch;
     margin-top: 76px;
