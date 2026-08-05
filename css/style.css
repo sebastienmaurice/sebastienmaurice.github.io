@@ -2553,7 +2553,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 
 /* IA SECTION */
 .ia-sec-wrap {
-  background: linear-gradient(180deg, #b5f4de 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(180deg, #b5f4de 0%, #d6f8e9 100%);
 }
 .ia-sec {
   padding: 80px 0 60px;
@@ -4258,7 +4258,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 
 /* PROFIL SECTION */
 .profil-sec {
-  background: linear-gradient(180deg, #b5f4de 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(180deg, #b5f4de 0%, #d6f8e9 100%);
   position: relative;
 }
 .profil-inner {
