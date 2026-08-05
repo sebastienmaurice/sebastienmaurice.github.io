@@ -4340,13 +4340,30 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 42px;
   min-width: 42px;
   border-radius: 10px;
-  background: rgba(253, 147, 124, 0.12);
-  border: 1px solid rgba(253, 147, 124, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent-warm);
   flex-shrink: 0;
+}
+.va-point:nth-child(1) .va-point-icon {
+  background: var(--mint-300);
+  border: 1px solid rgba(10, 30, 46, 0.12);
+  color: var(--ink-900);
+}
+.va-point:nth-child(2) .va-point-icon {
+  background: var(--stat-coral);
+  border: 1px solid rgba(10, 30, 46, 0.12);
+  color: var(--ink-900);
+}
+.va-point:nth-child(3) .va-point-icon {
+  background: var(--stat-sky);
+  border: 1px solid rgba(10, 30, 46, 0.12);
+  color: var(--ink-900);
+}
+.va-point:nth-child(4) .va-point-icon {
+  background: var(--stat-sand);
+  border: 1px solid rgba(10, 30, 46, 0.12);
+  color: var(--ink-900);
 }
 .va-point-body {
   display: flex;
