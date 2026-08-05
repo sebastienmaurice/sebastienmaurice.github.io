@@ -687,7 +687,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .hero-photo {
   position: absolute;
   bottom: 0;
-  right: max(0px, calc((100vw - 1900px) / 2));
+  right: 0;
   width: clamp(460px, 49vw, 960px);
   height: auto;
   aspect-ratio: 1448 / 1086;
@@ -707,6 +707,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@media (min-width: 1750px) {
+  .hero-photo {
+    right: 65px;
   }
 }
 /* Photo hero PNG transparent (pages profils) */
