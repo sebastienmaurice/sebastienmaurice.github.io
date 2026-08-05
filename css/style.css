@@ -4728,11 +4728,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   line-height: 1.45;
 }
 .va-cta-inline {
-  background: var(--mint-100);
+  background: var(--color-surface);
   border-radius: var(--r);
   padding: 22px 26px;
-  box-shadow: 0 2px 16px rgba(10, 30, 46, 0.06);
-  border: 1px solid rgba(64, 151, 135, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(64, 151, 135, 0.16),
+    0 18px 44px rgba(10, 30, 46, 0.1);
+  border: none;
   display: flex;
   flex-direction: row;
   align-items: center;
