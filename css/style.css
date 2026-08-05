@@ -688,7 +688,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: clamp(460px, 46vw, 820px);
+  width: clamp(460px, 48vw, 900px);
   height: auto;
   aspect-ratio: 1448 / 1086;
   max-width: none;
