@@ -2498,18 +2498,18 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
 }
 .skill-tabs-panel[data-panel="front"] .skill-tab-icon {
-  background: rgba(255, 176, 136, 0.12);
-  border: 1px solid rgba(255, 176, 136, 0.2);
+  background: rgba(255, 176, 136, 0.2);
+  border: 1px solid rgba(255, 176, 136, 0.38);
   color: var(--stat-coral);
 }
 .skill-tabs-panel[data-panel="design"] .skill-tab-icon {
-  background: rgba(147, 197, 253, 0.12);
-  border: 1px solid rgba(147, 197, 253, 0.2);
+  background: rgba(147, 197, 253, 0.2);
+  border: 1px solid rgba(147, 197, 253, 0.38);
   color: var(--stat-sky);
 }
 .skill-tabs-panel[data-panel="back"] .skill-tab-icon {
-  background: rgba(253, 230, 138, 0.1);
-  border: 1px solid rgba(253, 230, 138, 0.18);
+  background: rgba(253, 230, 138, 0.2);
+  border: 1px solid rgba(253, 230, 138, 0.38);
   color: var(--stat-sand);
 }
 .skill-tab-icon svg {
@@ -2590,13 +2590,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 22px;
 }
 .skill-tabs-panel[data-panel="front"] .sk-chip-logo {
-  background: rgba(255, 176, 136, 0.12);
+  background: rgba(255, 176, 136, 0.18);
 }
 .skill-tabs-panel[data-panel="design"] .sk-chip-logo {
-  background: rgba(147, 197, 253, 0.12);
+  background: rgba(147, 197, 253, 0.18);
 }
 .skill-tabs-panel[data-panel="back"] .sk-chip-logo {
-  background: rgba(253, 230, 138, 0.1);
+  background: rgba(253, 230, 138, 0.18);
 }
 .sk-chip-body {
   display: flex;
@@ -3915,25 +3915,26 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border: 1px solid rgba(255, 176, 136, 0.18);
   color: rgba(255, 176, 136, 0.8);
 }
+/* cv-card-hero a un fond clair (mint) : badges pleins + texte ink-900, comme .cs-badge / .s-stat */
 .cvh-tags .cvh-tag:nth-child(4n+1) {
-  background: rgba(255, 176, 136, 0.08);
-  border-color: rgba(255, 176, 136, 0.18);
-  color: rgba(255, 176, 136, 0.8);
+  background: var(--stat-coral);
+  border-color: transparent;
+  color: var(--ink-900);
 }
 .cvh-tags .cvh-tag:nth-child(4n+2) {
-  background: rgba(253, 230, 138, 0.08);
-  border-color: rgba(253, 230, 138, 0.22);
-  color: rgba(253, 230, 138, 0.85);
+  background: var(--stat-sand);
+  border-color: transparent;
+  color: var(--ink-900);
 }
 .cvh-tags .cvh-tag:nth-child(4n+3) {
-  background: rgba(147, 197, 253, 0.08);
-  border-color: rgba(147, 197, 253, 0.22);
-  color: rgba(147, 197, 253, 0.85);
+  background: var(--stat-sky);
+  border-color: transparent;
+  color: var(--ink-900);
 }
 .cvh-tags .cvh-tag:nth-child(4n+4) {
-  background: rgba(168, 230, 163, 0.08);
-  border-color: rgba(168, 230, 163, 0.22);
-  color: rgba(168, 230, 163, 0.85);
+  background: var(--stat-green);
+  border-color: transparent;
+  color: var(--ink-900);
 }
 .cvs-item {
   display: flex;
