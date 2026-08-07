@@ -302,7 +302,7 @@ function closeImgLightbox() {
 
   const AUTOPLAY_DELAY = 3500;
   const TRANSITION_MS  = 500;
-  let visibleCount = 4, current = 0, isTransitioning = false, autoTimer = null;
+  let visibleCount = 5, current = 0, isTransitioning = false, autoTimer = null;
 
   /* origCards captured once, before any clones exist */
   const origCards = Array.from(track.querySelectorAll('.b-card-proj'));
@@ -312,7 +312,8 @@ function closeImgLightbox() {
     const w = window.innerWidth;
     if (w <= 480) return 1;
     if (w <= 900) return 2;
-    return 4;
+    if (w <= 1300) return 4;
+    return 5;
   }
 
   function cloneCards() {
