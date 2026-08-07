@@ -1063,6 +1063,18 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--accent);
   flex-shrink: 0;
 }
+.b-skill-pills .b-skill-pill:nth-child(1) svg {
+  color: var(--stat-coral);
+}
+.b-skill-pills .b-skill-pill:nth-child(2) svg {
+  color: var(--stat-sand);
+}
+.b-skill-pills .b-skill-pill:nth-child(3) svg {
+  color: var(--stat-sky);
+}
+.b-skill-pills .b-skill-pill:nth-child(4) svg {
+  color: var(--stat-green);
+}
 .b-stats-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1701,6 +1713,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   opacity: 0.75;
   flex-shrink: 0;
 }
+.b-pstat:nth-child(1) .b-pstat-icon {
+  color: var(--stat-coral);
+}
+.b-pstat:nth-child(2) .b-pstat-icon {
+  color: var(--stat-sand);
+}
+.b-pstat:nth-child(3) .b-pstat-icon {
+  color: var(--stat-sky);
+}
 .b-pstat-num {
   font-family: var(--f-serif);
   font-size: 20px;
@@ -2307,16 +2328,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 0;
 }
 .s-stat:nth-child(1) {
-  background: var(--stat-mint);
+  background: var(--stat-coral);
 }
 .s-stat:nth-child(2) {
-  background: var(--stat-coral);
+  background: var(--stat-sand);
 }
 .s-stat:nth-child(3) {
   background: var(--stat-sky);
 }
 .s-stat:nth-child(4) {
-  background: var(--stat-sand);
+  background: var(--stat-green);
 }
 .s-stat-top {
   display: flex;
@@ -2482,9 +2503,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--stat-coral);
 }
 .skill-tabs-panel[data-panel="design"] .skill-tab-icon {
-  background: rgba(181, 244, 222, 0.1);
-  border: 1px solid rgba(181, 244, 222, 0.18);
-  color: var(--stat-mint);
+  background: rgba(147, 197, 253, 0.12);
+  border: 1px solid rgba(147, 197, 253, 0.2);
+  color: var(--stat-sky);
 }
 .skill-tabs-panel[data-panel="back"] .skill-tab-icon {
   background: rgba(253, 230, 138, 0.1);
@@ -2511,7 +2532,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--stat-coral);
 }
 .skill-tabs-panel[data-panel="design"] .skill-tab-title {
-  color: var(--stat-mint);
+  color: var(--stat-sky);
 }
 .skill-tabs-panel[data-panel="back"] .skill-tab-title {
   color: var(--stat-sand);
@@ -2572,7 +2593,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: rgba(255, 176, 136, 0.12);
 }
 .skill-tabs-panel[data-panel="design"] .sk-chip-logo {
-  background: rgba(181, 244, 222, 0.1);
+  background: rgba(147, 197, 253, 0.12);
 }
 .skill-tabs-panel[data-panel="back"] .sk-chip-logo {
   background: rgba(253, 230, 138, 0.1);
