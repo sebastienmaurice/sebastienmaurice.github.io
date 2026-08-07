@@ -130,6 +130,7 @@ html {
   --stat-coral: #ffb088;
   --stat-sky: #93c5fd;
   --stat-sand: #fde68a;
+  --stat-green: #a8e6a3;
   --mint: var(--color-primary);
   --mint-title: var(--mint-400);
   --coral-accent: var(--color-accent-soft);
@@ -4361,10 +4362,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--ink-900);
 }
 .cs-badge:nth-child(1) .cs-badge-icon {
-  background: var(--stat-mint);
+  background: var(--stat-coral);
 }
 .cs-badge:nth-child(2) .cs-badge-icon {
-  background: var(--stat-coral);
+  background: var(--stat-sand);
 }
 .cs-badge-text {
   display: flex;
@@ -4563,16 +4564,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 1;
 }
 .cs-mini-card:nth-child(1) .cs-mini-icon {
-  background: var(--stat-mint);
+  background: var(--stat-coral);
 }
 .cs-mini-card:nth-child(2) .cs-mini-icon {
-  background: var(--stat-coral);
+  background: var(--stat-sand);
 }
 .cs-mini-card:nth-child(3) .cs-mini-icon {
   background: var(--stat-sky);
 }
 .cs-mini-card:nth-child(4) .cs-mini-icon {
-  background: var(--stat-sand);
+  background: var(--stat-green);
 }
 .cs-mini-label {
   font-family: var(--f-disp);
