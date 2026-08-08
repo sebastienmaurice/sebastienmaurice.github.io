@@ -6356,6 +6356,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-radius: 10px;
   background: var(--mint-300);
   color: var(--ink-900);
+  transition: background 0.32s var(--ease), color 0.32s;
+}
+/* Sur .prest-card, le fond passe au mint clair au survol : on inverse le tag (meme logique que .prest-badge-mint) */
+.prest-card:hover .profil-account-tag {
+  background: var(--ink-900);
+  color: var(--mint-300);
 }
 @media (max-width: 768px) {
   .profil-bento,
