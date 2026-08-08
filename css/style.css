@@ -1849,7 +1849,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 42px;
   min-width: 42px;
   border-radius: 50%;
-  background: var(--stat-green);
+  background: var(--stat-coral);
   color: var(--ink-900);
   display: flex;
   align-items: center;
@@ -1866,7 +1866,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--stat-green);
+  background: var(--stat-coral);
   color: var(--ink-900);
   font-family: var(--f-disp);
   font-weight: 700;
