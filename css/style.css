@@ -965,8 +965,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
-  opacity: 0;
-  animation: b-fadeUp 0.5s 0.05s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  transition-delay: 0.05s;
 }
 .b-section-label {
   display: inline-flex;
@@ -1017,8 +1016,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-hero-row {
   flex-shrink: 0;
-  opacity: 0;
-  animation: b-fadeUp 0.55s 0.12s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  transition-delay: 0.1s;
 }
 .b-hero-title {
   font-family: var(--f-serif);
@@ -1045,8 +1043,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  opacity: 0;
-  animation: b-fadeUp 0.55s 0.16s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  transition-delay: 0.15s;
 }
 .b-skill-pill {
   display: inline-flex;
@@ -1082,6 +1079,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
   flex: 1;
+  transition-delay: 0.2s;
 }
 .b-stat-card {
   background: var(--card-bg);
@@ -1196,8 +1194,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     border-color 0.28s;
   --gx: 50%;
   --gy: 50%;
-  opacity: 0;
-  animation: b-fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 .b-card::before {
   content: "";
@@ -1491,10 +1487,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   overflow: hidden;
   border-radius: var(--radius);
   border: 1px solid rgba(181, 244, 222, 0.18);
-  animation-delay: 0.18s;
 }
 .b-card-project-hero::before {
   display: none;
+}
+/* Specificite superieure a [data-reveal] pour ne pas ecraser la transition de hover (box-shadow/border-color) */
+.b-card-project-hero[data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+    box-shadow 0.28s,
+    border-color 0.28s;
 }
 .b-card-project-hero:hover {
   transform: none;
@@ -1900,6 +1903,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   padding: 0;
   overflow: hidden;
   position: relative;
+  opacity: 0;
+  animation: b-fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 .b-card-proj-img {
   position: absolute;
@@ -2325,6 +2330,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.28s;
 }
+.s-stat[data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.28s;
+}
+.s-stats-row .s-stat:nth-child(1) { transition-delay: 0s; }
+.s-stats-row .s-stat:nth-child(2) { transition-delay: 0.08s; }
+.s-stats-row .s-stat:nth-child(3) { transition-delay: 0.16s; }
+.s-stats-row .s-stat:nth-child(4) { transition-delay: 0.24s; }
 .s-stat:hover {
   transform: translateY(-4px) scale(1.03);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
@@ -3122,6 +3137,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   gap: 12px;
   flex: 1;
 }
+.ia-impact-grid .ia-impact-item:nth-child(1) { transition-delay: 0s; }
+.ia-impact-grid .ia-impact-item:nth-child(2) { transition-delay: 0.08s; }
+.ia-impact-grid .ia-impact-item:nth-child(3) { transition-delay: 0.16s; }
+.ia-impact-grid .ia-impact-item:nth-child(4) { transition-delay: 0.24s; }
 .ia-impact-item {
   display: flex;
   flex-direction: column;
@@ -3509,6 +3528,20 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     transform 0.32s var(--ease),
     background 0.32s;
 }
+/* Specificite superieure a [data-reveal] pour ajouter la transition d'apparition sans perdre celle du hover */
+.cv-card[data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.32s var(--ease),
+    transform 0.32s var(--ease),
+    background 0.32s;
+}
+.cv-main .cv-card:nth-child(1) { transition-delay: 0s; }
+.cv-main .cv-card:nth-child(2) { transition-delay: 0.08s; }
+.cv-main .cv-card:nth-child(3) { transition-delay: 0.16s; }
+.cv-main .cv-card:nth-child(4) { transition-delay: 0.24s; }
+.cv-main .cv-card:nth-child(5) { transition-delay: 0.32s; }
+.cv-main .cv-card:nth-child(6) { transition-delay: 0.4s; }
 .cv-card:hover {
   border-color: rgba(255, 255, 255, 0.13);
   transform: translateY(-2px);
@@ -5150,6 +5183,14 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   opacity: 1;
   transform: none;
 }
+/* Fleches de CTA texte : meme logique de mouvement que les CTA a icone SVG (.b-hover-btn, .hero-scroll) */
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease);
+}
+a:hover .cta-arrow {
+  transform: translateX(3px);
+}
 @keyframes orbit-slow {
   from {
     transform: rotate(0deg);
@@ -6006,6 +6047,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   gap: 24px;
   align-items: stretch;
 }
+.prestations-grid .prest-card:nth-child(1) { transition-delay: 0s; }
+.prestations-grid .prest-card:nth-child(2) { transition-delay: 0.08s; }
+.prestations-grid .prest-card:nth-child(3) { transition-delay: 0.16s; }
+.prestations-grid .prest-card:nth-child(4) { transition-delay: 0.24s; }
 
 .prest-card {
   background: rgba(11, 28, 44, 0.85);
@@ -6019,6 +6064,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   flex-direction: column;
   transition:
+    transform 0.32s var(--ease),
+    background 0.32s var(--ease),
+    border-color 0.32s,
+    box-shadow 0.32s;
+}
+/* Specificite superieure a [data-reveal] pour ajouter la transition d'apparition sans perdre celle du hover */
+.prest-card[data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.32s var(--ease),
     background 0.32s var(--ease),
     border-color 0.32s,

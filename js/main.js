@@ -197,12 +197,33 @@ window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scr
   applyNavTheme();
 }());
 
-/* ── Scroll Reveal ── */
+/* ── Scroll Reveal (+ count-up discret sur les stats reveleés) ── */
+function animateCount(el) {
+  const target = parseInt(el.dataset.countTo, 10);
+  if (isNaN(target)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = target;
+    return;
+  }
+  const duration = 1200;
+  const start = performance.now();
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(easeOutCubic(p) * target);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = '1';
   const revObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('revealed'); revObs.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        revObs.unobserve(e.target);
+        e.target.querySelectorAll('.count-num[data-count-to]').forEach(animateCount);
+      }
     });
   }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
