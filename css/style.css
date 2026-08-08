@@ -1116,6 +1116,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-stat-card-coral::before {
   background: rgba(255, 176, 136, 0.22);
 }
+.b-stat-card-sand::before {
+  background: rgba(253, 230, 138, 0.22);
+}
 .b-stat-icon {
   width: 40px;
   height: 40px;
@@ -1136,6 +1139,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: var(--stat-coral);
   box-shadow: 0 0 0 5px rgba(255, 176, 136, 0.14);
 }
+.b-stat-card-sand .b-stat-icon {
+  background: var(--stat-sand);
+  box-shadow: 0 0 0 5px rgba(253, 230, 138, 0.14);
+}
 .b-stat-num {
   font-family: var(--f-serif);
   font-size: clamp(1.7rem, 2vw, 2.1rem);
@@ -1153,6 +1160,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-stat-card-coral .b-stat-num {
   color: var(--stat-coral);
+}
+.b-stat-card-sand .b-stat-num {
+  color: var(--stat-sand);
 }
 .b-stat-lbl {
   font-family: var(--f-disp);
@@ -1714,14 +1724,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   opacity: 0.75;
   flex-shrink: 0;
 }
+/* References produits = expertise -> sand · Migration WordPress = techno -> sky · Avis client = validation -> vert */
 .b-pstat:nth-child(1) .b-pstat-icon {
-  color: var(--stat-coral);
-}
-.b-pstat:nth-child(2) .b-pstat-icon {
   color: var(--stat-sand);
 }
-.b-pstat:nth-child(3) .b-pstat-icon {
+.b-pstat:nth-child(2) .b-pstat-icon {
   color: var(--stat-sky);
+}
+.b-pstat:nth-child(3) .b-pstat-icon {
+  color: var(--stat-green);
 }
 .b-pstat-num {
   font-family: var(--f-serif);
@@ -2328,17 +2339,18 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   pointer-events: none;
   z-index: 0;
 }
+/* Annees design = expertise -> sand · Projets clients (WordPress) = techno -> sky · PageSpeed = performance -> vert · Dispo = important -> coral */
 .s-stat:nth-child(1) {
-  background: var(--stat-coral);
-}
-.s-stat:nth-child(2) {
   background: var(--stat-sand);
 }
-.s-stat:nth-child(3) {
+.s-stat:nth-child(2) {
   background: var(--stat-sky);
 }
-.s-stat:nth-child(4) {
+.s-stat:nth-child(3) {
   background: var(--stat-green);
+}
+.s-stat:nth-child(4) {
+  background: var(--stat-coral);
 }
 .s-stat-top {
   display: flex;
@@ -2498,20 +2510,21 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   justify-content: center;
   flex-shrink: 0;
 }
+/* Front-end = technologie -> sky · Design & UI = experience -> sand · Back-end = optimisation -> vert */
 .skill-tabs-panel[data-panel="front"] .skill-tab-icon {
-  background: rgba(255, 176, 136, 0.2);
-  border: 1px solid rgba(255, 176, 136, 0.38);
-  color: var(--stat-coral);
-}
-.skill-tabs-panel[data-panel="design"] .skill-tab-icon {
   background: rgba(147, 197, 253, 0.2);
   border: 1px solid rgba(147, 197, 253, 0.38);
   color: var(--stat-sky);
 }
-.skill-tabs-panel[data-panel="back"] .skill-tab-icon {
+.skill-tabs-panel[data-panel="design"] .skill-tab-icon {
   background: rgba(253, 230, 138, 0.2);
   border: 1px solid rgba(253, 230, 138, 0.38);
   color: var(--stat-sand);
+}
+.skill-tabs-panel[data-panel="back"] .skill-tab-icon {
+  background: rgba(168, 230, 163, 0.2);
+  border: 1px solid rgba(168, 230, 163, 0.38);
+  color: var(--stat-green);
 }
 .skill-tab-icon svg {
   width: 18px;
@@ -2530,13 +2543,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   line-height: 0.95;
 }
 .skill-tabs-panel[data-panel="front"] .skill-tab-title {
-  color: var(--stat-coral);
-}
-.skill-tabs-panel[data-panel="design"] .skill-tab-title {
   color: var(--stat-sky);
 }
-.skill-tabs-panel[data-panel="back"] .skill-tab-title {
+.skill-tabs-panel[data-panel="design"] .skill-tab-title {
   color: var(--stat-sand);
+}
+.skill-tabs-panel[data-panel="back"] .skill-tab-title {
+  color: var(--stat-green);
 }
 .skill-tab-sub {
   font-family: var(--f-mono);
@@ -2591,13 +2604,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 22px;
 }
 .skill-tabs-panel[data-panel="front"] .sk-chip-logo {
-  background: rgba(255, 176, 136, 0.18);
-}
-.skill-tabs-panel[data-panel="design"] .sk-chip-logo {
   background: rgba(147, 197, 253, 0.18);
 }
-.skill-tabs-panel[data-panel="back"] .sk-chip-logo {
+.skill-tabs-panel[data-panel="design"] .sk-chip-logo {
   background: rgba(253, 230, 138, 0.18);
+}
+.skill-tabs-panel[data-panel="back"] .sk-chip-logo {
+  background: rgba(168, 230, 163, 0.18);
 }
 .sk-chip-body {
   display: flex;
@@ -2935,9 +2948,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
   color: var(--mint);
 }
-.ia-kpi:nth-child(1) .ia-kpi-icon { color: var(--stat-coral); }
-.ia-kpi:nth-child(2) .ia-kpi-icon { color: var(--stat-sand); }
-.ia-kpi:nth-child(3) .ia-kpi-icon { color: var(--stat-sky); }
+/* Heures avec IA = techno -> sky · Productivite = optimisation -> vert · Qualite & controle = important -> coral */
+.ia-kpi:nth-child(1) .ia-kpi-icon { color: var(--stat-sky); }
+.ia-kpi:nth-child(2) .ia-kpi-icon { color: var(--stat-green); }
+.ia-kpi:nth-child(3) .ia-kpi-icon { color: var(--stat-coral); }
 .ia-kpi-val {
   font-family: var(--f-serif);
   font-size: 1.3rem;
@@ -3127,25 +3141,26 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
   color: var(--mint);
 }
+/* Temps gagne = optimisation -> vert · Vitesse dev = techno -> sky · Idees explorees = experience -> sand · Meilleure qualite = important -> coral */
 .ia-impact-item:nth-child(1) .ia-impact-icon {
-  background: rgba(255, 176, 136, 0.1);
-  border-color: rgba(255, 176, 136, 0.22);
-  color: var(--stat-coral);
+  background: rgba(168, 230, 163, 0.1);
+  border-color: rgba(168, 230, 163, 0.22);
+  color: var(--stat-green);
 }
 .ia-impact-item:nth-child(2) .ia-impact-icon {
-  background: rgba(253, 230, 138, 0.1);
-  border-color: rgba(253, 230, 138, 0.22);
-  color: var(--stat-sand);
-}
-.ia-impact-item:nth-child(3) .ia-impact-icon {
   background: rgba(147, 197, 253, 0.1);
   border-color: rgba(147, 197, 253, 0.22);
   color: var(--stat-sky);
 }
+.ia-impact-item:nth-child(3) .ia-impact-icon {
+  background: rgba(253, 230, 138, 0.1);
+  border-color: rgba(253, 230, 138, 0.22);
+  color: var(--stat-sand);
+}
 .ia-impact-item:nth-child(4) .ia-impact-icon {
-  background: rgba(168, 230, 163, 0.1);
-  border-color: rgba(168, 230, 163, 0.22);
-  color: var(--stat-green);
+  background: rgba(255, 176, 136, 0.1);
+  border-color: rgba(255, 176, 136, 0.22);
+  color: var(--stat-coral);
 }
 .ia-impact-val {
   font-family: var(--f-serif);
