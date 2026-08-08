@@ -1019,7 +1019,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-hero-title {
   font-family: var(--f-serif);
-  font-size: clamp(36px, 4.5vw, 72px);
+  font-size: clamp(2.8rem, 4.5vw, 5.2rem);
   font-weight: 900;
   line-height: 1.01;
   letter-spacing: -0.028em;
@@ -1676,34 +1676,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-.b-hero-nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-.b-hero-nav-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(181, 244, 222, 0.06);
-  border: 1px solid rgba(181, 244, 222, 0.18);
-  color: var(--accent);
-  font-size: 13px;
-  cursor: not-allowed;
-  opacity: 0.4;
-}
-.b-hero-nav-count {
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
 }
 .b-project-stats {
   display: flex;
@@ -2942,7 +2914,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .ia-title {
   font-family: var(--f-serif);
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: clamp(2.8rem, 4.5vw, 5.2rem);
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: -0.03em;
@@ -3395,7 +3367,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .cv-title {
   font-family: var(--f-serif);
-  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-size: clamp(2.8rem, 4.5vw, 5.2rem);
   font-weight: 900;
   line-height: 0.86;
   letter-spacing: -0.03em;
@@ -4737,8 +4709,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .cs-title {
   font-family: var(--f-serif);
-  font-size: clamp(2rem, 2.8vw, 3.1rem);
-  font-weight: 700;
+  font-size: clamp(2.2rem, 2.8vw, 3.4rem);
+  font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
   color: var(--dark);
@@ -6009,7 +5981,7 @@ a:hover .cta-arrow {
 
 .prestations-title {
   font-family: var(--f-serif);
-  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-size: clamp(2.8rem, 4.5vw, 5.2rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
