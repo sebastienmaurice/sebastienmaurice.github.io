@@ -6346,6 +6346,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+.profil-side-by-side-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .profil-side-by-side-3 {
+    grid-template-columns: 1fr;
+  }
+}
 .profil-account-tag {
   display: inline-flex;
   align-items: center;
