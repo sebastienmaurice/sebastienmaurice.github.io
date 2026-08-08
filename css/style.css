@@ -21,7 +21,7 @@ a {
   text-decoration: none;
 }
 :where(a, button, [role="button"], [tabindex]):focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid #ff7a59;
   outline-offset: 3px;
   border-radius: var(--r-xs);
 }
@@ -90,8 +90,8 @@ html {
   --mint-400: #72dfb8;
   --mint-600: #409787;
   --coral-300: #ffb088;
-  --coral-400: #fd937c;
-  --coral-500: #ff7a59;
+  --coral-400: #ffb088;
+  --coral-500: #ffb088;
   --ink-50: #f2f2f2;
   --ink-100: #fdfdfd;
   --ink-700: #0d2f47;
@@ -636,7 +636,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.88rem;
   font-weight: 700;
   padding: 14px 28px;
-  background: var(--color-accent);
+  /* couleur figee (non liee a --color-accent) : ce bouton est partage par les 3 pages du site */
+  background: #ff7a59;
   color: var(--ink-900);
   border-radius: var(--r-sm);
   cursor: none;
@@ -1767,8 +1768,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: relative;
   width: 30px;
   height: 30px;
-  background: rgba(255, 122, 89, 0.14);
-  border: 1px solid rgba(255, 122, 89, 0.28);
+  background: rgba(255, 176, 136, 0.14);
+  border: 1px solid rgba(255, 176, 136, 0.28);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -1785,8 +1786,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   inset: -7px;
 }
 .b-ext-link-btn:hover {
-  background: rgba(255, 122, 89, 0.24);
-  border-color: rgba(255, 122, 89, 0.5);
+  background: rgba(255, 176, 136, 0.24);
+  border-color: rgba(255, 176, 136, 0.5);
 }
 .b-trust-row {
   display: grid;
@@ -2142,10 +2143,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     box-shadow 0.2s;
 }
 .b-card-hover-reveal:hover .b-hover-btn {
-  background: rgba(255, 122, 89, 0.18);
-  border-color: rgba(255, 122, 89, 0.7);
+  background: rgba(255, 176, 136, 0.18);
+  border-color: rgba(255, 176, 136, 0.7);
   color: var(--coral-400);
-  box-shadow: 0 0 10px rgba(255, 122, 89, 0.2);
+  box-shadow: 0 0 10px rgba(255, 176, 136, 0.2);
 }
 /* Badge Malt — pill paysage respectant le ratio du logo */
 .b-malt-badge {
@@ -3253,17 +3254,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.85rem;
   font-weight: 700;
   padding: 12px 22px;
-  background: linear-gradient(135deg, #ff8a6e 0%, #ff7a59 100%);
+  background: var(--stat-coral);
   color: var(--ink-900);
   border-radius: var(--r-sm);
-  box-shadow: 0 4px 20px rgba(255, 122, 89, 0.35);
+  box-shadow: 0 4px 20px rgba(255, 176, 136, 0.35);
   cursor: none;
   transition: transform 0.3s var(--ease), box-shadow 0.3s;
   white-space: nowrap;
 }
 .btn-vivid:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(255, 122, 89, 0.5);
+  box-shadow: 0 8px 28px rgba(255, 176, 136, 0.5);
 }
 .btn-ghost-mint {
   display: inline-flex;
@@ -4910,7 +4911,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .cs-cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(255, 122, 89, 0.35);
+  box-shadow: 0 10px 26px rgba(255, 176, 136, 0.35);
 }
 
 /* -- 4 mini cards -- */
@@ -5071,8 +5072,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 38px;
   min-width: 38px;
   border-radius: 50%;
-  background: rgba(255, 122, 89, 0.15);
-  border: 1px solid rgba(255, 122, 89, 0.3);
+  background: rgba(255, 176, 136, 0.15);
+  border: 1px solid rgba(255, 176, 136, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6220,7 +6221,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .prest-banner-launch .prest-banner-title { color: var(--ink-900); }
 .prest-banner-launch .prest-card-sub { color: rgba(10,30,46,0.55); }
 .prest-banner-launch .prest-check {
-  background: rgba(255, 122, 89, 0.12);
+  background: rgba(255, 176, 136, 0.12);
   color: var(--coral-500);
 }
 .prest-banner-launch .prest-banner-includes li { color: rgba(10,30,46,0.88); }
