@@ -3534,7 +3534,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
-  gap: 14px;
+  gap: 18px;
   position: relative;
   z-index: 1;
 }
