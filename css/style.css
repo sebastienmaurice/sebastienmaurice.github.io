@@ -857,7 +857,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-left-col {
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  gap: 26px;
 }
 .b-mini-bento {
   flex: 1;
@@ -2254,7 +2254,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .stack-left {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 26px;
 }
 .stack-title {
   font-family: var(--f-serif);
@@ -2947,7 +2947,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   line-height: 0.9;
   letter-spacing: -0.03em;
   color: var(--dark);
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 .ia-title em {
   font-style: italic;
