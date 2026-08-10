@@ -84,29 +84,107 @@ html {
 }
 
 :root {
-  --mint-100: #d6f8e9;
-  --mint-200: #b5f4de;
-  --mint-300: #8fedd0;
-  --mint-400: #72dfb8;
-  --mint-600: #409787;
-  --coral-300: #ffb088;
-  --coral-400: #ffb088;
-  --coral-500: #ffb088;
-  --ink-50: #f2f2f2;
-  --ink-100: #fdfdfd;
-  --ink-700: #0d2f47;
-  --ink-800: #0d1e2d;
+  /* ============================================================
+     DESIGN SYSTEM v2 — tokens de production (source : moodboard)
+     ============================================================ */
+  /* — Ink (neutre froid, fonds sombres + texte) — */
+  --ink-950: #050f18;
   --ink-900: #0a1e2e;
+  --ink-800: #0d2740;
+  --ink-700: #0d2f47;
+  --ink-600: #294b60;
+  --ink-500: #4d6a7e;
+  --ink-400: #7996a6;
+  --ink-300: #a8bdc7;
+  --ink-200: #cddae0;
+  --ink-100: #e7eef1;
+  --ink-50: #f3f7f8;
+
+  /* — Paper / neutres chauds — */
+  --paper: #f6f4ef;
+  --paper-dim: #efece4;
+  --white: #ffffff;
+
+  /* — Mint (couleur de marque) — */
+  --mint-50: #f3fdf9;
+  --mint-100: #e9fbf3;
+  --mint-200: #b5f4de;
+  --mint-300: #94ecc9;
+  --mint-400: #72dfb8;
+  --mint-500: #47b790;
+  --mint-600: #2f8a72;
+  --mint-700: #1f6b58;
+  --mint-800: #164f42;
+  --mint-900: #0d332a;
+
+  /* — Corail (accent unique, action) — */
+  --coral-100: #ffeee5;
+  --coral-200: #ffd9c7;
+  --coral-300: #ffb499;
+  --coral-500: #ff7a59;
+  --coral-600: #e85f3d;
+  --coral-700: #c94a2e;
+  --coral-800: #9c3720;
+
+  /* — Rayons — */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* — Élévation (fond clair) — */
+  --sh-1: 0 1px 2px rgba(10, 30, 46, 0.06), 0 1px 1px rgba(10, 30, 46, 0.04);
+  --sh-2: 0 4px 12px rgba(10, 30, 46, 0.08);
+  --sh-3: 0 10px 28px rgba(10, 30, 46, 0.12);
+  --sh-4: 0 24px 56px rgba(10, 30, 46, 0.16);
+  --sh-accent: 0 10px 24px rgba(255, 122, 89, 0.28);
+
+  /* — Élévation (fond sombre) — */
+  --sh-dark-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --sh-dark-2: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --sh-dark-3: 0 20px 44px rgba(0, 0, 0, 0.45);
+  --sh-dark-4: 0 32px 72px rgba(0, 0, 0, 0.55);
+
+  /* — Fonts — */
+  --f-disp: "Cabinet Grotesk", "Space Grotesk", sans-serif;
+  --f-serif: "Fraunces", Georgia, serif;
+  --f-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  /* — Espacement (base 4px) — */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --d-fast: 180ms;
+  --d-base: 280ms;
+  --d-slow: 480ms;
+
+  /* ============================================================
+     ALIAS — noms historiques du site, repointés vers les nouveaux
+     tokens pour ne rien casser dans le reste de la feuille de style
+     ============================================================ */
+  --r: var(--r-md);
+  --gap-section: 20px;
+  --gap-bento: 16px;
   --color-bg: var(--mint-200);
-  --color-surface: #f0fdf7;
+  --color-surface: var(--white);
   --color-text: var(--ink-900);
   --color-primary: var(--mint-200);
   --color-primary-strong: var(--mint-600);
   --color-accent: var(--coral-500);
   --color-accent-soft: var(--coral-300);
-  --color-accent-warm: var(--coral-400);
-  --color-info: #4a90d9;
-  --color-warning: #f5c842;
+  --color-accent-warm: var(--coral-500);
   --color-success: var(--mint-600);
   --color-hover: var(--mint-300);
   --color-border: rgba(10, 30, 46, 0.15);
@@ -114,27 +192,17 @@ html {
   --border-dark: rgba(181, 244, 222, 0.14);
   --border-dark-hi: rgba(181, 244, 222, 0.55);
   --surface-dark-zone: var(--ink-900);
-  --f-disp: "Cabinet Grotesk", sans-serif;
-  --f-serif: "Fraunces", Georgia, serif;
-  --f-mono: "Geist Mono", ui-monospace, monospace;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --d-fast: 180ms;
-  --d-base: 280ms;
-  --d-slow: 480ms;
-  --r: 16px;
-  --r-sm: 10px;
-  --r-xs: 6px;
-  --gap-section: 20px;
-  --gap-bento: 16px;
-  --stat-mint: #b5f4de;
-  --stat-coral: #ffb088;
-  --stat-sky: #93c5fd;
-  --stat-sand: #fde68a;
-  --stat-green: #a8e6a3;
-  --r-pill: 999px;
+  /* stat-sky / stat-sand n'existent plus dans le systeme (anti-pattern : 4e couleur hors role) ;
+     alias transitoires vers les 2 roles autorises (mint = succes, coral = mise en avant) en
+     attendant la passe composant-par-composant (section 04/11 du design system) */
+  --stat-mint: var(--mint-200);
+  --stat-coral: var(--coral-500);
+  --stat-sky: var(--mint-400);
+  --stat-sand: var(--coral-300);
+  --stat-green: var(--mint-400);
   --mint: var(--color-primary);
   --mint-title: var(--mint-400);
-  --coral-accent: var(--color-accent-soft);
+  --coral-accent: var(--coral-300);
   --dark: var(--color-text);
   --light: var(--color-surface);
   --card-bg: var(--ink-800);
@@ -1838,21 +1906,30 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--stat-coral);
+  background: var(--coral-500);
   color: var(--ink-900);
   font-family: var(--f-disp);
   font-weight: 700;
   font-size: 12.5px;
   padding: 12px 18px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-pill);
+  box-shadow: var(--sh-accent);
   margin-left: 8px;
   transition:
-    transform 0.3s var(--ease),
-    box-shadow 0.3s;
+    transform 0.28s var(--ease),
+    box-shadow 0.28s var(--ease),
+    background 0.28s var(--ease),
+    color 0.28s var(--ease);
 }
 .b-final-cta-btn:hover {
+  background: var(--coral-600);
+  color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
+}
+.b-final-cta-btn:focus-visible {
+  outline: 2px solid var(--ink-900);
+  outline-offset: 3px;
 }
 .b-proj-tag {
   display: inline-flex;
@@ -3284,17 +3361,30 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.85rem;
   font-weight: 700;
   padding: 12px 22px;
-  background: var(--stat-coral);
+  background: var(--coral-500);
   color: var(--ink-900);
-  border-radius: var(--r-sm);
-  box-shadow: 0 4px 20px rgba(255, 176, 136, 0.35);
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  box-shadow: var(--sh-accent);
   cursor: none;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s;
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease), background 0.28s var(--ease), color 0.28s var(--ease);
   white-space: nowrap;
 }
 .btn-vivid:hover {
+  background: var(--coral-600);
+  color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(255, 176, 136, 0.5);
+  box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
+}
+.btn-vivid:active {
+  background: var(--coral-700);
+  color: var(--white);
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 10px rgba(255, 122, 89, 0.3);
+}
+.btn-vivid:focus-visible {
+  outline: 2px solid var(--ink-900);
+  outline-offset: 3px;
 }
 .btn-ghost-mint {
   display: inline-flex;
@@ -4904,20 +4994,29 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--color-accent);
+  background: var(--coral-500);
   color: var(--ink-900);
   font-family: var(--f-disp);
   font-weight: 700;
   font-size: 0.85rem;
   padding: 14px 20px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-pill);
+  box-shadow: var(--sh-accent);
   transition:
-    transform 0.3s var(--ease),
-    box-shadow 0.3s;
+    transform 0.28s var(--ease),
+    box-shadow 0.28s var(--ease),
+    background 0.28s var(--ease),
+    color 0.28s var(--ease);
 }
 .cs-cta-btn:hover {
+  background: var(--coral-600);
+  color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(255, 176, 136, 0.35);
+  box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
+}
+.cs-cta-btn:focus-visible {
+  outline: 2px solid var(--ink-900);
+  outline-offset: 3px;
 }
 
 /* -- 4 mini cards -- */
