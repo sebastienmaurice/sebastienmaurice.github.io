@@ -192,14 +192,11 @@ html {
   --border-dark: rgba(181, 244, 222, 0.14);
   --border-dark-hi: rgba(181, 244, 222, 0.55);
   --surface-dark-zone: var(--ink-900);
-  /* stat-sky / stat-sand n'existent plus dans le systeme (anti-pattern : 4e couleur hors role) ;
-     alias transitoires vers les 2 roles autorises (mint = succes, coral = mise en avant) en
-     attendant la passe composant-par-composant (section 04/11 du design system) */
-  --stat-mint: var(--mint-200);
+  /* stat-sky / stat-sand / stat-green n'existent plus dans le systeme (anti-pattern : 4e couleur
+     hors role) ; tous les consommateurs ont ete reassignes composant par composant a l'un des 3
+     roles reels (neutre / succes mint-600 / mise en avant coral-500, section 04/11) et les alias
+     ont ete supprimes. --stat-coral reste : c'est un alias valide vers le role "mise en avant". */
   --stat-coral: var(--coral-500);
-  --stat-sky: var(--mint-400);
-  --stat-sand: var(--coral-300);
-  --stat-green: var(--mint-400);
   --mint: var(--color-primary);
   --mint-title: var(--mint-400);
   --coral-accent: var(--coral-300);
@@ -243,7 +240,7 @@ body::after {
   height: 8px;
   margin: -4px 0 0 -4px;
   background: var(--coral-accent);
-  box-shadow: 0 0 8px rgba(255, 176, 136, 0.5);
+  box-shadow: 0 0 8px rgba(255, 122, 89, 0.5);
   transition:
     width 0.15s var(--ease),
     height 0.15s var(--ease),
@@ -254,7 +251,7 @@ body::after {
   width: 36px;
   height: 36px;
   margin: -18px 0 0 -18px;
-  border: 2px solid rgba(255, 176, 136, 0.6);
+  border: 2px solid rgba(255, 122, 89, 0.6);
   z-index: 99998;
   transition:
     width 0.4s var(--ease),
@@ -742,7 +739,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-color: var(--dark);
   background: rgba(10, 30, 46, 0.07);
   transform: translateY(-3px);
-  box-shadow: 0 14px 44px rgba(10, 30, 46, 0.12);
+  box-shadow: var(--sh-3);
 }
 .hero-circles {
   position: absolute;
@@ -1126,20 +1123,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--text);
 }
 .b-skill-pill svg {
-  color: var(--accent);
+  color: var(--mint-400);
   flex-shrink: 0;
-}
-.b-skill-pills .b-skill-pill:nth-child(1) svg {
-  color: var(--stat-coral);
-}
-.b-skill-pills .b-skill-pill:nth-child(2) svg {
-  color: var(--stat-sand);
-}
-.b-skill-pills .b-skill-pill:nth-child(3) svg {
-  color: var(--stat-sky);
-}
-.b-skill-pills .b-skill-pill:nth-child(4) svg {
-  color: var(--stat-green);
 }
 .b-stats-row {
   display: grid;
@@ -1177,13 +1162,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 1;
 }
 .b-stat-card-green::before {
-  background: rgba(168, 230, 163, 0.22);
+  background: rgba(47, 138, 114, 0.22);
 }
 .b-stat-card-coral::before {
-  background: rgba(255, 176, 136, 0.22);
+  background: rgba(255, 122, 89, 0.22);
 }
 .b-stat-card-sand::before {
-  background: rgba(253, 230, 138, 0.22);
+  background: rgba(181, 244, 222, 0.22);
 }
 .b-stat-icon {
   width: 40px;
@@ -1198,16 +1183,18 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 1;
 }
 .b-stat-card-green .b-stat-icon {
-  background: var(--stat-green);
-  box-shadow: 0 0 0 5px rgba(168, 230, 163, 0.14);
+  background: var(--mint-600);
+  color: #fff;
+  box-shadow: 0 0 0 5px rgba(47, 138, 114, 0.14);
 }
 .b-stat-card-coral .b-stat-icon {
-  background: var(--stat-coral);
-  box-shadow: 0 0 0 5px rgba(255, 176, 136, 0.14);
+  background: var(--coral-500);
+  box-shadow: 0 0 0 5px rgba(255, 122, 89, 0.14);
 }
 .b-stat-card-sand .b-stat-icon {
-  background: var(--stat-sand);
-  box-shadow: 0 0 0 5px rgba(253, 230, 138, 0.14);
+  background: rgba(233, 251, 243, 0.1);
+  color: var(--mint-200);
+  box-shadow: 0 0 0 1px rgba(181, 244, 222, 0.14);
 }
 .b-stat-num {
   font-family: var(--f-serif);
@@ -1222,13 +1209,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   opacity: 0.75;
 }
 .b-stat-card-green .b-stat-num {
-  color: var(--stat-green);
+  color: var(--mint-400);
 }
 .b-stat-card-coral .b-stat-num {
-  color: var(--stat-coral);
+  color: var(--coral-500);
 }
 .b-stat-card-sand .b-stat-num {
-  color: var(--stat-sand);
+  color: var(--mint-200);
 }
 .b-stat-lbl {
   font-family: var(--f-disp);
@@ -1254,7 +1241,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   box-shadow:
     0 0 0 1px rgba(181, 244, 222, 0.07) inset,
     0 -1px 0 rgba(181, 244, 222, 0.22) inset,
-    0 18px 56px rgba(0, 0, 0, 0.44);
+    var(--sh-dark-3);
   transition:
     transform 0.28s cubic-bezier(0.23, 1, 0.32, 1),
     box-shadow 0.28s,
@@ -1768,15 +1755,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   opacity: 0.75;
   flex-shrink: 0;
 }
-/* References produits = expertise -> sand · Migration WordPress = techno -> sky · Avis client = validation -> vert */
+/* References produits = neutre · Migration WordPress = succes · Avis client = succes (3 roles du design system : neutre/succes/mise en avant) */
 .b-pstat:nth-child(1) .b-pstat-icon {
-  color: var(--stat-sand);
+  color: var(--mint-200);
 }
 .b-pstat:nth-child(2) .b-pstat-icon {
-  color: var(--stat-sky);
+  color: var(--mint-400);
 }
 .b-pstat:nth-child(3) .b-pstat-icon {
-  color: var(--stat-green);
+  color: var(--mint-400);
 }
 .b-pstat-num {
   font-family: var(--f-serif);
@@ -1823,8 +1810,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: relative;
   width: 30px;
   height: 30px;
-  background: rgba(255, 176, 136, 0.14);
-  border: 1px solid rgba(255, 176, 136, 0.28);
+  background: rgba(255, 122, 89, 0.14);
+  border: 1px solid rgba(255, 122, 89, 0.28);
   border-radius: var(--r-sm);
   display: flex;
   align-items: center;
@@ -1841,8 +1828,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   inset: -7px;
 }
 .b-ext-link-btn:hover {
-  background: rgba(255, 176, 136, 0.24);
-  border-color: rgba(255, 176, 136, 0.5);
+  background: rgba(255, 122, 89, 0.24);
+  border-color: rgba(255, 122, 89, 0.5);
 }
 .b-trust-row {
   display: grid;
@@ -2209,10 +2196,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     box-shadow 0.2s;
 }
 .b-card-hover-reveal:hover .b-hover-btn {
-  background: rgba(255, 176, 136, 0.18);
-  border-color: rgba(255, 176, 136, 0.7);
-  color: var(--coral-400);
-  box-shadow: 0 0 10px rgba(255, 176, 136, 0.2);
+  background: rgba(255, 122, 89, 0.18);
+  border-color: rgba(255, 122, 89, 0.7);
+  color: var(--coral-500);
+  box-shadow: 0 0 10px rgba(255, 122, 89, 0.2);
 }
 /* Badge Malt — pill paysage respectant le ratio du logo */
 .b-malt-badge {
@@ -2394,7 +2381,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .s-stats-row .s-stat:nth-child(4) { transition-delay: 0.24s; }
 .s-stat:hover {
   transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--sh-dark-3);
   border-color: rgba(181, 244, 222, 0.3);
 }
 .s-stat::before {
@@ -2409,18 +2396,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   pointer-events: none;
   z-index: 0;
 }
-/* Carte neutre + icone accentuee (meme langage que .b-stat-card) : Annees design = sand · Projets clients = sky · PageSpeed = vert · Dispo = coral */
-.s-stat:nth-child(1)::before {
-  background: rgba(253, 230, 138, 0.22);
-}
+/* 3 roles seulement (section 04/11) : glow alignee sur le role de l'icone juste en dessous */
+.s-stat:nth-child(1)::before,
 .s-stat:nth-child(2)::before {
-  background: rgba(147, 197, 253, 0.22);
+  background: rgba(181, 244, 222, 0.22);
 }
 .s-stat:nth-child(3)::before {
-  background: rgba(168, 230, 163, 0.22);
+  background: rgba(47, 138, 114, 0.22);
 }
 .s-stat:nth-child(4)::before {
-  background: rgba(255, 176, 136, 0.22);
+  background: rgba(255, 122, 89, 0.22);
 }
 .s-stat-top {
   display: flex;
@@ -2437,25 +2422,29 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--ink-900);
   position: relative;
   z-index: 1;
 }
+/* 3 roles seulement (section 04/11 du design system) : neutre translucide, succes mint-600, mise en avant coral-500 */
 .s-stat:nth-child(1) .s-stat-icon {
-  background: var(--stat-sand);
-  box-shadow: 0 0 0 4px rgba(253, 230, 138, 0.14);
+  background: rgba(233, 251, 243, 0.1);
+  color: var(--mint-200);
+  box-shadow: 0 0 0 1px rgba(181, 244, 222, 0.14);
 }
 .s-stat:nth-child(2) .s-stat-icon {
-  background: var(--stat-sky);
-  box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.14);
+  background: rgba(233, 251, 243, 0.1);
+  color: var(--mint-200);
+  box-shadow: 0 0 0 1px rgba(181, 244, 222, 0.14);
 }
 .s-stat:nth-child(3) .s-stat-icon {
-  background: var(--stat-green);
-  box-shadow: 0 0 0 4px rgba(168, 230, 163, 0.14);
+  background: var(--mint-600);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(47, 138, 114, 0.14);
 }
 .s-stat:nth-child(4) .s-stat-icon {
-  background: var(--stat-coral);
-  box-shadow: 0 0 0 4px rgba(255, 176, 136, 0.14);
+  background: var(--coral-500);
+  color: var(--ink-900);
+  box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.14);
 }
 .s-stat-bottom {
   position: relative;
@@ -2544,19 +2533,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .skill-tab-btn.active {
   color: var(--ink-900);
-  box-shadow: 0 2px 12px rgba(10, 30, 46, 0.2);
+  background: var(--mint-200);
+  box-shadow: var(--sh-2);
 }
 .skill-tab-btn.active svg {
   opacity: 1;
-}
-.skill-tab-btn[data-tab="front"].active {
-  background: var(--stat-coral);
-}
-.skill-tab-btn[data-tab="design"].active {
-  background: var(--stat-mint);
-}
-.skill-tab-btn[data-tab="back"].active {
-  background: var(--stat-sand);
 }
 .skill-tabs-panel {
   background: transparent;
@@ -2597,21 +2578,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   justify-content: center;
   flex-shrink: 0;
 }
-/* Front-end = technologie -> sky · Design & UI = experience -> sand · Back-end = optimisation -> vert */
-.skill-tabs-panel[data-panel="front"] .skill-tab-icon {
-  background: rgba(147, 197, 253, 0.2);
-  border: 1px solid rgba(147, 197, 253, 0.38);
-  color: var(--stat-sky);
-}
-.skill-tabs-panel[data-panel="design"] .skill-tab-icon {
-  background: rgba(253, 230, 138, 0.2);
-  border: 1px solid rgba(253, 230, 138, 0.38);
-  color: var(--stat-sand);
-}
-.skill-tabs-panel[data-panel="back"] .skill-tab-icon {
-  background: rgba(168, 230, 163, 0.2);
-  border: 1px solid rgba(168, 230, 163, 0.38);
-  color: var(--stat-green);
+/* Les 3 onglets partagent le meme role neutre (section 04/11 : pas d'identite couleur par onglet) */
+.skill-tab-icon {
+  background: rgba(233, 251, 243, 0.1);
+  border: 1px solid rgba(181, 244, 222, 0.22);
+  color: var(--mint-200);
 }
 .skill-tab-icon svg {
   width: 18px;
@@ -2629,14 +2600,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   letter-spacing: -0.04em;
   line-height: 0.95;
 }
-.skill-tabs-panel[data-panel="front"] .skill-tab-title {
-  color: var(--stat-sky);
-}
-.skill-tabs-panel[data-panel="design"] .skill-tab-title {
-  color: var(--stat-sand);
-}
-.skill-tabs-panel[data-panel="back"] .skill-tab-title {
-  color: var(--stat-green);
+.skill-tab-title {
+  color: var(--mint-200);
 }
 .skill-tab-sub {
   font-family: var(--f-mono);
@@ -2690,14 +2655,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   width: 22px;
   height: 22px;
 }
-.skill-tabs-panel[data-panel="front"] .sk-chip-logo {
-  background: rgba(147, 197, 253, 0.18);
-}
-.skill-tabs-panel[data-panel="design"] .sk-chip-logo {
-  background: rgba(253, 230, 138, 0.18);
-}
-.skill-tabs-panel[data-panel="back"] .sk-chip-logo {
-  background: rgba(168, 230, 163, 0.18);
+.sk-chip-logo {
+  background: rgba(233, 251, 243, 0.1);
 }
 .sk-chip-body {
   display: flex;
@@ -3037,9 +2996,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--mint);
 }
 /* Heures avec IA = techno -> sky · Productivite = optimisation -> vert · Qualite & controle = important -> coral */
-.ia-kpi:nth-child(1) .ia-kpi-icon { color: var(--stat-sky); }
-.ia-kpi:nth-child(2) .ia-kpi-icon { color: var(--stat-green); }
-.ia-kpi:nth-child(3) .ia-kpi-icon { color: var(--stat-coral); }
+.ia-kpi:nth-child(1) .ia-kpi-icon { color: var(--mint-400); }
+.ia-kpi:nth-child(2) .ia-kpi-icon { color: var(--mint-400); }
+.ia-kpi:nth-child(3) .ia-kpi-icon { color: var(--coral-500); }
 .ia-kpi-val {
   font-family: var(--f-serif);
   font-size: 1.3rem;
@@ -3092,21 +3051,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
   color: var(--mint);
 }
-.ia-usage-item:nth-child(2) .ia-usage-icon {
-  background: rgba(255, 176, 136, 0.1);
-  border-color: rgba(255, 176, 136, 0.22);
-  color: var(--stat-coral);
-}
-.ia-usage-item:nth-child(3) .ia-usage-icon {
-  background: rgba(253, 230, 138, 0.1);
-  border-color: rgba(253, 230, 138, 0.22);
-  color: var(--stat-sand);
-}
-.ia-usage-item:nth-child(4) .ia-usage-icon {
-  background: rgba(147, 197, 253, 0.1);
-  border-color: rgba(147, 197, 253, 0.22);
-  color: var(--stat-sky);
-}
 .ia-usage-name {
   font-family: var(--f-disp);
   font-size: 0.85rem;
@@ -3139,21 +3083,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-}
-.ia-usage-item:last-of-type .ia-tag:nth-child(1) {
-  background: rgba(255, 176, 136, 0.12);
-  border-color: rgba(255, 176, 136, 0.3);
-  color: var(--stat-coral);
-}
-.ia-usage-item:last-of-type .ia-tag:nth-child(2) {
-  background: rgba(253, 230, 138, 0.12);
-  border-color: rgba(253, 230, 138, 0.3);
-  color: var(--stat-sand);
-}
-.ia-usage-item:last-of-type .ia-tag:nth-child(3) {
-  background: rgba(147, 197, 253, 0.12);
-  border-color: rgba(147, 197, 253, 0.3);
-  color: var(--stat-sky);
 }
 .ia-tag-ico {
   display: inline-flex;
@@ -3233,26 +3162,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
   color: var(--mint);
 }
-/* Temps gagne = optimisation -> vert · Vitesse dev = techno -> sky · Idees explorees = experience -> sand · Meilleure qualite = important -> coral */
-.ia-impact-item:nth-child(1) .ia-impact-icon {
-  background: rgba(168, 230, 163, 0.1);
-  border-color: rgba(168, 230, 163, 0.22);
-  color: var(--stat-green);
-}
-.ia-impact-item:nth-child(2) .ia-impact-icon {
-  background: rgba(147, 197, 253, 0.1);
-  border-color: rgba(147, 197, 253, 0.22);
-  color: var(--stat-sky);
-}
-.ia-impact-item:nth-child(3) .ia-impact-icon {
-  background: rgba(253, 230, 138, 0.1);
-  border-color: rgba(253, 230, 138, 0.22);
-  color: var(--stat-sand);
-}
+/* 3 roles du design system : neutre translucide sur les 3 stats informatives, mise en avant coral sur la seule qui merite l'attention */
 .ia-impact-item:nth-child(4) .ia-impact-icon {
-  background: rgba(255, 176, 136, 0.1);
-  border-color: rgba(255, 176, 136, 0.22);
-  color: var(--stat-coral);
+  background: rgba(255, 122, 89, 0.1);
+  border-color: rgba(255, 122, 89, 0.22);
+  color: var(--coral-500);
 }
 .ia-impact-val {
   font-family: var(--f-serif);
@@ -3491,7 +3405,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   gap: 0;
   min-height: 320px;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.35),
+    var(--sh-dark-3),
     0 1px 0 rgba(255, 255, 255, 0.08) inset;
 }
 .cv-quote-hero-photo {
@@ -3552,7 +3466,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     transform 0.25s,
     box-shadow 0.25s;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(255, 176, 136, 0.28);
+  box-shadow: 0 4px 18px rgba(255, 122, 89, 0.28);
   position: relative;
   z-index: 3;
   flex-shrink: 0;
@@ -3561,7 +3475,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-quote-dl:hover {
   background: var(--color-accent-soft);
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(255, 176, 136, 0.38);
+  box-shadow: 0 10px 28px rgba(255, 122, 89, 0.38);
 }
 .cv-quote-dl-info {
   display: flex;
@@ -3687,7 +3601,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-card-hero:hover {
   border-color: rgba(181, 244, 222, 0.8);
   transform: translateY(-3px);
-  box-shadow: 0 22px 60px rgba(181, 244, 222, 0.28);
+  box-shadow: var(--sh-3);
 }
 .cv-card-hero .cvh-icon-wrap {
   width: 76px;
@@ -3751,7 +3665,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   justify-content: center;
   gap: 0;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(253, 230, 138, 0.16);
+  border: 1px solid rgba(114, 223, 184, 0.16);
   position: relative;
   overflow: hidden;
 }
@@ -3763,22 +3677,22 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   width: 70%;
   height: 70%;
   border-radius: 50%;
-  background: rgba(253, 230, 138, 0.12);
+  background: rgba(114, 223, 184, 0.12);
   filter: blur(40px);
   pointer-events: none;
   z-index: 0;
 }
 .cv-card-stats:hover {
-  border-color: rgba(253, 230, 138, 0.32);
+  border-color: rgba(114, 223, 184, 0.32);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--sh-dark-3);
 }
 .cv-card-stats .cvs-item {
   position: relative;
   z-index: 1;
 }
 .cv-card-stats .cvs-val {
-  color: var(--stat-sand);
+  color: var(--mint-400);
   font-size: 2.2rem;
   width: 92px;
 }
@@ -3809,7 +3723,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-card-front:hover {
   border-color: rgba(64, 151, 135, 0.38);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(64, 151, 135, 0.12);
+  box-shadow: var(--sh-3);
 }
 .cv-card-front .cvf-label {
   color: rgba(10, 30, 46, 0.5) !important;
@@ -3840,12 +3754,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: relative;
   z-index: 1;
 }
+/* role neutre (pas de 4e couleur "sky") : distingue la face back du teal "succes" de .cv-card-front */
 .cv-card-back {
   grid-column: 2;
   grid-row: 2;
   padding: 28px 26px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(147, 197, 253, 0.16);
+  border: 1px solid rgba(181, 244, 222, 0.16);
   position: relative;
   overflow: hidden;
 }
@@ -3857,29 +3772,29 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   width: 70%;
   height: 70%;
   border-radius: 50%;
-  background: rgba(147, 197, 253, 0.12);
+  background: rgba(181, 244, 222, 0.12);
   filter: blur(40px);
   pointer-events: none;
   z-index: 0;
 }
 .cv-card-back:hover {
-  border-color: rgba(147, 197, 253, 0.32);
+  border-color: rgba(181, 244, 222, 0.32);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--sh-dark-3);
 }
 .cv-card-back .cvf-chips {
   position: relative;
   z-index: 1;
 }
 .cv-card-back .cvf-chip {
-  background: rgba(147, 197, 253, 0.08);
-  border: 1px solid rgba(147, 197, 253, 0.2);
+  background: rgba(181, 244, 222, 0.08);
+  border: 1px solid rgba(181, 244, 222, 0.2);
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
 }
 .cv-card-back .cvf-chip:hover {
-  background: rgba(147, 197, 253, 0.15);
-  border-color: rgba(147, 197, 253, 0.32);
+  background: rgba(181, 244, 222, 0.15);
+  border-color: rgba(181, 244, 222, 0.32);
 }
 .cv-card-pitch-new {
   grid-column: 3;
@@ -3968,7 +3883,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 176, 136, 0.6);
+  color: rgba(255, 122, 89, 0.6);
 }
 .cvh-title {
   font-family: var(--f-serif);
@@ -3998,6 +3913,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-wrap: wrap;
   margin-top: 10px;
 }
+/* cv-card-hero a un fond clair (mint) : tags uniformes, role neutre (meme formule que .tag-on-mint) — une liste de tags reste d'une seule couleur */
 .cvh-tag {
   font-family: var(--f-mono);
   font-size: 11px;
@@ -4005,31 +3921,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   letter-spacing: 0.04em;
   padding: 4px 10px;
   border-radius: var(--r-pill);
-  background: rgba(255, 176, 136, 0.08);
-  border: 1px solid rgba(255, 176, 136, 0.18);
-  color: rgba(255, 176, 136, 0.8);
+  background: rgba(10, 30, 46, 0.1);
+  border: 1px solid rgba(10, 30, 46, 0.16);
+  color: var(--ink-900);
   transition: transform 0.18s var(--ease);
-}
-/* cv-card-hero a un fond clair (mint) : badges pleins + texte ink-900, comme .cs-badge / .s-stat */
-.cvh-tags .cvh-tag:nth-child(4n+1) {
-  background: var(--stat-coral);
-  border-color: transparent;
-  color: var(--ink-900);
-}
-.cvh-tags .cvh-tag:nth-child(4n+2) {
-  background: var(--stat-sand);
-  border-color: transparent;
-  color: var(--ink-900);
-}
-.cvh-tags .cvh-tag:nth-child(4n+3) {
-  background: var(--stat-sky);
-  border-color: transparent;
-  color: var(--ink-900);
-}
-.cvh-tags .cvh-tag:nth-child(4n+4) {
-  background: var(--stat-green);
-  border-color: transparent;
-  color: var(--ink-900);
 }
 .cvs-item {
   display: flex;
@@ -4130,11 +4025,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   box-shadow: 0 0 6px rgba(181, 244, 222, 0.5);
 }
 .cv-card-back .cvf-label {
-  color: rgba(147, 197, 253, 0.5);
+  color: rgba(181, 244, 222, 0.5);
 }
 .cv-card-back .cvf-label::before {
-  background: var(--stat-sky);
-  box-shadow: 0 0 6px rgba(147, 197, 253, 0.4);
+  background: var(--mint);
+  box-shadow: 0 0 6px rgba(181, 244, 222, 0.4);
 }
 .cvf-chips {
   display: flex;
@@ -4175,13 +4070,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-color: rgba(181, 244, 222, 0.28);
 }
 .cv-card-back .cvf-chip {
-  background: rgba(147, 197, 253, 0.06);
-  border: 1px solid rgba(147, 197, 253, 0.14);
+  background: rgba(181, 244, 222, 0.06);
+  border: 1px solid rgba(181, 244, 222, 0.14);
   color: rgba(255, 255, 255, 0.72);
 }
 .cv-card-back .cvf-chip:hover {
-  background: rgba(147, 197, 253, 0.11);
-  border-color: rgba(147, 197, 253, 0.26);
+  background: rgba(181, 244, 222, 0.11);
+  border-color: rgba(181, 244, 222, 0.26);
 }
 .cvf-note {
   font-family: var(--f-mono);
@@ -4247,18 +4142,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 5px;
-}
-.cvp-item:nth-child(1) .cvp-item-dot {
-  background: var(--coral-accent);
-}
-.cvp-item:nth-child(2) .cvp-item-dot {
+  /* liste de 4 items de meme poids : puce uniforme, identite mint de la carte (pas de rotation multicolore) */
   background: var(--mint);
-}
-.cvp-item:nth-child(3) .cvp-item-dot {
-  background: var(--stat-sky);
-}
-.cvp-item:nth-child(4) .cvp-item-dot {
-  background: var(--stat-sand);
 }
 .cvp-item-text {
   font-family: var(--f-disp);
@@ -4381,21 +4266,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border: 1px solid rgba(64, 151, 135, 0.18);
   color: rgba(64, 151, 135, 0.85);
 }
-.cvd-stack .cvd-pill:nth-child(1) {
-  background: rgba(255, 176, 136, 0.1);
-  border-color: rgba(255, 176, 136, 0.22);
-  color: var(--stat-coral);
-}
-.cvd-stack .cvd-pill:nth-child(2) {
-  background: rgba(253, 230, 138, 0.1);
-  border-color: rgba(253, 230, 138, 0.22);
-  color: var(--stat-sand);
-}
-.cvd-stack .cvd-pill:nth-child(3) {
-  background: rgba(147, 197, 253, 0.1);
-  border-color: rgba(147, 197, 253, 0.22);
-  color: var(--stat-sky);
-}
+/* liste de 3 tags de meme poids : pas de rotation multicolore, on garde le style de base (teal) */
 
 /* CV BOTTOM BAR + FOOTER + TECH BAR + PROFIL + MISC */
 .cv-bottom-bar {
@@ -4535,11 +4406,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cvb-card-mint {
   background: var(--dark);
   color: var(--mint);
-  box-shadow: 0 4px 20px rgba(10, 30, 46, 0.25);
+  box-shadow: var(--sh-2);
 }
 .cvb-card-mint:hover {
   transform: translateY(-3px) scale(1.015);
-  box-shadow: 0 12px 36px rgba(10, 30, 46, 0.35);
+  box-shadow: var(--sh-3);
 }
 .cvb-card-dark {
   background: rgba(10, 30, 46, 0.08);
@@ -4550,7 +4421,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transform: translateY(-3px) scale(1.015);
   background: rgba(10, 30, 46, 0.13);
   border-color: rgba(10, 30, 46, 0.25);
-  box-shadow: 0 8px 28px rgba(10, 30, 46, 0.12);
+  box-shadow: var(--sh-2);
 }
 .cvb-card-content {
   display: flex;
@@ -4705,7 +4576,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .techbar-item:hover {
   transform: scale(1.18);
   background: rgba(10, 30, 46, 0.09);
-  box-shadow: 0 4px 16px rgba(10, 30, 46, 0.1);
+  box-shadow: var(--sh-2);
   z-index: 3;
   position: relative;
 }
@@ -4846,10 +4717,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--ink-900);
 }
 .cs-badge:nth-child(1) .cs-badge-icon {
-  background: var(--stat-coral);
+  background: var(--coral-500);
 }
 .cs-badge:nth-child(2) .cs-badge-icon {
-  background: var(--stat-sand);
+  background: var(--mint-600);
+  color: #fff;
 }
 .cs-badge-text {
   display: flex;
@@ -4875,7 +4747,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow:
     0 2px 0 rgba(255, 255, 255, 0.04) inset,
-    0 20px 60px rgba(5, 12, 22, 0.5);
+    var(--sh-dark-4);
   display: grid;
   grid-template-columns: 56fr 44fr;
   overflow: hidden;
@@ -5032,7 +4904,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   padding: 22px 20px;
   box-shadow:
     0 0 0 1px rgba(64, 151, 135, 0.12),
-    0 14px 34px rgba(10, 30, 46, 0.06);
+    var(--sh-2);
   position: relative;
   overflow: hidden;
   transition:
@@ -5052,22 +4924,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(10, 30, 46, 0.08);
   color: var(--ink-900);
   margin-bottom: 16px;
   position: relative;
   z-index: 1;
 }
-.cs-mini-card:nth-child(1) .cs-mini-icon {
-  background: var(--stat-coral);
-}
-.cs-mini-card:nth-child(2) .cs-mini-icon {
-  background: var(--stat-sand);
-}
-.cs-mini-card:nth-child(3) .cs-mini-icon {
-  background: var(--stat-sky);
-}
+/* 3 roles seulement : Le defi / Mon role / Stack = neutre (fond par defaut), Resultats = succes */
 .cs-mini-card:nth-child(4) .cs-mini-icon {
-  background: var(--stat-green);
+  background: var(--mint-600);
+  color: #fff;
 }
 .cs-mini-label {
   font-family: var(--f-disp);
@@ -5164,7 +5030,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   align-items: center;
   gap: 24px;
-  box-shadow: 0 16px 40px rgba(10, 30, 46, 0.25);
+  box-shadow: var(--sh-3);
   margin-bottom: 56px;
 }
 .cs-cta-bar-left {
@@ -5178,12 +5044,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 38px;
   min-width: 38px;
   border-radius: 50%;
-  background: rgba(255, 176, 136, 0.15);
-  border: 1px solid rgba(255, 176, 136, 0.3);
+  background: rgba(255, 122, 89, 0.15);
+  border: 1px solid rgba(255, 122, 89, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--coral-400, #fd937c);
+  color: var(--coral-500);
 }
 .cs-cta-bar-text {
   font-family: var(--f-disp);
@@ -5192,7 +5058,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: #fff;
 }
 .cs-cta-bar-text em {
-  color: var(--coral-400, #fd937c);
+  color: var(--coral-500);
   font-style: normal;
 }
 .cs-cta-bar-sep {
@@ -5605,7 +5471,7 @@ a:hover .cta-arrow {
     border-radius: var(--r-lg);
     padding: 10px;
     gap: 2px;
-    box-shadow: 0 20px 60px rgba(10, 30, 46, 0.18);
+    box-shadow: var(--sh-3);
     animation: navPanelIn 0.25s var(--ease) both;
   }
   nav.sitenav.nav-open.nav-on-dark .nav-links {
@@ -6120,7 +5986,7 @@ a:hover .cta-arrow {
   box-shadow:
     0 0 0 1px rgba(181, 244, 222, 0.07) inset,
     0 -1px 0 rgba(181, 244, 222, 0.18) inset,
-    0 18px 56px rgba(0, 0, 0, 0.4);
+    var(--sh-dark-3);
   padding: 32px 28px 28px;
   display: flex;
   flex-direction: column;
@@ -6143,7 +6009,7 @@ a:hover .cta-arrow {
   background: var(--mint-200);
   transform: translateY(-5px);
   border-color: rgba(10, 30, 46, 0.14);
-  box-shadow: 0 20px 60px rgba(10, 30, 46, 0.18);
+  box-shadow: var(--sh-3);
 }
 
 /* Badges */
@@ -6161,10 +6027,11 @@ a:hover .cta-arrow {
   width: fit-content;
   transition: background 0.32s var(--ease), color 0.32s, border-color 0.32s;
 }
-.prest-badge-coral { background: var(--stat-coral); color: var(--ink-900); }
-.prest-badge-sand  { background: var(--stat-sand);  color: var(--ink-900); }
-.prest-badge-sky   { background: var(--stat-sky);   color: var(--ink-900); }
-.prest-badge-green { background: var(--stat-green); color: var(--ink-900); }
+/* 3 roles seulement : "Livre en 48h" = mise en avant (rare, coral) ; les autres delais = neutre uniforme (pas de rotation multicolore) */
+.prest-badge-coral { background: var(--coral-500); color: var(--ink-900); }
+.prest-badge-sand,
+.prest-badge-sky,
+.prest-badge-green { background: rgba(233, 251, 243, 0.1); color: var(--mint-200); }
 /* Badges sur fond mint (hover de la card) */
 .prest-card:hover .prest-badge-coral,
 .prest-card:hover .prest-badge-sand,
@@ -6172,10 +6039,10 @@ a:hover .cta-arrow {
 .prest-card:hover .prest-badge-green {
   background: var(--ink-900);
 }
-.prest-card:hover .prest-badge-coral { color: var(--stat-coral); }
-.prest-card:hover .prest-badge-sand  { color: var(--stat-sand); }
-.prest-card:hover .prest-badge-sky   { color: var(--stat-sky); }
-.prest-card:hover .prest-badge-green { color: var(--stat-green); }
+.prest-card:hover .prest-badge-coral { color: var(--coral-500); }
+.prest-card:hover .prest-badge-sand,
+.prest-card:hover .prest-badge-sky,
+.prest-card:hover .prest-badge-green { color: var(--mint-200); }
 
 /* Nom de la card */
 .prest-card-name {
@@ -6350,7 +6217,7 @@ a:hover .cta-arrow {
 .prest-banner-launch .prest-banner-title { color: var(--ink-900); }
 .prest-banner-launch .prest-card-sub { color: rgba(10,30,46,0.55); }
 .prest-banner-launch .prest-check {
-  background: rgba(255, 176, 136, 0.12);
+  background: rgba(255, 122, 89, 0.12);
   color: var(--coral-500);
 }
 .prest-banner-launch .prest-banner-includes li { color: rgba(10,30,46,0.88); }
