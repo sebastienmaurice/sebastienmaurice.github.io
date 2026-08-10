@@ -304,7 +304,7 @@ body::after {
   font-size: 0.9375rem;
   font-weight: 700;
   padding: 13px 24px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-pill);
   transition:
     transform 0.35s var(--ease),
     box-shadow 0.35s,
@@ -318,8 +318,8 @@ body::after {
 }
 .btn-primary:hover {
   background: #e85f3d;
-  color: var(--ink-900);
-  transform: translateY(-3px);
+  color: #fff;
+  transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
 }
 .btn-primary:active {
@@ -332,19 +332,20 @@ body::after {
   outline-offset: 3px;
 }
 .btn-ghost {
-  background: transparent;
-  color: var(--ink);
-  border: 1.5px solid rgba(10, 30, 46, 0.22);
+  background: var(--white);
+  color: var(--ink-900);
+  border: 1.5px solid rgba(10, 30, 46, 0.16);
   font-weight: 500;
 }
 .btn-ghost:hover {
-  border-color: var(--ink);
-  background: rgba(10, 30, 46, 0.07);
-  transform: translateY(-3px);
+  border-color: var(--mint-strong);
+  color: var(--mint-strong);
+  transform: translateY(-2px);
 }
 .btn-ghost:active {
-  background: rgba(10, 30, 46, 0.12);
-  transform: translateY(0) scale(0.98);
+  background: var(--mint-soft);
+  border-color: var(--mint-strong);
+  transform: scale(0.98);
 }
 .btn-ghost:focus-visible {
   outline: 2px solid var(--mint-strong);
@@ -357,10 +358,11 @@ body::after {
 .btn-dark:hover {
   background: #1f6b58;
   color: #fff;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 14px 44px rgba(10, 30, 46, 0.28);
 }
 .btn-dark:active {
+  background: #164f42;
   transform: translateY(0) scale(0.98);
 }
 .btn-dark:focus-visible {
@@ -1755,7 +1757,7 @@ body::after {
   font-size: 0.8125rem;
   font-weight: 500;
   padding: 11px 22px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-pill);
   border: 1.5px solid rgba(255, 255, 255, 0.25);
   color: rgba(255, 255, 255, 0.82);
   background: rgba(255, 255, 255, 0.05);
