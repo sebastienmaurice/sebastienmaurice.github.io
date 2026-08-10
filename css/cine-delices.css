@@ -126,6 +126,9 @@ body::after {
   color: var(--ink);
   background: rgba(10, 30, 46, 0.06);
 }
+.nav-back:active {
+  background: rgba(10, 30, 46, 0.12);
+}
 .nav-back svg {
   width: 14px;
   height: 14px;
@@ -170,6 +173,10 @@ body::after {
   background: var(--ink-700);
   transform: scale(1.04);
 }
+.nav-cta:active {
+  background: var(--ink-800);
+  transform: scale(0.98);
+}
 .nav-cta-live {
   display: inline-flex;
   align-items: center;
@@ -191,6 +198,10 @@ body::after {
   background: rgba(10, 30, 46, 0.07);
   border-color: rgba(10, 30, 46, 0.38);
   transform: scale(1.04);
+}
+.nav-cta-live:active {
+  background: rgba(10, 30, 46, 0.12);
+  transform: scale(0.98);
 }
 
 /* ── HERO ── */
@@ -812,6 +823,14 @@ body::after {
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
+  transition: background 0.2s, transform 0.15s var(--ease);
+}
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.lightbox-close:active {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0.92);
 }
 
 /* ── DÉFI / PITCH ── */
@@ -894,7 +913,8 @@ body::after {
   transition:
     color 0.2s,
     background 0.22s var(--ease),
-    box-shadow 0.2s;
+    box-shadow 0.2s,
+    transform 0.15s var(--ease);
   background: transparent;
   white-space: nowrap;
 }
@@ -907,6 +927,13 @@ body::after {
 }
 .tab:hover {
   color: rgba(255, 255, 255, 0.7);
+}
+.tab:active {
+  color: rgba(255, 255, 255, 0.9);
+  transform: scale(0.97);
+}
+.tab.active:active {
+  transform: scale(0.98);
 }
 .tab.active {
   color: var(--ink-900, #0a1e2e);
@@ -1107,6 +1134,9 @@ body::after {
 .code-copy:hover {
   background: rgba(181, 244, 222, 0.1);
   color: var(--mint);
+}
+.code-copy:active {
+  background: rgba(181, 244, 222, 0.18);
 }
 .code-body {
   padding: 20px 22px;
@@ -1727,6 +1757,10 @@ body::after {
   border-color: rgba(255, 255, 255, 0.55);
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-3px);
+}
+.cd-btn-ghost3:active {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(0) scale(0.98);
 }
 
 @media (max-width: 900px) {
