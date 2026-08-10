@@ -401,7 +401,7 @@ body::after {
 }
 .section-dark {
   background: var(--ink);
-  color: #e5f0e7;
+  color: var(--mint-soft);
 }
 
 .section-eyebrow {
@@ -1391,7 +1391,7 @@ body::after {
 .section-dark .stack-pill {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(181, 244, 222, 0.1);
-  color: #e5f0e7;
+  color: var(--mint-soft);
 }
 .section-dark .stack-pill-role {
   color: rgba(181, 244, 222, 0.45);
@@ -1401,7 +1401,7 @@ body::after {
   border-color: rgba(181, 244, 222, 0.1);
 }
 .section-dark .sec-name {
-  color: #e5f0e7;
+  color: var(--mint-soft);
 }
 .section-dark .sec-desc {
   color: rgba(229, 240, 231, 0.6);
@@ -1411,7 +1411,7 @@ body::after {
   border-color: rgba(181, 244, 222, 0.1);
 }
 .section-dark .road-text h4 {
-  color: #e5f0e7;
+  color: var(--mint-soft);
 }
 .section-dark .road-text p {
   color: rgba(229, 240, 231, 0.6);
