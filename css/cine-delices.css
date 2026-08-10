@@ -295,7 +295,7 @@ body::after {
 }
 .btn-primary:hover {
   background: #e85f3d;
-  color: #fff;
+  color: var(--ink-900);
   transform: translateY(-3px);
   box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
 }
@@ -332,7 +332,7 @@ body::after {
   color: var(--mint);
 }
 .btn-dark:hover {
-  background: var(--mint-strong);
+  background: #1f6b58;
   color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 14px 44px rgba(10, 30, 46, 0.28);
@@ -1329,7 +1329,7 @@ body::after {
   color: var(--muted);
 }
 .road-tag.done {
-  background: var(--mint-strong);
+  background: #1f6b58;
   color: #fff;
 }
 .road-text h4 {
@@ -1692,7 +1692,7 @@ body::after {
 }
 .cd-btn-coral:hover {
   background: #e85f3d;
-  color: #fff;
+  color: var(--ink-900);
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
 }
