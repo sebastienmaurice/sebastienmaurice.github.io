@@ -554,14 +554,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   animation: h-fadeUp 0.8s var(--ease) 0.08s forwards;
 }
 .hero-eyebrow-tag {
+  /* grammaire .hero-eyebrow-pill (section 07) */
   font-family: var(--f-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.15em;
+  font-size: 0.65625rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--dark);
-  padding: 6px 14px;
-  background: rgba(10, 30, 46, 0.1);
-  border: 1px solid rgba(10, 30, 46, 0.18);
+  color: var(--ink-700);
+  padding: 7px 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(10, 30, 46, 0.12);
   border-radius: var(--r-pill);
   white-space: nowrap;
 }
@@ -569,7 +570,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--green-accent);
+  background: var(--mint-700);
   box-shadow: 0 0 0 0 rgba(64, 151, 135, 0.5);
   animation: pulse-nav 2.4s ease infinite;
 }
@@ -4034,27 +4035,28 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   text-transform: uppercase;
 }
 .cvs-badge {
+  /* grammaire .badge.mint-dark (section 04) */
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   margin-top: 6px;
   font-family: var(--f-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.65625rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  background: rgba(64, 151, 135, 0.14);
-  border: 1px solid rgba(64, 151, 135, 0.28);
-  color: var(--color-success);
+  background: rgba(181, 244, 222, 0.12);
+  color: var(--mint-200);
   border-radius: var(--r-pill);
-  padding: 4px 11px;
+  padding: 6px 13px 6px 10px;
   width: fit-content;
 }
 .cvs-badge-dot {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--color-success);
+  background: var(--mint-400);
+  flex-shrink: 0;
   animation: pulse-nav 2.4s ease infinite;
 }
 .cvf-label {
@@ -4319,9 +4321,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .cvd-pill {
   font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  padding: 4px 10px;
+  font-size: 0.65625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 7px 13px;
   border-radius: var(--r-pill);
   background: rgba(64, 151, 135, 0.08);
   border: 1px solid rgba(64, 151, 135, 0.18);
