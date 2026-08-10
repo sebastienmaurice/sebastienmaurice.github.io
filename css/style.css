@@ -474,7 +474,7 @@ nav.sitenav.nav-on-dark .nav-cta:hover {
   display: block;
   width: 18px;
   height: 2px;
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   background: rgba(10, 30, 46, 0.75);
   transition: transform 0.3s var(--ease), opacity 0.2s, background 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -570,7 +570,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   width: 44px;
   height: 3px;
   background: var(--color-accent);
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   margin-top: 16px;
 }
 .h1-line {
@@ -830,7 +830,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.8rem;
   color: rgba(10, 30, 46, 0.7);
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   background: rgba(255, 255, 255, 0.25);
   animation: h-fadeUp 1s var(--ease) both;
   pointer-events: none;
@@ -1414,7 +1414,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-bar-icon span {
   display: block;
   width: 3px;
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   background: var(--accent);
   opacity: 0.6;
 }
@@ -1489,7 +1489,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   background: rgba(5, 25, 42, 0.12);
   border: 1px solid rgba(5, 25, 42, 0.09);
-  border-radius: 30px;
+  border-radius: var(--r-xl);
   padding: 3px 9px;
   font-family: var(--f-mono);
   font-size: 11px;
@@ -1579,7 +1579,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   right: -10%;
   width: 110%;
   height: 70%;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   overflow: hidden;
   transform: rotate(3deg) scale(1.02);
   transform-origin: top right;
@@ -1825,7 +1825,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 30px;
   background: rgba(255, 176, 136, 0.14);
   border: 1px solid rgba(255, 176, 136, 0.28);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1935,7 +1935,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: inline-flex;
   background: var(--tag-bg);
   border: 1px solid var(--tag-border);
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   padding: 2px 9px;
   font-family: var(--f-mono);
   font-size: 11px;
@@ -2065,7 +2065,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: rgba(9, 20, 32, 0.7);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(181, 244, 222, 0.1);
-  border-radius: 14px;
+  border-radius: var(--r-md);
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
@@ -2102,7 +2102,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     rgba(181, 244, 222, 0.65) 50%,
     transparent
   );
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   pointer-events: none;
   z-index: 1;
 }
@@ -2116,7 +2116,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-bar-icon {
   width: 28px;
   height: 28px;
-  border-radius: 7px;
+  border-radius: var(--r-xs);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
@@ -2222,7 +2222,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 4;
   height: 19px;
   width: 57px;
-  border-radius: 3px;
+  border-radius: var(--r-xs);
   overflow: hidden;
   background: #ff5b35;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.45);
@@ -2367,7 +2367,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .s-stat {
   aspect-ratio: 1;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   padding: 16px 14px;
   display: flex;
   flex-direction: column;
@@ -2660,7 +2660,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   gap: 10px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 14px;
+  border-radius: var(--r-md);
   padding: 12px 12px 12px 10px;
   cursor: default;
   transition:
@@ -2744,13 +2744,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
 }
 .skill-tab-img-wrap {
   flex: 1;
   overflow: hidden;
   position: relative;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
 }
 .skill-tab-img-wrap img {
   width: 100%;
@@ -2783,7 +2783,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: rgba(10, 18, 28, 0.75);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
+  border-radius: var(--r-md);
   padding: 12px 14px;
   display: flex;
   align-items: center;
@@ -3161,7 +3161,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   justify-content: center;
   width: 15px;
   height: 15px;
-  border-radius: 3px;
+  border-radius: var(--r-xs);
   font-family: var(--f-mono);
   font-size: 6.5px;
   font-weight: 800;
@@ -3217,7 +3217,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   justify-content: center;
   gap: 8px;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: var(--r-sm);
   background: rgba(181, 244, 222, 0.04);
   border: 1px solid rgba(181, 244, 222, 0.1);
 }
@@ -3603,7 +3603,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   position: relative;
   overflow: hidden;
   transition:
@@ -3692,7 +3692,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cv-card-hero .cvh-icon-wrap {
   width: 76px;
   height: 76px;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   flex-shrink: 0;
   background: var(--ink-900);
   border: 1px solid rgba(10, 30, 46, 0.18);
@@ -3944,7 +3944,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cvh-icon-wrap {
   width: 64px;
   height: 64px;
-  border-radius: 18px;
+  border-radius: var(--r-lg);
   flex-shrink: 0;
   background: rgba(1, 214, 144, 0.15);
   border: 1px solid rgba(1, 214, 144, 0.3);
@@ -4162,7 +4162,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .cvf-chip-dot {
   width: 7px;
   height: 7px;
-  border-radius: 2px;
+  border-radius: var(--r-xs);
   flex-shrink: 0;
 }
 .cv-card-front .cvf-chip {
@@ -4871,7 +4871,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 
 .cs-card {
   background: var(--card-bg);
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow:
     0 2px 0 rgba(255, 255, 255, 0.04) inset,
@@ -4917,7 +4917,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   bottom: 16px;
   width: 24%;
   aspect-ratio: 9 / 17.5;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   overflow: hidden;
   border: 3px solid #0a1622;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
@@ -5300,7 +5300,7 @@ a:hover .cta-arrow {
 .va-lightbox-img {
   max-width: 88vw;
   max-height: 88vh;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.85);
   transform: scale(0.92);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -5408,7 +5408,7 @@ a:hover .cta-arrow {
 .cms-sc-card {
   background: rgba(11, 28, 44, 0.85);
   border: 1px solid rgba(181, 244, 222, 0.1);
-  border-radius: 16px;
+  border-radius: var(--r-md);
   overflow: hidden;
   transition:
     border-color 0.3s,
@@ -5512,7 +5512,7 @@ a:hover .cta-arrow {
   color: rgba(181, 244, 222, 0.7);
   text-decoration: none;
   border: 1px solid rgba(181, 244, 222, 0.2);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   padding: 5px 12px;
   transition:
     color 0.2s,
@@ -5527,7 +5527,7 @@ a:hover .cta-arrow {
 .cms-sc-stats-card {
   background: rgba(11, 28, 44, 0.65);
   border: 1px solid rgba(181, 244, 222, 0.1);
-  border-radius: 16px;
+  border-radius: var(--r-md);
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
@@ -5602,7 +5602,7 @@ a:hover .cta-arrow {
     background: rgba(181, 244, 222, 0.97);
     backdrop-filter: blur(28px) saturate(160%);
     border: 1px solid rgba(10, 30, 46, 0.1);
-    border-radius: 20px;
+    border-radius: var(--r-lg);
     padding: 10px;
     gap: 2px;
     box-shadow: 0 20px 60px rgba(10, 30, 46, 0.18);
@@ -5615,7 +5615,7 @@ a:hover .cta-arrow {
   nav.sitenav.nav-open .nav-links a {
     padding: 12px 16px;
     text-align: center;
-    border-radius: 12px;
+    border-radius: var(--r-sm);
   }
   nav.sitenav.nav-open .nav-links a:hover {
     background: rgba(10, 30, 46, 0.06);
