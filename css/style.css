@@ -5862,15 +5862,26 @@ a:hover .cta-arrow {
     font-size: 0.9375rem;
   }
   .hero-kpis {
-    flex-wrap: wrap;
-    gap: 12px 20px;
+    /* densite mobile (section 10) : les KPI restent en ligne, jamais empiles ;
+       min-width:0 autorise chaque colonne a retrecir sous sa largeur de contenu
+       naturelle (defaut flex) et le libelle a passer sur 2 lignes si besoin */
+    flex-wrap: nowrap;
+    gap: 0;
   }
   .kpi {
-    padding: 0 16px 0 0;
+    padding: 0 10px 0 0;
+    min-width: 0;
+    flex: 1 1 0;
   }
   .kpi + .kpi {
-    padding-left: 0;
-    border-left: none;
+    padding-left: 10px;
+  }
+  .kpi-val {
+    font-size: 1.5rem;
+  }
+  .kpi-lbl {
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
   }
   .hero-actions {
     flex-direction: column;
