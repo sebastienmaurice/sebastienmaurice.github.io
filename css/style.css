@@ -2002,10 +2002,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.52s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.52s var(--ease);
 }
 .b-card-proj:hover .b-card-proj-img {
-  transform: scale(1.07);
+  /* grammaire image (section 08) : zoom hover = 1.045 */
+  transform: scale(1.045);
 }
 .b-card-proj .b-proj-tag {
   position: absolute;
@@ -2790,7 +2791,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   filter: saturate(0.85) brightness(0.85);
 }
 .skill-tab-img-wrap:hover img {
-  transform: scale(1.04);
+  transform: scale(1.045);
 }
 .skill-tab-img-wrap::after {
   content: "";
@@ -5405,10 +5406,10 @@ a:hover .cta-arrow {
   object-fit: cover;
   object-position: top;
   display: block;
-  transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.55s var(--ease);
 }
 .cms-sc-card:hover .cms-sc-img-wrap img {
-  transform: scale(1.06);
+  transform: scale(1.045);
 }
 .cms-sc-img-grad {
   position: absolute;
