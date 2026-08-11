@@ -1571,12 +1571,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   left: -10%;
   width: 40%;
   height: 46%;
-  background: radial-gradient(
-    circle at 38% 40%,
-    rgba(181, 244, 222, 0.7) 0%,
-    rgba(181, 244, 222, 0.32) 45%,
-    rgba(181, 244, 222, 0) 78%
-  );
+  /* nuage de pointilles borde par la forme ovoide (border-radius:50% + masque radial
+     pour une extinction douce, plutot qu'un aplat degrade uni) */
+  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.5) 1.4px, transparent 1.6px);
+  background-size: 11px 11px;
+  -webkit-mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
+  mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
   animation: b-blob-float-a 12s ease-in-out infinite;
 }
 .b-hero-blob--b {
@@ -1584,12 +1584,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   right: -7%;
   width: 30%;
   height: 36%;
-  background: radial-gradient(
-    circle at 60% 62%,
-    rgba(181, 244, 222, 0.6) 0%,
-    rgba(181, 244, 222, 0.26) 48%,
-    rgba(181, 244, 222, 0) 78%
-  );
+  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.45) 1.4px, transparent 1.6px);
+  background-size: 11px 11px;
+  -webkit-mask-image: radial-gradient(ellipse at 58% 58%, #000 42%, transparent 76%);
+  mask-image: radial-gradient(ellipse at 58% 58%, #000 42%, transparent 76%);
   animation: b-blob-float-b 14s ease-in-out infinite;
   animation-delay: -5s;
 }
@@ -4960,7 +4958,27 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   align-items: center;
 }
+/* meme nuage de pointilles borde par une forme ovoide que .b-hero-blob (section
+   Integration Web), decline ici derriere le mockup Cine Delices */
+.cs-card-mockup::before {
+  content: "";
+  position: absolute;
+  top: -8%;
+  left: -8%;
+  width: 42%;
+  height: 48%;
+  border-radius: 50%;
+  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.5) 1.4px, transparent 1.6px);
+  background-size: 11px 11px;
+  -webkit-mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
+  mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
+  pointer-events: none;
+  z-index: 0;
+}
 .cs-mock-flat {
+  /* au-dessus du pointille decoratif (::before, z-index:0) */
+  position: relative;
+  z-index: 1;
   /* visuel deja compose (mockups + panneaux), affiche a plat plutot que redouble
      dans un second cadre navigateur */
   display: block;
