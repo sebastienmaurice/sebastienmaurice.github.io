@@ -1862,7 +1862,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-family: var(--f-serif);
   font-weight: 700;
   font-size: 17px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(10, 30, 46, 0.4);
   letter-spacing: -0.01em;
 }
 .b-trust-logo-more {
