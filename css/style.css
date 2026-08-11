@@ -990,9 +990,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   /* overflow:hidden est necessaire au defilement horizontal, mais rognait aussi les ombres
      portees verticales des cards (var(--sh-4) au hover + le translateY(-6px) de lift).
      Le padding cree une zone tampon ou l'ombre peut se deployer sans etre coupee ; la marge
-     negative annule ce padding visuellement pour ne pas decaler la mise en page. */
-  padding: 34px 8px 90px;
-  margin: -34px -8px -90px;
+     negative annule ce padding visuellement pour ne pas decaler la mise en page.
+     Uniquement vertical : un padding horizontal ici reduirait la largeur de contenu utilisee
+     par le calcul CSS des flex-basis (%) sans que le JS (qui lit l'offsetWidth du wrapper,
+     insensible au padding) ne s'en rende compte — decalage entre cards et fenetre visible. */
+  padding: 34px 0 90px;
+  margin: -34px 0 -90px;
 }
 .b-carousel-track {
   display: flex;

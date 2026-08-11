@@ -351,8 +351,16 @@ function closeImgLightbox() {
 
   function allCards() { return Array.from(track.querySelectorAll('.b-card-proj')); }
 
+  /* lit le gap flex reellement applique (var(--gap-bento), qui change selon le breakpoint —
+     16px en desktop, 10px sous 768px) plutot que de le fixer en dur : un ecart entre cette
+     valeur et le gap CSS reel derive au fil des cartes (translateX cumulatif) et finit par
+     desaligner la fenetre visible du carrousel */
+  function currentGap() {
+    return parseFloat(getComputedStyle(track).columnGap) || 16;
+  }
+
   function setCardWidths() {
-    const gap = 16;
+    const gap = currentGap();
     allCards().forEach(c => {
       const pct = 100 / visibleCount;
       const gs  = (visibleCount - 1) * gap / visibleCount;
@@ -362,7 +370,7 @@ function closeImgLightbox() {
   }
 
   function getOffset(idx) {
-    const gap   = 16;
+    const gap   = currentGap();
     const wrapW = track.parentElement.offsetWidth;
     const cardW = (wrapW - gap * (visibleCount - 1)) / visibleCount;
     return idx * (cardW + gap);
