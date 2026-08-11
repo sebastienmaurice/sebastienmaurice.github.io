@@ -333,8 +333,7 @@ function closeImgLightbox() {
     const w = window.innerWidth;
     if (w <= 480) return 1;
     if (w <= 900) return 2;
-    if (w <= 1300) return 4;
-    return 5;
+    return 4;
   }
 
   function cloneCards() {
@@ -474,9 +473,13 @@ function closeImgLightbox() {
   const EASE_LEAVE = 'transform 600ms cubic-bezier(.22,1,.36,1)';
   let raf = null;
 
-  function apply(rotateX, rotateY, lift, imgX, imgY, imgScale) {
+  const SHADOW_REACH = 16; /* px, amplitude du deplacement d'ombre dynamique */
+
+  function apply(rotateX, rotateY, lift, imgX, imgY, imgScale, shx, shy) {
     card.style.transform = `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${lift}px)`;
     if (img) img.style.transform = `scale(${imgScale}) translate(${imgX}px, ${imgY}px)`;
+    card.style.setProperty('--shx', `${shx}px`);
+    card.style.setProperty('--shy', `${shy}px`);
   }
 
   function onMove(e) {
@@ -487,7 +490,11 @@ function closeImgLightbox() {
     const rotateX = (0.5 - y) * MAX_TILT * 2;
     if (raf) return;
     raf = requestAnimationFrame(() => {
-      apply(rotateX, rotateY, -LIFT, (x - 0.5) * -PARALLAX, (y - 0.5) * -PARALLAX * 0.7, 1.025);
+      apply(
+        rotateX, rotateY, -LIFT,
+        (x - 0.5) * -PARALLAX, (y - 0.5) * -PARALLAX * 0.7, 1.025,
+        (x - 0.5) * SHADOW_REACH, (y - 0.5) * SHADOW_REACH
+      );
       raf = null;
     });
   }
@@ -501,6 +508,6 @@ function closeImgLightbox() {
     if (raf) { cancelAnimationFrame(raf); raf = null; }
     card.style.transition = EASE_LEAVE;
     if (img) img.style.transition = EASE_LEAVE;
-    apply(0, 0, 0, 0, 0, 1);
+    apply(0, 0, 0, 0, 0, 1, 0, 0);
   });
 })();
