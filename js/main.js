@@ -476,7 +476,9 @@ function closeImgLightbox() {
   const SHADOW_REACH = 16; /* px, amplitude du deplacement d'ombre dynamique */
 
   function apply(rotateX, rotateY, lift, imgX, imgY, imgScale, shx, shy) {
-    card.style.transform = `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${lift}px)`;
+    /* leger scale au survol (couple au lift) : la carte se souleve plutot que de juste pivoter a plat */
+    const cardScale = lift === 0 ? 1 : 1.006;
+    card.style.transform = `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${lift}px) scale(${cardScale})`;
     if (img) img.style.transform = `scale(${imgScale}) translate(${imgX}px, ${imgY}px)`;
     card.style.setProperty('--shx', `${shx}px`);
     card.style.setProperty('--shy', `${shy}px`);
