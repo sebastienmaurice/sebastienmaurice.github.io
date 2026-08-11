@@ -1627,7 +1627,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   /* cadre blanc autour de l'image/contenu (cotes + bas), dans la continuite du blanc
      de .b-hero-chrome : la vignette est "matee" comme une vraie fenetre macOS, elle ne
      touche plus les bords de la carte */
-  padding: 0 14px 14px;
+  padding: 0 9px 9px;
   background: var(--white);
   overflow: hidden;
   border-radius: var(--r-lg);
@@ -1707,7 +1707,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: relative;
   z-index: 3;
   /* reste pleine largeur malgre le padding lateral du parent, pour amorcer le cadre blanc */
-  margin: 0 -14px;
+  margin: 0 -9px;
 }
 .b-hero-chrome span {
   width: 10px;
@@ -1725,9 +1725,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
      vignette (et donc le panneau hover qui la recouvre) trop basse pour son contenu sans
      scroll interne. Le min-height ne joue qu'a partir de la ou l'aspect-ratio descendrait
      en-dessous ; a pleine largeur desktop il est deja sans effet (aspect-ratio > ce plancher) */
-  min-height: 352px;
+  min-height: 420px;
   overflow: hidden;
   flex-shrink: 0;
+  /* radius interieur, echo du radius exterieur de la carte : evite les angles droits
+     dans le cadre blanc desormais visible autour de la vignette */
+  border-radius: var(--r-md);
   background: var(--white);
 }
 .b-hero-media img {
@@ -1746,19 +1749,23 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 /* corps du projet : reserve au survol/focus, comme la maquette (fenetre au repos, details au hover) */
 .b-hero-content {
   position: absolute;
-  inset: 45px 0 0;
+  /* le panneau ne monte plus jusqu'en haut de .b-hero-media : une bande de l'image reste
+     visible en permanence (meme au hover), pour ne pas la recouvrir integralement */
+  inset: 73px 0 0;
   z-index: 4;
   padding: 22px 28px 18px;
   display: flex;
   flex-direction: column;
+  border-radius: var(--r-md);
   /* fondu progressif plutot qu'un aplat net : le haut du panneau se fond dans l'image
-     au lieu de la trancher, pour un reveal plus feutre / moins "plaque" */
+     au lieu de la trancher, pour un reveal plus feutre / moins "plaque" ; attenue
+     legerement (94% au lieu d'un blanc plein) pour laisser deviner l'image en dessous */
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.55) 8%,
-    rgba(255, 255, 255, 0.92) 18%,
-    var(--white) 32%
+    rgba(255, 255, 255, 0.5) 8%,
+    rgba(255, 255, 255, 0.86) 18%,
+    rgba(255, 255, 255, 0.94) 32%
   );
   backdrop-filter: blur(9px);
   /* liseret mint fixe en haut du panneau (ne defile pas avec le contenu, contrairement a un ::before) */
@@ -5873,7 +5880,15 @@ a:hover .cta-arrow {
     background: var(--white);
     backdrop-filter: none;
     padding: 22px 20px 20px;
-    overflow-y: visible;
+    overflow: visible;
+  }
+  /* le reveal en cascade des enfants (opacity:0 par defaut, revele au :hover/:focus-within)
+     n'a pas de sens au tactile : sans cette regle, les enfants restaient invisibles en
+     permanence sur mobile bien que le panneau parent soit force visible ci-dessus */
+  .b-hero-content > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
   .b-trust-row {
     grid-template-columns: 1fr;
