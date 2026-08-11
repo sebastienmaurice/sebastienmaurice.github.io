@@ -1551,11 +1551,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   }
 }
 .b-card-project-hero {
-  /* carte blanche (grammaire .proj-card/.u-card) : image en haut, corps en dessous */
+  /* fenetre "navigateur" (maquette) : chrome + vignette dominante, contenu en hover-reveal.
+     pas de hauteur fixe : la grille (align-items stretch) l'aligne sur .b-left-col,
+     l'image (flex:1) absorbe la difference */
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  min-height: 460px;
   padding: 0;
   background: var(--white);
   overflow: hidden;
@@ -1579,76 +1581,32 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-color: rgba(10, 30, 46, 0.07);
   box-shadow: var(--sh-4);
 }
-.b-hero-img-oblique {
-  position: absolute;
-  top: 6%;
-  right: -10%;
-  width: 110%;
-  height: 70%;
-  border-radius: var(--r-md);
-  overflow: hidden;
-  transform: rotate(3deg) scale(1.02);
-  transform-origin: top right;
-  box-shadow: -32px 20px 80px rgba(0, 0, 0, 0.9);
-  z-index: 1;
-  animation: b-float-oblique 7s ease-in-out infinite;
-}
-@keyframes b-float-oblique {
-  0%,
-  100% {
-    transform: rotate(3deg) scale(1.02) translateY(0px);
-  }
-  50% {
-    transform: rotate(3deg) scale(1.02) translateY(-8px);
-  }
-}
-.b-hero-img-oblique img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.b-hero-img-oblique-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(9, 29, 46, 0.35) 0%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.15) 100%
-  );
-}
-.b-hero-vignette {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 52%;
-  background: linear-gradient(
-    to right,
-    #0d2740 0%,
-    rgba(13, 39, 64, 0.92) 20%,
-    rgba(13, 39, 64, 0.55) 45%,
-    rgba(13, 39, 64, 0.12) 72%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 2;
-}
-.b-hero-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  padding: 28px 30px 30px;
+/* barre de titre façon fenêtre macOS */
+.b-hero-chrome {
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 13px 16px;
+  background: var(--white);
+  border-bottom: 1px solid rgba(10, 30, 46, 0.06);
+  position: relative;
+  z-index: 3;
 }
+.b-hero-chrome span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.b-hero-chrome span:nth-child(1) { background: #ff5f56; }
+.b-hero-chrome span:nth-child(2) { background: #ffbd2e; }
+.b-hero-chrome span:nth-child(3) { background: #27c93f; }
 .b-hero-media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
-  flex-shrink: 0;
   background: var(--ink-100);
 }
 .b-hero-media img {
@@ -1661,6 +1619,28 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-card-project-hero:hover .b-hero-media img {
   transform: scale(1.03);
+}
+/* corps du projet : reserve au survol/focus, comme la maquette (fenetre au repos, details au hover) */
+.b-hero-content {
+  position: absolute;
+  inset: 45px 0 0;
+  z-index: 4;
+  padding: 26px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  overflow-y: auto;
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+.b-card-project-hero:hover .b-hero-content,
+.b-card-project-hero:focus-within .b-hero-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 .b-project-type {
   font-family: var(--f-disp);
@@ -5697,26 +5677,23 @@ a:hover .cta-arrow {
     grid-template-columns: 1fr;
   }
   .b-card-project-hero {
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
+    /* pas de survol fiable au tactile : le contenu reste visible en flux normal sous l'image */
+    height: auto;
   }
   .b-hero-media {
-    position: relative;
-    inset: auto;
-    height: 260px;
-    order: -1;
-  }
-  .b-hero-media::before {
-    background: linear-gradient(
-      180deg,
-      transparent 35%,
-      #0d2740 100%
-    );
+    height: 220px;
+    flex: none;
   }
   .b-hero-content {
-    width: 100%;
-    padding: 24px 22px 22px;
+    position: static;
+    inset: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    background: var(--white);
+    backdrop-filter: none;
+    padding: 22px 20px 20px;
+    overflow-y: visible;
   }
   .b-trust-row {
     grid-template-columns: 1fr;
@@ -5726,9 +5703,6 @@ a:hover .cta-arrow {
   }
   .b-card-mini2 .b-value-tag {
     display: none;
-  }
-  .b-bottom-row {
-    height: 290px;
   }
   .b-carousel-track .b-card-proj {
     flex: 0 0 calc(50% - 8px);
