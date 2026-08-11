@@ -458,58 +458,99 @@ function closeImgLightbox() {
   });
 })();
 
-/* ── Carte GSTI62 : tilt 3D discret au mouvement de souris ── */
+/* ── Carte Maxilou : fenetre "Safari" a profondeur 3D multi-couches ──
+   Chaque plan (fond, contenu, image, chrome) lit les memes variables CSS
+   (--mx/--my/--lift/--card-scale/--img-scale, posees sur .b-hero-card-slot et
+   heritees) avec sa propre amplitude definie cote CSS. Le JS se contente de
+   suivre la souris et d'amortir (lerp) la valeur cible vers la valeur courante
+   a chaque frame : c'est cet amortissement continu qui donne la sensation
+   "physique" (impulsion + retard), a l'entree comme a la sortie — jamais de
+   saut instantane, meme au mouseleave. */
 (function(){
+  const slot = document.querySelector('.b-hero-card-slot');
   const card = document.querySelector('.b-card-project-hero');
-  if (!card) return;
+  if (!slot || !card) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(hover: none)').matches) return; /* pas de survol fiable au tactile */
 
-  const img = card.querySelector('.b-hero-media img');
-  const MAX_TILT = 5;      /* degres, volontairement discret */
-  const LIFT = 6;          /* px */
-  const PARALLAX = 9;      /* px, deplacement de l'image */
-  const EASE_MOVE = 'transform 80ms linear';
-  const EASE_LEAVE = 'transform 600ms cubic-bezier(.22,1,.36,1)';
+  const LERP = 0.09;         /* amortissement : plus petit = plus tardif/organique */
+  const EPS_POS = 0.0008;    /* seuil de stabilisation pour --mx/--my */
+  const EPS_PX  = 0.02;      /* seuil de stabilisation pour --lift (px) */
+  const EPS_SCALE = 0.0002;  /* seuil de stabilisation pour les scales */
+
+  const target  = { mx: 0, my: 0, lift: 0, cardScale: 1, imgScale: 1 };
+  const current = { mx: 0, my: 0, lift: 0, cardScale: 1, imgScale: 1 };
   let raf = null;
+  let hovering = false;
 
-  const SHADOW_REACH = 16; /* px, amplitude du deplacement d'ombre dynamique */
+  function amplitudeScale() {
+    /* desktop large : amplitude pleine / tablette-petit-desktop : reduite /
+       la mise en page bascule de toute facon en composition statique sous 1100px */
+    const w = window.innerWidth;
+    if (w <= 1100) return 0;
+    if (w <= 1440) return 0.55;
+    return 1;
+  }
 
-  function apply(rotateX, rotateY, lift, imgX, imgY, imgScale, shx, shy) {
-    /* leger scale au survol (couple au lift) : la carte se souleve plutot que de juste pivoter a plat */
-    const cardScale = lift === 0 ? 1 : 1.006;
-    card.style.transform = `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${lift}px) scale(${cardScale})`;
-    if (img) img.style.transform = `scale(${imgScale}) translate(${imgX}px, ${imgY}px)`;
-    card.style.setProperty('--shx', `${shx}px`);
-    card.style.setProperty('--shy', `${shy}px`);
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function setVars() {
+    slot.style.setProperty('--mx', current.mx.toFixed(4));
+    slot.style.setProperty('--my', current.my.toFixed(4));
+    slot.style.setProperty('--lift', current.lift.toFixed(2) + 'px');
+    slot.style.setProperty('--card-scale', current.cardScale.toFixed(4));
+    slot.style.setProperty('--img-scale', current.imgScale.toFixed(4));
+  }
+
+  function tick() {
+    current.mx = lerp(current.mx, target.mx, LERP);
+    current.my = lerp(current.my, target.my, LERP);
+    current.lift = lerp(current.lift, target.lift, LERP);
+    current.cardScale = lerp(current.cardScale, target.cardScale, LERP);
+    current.imgScale = lerp(current.imgScale, target.imgScale, LERP);
+    setVars();
+
+    const settled =
+      Math.abs(current.mx - target.mx) < EPS_POS &&
+      Math.abs(current.my - target.my) < EPS_POS &&
+      Math.abs(current.lift - target.lift) < EPS_PX &&
+      Math.abs(current.cardScale - target.cardScale) < EPS_SCALE &&
+      Math.abs(current.imgScale - target.imgScale) < EPS_SCALE;
+
+    raf = (hovering || !settled) ? requestAnimationFrame(tick) : null;
+  }
+
+  function ensureLoop() {
+    if (!raf) raf = requestAnimationFrame(tick);
   }
 
   function onMove(e) {
+    const amp = amplitudeScale();
+    if (amp === 0) { target.mx = 0; target.my = 0; ensureLoop(); return; }
     const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rotateY = (x - 0.5) * MAX_TILT * 2;
-    const rotateX = (0.5 - y) * MAX_TILT * 2;
-    if (raf) return;
-    raf = requestAnimationFrame(() => {
-      apply(
-        rotateX, rotateY, -LIFT,
-        (x - 0.5) * -PARALLAX, (y - 0.5) * -PARALLAX * 0.7, 1.025,
-        (x - 0.5) * SHADOW_REACH, (y - 0.5) * SHADOW_REACH
-      );
-      raf = null;
-    });
+    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;  /* -1..1 */
+    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;  /* -1..1 */
+    target.mx = Math.max(-1, Math.min(1, nx)) * amp;
+    target.my = Math.max(-1, Math.min(1, ny)) * amp;
+    ensureLoop();
   }
 
   card.addEventListener('mouseenter', () => {
-    card.style.transition = EASE_MOVE;
-    if (img) img.style.transition = EASE_MOVE;
+    hovering = true;
+    const amp = amplitudeScale();
+    target.lift = amp === 0 ? 0 : -6;
+    target.cardScale = amp === 0 ? 1 : 1.006;
+    target.imgScale = amp === 0 ? 1 : 1.035;
+    ensureLoop();
   });
   card.addEventListener('mousemove', onMove);
   card.addEventListener('mouseleave', () => {
-    if (raf) { cancelAnimationFrame(raf); raf = null; }
-    card.style.transition = EASE_LEAVE;
-    if (img) img.style.transition = EASE_LEAVE;
-    apply(0, 0, 0, 0, 0, 1, 0, 0);
+    hovering = false;
+    target.mx = 0;
+    target.my = 0;
+    target.lift = 0;
+    target.cardScale = 1;
+    target.imgScale = 1;
+    ensureLoop();
   });
 })();

@@ -1560,7 +1560,18 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-hero-card-slot {
   position: relative;
   align-self: start;
-  perspective: 1400px;
+  /* pas de `perspective` ici : la fonction perspective() est portee par la carte
+     elle-meme (regle #projet-maxilou plus bas) pour eviter un cumul de deux
+     perspectives (parent + enfant) qui exagererait le tilt */
+}
+/* couche "fond" (PLAN 1) : la paire de blobs se deplace ensemble, tres legerement,
+   au mouvement de souris (amplitude la plus faible de toutes les couches) */
+.b-hero-parallax-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  transform: translate3d(calc(var(--mx, 0) * 4px), calc(var(--my, 0) * 3px), 0);
 }
 .b-hero-blob {
   /* paire de formes organiques en diagonale, debordant legerement de la carte
@@ -1568,7 +1579,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: absolute;
   border-radius: 42% 58% 68% 32% / 45% 40% 60% 55%;
   filter: blur(4px);
-  z-index: 0;
   pointer-events: none;
 }
 .b-hero-blob--a {
@@ -1628,26 +1638,59 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transform-style: preserve-3d;
   will-change: transform, box-shadow;
 }
+/* Transform toujours actif (fenetre PLAN 0), pilote par --mx/--my/--lift/--card-scale
+   (herites depuis .b-hero-card-slot, mis a jour en continu par le JS de parallax).
+   Selecteur par ID necessaire : [data-reveal].revealed{transform:none} (regle generique
+   de fin de fichier) a la meme specificite que .b-card-project-hero[data-reveal] et
+   gagnerait le conflit sur `transform` sans ce renfort — l'ID le bat sans ambiguite. */
+#projet-maxilou {
+  transform:
+    perspective(1700px)
+    rotateX(calc(var(--my, 0) * -2.4deg))
+    rotateY(calc(var(--mx, 0) * 2.4deg))
+    translateY(var(--lift, 0px))
+    scale(var(--card-scale, 1));
+}
 .b-card-project-hero::before {
   display: none;
+}
+/* reflet de surface tres discret (PLAN "verre") : suit la souris, quasi imperceptible */
+.b-card-project-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at calc(50% + var(--mx, 0) * 28%) calc(50% + var(--my, 0) * 28%),
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0) 42%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.b-card-project-hero:hover::after,
+.b-card-project-hero:focus-within::after {
+  opacity: 1;
 }
 /* Specificite superieure a [data-reveal] pour ne pas ecraser la transition de hover (box-shadow/border-color) */
 .b-card-project-hero[data-reveal] {
   transition:
     opacity 0.7s var(--ease) 0.18s,
-    transform 0.7s var(--ease) 0.18s,
     box-shadow 0.35s var(--ease),
     border-color 0.28s;
 }
 .b-card-project-hero:hover {
   border-color: rgba(10, 30, 46, 0.14);
-  /* le decalage horizontal/vertical est repris dynamiquement par le JS de tilt (--shx/--shy) ;
+  /* le decalage horizontal/vertical est repris dynamiquement par le JS de parallax (--mx/--my) ;
      liseret mint ajoute pour un contour lumineux discret (effet verre/premium) */
   box-shadow:
     0 0 0 1px rgba(181, 244, 222, 0.4),
     0 2px 6px rgba(10, 30, 46, 0.05),
-    calc(var(--shx, 0px) * -1) calc(28px + var(--shy, 0px) * -1) 64px -18px rgba(10, 30, 46, 0.24),
-    calc(var(--shx, 0px) * -0.6) calc(16px + var(--shy, 0px) * -0.6) 36px -16px rgba(47, 138, 114, 0.22);
+    calc(var(--mx, 0) * -16px) calc(28px + var(--my, 0) * -16px) 64px -18px rgba(10, 30, 46, 0.24),
+    calc(var(--mx, 0) * -9.6px) calc(16px + var(--my, 0) * -9.6px) 36px -16px rgba(47, 138, 114, 0.22);
 }
 /* barre de titre façon fenêtre macOS */
 .b-hero-chrome {
@@ -1684,10 +1727,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   object-fit: contain;
   object-position: center;
   display: block;
-  transition: transform 0.5s var(--ease);
-}
-.b-card-project-hero:hover .b-hero-media img {
-  transform: scale(1.03);
+  /* PLAN "sujet principal" : l'amplitude la plus marquee des couches de contenu — sans
+     transition CSS ici (le lerp JS assure deja l'amortissement, une transition en plus
+     doublerait le retard et alourdirait le mouvement) */
+  transform: scale(var(--img-scale, 1)) translate3d(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 7px), 0);
+  will-change: transform;
 }
 /* corps du projet : reserve au survol/focus, comme la maquette (fenetre au repos, details au hover) */
 .b-hero-content {
@@ -1718,7 +1762,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-card-project-hero:hover .b-hero-content,
 .b-card-project-hero:focus-within .b-hero-content {
   opacity: 1;
-  transform: translateY(0);
+  /* PLAN "contenu" : quasi fixe, tres legere respiration pour rester coherent avec les
+     autres couches sans jamais distraire de la lecture */
+  transform: translate3d(calc(var(--mx, 0) * 1px), calc(var(--my, 0) * 1px), 0);
   pointer-events: auto;
 }
 /* reveal en cascade des enfants (au lieu d'un fondu plat) : micro-decalage volontairement
@@ -1791,6 +1837,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+}
+/* PLAN "UI flottante" : les pastilles WordPress/Elementor recoivent un peu plus de
+   mouvement que le reste du panneau, pour suggerer qu'elles flottent legerement au-dessus */
+.b-card-project-hero:hover .b-tech-tags,
+.b-card-project-hero:focus-within .b-tech-tags {
+  transform: translate3d(calc(var(--mx, 0) * 3px), calc(var(--my, 0) * 2px), 0);
 }
 .b-tech-tag {
   /* grammaire .tag.on-dark (section 04) */
