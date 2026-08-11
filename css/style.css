@@ -1551,13 +1551,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   }
 }
 .b-card-project-hero {
-  /* fenetre "navigateur" (maquette) : chrome + vignette dominante, contenu en hover-reveal.
-     pas de hauteur fixe : la grille (align-items stretch) l'aligne sur .b-left-col,
-     l'image (flex:1) absorbe la difference */
+  /* fenetre "navigateur" (maquette) : chrome + vignette au ratio de l'image, contenu en
+     hover-reveal. hauteur intrinseque (chrome + aspect-ratio de l'image) : elle ne
+     s'etire plus pour rattraper la colonne de gauche, elle garde ses proportions */
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 460px;
+  align-self: start;
   padding: 0;
   background: var(--white);
   overflow: hidden;
@@ -1604,9 +1604,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-hero-chrome span:nth-child(3) { background: #27c93f; }
 .b-hero-media {
   position: relative;
-  flex: 1;
-  min-height: 0;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
+  flex-shrink: 0;
   background: var(--ink-100);
 }
 .b-hero-media img {
