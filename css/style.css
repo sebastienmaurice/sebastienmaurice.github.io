@@ -958,7 +958,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: grid;
   grid-template-columns: 1fr 1.18fr;
   gap: var(--gap);
-  min-height: 520px;
+  align-items: start;
+}
+.b-left-col,
+.b-hero-card-slot {
+  /* les enfants de grille ont un min-width:auto implicite : sans ce reset, le contenu
+     intrinseque (titre, image) peut forcer la piste au-dela de la largeur disponible */
+  min-width: 0;
 }
 .b-left-col {
   display: flex;
@@ -1550,20 +1556,54 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     box-shadow: 0 0 10px rgba(64, 151, 135, 1);
   }
 }
+/* emplacement de la carte : porte la perspective 3D + la forme organique en fond */
+.b-hero-card-slot {
+  position: relative;
+  align-self: start;
+  perspective: 1400px;
+}
+.b-hero-blob {
+  position: absolute;
+  top: -9%;
+  right: -7%;
+  width: 64%;
+  height: 58%;
+  background: radial-gradient(
+    circle at 42% 38%,
+    rgba(181, 244, 222, 0.6) 0%,
+    rgba(181, 244, 222, 0.28) 45%,
+    rgba(181, 244, 222, 0) 78%
+  );
+  border-radius: 42% 58% 68% 32% / 45% 40% 60% 55%;
+  filter: blur(4px);
+  z-index: 0;
+  pointer-events: none;
+  animation: b-blob-float 11s ease-in-out infinite;
+}
+@keyframes b-blob-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(-8px, 10px) rotate(4deg) scale(1.03); }
+}
 .b-card-project-hero {
   /* fenetre "navigateur" (maquette) : chrome + vignette au ratio de l'image, contenu en
      hover-reveal. hauteur intrinseque (chrome + aspect-ratio de l'image) : elle ne
      s'etire plus pour rattraper la colonne de gauche, elle garde ses proportions */
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  align-self: start;
   padding: 0;
   background: var(--white);
   overflow: hidden;
   border-radius: var(--r-lg);
   border: 1px solid rgba(10, 30, 46, 0.07);
-  box-shadow: var(--sh-2);
+  /* ombre douce et diffuse (teinte mint), pour detacher la carte sans un box-shadow marque */
+  box-shadow:
+    0 2px 6px rgba(10, 30, 46, 0.04),
+    0 24px 48px -20px rgba(10, 30, 46, 0.16),
+    0 14px 32px -18px rgba(47, 138, 114, 0.14);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 .b-card-project-hero::before {
   display: none;
@@ -1577,9 +1617,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     border-color 0.28s;
 }
 .b-card-project-hero:hover {
-  transform: translateY(-4px);
   border-color: rgba(10, 30, 46, 0.07);
-  box-shadow: var(--sh-4);
+  box-shadow:
+    0 2px 6px rgba(10, 30, 46, 0.05),
+    0 36px 64px -20px rgba(10, 30, 46, 0.22),
+    0 20px 40px -16px rgba(47, 138, 114, 0.2);
 }
 /* barre de titre façon fenêtre macOS */
 .b-hero-chrome {
@@ -5679,6 +5721,10 @@ a:hover .cta-arrow {
   .b-card-project-hero {
     /* pas de survol fiable au tactile : le contenu reste visible en flux normal sous l'image */
     height: auto;
+  }
+  .b-hero-blob {
+    /* debordait du viewport en colonne unique ; le tilt 3D est deja desactive au tactile */
+    display: none;
   }
   .b-hero-media {
     height: 220px;

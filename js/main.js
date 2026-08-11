@@ -458,3 +458,49 @@ function closeImgLightbox() {
     resizeTO = setTimeout(() => { stopAutoplay(); init(); }, 150);
   });
 })();
+
+/* ── Carte GSTI62 : tilt 3D discret au mouvement de souris ── */
+(function(){
+  const card = document.querySelector('.b-card-project-hero');
+  if (!card) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return; /* pas de survol fiable au tactile */
+
+  const img = card.querySelector('.b-hero-media img');
+  const MAX_TILT = 5;      /* degres, volontairement discret */
+  const LIFT = 6;          /* px */
+  const PARALLAX = 9;      /* px, deplacement de l'image */
+  const EASE_MOVE = 'transform 80ms linear';
+  const EASE_LEAVE = 'transform 600ms cubic-bezier(.22,1,.36,1)';
+  let raf = null;
+
+  function apply(rotateX, rotateY, lift, imgX, imgY, imgScale) {
+    card.style.transform = `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${lift}px)`;
+    if (img) img.style.transform = `scale(${imgScale}) translate(${imgX}px, ${imgY}px)`;
+  }
+
+  function onMove(e) {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const rotateY = (x - 0.5) * MAX_TILT * 2;
+    const rotateX = (0.5 - y) * MAX_TILT * 2;
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      apply(rotateX, rotateY, -LIFT, (x - 0.5) * -PARALLAX, (y - 0.5) * -PARALLAX * 0.7, 1.025);
+      raf = null;
+    });
+  }
+
+  card.addEventListener('mouseenter', () => {
+    card.style.transition = EASE_MOVE;
+    if (img) img.style.transition = EASE_MOVE;
+  });
+  card.addEventListener('mousemove', onMove);
+  card.addEventListener('mouseleave', () => {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    card.style.transition = EASE_LEAVE;
+    if (img) img.style.transition = EASE_LEAVE;
+    apply(0, 0, 0, 0, 0, 1);
+  });
+})();
