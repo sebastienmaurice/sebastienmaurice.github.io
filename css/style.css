@@ -4812,9 +4812,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .cs-card-mockup {
   position: relative;
-  padding: 36px 20px 36px 36px;
+  padding: 20px;
   display: flex;
   align-items: center;
+}
+.cs-mock-flat {
+  /* visuel deja compose (mockups + panneaux), affiche a plat plutot que redouble
+     dans un second cadre navigateur */
+  display: block;
+  width: 100%;
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-3);
 }
 .cs-mock-laptop {
   position: relative;
