@@ -317,7 +317,6 @@ function closeImgLightbox() {
   const track    = document.getElementById('bCarouselTrack');
   const prevBtn  = document.getElementById('bCarouselPrev');
   const nextBtn  = document.getElementById('bCarouselNext');
-  const dotsWrap = document.getElementById('bCarouselDots');
   const carousel = document.getElementById('bCarousel');
   if (!track) return;
 
@@ -373,30 +372,12 @@ function closeImgLightbox() {
     track.style.transition = on ? `transform ${TRANSITION_MS}ms cubic-bezier(.16,1,.3,1)` : 'none';
   }
 
-  function buildDots() {
-    dotsWrap.innerHTML = '';
-    for (let i = 0; i < origLen; i++) {
-      const d = document.createElement('button');
-      d.className = 'b-carousel-dot';
-      d.setAttribute('aria-label', 'Slide ' + (i + 1));
-      d.addEventListener('click', () => { stopAutoplay(); goTo(visibleCount + i, true); startAutoplay(); });
-      dotsWrap.appendChild(d);
-    }
-    updateDots();
-  }
-
-  function updateDots() {
-    const ri = ((current - visibleCount) % origLen + origLen) % origLen;
-    dotsWrap.querySelectorAll('.b-carousel-dot').forEach((d, i) => d.classList.toggle('active', i === ri));
-  }
-
   function goTo(idx, withTr = true) {
     if (isTransitioning) return;
     isTransitioning = true;
     current = idx;
     setTr(withTr);
     track.style.transform = `translateX(-${getOffset(current)}px)`;
-    updateDots();
     if (!withTr) { isTransitioning = false; return; }
     setTimeout(() => {
       /* seamless loop: teleport from clone to real counterpart */
@@ -409,7 +390,6 @@ function closeImgLightbox() {
         current -= origLen;
         track.style.transform = `translateX(-${getOffset(current)}px)`;
       }
-      updateDots();
       isTransitioning = false;
     }, TRANSITION_MS + 20);
   }
@@ -432,7 +412,6 @@ function closeImgLightbox() {
     current = visibleCount;   /* start at real card 0 */
     setTr(false);
     track.style.transform = `translateX(-${getOffset(current)}px)`;
-    buildDots();
     isTransitioning = false;
     startAutoplay();
   }

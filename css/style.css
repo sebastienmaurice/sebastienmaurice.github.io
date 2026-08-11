@@ -987,6 +987,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-carousel-track-wrap {
   width: 100%;
   overflow: hidden;
+  /* overflow:hidden est necessaire au defilement horizontal, mais rognait aussi les ombres
+     portees verticales des cards (var(--sh-4) au hover + le translateY(-6px) de lift).
+     Le padding cree une zone tampon ou l'ombre peut se deployer sans etre coupee ; la marge
+     negative annule ce padding visuellement pour ne pas decaler la mise en page. */
+  padding: 34px 8px 90px;
+  margin: -34px -8px -90px;
 }
 .b-carousel-track {
   display: flex;
@@ -1047,31 +1053,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .b-carousel-next {
   right: 10px;
-}
-.b-carousel-dots {
-  display: none;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  gap: 5px;
-  z-index: 10;
-}
-.b-carousel-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(181, 244, 222, 0.25);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition:
-    background 0.2s,
-    transform 0.2s;
-}
-.b-carousel-dot.active {
-  background: var(--accent);
-  transform: scale(1.3);
 }
 .b-header-row {
   display: flex;
