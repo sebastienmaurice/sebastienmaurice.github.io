@@ -4821,7 +4821,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 
 /* PROFIL SECTION - ETUDE DE CAS */
 .profil-sec {
-  background: linear-gradient(180deg, #b5f4de 0%, #d6f8e9 100%);
+  background: linear-gradient(180deg, #b5f4de 0%, var(--paper) 100%);
   position: relative;
 }
 .profil-inner {
