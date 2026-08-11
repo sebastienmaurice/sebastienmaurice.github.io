@@ -1627,6 +1627,13 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
      de .b-hero-chrome : la vignette est "matee" comme une vraie fenetre macOS, elle ne
      touche plus les bords de la carte */
   padding: 0 9px 9px;
+  /* filet de securite pour le panneau hover (cf .b-hero-content) : porte ici plutot que
+     sur .b-hero-media, pour que la vignette garde son ratio 2:1 strict (object-fit:contain
+     ne remplit pas une boite plus haute que necessaire — un min-height sur .b-hero-media
+     aurait laisse du vide DANS le cadre arrondi, decollant le radius du bord reel de l'image).
+     Sous ce plancher, l'espace restant apres la vignette reste blanc au repos et sert de
+     reserve au panneau hover (absolu, cale sur le bas de la carte). */
+  min-height: 467px;
   background: var(--white);
   overflow: hidden;
   border-radius: var(--r-lg);
@@ -1722,12 +1729,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-hero-chrome span:nth-child(3) { background: #27c93f; }
 .b-hero-media {
   position: relative;
+  /* ratio strict : le filet de securite anti-scroll du panneau hover est porte par
+     .b-card-project-hero (min-height), pas ici — sinon object-fit:contain laisse du
+     vide dans la boite et le radius ne "colle" plus au bord reel de l'image */
   aspect-ratio: 2 / 1;
-  /* filet de securite : sous ~1300px de largeur de carte, le ratio 2:1 seul rendrait la
-     vignette (et donc le panneau hover qui la recouvre) trop basse pour son contenu sans
-     scroll interne. Le min-height ne joue qu'a partir de la ou l'aspect-ratio descendrait
-     en-dessous ; a pleine largeur desktop il est deja sans effet (aspect-ratio > ce plancher) */
-  min-height: 420px;
   overflow: hidden;
   flex-shrink: 0;
   /* radius interieur, echo du radius exterieur de la carte : evite les angles droits
@@ -5859,17 +5864,17 @@ a:hover .cta-arrow {
     grid-template-columns: 1fr;
   }
   .b-card-project-hero {
-    /* pas de survol fiable au tactile : le contenu reste visible en flux normal sous l'image */
+    /* pas de survol fiable au tactile : le contenu reste visible en flux normal sous l'image.
+       le plancher desktop (min-height, filet anti-scroll du panneau hover) ne s'applique pas
+       ici : le contenu est en flux statique sous l'image, pas en overlay */
     height: auto;
+    min-height: 0;
   }
   .b-hero-blob {
     /* debordait du viewport en colonne unique ; le tilt 3D est deja desactive au tactile */
     display: none;
   }
   .b-hero-media {
-    /* le plancher desktop (min-height, filet anti-scroll du panneau hover) ne s'applique
-       pas ici : le contenu est en flux statique sous l'image, pas en overlay */
-    min-height: 0;
     height: 220px;
     flex: none;
   }
