@@ -1573,7 +1573,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   height: 46%;
   /* nuage de pointilles borde par la forme ovoide (border-radius:50% + masque radial
      pour une extinction douce, plutot qu'un aplat degrade uni) */
-  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.5) 1.4px, transparent 1.6px);
+  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.2) 1.4px, transparent 1.6px);
   background-size: 11px 11px;
   -webkit-mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
   mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
@@ -1584,7 +1584,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   right: -7%;
   width: 30%;
   height: 36%;
-  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.45) 1.4px, transparent 1.6px);
+  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.2) 1.4px, transparent 1.6px);
   background-size: 11px 11px;
   -webkit-mask-image: radial-gradient(ellipse at 58% 58%, #000 42%, transparent 76%);
   mask-image: radial-gradient(ellipse at 58% 58%, #000 42%, transparent 76%);
@@ -4964,16 +4964,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   content: "";
   position: absolute;
   top: -8%;
-  left: -8%;
-  width: 42%;
-  height: 48%;
+  left: 4%;
+  width: 50%;
+  height: 56%;
   border-radius: 50%;
-  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.5) 1.4px, transparent 1.6px);
+  background-image: radial-gradient(circle, rgba(47, 138, 114, 0.2) 1.4px, transparent 1.6px);
   background-size: 11px 11px;
   -webkit-mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
   mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
   pointer-events: none;
   z-index: 0;
+  animation: b-blob-float-a 12s ease-in-out infinite;
 }
 .cs-mock-flat {
   /* au-dessus du pointille decoratif (::before, z-index:0) */
