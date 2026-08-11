@@ -1624,7 +1624,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: 0;
+  /* cadre blanc autour de l'image/contenu (cotes + bas), dans la continuite du blanc
+     de .b-hero-chrome : la vignette est "matee" comme une vraie fenetre macOS, elle ne
+     touche plus les bords de la carte */
+  padding: 0 14px 14px;
   background: var(--white);
   overflow: hidden;
   border-radius: var(--r-lg);
@@ -1703,6 +1706,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-bottom: 1px solid rgba(10, 30, 46, 0.06);
   position: relative;
   z-index: 3;
+  /* reste pleine largeur malgre le padding lateral du parent, pour amorcer le cadre blanc */
+  margin: 0 -14px;
 }
 .b-hero-chrome span {
   width: 10px;
@@ -1716,6 +1721,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-hero-media {
   position: relative;
   aspect-ratio: 2 / 1;
+  /* filet de securite : sous ~1300px de largeur de carte, le ratio 2:1 seul rendrait la
+     vignette (et donc le panneau hover qui la recouvre) trop basse pour son contenu sans
+     scroll interne. Le min-height ne joue qu'a partir de la ou l'aspect-ratio descendrait
+     en-dessous ; a pleine largeur desktop il est deja sans effet (aspect-ratio > ce plancher) */
+  min-height: 352px;
   overflow: hidden;
   flex-shrink: 0;
   background: var(--white);
@@ -1738,7 +1748,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: absolute;
   inset: 45px 0 0;
   z-index: 4;
-  padding: 28px 28px 24px;
+  padding: 22px 28px 18px;
   display: flex;
   flex-direction: column;
   /* fondu progressif plutot qu'un aplat net : le haut du panneau se fond dans l'image
@@ -1756,7 +1766,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   opacity: 0;
   transform: translateY(18px);
   pointer-events: none;
-  overflow-y: auto;
+  /* pas de scroll interne : le contenu doit tenir dans la hauteur disponible (largeur
+     pleine + espacements resserres, voir .b-project-desc et les marges ci-dessous) */
+  overflow: hidden;
   transition: opacity 0.42s cubic-bezier(0.19, 1, 0.22, 1), transform 0.42s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .b-card-project-hero:hover .b-hero-content,
@@ -1789,8 +1801,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-family: var(--f-disp);
   font-size: 13px;
   color: var(--text-muted);
-  margin-top: 4px;
-  margin-bottom: 14px;
+  margin-top: 3px;
+  margin-bottom: 10px;
 }
 .b-project-badge {
   /* grammaire .badge.mint (section 04) */
@@ -1809,7 +1821,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--mint-800);
-  margin-bottom: 11px;
+  margin-bottom: 8px;
 }
 .b-project-badge-dot {
   width: 6px;
@@ -1830,8 +1842,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 12.5px;
   color: var(--text-muted);
   line-height: 1.65;
-  margin-top: 14px;
-  max-width: 340px;
+  margin-top: 12px;
+  /* utilise toute la largeur du panneau (au lieu d'une colonne etroite) : moins de
+     lignes = moins de hauteur, condition pour tenir sans scroll interne */
+  max-width: 100%;
 }
 .b-tech-tags {
   display: flex;
@@ -1887,9 +1901,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .b-project-stats {
   display: flex;
   gap: 16px;
-  padding-top: 11px;
+  padding-top: 9px;
   border-top: 1px solid rgba(10, 30, 46, 0.08);
-  margin-top: 12px;
+  margin-top: 9px;
   position: relative;
   z-index: 3;
 }
@@ -1934,7 +1948,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 12px;
   position: relative;
   z-index: 3;
 }
@@ -5844,6 +5858,9 @@ a:hover .cta-arrow {
     display: none;
   }
   .b-hero-media {
+    /* le plancher desktop (min-height, filet anti-scroll du panneau hover) ne s'applique
+       pas ici : le contenu est en flux statique sous l'image, pas en overlay */
+    min-height: 0;
     height: 220px;
     flex: none;
   }
