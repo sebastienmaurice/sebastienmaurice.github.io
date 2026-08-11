@@ -1144,7 +1144,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--coral-600);
 }
 .b-hero-title .l-mint {
-  color: var(--mint-700);
+  color: var(--mint-500);
 }
 .b-hero-subtitle {
   font-family: var(--f-disp);
@@ -1574,11 +1574,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transform: translate3d(calc(var(--mx, 0) * 4px), calc(var(--my, 0) * 3px), 0);
 }
 .b-hero-blob {
-  /* paire de formes organiques en diagonale, debordant legerement de la carte
-     (reference maquette : un souffle mint qui deborde en haut-gauche et bas-droite) */
+  /* paire de formes ovoides nettes (pas de flou) en diagonale, debordant legerement de
+     la carte (reference maquette : un souffle mint qui deborde en haut-gauche et bas-droite) */
   position: absolute;
-  border-radius: 42% 58% 68% 32% / 45% 40% 60% 55%;
-  filter: blur(4px);
+  border-radius: 50%;
   pointer-events: none;
 }
 .b-hero-blob--a {
@@ -1703,11 +1702,14 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
   padding: 13px 16px;
   background: var(--white);
-  border-bottom: 1px solid rgba(10, 30, 46, 0.06);
   position: relative;
   z-index: 3;
-  /* reste pleine largeur malgre le padding lateral du parent, pour amorcer le cadre blanc */
+  /* reste pleine largeur malgre le padding lateral du parent, pour amorcer le cadre blanc.
+     Les coins hauts sont deja arrondis par le clip de la carte (overflow:hidden + r-lg) ;
+     les coins bas recoivent leur propre radius pour que la transition vers le cadre blanc
+     inset (media/content, cf plus bas) ne forme jamais d'angle droit interieur. */
   margin: 0 -9px;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
 }
 .b-hero-chrome span {
   width: 10px;
