@@ -4949,19 +4949,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 
 .cs-card {
-  background: var(--card-bg);
-  border-radius: var(--r-lg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.04) inset,
-    var(--sh-dark-4);
+  /* plus de cadre sombre : le mockup et le texte flottent directement sur le fond paper
+     de la section (reference maquette), l'image porte sa propre ombre (.cs-mock-flat) */
   display: grid;
   grid-template-columns: 56fr 44fr;
-  overflow: hidden;
+  gap: 32px;
+  align-items: center;
 }
 .cs-card-mockup {
   position: relative;
-  padding: 20px;
   display: flex;
   align-items: center;
 }
@@ -5016,10 +5012,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   object-position: 15% top;
 }
 .cs-card-info {
-  padding: 34px 30px 30px;
+  padding: 8px 0;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
 }
 .cs-card-eyebrow {
   display: inline-flex;
@@ -5029,7 +5024,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(181, 244, 222, 0.65);
+  color: var(--mint-700);
   margin-bottom: 16px;
 }
 .cs-dot {
@@ -5044,7 +5039,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-family: var(--f-serif);
   font-size: clamp(1.8rem, 2.4vw, 2.6rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--ink-900);
   line-height: 1;
   letter-spacing: -0.02em;
   margin-bottom: 12px;
@@ -5053,11 +5048,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-family: var(--f-disp);
   font-size: 0.8125rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(10, 30, 46, 0.62);
   line-height: 1.6;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(10, 30, 46, 0.12);
 }
 .cs-tags {
   display: flex;
@@ -5071,9 +5066,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   letter-spacing: 0.04em;
   padding: 4px 10px;
   border-radius: var(--r-pill);
-  background: rgba(181, 244, 222, 0.08);
-  border: 1px solid rgba(181, 244, 222, 0.22);
-  color: var(--mint-200, #b5f4de);
+  background: var(--mint-100);
+  border: 1px solid rgba(10, 30, 46, 0.06);
+  color: var(--mint-800);
 }
 .cs-cta-btn {
   margin-top: auto;

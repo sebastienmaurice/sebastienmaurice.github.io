@@ -527,6 +527,15 @@ body::after {
 .slide.is-active img {
   transform: scale(1);
 }
+/* visuel deja compose (2:1, fond clair) plutot qu'une photo : object-fit:cover le
+   rognerait fortement sur les largeurs desktop courantes (1280-1440px), donc contain
+   + fond assorti pour ne jamais perdre de contenu sur les cotes */
+.cd-slide-portfolio {
+  background: #f4f2ee;
+}
+.cd-slide-portfolio img {
+  object-fit: contain;
+}
 .slide::before {
   content: "";
   position: absolute;
