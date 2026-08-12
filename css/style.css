@@ -4490,18 +4490,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     border-color 0.3s;
   cursor: none;
 }
-/* action principale de la grille (reveler l'email) : plus d'aplat Ink. Meme famille
-   translucide que .cvb-card-dark (coherence visuelle sur le bandeau mint), avec un
-   accent corail ponctuel (bordure + icone) pour la distinguer comme CTA principal */
+/* action principale de la grille (reveler l'email) : meme coque que .cvb-card-dark
+   (carte blanche opaque, meme bordure/hover) — seul l'icone reste corail pour la
+   distinguer comme CTA principal, la carte elle-meme reste dans la meme famille */
 .cvb-card-mint {
-  background: rgba(255, 255, 255, 0.4);
-  border: 1.5px solid rgba(255, 122, 89, 0.5);
-  box-shadow: var(--sh-2);
+  background: var(--white);
+  border: 1px solid rgba(10, 30, 46, 0.08);
 }
 .cvb-card-mint:hover {
   transform: translateY(-3px) scale(1.015);
-  background: rgba(255, 255, 255, 0.55);
-  border-color: var(--coral-500);
+  border-color: rgba(10, 30, 46, 0.16);
   box-shadow: var(--sh-3);
 }
 /* recette .b-final-cta (bento-section) : carte blanche opaque + icone ronde, plutot
@@ -4556,6 +4554,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .cvb-card-mint .cvb-card-icon {
   background: var(--coral-500);
+  border-radius: 50%;
   color: var(--ink-900);
 }
 .cvb-card-dark .cvb-card-icon {
