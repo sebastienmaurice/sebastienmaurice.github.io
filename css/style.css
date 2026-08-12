@@ -2411,8 +2411,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   box-sizing: border-box;
 }
 .stack-sec-wrap {
-  /* fond paper (harmonisation), plus de degrade navy en dur */
-  background: var(--paper);
+  /* transition paper -> mint-200 : la section se termine sur la meme teinte que le
+     debut de .ia-sec-wrap juste en dessous (meme raccord que hero -> profil-sec) */
+  background: linear-gradient(180deg, var(--paper) 0%, var(--mint-200) 100%);
   position: relative;
 }
 .stack-sec {
@@ -2935,9 +2936,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-shrink: 0;
 }
 .stack-approach {
+  /* carte blanche (recette .cs-mini-card/.prest-card) : la section se terminant
+     desormais sur du mint-200, un remplissage mint ici se confondrait avec le fond */
   margin-top: 28px;
-  background: var(--mint);
-  border: none;
+  background: var(--white);
+  border: 1px solid rgba(10, 30, 46, 0.1);
+  box-shadow: var(--sh-2);
   border-radius: var(--r);
   padding: 22px 32px;
   display: grid;
@@ -2946,18 +2950,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   gap: 32px;
   position: relative;
   z-index: 1;
-  overflow: hidden;
-}
-.stack-approach::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 55% 80% at 5% 50%,
-    rgba(255, 255, 255, 0.28) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
 }
 .approach-label {
   font-family: var(--f-mono);
@@ -3022,8 +3014,8 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   gap: 8px;
   align-items: center;
 }
-/* bouton sur bandeau mint (.stack-approach) : meme recette que .cs-cta-bar-btn sur
-   bandeau corail — fond blanc, texte dans la teinte du bandeau */
+/* .stack-approach est desormais une carte blanche (plus un bandeau mint) : bouton
+   CTA principal, meme recette corail que .btn-vivid/.cs-cta-btn/.btn-dark */
 .btn-dark-sm {
   display: inline-flex;
   align-items: center;
@@ -3032,22 +3024,28 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   font-size: 0.8125rem;
   font-weight: 700;
   padding: 12px 22px;
-  background: var(--white);
-  color: var(--mint-700);
+  background: var(--coral-500);
+  color: var(--ink-900);
   border-radius: var(--r-pill);
+  box-shadow: var(--sh-accent);
   cursor: none;
   transition:
     transform 0.3s var(--ease),
-    box-shadow 0.3s;
+    box-shadow 0.3s,
+    background 0.3s,
+    color 0.3s;
 }
 .btn-dark-sm:hover {
+  background: var(--coral-600);
+  color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(10, 30, 46, 0.22);
+  box-shadow: 0 14px 30px rgba(255, 122, 89, 0.38);
 }
 .btn-dark-sm:active {
-  background: var(--paper);
+  background: var(--coral-700);
+  color: var(--white);
   transform: translateY(0) scale(0.98);
-  box-shadow: 0 4px 10px rgba(10, 30, 46, 0.22);
+  box-shadow: 0 4px 10px rgba(255, 122, 89, 0.3);
 }
 .btn-ghost-sm {
   display: inline-flex;
@@ -4492,15 +4490,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
     border-color 0.3s;
   cursor: none;
 }
-/* action principale de la grille (reveler l'email) : plus d'aplat Ink, carte blanche +
-   accent corail ponctuel, meme recette que .prest-card-featured */
+/* action principale de la grille (reveler l'email) : plus d'aplat Ink. Meme famille
+   translucide que .cvb-card-dark (coherence visuelle sur le bandeau mint), avec un
+   accent corail ponctuel (bordure + icone) pour la distinguer comme CTA principal */
 .cvb-card-mint {
-  background: var(--white);
-  border: 1.5px solid var(--coral-300);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(255, 122, 89, 0.5);
   box-shadow: var(--sh-2);
 }
 .cvb-card-mint:hover {
   transform: translateY(-3px) scale(1.015);
+  background: rgba(255, 255, 255, 0.55);
   border-color: var(--coral-500);
   box-shadow: var(--sh-3);
 }
