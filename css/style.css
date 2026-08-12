@@ -211,7 +211,9 @@ body {
   overflow-x: hidden;
   cursor: none;
   line-height: 1.6;
-  background: var(--dark);
+  /* fallback paper (harmonisation) : toutes les sections sont desormais claires,
+     ce fond n'apparait plus qu'en cas de gap entre sections */
+  background: var(--paper);
 }
 body::after {
   content: "";
@@ -4666,15 +4668,16 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 
 /* FOOTER */
 .site-footer {
-  background: var(--dark);
-  border-top: 1px solid rgba(181, 244, 222, 0.08);
+  /* fond paper, harmonisation : plus de bande sombre en fin de page */
+  background: var(--paper);
+  border-top: 1px solid rgba(10, 30, 46, 0.08);
   padding: 16px clamp(24px, 5vw, 80px);
 }
 .ft-logo {
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 900;
-  color: var(--light);
+  color: var(--ink-900);
   letter-spacing: -0.02em;
 }
 .ft-bottom {
@@ -4686,19 +4689,19 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   flex-wrap: wrap;
   font-family: var(--f-mono);
   font-size: 0.6875rem;
-  color: rgba(255, 255, 255, 0.48);
+  color: rgba(10, 30, 46, 0.5);
   letter-spacing: 0.06em;
 }
 .ft-bottom a {
-  color: rgba(255, 255, 255, 0.48);
+  color: rgba(10, 30, 46, 0.5);
   transition: color 0.2s;
   cursor: none;
 }
 .ft-bottom a:hover {
-  color: rgba(181, 244, 222, 0.7);
+  color: var(--mint-700);
 }
 .ft-sep-dot {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(10, 30, 46, 0.18);
 }
 
 /* TECH BAR (story bar) */
