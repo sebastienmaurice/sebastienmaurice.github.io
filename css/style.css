@@ -4504,16 +4504,17 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-color: var(--coral-500);
   box-shadow: var(--sh-3);
 }
+/* recette .b-final-cta (bento-section) : carte blanche opaque + icone ronde, plutot
+   que le fond translucide plat d'origine — donne plus de definition sur le bandeau mint */
 .cvb-card-dark {
-  background: rgba(10, 30, 46, 0.08);
-  border: 1px solid rgba(10, 30, 46, 0.14);
+  background: var(--white);
+  border: 1px solid rgba(10, 30, 46, 0.08);
   color: var(--dark);
 }
 .cvb-card-dark:hover {
   transform: translateY(-3px) scale(1.015);
-  background: rgba(10, 30, 46, 0.13);
-  border-color: rgba(10, 30, 46, 0.25);
-  box-shadow: var(--sh-2);
+  border-color: rgba(10, 30, 46, 0.16);
+  box-shadow: var(--sh-3);
 }
 .cvb-card-content {
   display: flex;
@@ -4558,9 +4559,12 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--ink-900);
 }
 .cvb-card-dark .cvb-card-icon {
-  background: rgba(10, 30, 46, 0.08);
-  border: 1px solid rgba(10, 30, 46, 0.14);
-  color: var(--dark);
+  /* icone ronde ink-900, meme recette que .b-final-cta-icon (role neutre/structurel,
+     distinct du role "mise en avant" corail de la carte email) */
+  background: var(--ink-900);
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
 }
 
 /* FOOTER */
