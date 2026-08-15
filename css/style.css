@@ -4556,19 +4556,15 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--white);
 }
 
-/* FOOTER — barre sombre flottante, meme radius que les "sections dark" (--r-xl),
-   seule occurrence d'un aplat ink-900 du site : un composant isole en fin de page,
-   pas un fond de section (meme logique que .cvh-icon-wrap/.cvb-card-icon dark) */
+/* FOOTER — bandeau sombre plein cadre (pas de max-width : contrairement au reste du
+   site, il touche les deux bords du viewport, seule occurrence d'un aplat ink-900) */
 .site-footer {
   background: var(--paper);
-  padding: 0 clamp(24px, 5vw, 80px) 40px;
+  padding-top: 40px;
 }
 .ft-bar {
-  max-width: 1600px;
-  margin: 0 auto;
   background: var(--ink-900);
-  border-radius: var(--r-xl);
-  padding: 20px 22px 20px 34px;
+  padding: 22px clamp(24px, 5vw, 80px);
   display: flex;
   align-items: center;
   justify-content: space-between;
