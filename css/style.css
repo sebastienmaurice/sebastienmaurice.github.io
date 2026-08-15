@@ -2460,6 +2460,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   border-left: 2px solid rgba(10, 30, 46, 0.15);
   padding-left: 18px;
 }
+/* dimension chef de projet (v4) : reutilise .s-philosophy-label + la pilule .ia-tag,
+   aucun nouveau composant, juste l'espacement */
+.s-pilotage-block {
+  margin-top: var(--sp-5);
+}
 .s-philosophy-label {
   font-family: var(--f-mono);
   font-size: 0.6875rem;
