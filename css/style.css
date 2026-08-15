@@ -3496,9 +3496,11 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: relative;
   overflow: hidden;
   width: 100%;
-  /* fond paper : .cv-sec-wrap existe en CSS mais n'est jamais pose dans le HTML, le
-     fond etait jusque-la herite du body (dark) — fixe directement ici */
-  background: var(--paper);
+  /* fond paper qui glisse vers mint-200 en fin de section, pour raccorder en douceur
+     avec le degrade mint de .cv-bottom-bar (evite la rupture nette entre le paper et
+     la carte contact) — le paper est conserve sur la quasi-totalite de la hauteur
+     (citation + 6 cartes CV) pour ne pas teinter ce contenu */
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper) 75%, var(--mint-200) 100%);
 }
 .cv-sec::before {
   content: "";
@@ -4555,8 +4557,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 
 /* FOOTER */
 .site-footer {
-  /* fond paper, harmonisation : plus de bande sombre en fin de page */
-  background: var(--paper);
+  /* la page se termine sur le meme mint-200 que .cv-bottom-bar juste au-dessus —
+     continuite totale, aucune rupture avant le bas de page */
+  background: var(--mint-200);
   border-top: 1px solid rgba(10, 30, 46, 0.08);
   padding: 16px clamp(24px, 5vw, 80px);
 }
@@ -4585,7 +4588,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   cursor: none;
 }
 .ft-bottom a:hover {
-  color: var(--mint-700);
+  /* corail plutot que mint : le fond du footer est desormais mint-200, un hover mint
+     s'y distinguerait mal (meme raisonnement que les CTA du hero, aussi sur fond mint) */
+  color: var(--coral-600);
 }
 .ft-sep-dot {
   color: rgba(10, 30, 46, 0.18);
