@@ -289,8 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (ftEmailBtn) ftEmailBtn.addEventListener('click', function(e) {
     if (this.href === '#' || this.getAttribute('href') === '#') {
       e.preventDefault();
-      this.textContent = '✉ ' + window._em;
       this.href = 'mailto:' + window._em;
+      this.setAttribute('aria-label', window._em);
+      this.title = window._em;
       this.onclick = null;
     }
   });

@@ -4556,45 +4556,78 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   color: var(--white);
 }
 
-/* FOOTER */
+/* FOOTER — barre sombre flottante, meme radius que les "sections dark" (--r-xl),
+   seule occurrence d'un aplat ink-900 du site : un composant isole en fin de page,
+   pas un fond de section (meme logique que .cvh-icon-wrap/.cvb-card-icon dark) */
 .site-footer {
-  /* la page se termine sur le meme mint-200 que .cv-bottom-bar juste au-dessus —
-     continuite totale, aucune rupture avant le bas de page */
-  background: var(--mint-200);
-  border-top: 1px solid rgba(10, 30, 46, 0.08);
-  padding: 16px clamp(24px, 5vw, 80px);
+  background: var(--paper);
+  padding: 0 clamp(24px, 5vw, 80px) 40px;
+}
+.ft-bar {
+  max-width: 1600px;
+  margin: 0 auto;
+  background: var(--ink-900);
+  border-radius: var(--r-xl);
+  padding: 20px 22px 20px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ft-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .ft-logo {
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 900;
-  color: var(--ink-900);
+  font-size: 1.0625rem;
   letter-spacing: -0.02em;
+  color: var(--mint-400);
 }
-.ft-bottom {
-  max-width: 1600px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+.ft-meta {
   font-family: var(--f-mono);
   font-size: 0.6875rem;
-  color: rgba(10, 30, 46, 0.5);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  color: rgba(181, 244, 222, 0.5);
 }
-.ft-bottom a {
-  color: rgba(10, 30, 46, 0.5);
-  transition: color 0.2s;
+.ft-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ft-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(233, 251, 243, 0.08);
+  border: 1px solid rgba(233, 251, 243, 0.14);
+  color: var(--mint-200);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
   cursor: none;
 }
-.ft-bottom a:hover {
-  /* corail plutot que mint : le fond du footer est desormais mint-200, un hover mint
-     s'y distinguerait mal (meme raisonnement que les CTA du hero, aussi sur fond mint) */
-  color: var(--coral-600);
+.ft-icon:hover {
+  background: rgba(233, 251, 243, 0.16);
+  border-color: rgba(233, 251, 243, 0.32);
+  transform: translateY(-2px);
 }
-.ft-sep-dot {
-  color: rgba(10, 30, 46, 0.18);
+.ft-icon-coral {
+  /* icone "mise en avant" (role corail canonique), pour l'email = action principale */
+  background: var(--coral-500);
+  border-color: var(--coral-500);
+  color: var(--ink-900);
+}
+.ft-icon-coral:hover {
+  background: var(--coral-600);
+  border-color: var(--coral-600);
+  color: var(--white);
 }
 
 /* TECH BAR (story bar) */
