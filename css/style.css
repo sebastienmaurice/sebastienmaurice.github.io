@@ -304,6 +304,9 @@ body::after {
 
 /* NAV */
 nav.sitenav {
+  /* fond blanc translucide, recette .nav-mock du Design System v4 (plus de teinte
+     mint — toutes les sections du site sont desormais claires, le mint reste reserve
+     au hero et aux accents ponctuels) */
   position: fixed;
   top: 18px;
   left: 50%;
@@ -312,9 +315,9 @@ nav.sitenav {
   display: flex;
   align-items: center;
   gap: 0;
-  background: rgba(181, 244, 222, 0.82);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(28px) saturate(160%);
-  border: 1px solid rgba(10, 30, 46, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--r-pill);
   padding: 5px 6px 5px 22px;
   box-shadow:
@@ -327,7 +330,7 @@ nav.sitenav.solid {
   box-shadow:
     0 8px 40px rgba(10, 30, 46, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  background: rgba(181, 244, 222, 0.96);
+  background: rgba(255, 255, 255, 0.92);
 }
 .nav-logo {
   font-family: var(--f-serif);
@@ -348,6 +351,7 @@ nav.sitenav.solid {
   display: flex;
 }
 .nav-links a {
+  position: relative;
   font-family: var(--f-mono);
   font-size: 0.8125rem;
   color: rgba(10, 30, 46, 0.75);
@@ -359,6 +363,20 @@ nav.sitenav.solid {
 }
 .nav-links a:hover {
   color: var(--dark);
+}
+/* lien de la section visible : soulignement corail, jamais un fond plein (recette v4) */
+.nav-links a.current {
+  color: var(--dark);
+}
+.nav-links a.current::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 1px;
+  height: 2px;
+  border-radius: var(--r-xs);
+  background: var(--coral-500);
 }
 .nav-avail {
   display: flex;
@@ -426,43 +444,6 @@ nav.sitenav .nav-sep {
 nav.sitenav .nav-cta {
   transition: background 320ms var(--ease), color 320ms var(--ease), box-shadow 320ms var(--ease), transform 0.3s var(--ease);
 }
-/* ── Nav adaptive · section bg ── */
-nav.sitenav.nav-on-dark {
-  background: rgba(10, 30, 46, 0.72);
-  backdrop-filter: blur(28px) saturate(160%);
-  border-color: rgba(181, 244, 222, 0.12);
-  box-shadow:
-    0 2px 28px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(181, 244, 222, 0.07);
-}
-nav.sitenav.nav-on-dark .nav-logo,
-nav.sitenav.nav-on-dark .nav-links a,
-nav.sitenav.nav-on-dark .nav-avail {
-  color: var(--mint-300);
-}
-nav.sitenav.nav-on-dark .nav-links a:hover {
-  color: var(--mint-200);
-}
-nav.sitenav.nav-on-dark .nav-sep {
-  background: rgba(143, 237, 208, 0.2);
-}
-nav.sitenav.nav-on-dark .nav-avail {
-  border-left-color: rgba(143, 237, 208, 0.2);
-}
-nav.sitenav.nav-on-dark .nav-cta {
-  background: var(--mint-400);
-  color: var(--ink-900);
-  box-shadow: 0 4px 16px rgba(114, 223, 184, 0.25);
-}
-nav.sitenav.nav-on-dark .nav-cta:hover {
-  background: var(--mint-300);
-  box-shadow: 0 8px 24px rgba(114, 223, 184, 0.4);
-}
-nav.sitenav.nav-on-dark .nav-cta:active {
-  background: var(--mint-500);
-  box-shadow: 0 4px 12px rgba(114, 223, 184, 0.4);
-}
-
 /* ── Nav burger (mobile) ── */
 .nav-burger {
   display: none;
@@ -483,9 +464,6 @@ nav.sitenav.nav-on-dark .nav-cta:active {
 .nav-burger:hover {
   background: rgba(10, 30, 46, 0.06);
 }
-nav.sitenav.nav-on-dark .nav-burger:hover {
-  background: rgba(181, 244, 222, 0.1);
-}
 .nav-burger:active {
   transform: scale(0.92);
 }
@@ -496,9 +474,6 @@ nav.sitenav.nav-on-dark .nav-burger:hover {
   border-radius: var(--r-xs);
   background: rgba(10, 30, 46, 0.75);
   transition: transform 0.3s var(--ease), opacity 0.2s, background 320ms var(--ease);
-}
-nav.sitenav.nav-on-dark .nav-burger span {
-  background: var(--mint-300);
 }
 nav.sitenav.nav-open .nav-burger span:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
@@ -5636,10 +5611,6 @@ a:hover .cta-arrow {
     box-shadow: var(--sh-3);
     animation: navPanelIn 0.25s var(--ease) both;
   }
-  nav.sitenav.nav-open.nav-on-dark .nav-links {
-    background: rgba(10, 30, 46, 0.94);
-    border-color: rgba(181, 244, 222, 0.14);
-  }
   nav.sitenav.nav-open .nav-links a {
     padding: 12px 16px;
     text-align: center;
@@ -5647,9 +5618,6 @@ a:hover .cta-arrow {
   }
   nav.sitenav.nav-open .nav-links a:hover {
     background: rgba(10, 30, 46, 0.06);
-  }
-  nav.sitenav.nav-open.nav-on-dark .nav-links a:hover {
-    background: rgba(181, 244, 222, 0.1);
   }
   .hero {
     flex-direction: column;

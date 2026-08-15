@@ -172,29 +172,29 @@ window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scr
   });
 }());
 
-/* ── Nav adaptive bg selon section ── */
+/* ── Nav : lien actif selon section visible ── */
 (function(){
   const navEl = document.getElementById('nav');
-  if (!navEl) return;
-  const darkIds = ['projets','prestations','stack','parcours'];
-  const order   = ['top','profil','projets','prestations','stack','ia','parcours','contact'];
-  const visible  = {};
-  let current = '';
-  function applyNavTheme() {
+  const navLinks = document.getElementById('navLinks');
+  if (!navEl || !navLinks) return;
+  // toutes les sections du site etant desormais claires (paper/mint), la nav n'a plus
+  // besoin de basculer de theme par section — seul le lien de la section visible
+  // se souligne en corail (recette v4)
+  const order = ['top','profil','projets','prestations','stack','ia','parcours','contact'];
+  const links = {};
+  navLinks.querySelectorAll('a[href^="#"]').forEach(a => { links[a.getAttribute('href').slice(1)] = a; });
+  const visible = {};
+  function applyCurrent() {
     const activeId = [...order].reverse().find(id => visible[id]);
-    const cls = darkIds.includes(activeId) ? 'nav-on-dark' : '';
-    if (cls === current) return;
-    navEl.classList.remove('nav-on-dark');
-    if (cls) navEl.classList.add(cls);
-    current = cls;
+    Object.entries(links).forEach(([id, a]) => a.classList.toggle('current', id === activeId));
   }
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { visible[e.target.id] = e.isIntersecting; });
-    applyNavTheme();
+    applyCurrent();
   }, { threshold: 0.3 });
   order.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
   visible['top'] = true;
-  applyNavTheme();
+  applyCurrent();
 }());
 
 /* ── Scroll Reveal (+ count-up discret sur les stats reveleés) ── */
