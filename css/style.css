@@ -315,9 +315,12 @@ nav.sitenav {
   display: flex;
   align-items: center;
   gap: 0;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(28px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* verre depoli type iOS/macOS : opacite basse + fort blur/saturate, pour que le
+     fond continue de transparaitre legerement meme une fois la nav "solid" au scroll */
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--r-pill);
   padding: 5px 6px 5px 22px;
   box-shadow:
@@ -327,10 +330,14 @@ nav.sitenav {
   transition: all 320ms var(--ease);
 }
 nav.sitenav.solid {
+  /* au scroll : un peu plus de matiere pour la lisibilite, mais on reste translucide
+     (jamais un blanc plein) */
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
   box-shadow:
     0 8px 40px rgba(10, 30, 46, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.92);
 }
 .nav-logo {
   font-family: var(--f-serif);
