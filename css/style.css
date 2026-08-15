@@ -3496,11 +3496,9 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   position: relative;
   overflow: hidden;
   width: 100%;
-  /* fond paper qui glisse vers mint-200 avant .cv-bottom-bar (qui demarre vers 66% de
-     la hauteur de section) : mint-100 (plus clair) tient le palier derriere les 3
-     cartes qui precedent le bandeau (~58-64%), puis approfondit vers mint-200 juste
-     avant la carte pour matcher sa saturation au raccord */
-  background: linear-gradient(180deg, var(--paper) 0%, var(--paper) 25%, var(--mint-100) 50%, var(--mint-100) 62%, var(--mint-200) 68%);
+  /* fond paper plat : le raccord avec .cv-bottom-bar se fait via son propre halo mint
+     flou (box-shadow), pas via une teinte de fond derriere les cartes qui precedent */
+  background: var(--paper);
 }
 .cv-sec::before {
   content: "";
