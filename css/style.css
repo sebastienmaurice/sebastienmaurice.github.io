@@ -6660,6 +6660,13 @@ a:hover .cta-arrow {
   border-color: rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.45);
 }
+/* Le badge etoile (coral-100/coral-700, pense pour un fond clair) devient illisible
+   sur le fond bleu nuit — meme recette vivide que .prest-badge-coral (corail plein +
+   texte fonce) pour rester net */
+.prest-card-launch .prest-badge-star {
+  background: var(--coral-500);
+  color: var(--ink-900);
+}
 .prest-card-launch .prest-card-arrow {
   background: rgba(255, 255, 255, 0.14);
   color: var(--mint-300);
