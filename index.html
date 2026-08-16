@@ -453,10 +453,21 @@
 <!-- PRESTATIONS -->
 <section class="prestations-sec" id="prestations">
   <div class="sec-inner">
-    <div class="prest-head">
-      <div class="sec-label prest-sec-label" data-reveal>Prestations</div>
-      <h2 class="prestations-title" data-reveal>Des solutions web sur-mesure,<br><em>pensées pour vos enjeux.</em></h2>
-      <p class="prestations-lead" data-reveal>Chaque projet est unique. Ces packs clés en main couvrent l'essentiel de vos besoins digitaux.</p>
+
+    <!-- Titre + banniere CTA, pleine largeur au-dessus du portrait et des cards -->
+    <div class="prest-head-row" data-reveal>
+      <div class="prest-head">
+        <div class="sec-label prest-sec-label" data-reveal>Prestations</div>
+        <h2 class="prestations-title" data-reveal>Des solutions web sur-mesure,<br><em>pensées pour vos enjeux.</em></h2>
+        <p class="prestations-lead" data-reveal>Chaque projet est unique. Ces packs clés en main couvrent l'essentiel de vos besoins digitaux.</p>
+      </div>
+      <div class="prest-promo-pill" data-reveal>
+        <span class="prest-promo-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.08-2.91a2.18 2.18 0 0 0-2.92-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+        <div>
+          <div class="prest-promo-title">Des packs pensés pour vos enjeux</div>
+          <div class="prest-promo-sub">Clarté · Efficacité · Résultats</div>
+        </div>
+      </div>
     </div>
 
     <div class="prest-layout">
@@ -466,146 +477,174 @@
         <div class="prest-photo-wrap">
         <div class="prest-photo-frame">
           <div class="prest-photo-blob" aria-hidden="true"></div>
+
+          <!-- Constellation decorative : coordonnees techniques discretes, strictement derriere le personnage -->
+          <span class="prest-deco-label prest-deco-1" aria-hidden="true">&lt;html&gt;</span>
+          <span class="prest-deco-label prest-deco-2 is-mint" aria-hidden="true">Performance</span>
+          <span class="prest-deco-label prest-deco-3" aria-hidden="true">SEO · UX · CRO</span>
+          <span class="prest-deco-label prest-deco-4 is-mint" aria-hidden="true">Dev front-end · 15+ ans</span>
+          <div class="prest-deco-snippet" aria-hidden="true">.hero {<br>&nbsp;&nbsp;display: flex;<br>&nbsp;&nbsp;align-items: center;<br>}</div>
+          <span class="prest-deco-dot prest-deco-dot-a" aria-hidden="true"></span>
+          <span class="prest-deco-dot prest-deco-dot-b" aria-hidden="true"></span>
+
           <img class="prest-photo" src="assets/img/prestations/section-prestations-sebastien-maurice.png" alt="Sébastien Maurice, en réflexion" loading="lazy" width="905" height="1200">
-          <span class="prest-photo-chip chip-code" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-          <div class="prest-photo-chip chip-snippet" aria-hidden="true">
-            <span>.hero {</span>
-            <span>&nbsp;&nbsp;display: flex;</span>
-            <span>&nbsp;&nbsp;align-items: center;</span>
-            <span>}</span>
-          </div>
-          <div class="prest-photo-chip chip-stat" aria-hidden="true">
-            <span class="chip-stat-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-            <div><div class="chip-stat-title">Dev front-end</div><div class="chip-stat-sub">15+ ans d'expérience</div></div>
-          </div>
           <div class="prest-photo-context"><span id="prestContextLabel">Cherche la meilleure solution…</span></div>
         </div>
         </div>
       </div>
 
-      <!-- Micro-cards -->
+      <!-- Cards flip : hauteur strictement fixe et identique, detail revele au survol/focus/tap -->
       <div class="prest-mgrid">
 
         <!-- Card 1 · Audit WordPress -->
-        <div class="prest-cell"><div class="prest-card" data-reveal data-tag="Performance → SEO → UX">
-          <div class="prest-card-top">
-            <span class="prest-badge prest-badge-coral">Livré en 48h</span>
-            <span class="prest-card-icon prest-card-icon-coral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></span>
+        <div class="prest-card-flip" data-reveal data-tag="Performance → SEO → UX">
+          <div class="prest-card-flip-inner">
+            <div class="prest-card-face prest-card-front">
+              <div class="prest-card-top">
+                <span class="prest-badge prest-badge-coral">Livré en 48h</span>
+                <span class="prest-card-icon prest-card-icon-coral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></span>
+              </div>
+              <div class="prest-card-name">Pack Audit WordPress</div>
+              <div class="prest-price">490 <span class="prest-price-unit">€</span></div>
+              <span class="prest-card-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="prest-card-face prest-card-back">
+              <div class="prest-card-back-name">Pack Audit WordPress</div>
+              <ul class="prest-includes">
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Rapport PDF 10–15 pages</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Score PageSpeed + Core Web Vitals</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Analyse SEO technique</li>
+              </ul>
+              <a href="#contact" class="btn-vivid prest-cta">Commander l'audit <span class="cta-arrow">→</span></a>
+            </div>
           </div>
-          <div class="prest-card-name">Pack Audit WordPress</div>
-          <div class="prest-price">490 <span class="prest-price-unit">€</span></div>
-          <div class="prest-card-expand"><div class="prest-card-expand-inner">
-          <div class="prest-divider"></div>
-          <ul class="prest-includes">
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Rapport PDF 10–15 pages</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Score PageSpeed + Core Web Vitals</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Analyse SEO technique</li>
-          </ul>
-          </div></div>
-          <a href="#contact" class="btn-vivid prest-cta">Commander l'audit <span class="cta-arrow">→</span></a>
-        </div></div>
+        </div>
 
         <!-- Card 2 · Landing Page -->
-        <div class="prest-cell"><div class="prest-card" data-reveal data-tag="Figma → WordPress">
-          <div class="prest-card-top">
-            <span class="prest-badge prest-badge-sand">Livré en 5 jours</span>
-            <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></span>
+        <div class="prest-card-flip" data-reveal data-tag="Figma → WordPress">
+          <div class="prest-card-flip-inner">
+            <div class="prest-card-face prest-card-front">
+              <div class="prest-card-top">
+                <span class="prest-badge prest-badge-sand">Livré en 5 jours</span>
+                <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></span>
+              </div>
+              <div class="prest-card-name">Pack Landing Page WordPress</div>
+              <div class="prest-price">1&nbsp;200 <span class="prest-price-unit">€</span></div>
+              <span class="prest-card-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="prest-card-face prest-card-back">
+              <div class="prest-card-back-name">Pack Landing Page WordPress</div>
+              <ul class="prest-includes">
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>1 page responsive Figma → WordPress</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Formulaire de contact</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>SEO on-page inclus</li>
+              </ul>
+              <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Démarrer le projet <span class="cta-arrow">→</span></a>
+            </div>
           </div>
-          <div class="prest-card-name">Pack Landing Page WordPress</div>
-          <div class="prest-price">1&nbsp;200 <span class="prest-price-unit">€</span></div>
-          <div class="prest-card-expand"><div class="prest-card-expand-inner">
-          <div class="prest-divider"></div>
-          <ul class="prest-includes">
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>1 page responsive Figma → WordPress</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Formulaire de contact</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>SEO on-page inclus</li>
-          </ul>
-          </div></div>
-          <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Démarrer le projet <span class="cta-arrow">→</span></a>
-        </div></div>
+        </div>
 
         <!-- Card 3 · Refonte PME -->
-        <div class="prest-cell"><div class="prest-card" data-reveal data-tag="Maquette → Refonte complète">
-          <div class="prest-card-top">
-            <span class="prest-badge prest-badge-sky">Livré en 15 jours</span>
-            <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></span>
+        <div class="prest-card-flip" data-reveal data-tag="Maquette → Refonte complète">
+          <div class="prest-card-flip-inner">
+            <div class="prest-card-face prest-card-front">
+              <div class="prest-card-top">
+                <span class="prest-badge prest-badge-sky">Livré en 15 jours</span>
+                <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></span>
+              </div>
+              <div class="prest-card-name">Pack Refonte WordPress PME</div>
+              <div class="prest-price">2&nbsp;800 <span class="prest-price-unit">€</span></div>
+              <span class="prest-card-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="prest-card-face prest-card-back">
+              <div class="prest-card-back-name">Pack Refonte WordPress PME</div>
+              <ul class="prest-includes">
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Jusqu'à 8 pages</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Maquette Figma incluse</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Intégration Elementor Pro</li>
+              </ul>
+              <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Discutons de votre projet <span class="cta-arrow">→</span></a>
+            </div>
           </div>
-          <div class="prest-card-name">Pack Refonte WordPress PME</div>
-          <div class="prest-price">2&nbsp;800 <span class="prest-price-unit">€</span></div>
-          <div class="prest-card-expand"><div class="prest-card-expand-inner">
-          <div class="prest-divider"></div>
-          <ul class="prest-includes">
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Jusqu'à 8 pages</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Maquette Figma incluse</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Intégration Elementor Pro</li>
-          </ul>
-          </div></div>
-          <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Discutons de votre projet <span class="cta-arrow">→</span></a>
-        </div></div>
+        </div>
 
         <!-- Card 4 · Boutique WooCommerce -->
-        <div class="prest-cell"><div class="prest-card" data-reveal data-tag="Catalogue → Paiement">
-          <div class="prest-card-top">
-            <span class="prest-badge prest-badge-sand">Livré en 12 jours</span>
-            <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+        <div class="prest-card-flip" data-reveal data-tag="Catalogue → Paiement">
+          <div class="prest-card-flip-inner">
+            <div class="prest-card-face prest-card-front">
+              <div class="prest-card-top">
+                <span class="prest-badge prest-badge-sand">Livré en 12 jours</span>
+                <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+              </div>
+              <div class="prest-card-name">Pack Boutique WooCommerce</div>
+              <div class="prest-price">2&nbsp;200 <span class="prest-price-unit">€</span></div>
+              <span class="prest-card-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="prest-card-face prest-card-back">
+              <div class="prest-card-back-name">Pack Boutique WooCommerce</div>
+              <ul class="prest-includes">
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Installation &amp; configuration WooCommerce</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Jusqu'à 15 produits</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Paiement sécurisé &amp; livraison</li>
+              </ul>
+              <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Discutons de votre projet <span class="cta-arrow">→</span></a>
+            </div>
           </div>
-          <div class="prest-card-name">Pack Boutique WooCommerce</div>
-          <div class="prest-price">2&nbsp;200 <span class="prest-price-unit">€</span></div>
-          <div class="prest-card-expand"><div class="prest-card-expand-inner">
-          <div class="prest-divider"></div>
-          <ul class="prest-includes">
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Installation &amp; configuration WooCommerce</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Jusqu'à 15 produits</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Paiement sécurisé &amp; livraison</li>
-          </ul>
-          </div></div>
-          <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Discutons de votre projet <span class="cta-arrow">→</span></a>
-        </div></div>
+        </div>
 
         <!-- Card 5 · Audit Automatisation IA -->
-        <div class="prest-cell"><div class="prest-card" data-reveal data-tag="Process → Automatisation">
-          <div class="prest-card-top">
-            <span class="prest-badge prest-badge-green">Livré en 5 jours</span>
-            <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <div class="prest-card-flip" data-reveal data-tag="Process → Automatisation">
+          <div class="prest-card-flip-inner">
+            <div class="prest-card-face prest-card-front">
+              <div class="prest-card-top">
+                <span class="prest-badge prest-badge-green">Livré en 5 jours</span>
+                <span class="prest-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+              </div>
+              <div class="prest-card-name">Pack Audit Automatisation IA</div>
+              <div class="prest-price">290 <span class="prest-price-unit">€</span></div>
+              <span class="prest-card-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="prest-card-face prest-card-back">
+              <div class="prest-card-back-name">Pack Audit Automatisation IA</div>
+              <ul class="prest-includes">
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Cartographie de vos process</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>3 automatisations concrètes</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Rapport PDF + outils recommandés</li>
+              </ul>
+              <a href="#contact" class="btn-vivid prest-cta">Réserver mon audit <span class="cta-arrow">→</span></a>
+            </div>
           </div>
-          <div class="prest-card-name">Pack Audit Automatisation IA</div>
-          <div class="prest-price">290 <span class="prest-price-unit">€</span></div>
-          <div class="prest-card-expand"><div class="prest-card-expand-inner">
-          <div class="prest-divider"></div>
-          <ul class="prest-includes">
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Cartographie de vos process</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>3 automatisations concrètes</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Rapport PDF + outils recommandés</li>
-          </ul>
-          </div></div>
-          <a href="#contact" class="btn-vivid prest-cta">Réserver mon audit <span class="cta-arrow">→</span></a>
-        </div></div>
+        </div>
 
         <!-- Card 6 · Pack Lancement Web -->
-        <div class="prest-cell prest-cell-tall"><div class="prest-card prest-card-launch" data-reveal data-tag="Idée → Site en ligne">
-          <div class="prest-card-top">
-            <div class="prest-card-badges">
-              <span class="prest-badge prest-badge-star">⭐ Idéal pour démarrer</span>
-              <span class="prest-badge prest-badge-sand">Livré en 7 jours</span>
+        <div class="prest-card-flip prest-card-launch" data-reveal data-tag="Idée → Site en ligne">
+          <div class="prest-card-flip-inner">
+            <div class="prest-card-face prest-card-front">
+              <div class="prest-card-top">
+                <span class="prest-badge prest-badge-star">⭐ Idéal pour démarrer</span>
+                <span class="prest-card-icon prest-card-icon-coral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.08-2.91a2.18 2.18 0 0 0-2.92-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+              </div>
+              <div class="prest-card-name">Pack Lancement Web</div>
+              <div class="prest-price">990 <span class="prest-price-unit">€</span></div>
+              <span class="prest-card-arrow" aria-hidden="true">→</span>
             </div>
-            <span class="prest-card-icon prest-card-icon-coral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.08-2.91a2.18 2.18 0 0 0-2.92-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+            <div class="prest-card-face prest-card-back">
+              <span class="prest-badge prest-badge-sand prest-card-back-badge">Livré en 7 jours</span>
+              <div class="prest-card-sub">Artisans · PME · Freelances · Libéraux</div>
+              <ul class="prest-includes">
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Site WordPress 3–5 pages</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Design pro adapté à votre activité</li>
+                <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>SEO on-page + Google Maps</li>
+              </ul>
+              <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Lancer mon site <span class="cta-arrow">→</span></a>
+            </div>
           </div>
-          <div class="prest-card-name">Pack Lancement Web</div>
-          <div class="prest-card-sub">Artisans · PME · Freelances · Libéraux</div>
-          <div class="prest-price">990 <span class="prest-price-unit">€</span></div>
-          <div class="prest-card-expand"><div class="prest-card-expand-inner">
-          <div class="prest-divider"></div>
-          <ul class="prest-includes">
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Site WordPress 3–5 pages</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>Design pro adapté à votre activité</li>
-            <li><span class="prest-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg></span>SEO on-page + Google Maps</li>
-          </ul>
-          </div></div>
-          <a href="https://calendly.com/sebastienmaurice/prise-de-contact" target="_blank" rel="noopener" class="btn-vivid prest-cta">Lancer mon site <span class="cta-arrow">→</span></a>
-        </div></div>
+        </div>
 
       </div>
     </div>
+
+    <p class="prest-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 9V6a3 3 0 0 1 6 0v6"/><path d="M9 12V9a2 2 0 0 1 4 0"/><path d="M13 11a2 2 0 0 1 4 0v2"/><path d="M17 12a2 2 0 0 1 4 0v3a7 7 0 0 1-7 7h-1a7 7 0 0 1-6.29-3.94L4 13.5c-.5-1 0-2 1-2.2.7-.14 1.4.2 1.8.8L8 14"/></svg>Survolez une offre pour découvrir le détail</p>
 
     <!-- Barre de réassurance -->
     <div class="prest-trust-bar" data-reveal>

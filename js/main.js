@@ -65,7 +65,7 @@ if (bentoSec) {
 }
 
 /* ── Hover curseur · toutes zones cliquables ── */
-document.querySelectorAll('a[href], button, .b-card, .b-card-proj, .b-btn-accent, .va-case-card, .prest-card').forEach(el => {
+document.querySelectorAll('a[href], button, .b-card, .b-card-proj, .b-btn-accent, .va-case-card, .prest-card-flip').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cring.classList.add('lg', 'on-btn');
     cur.classList.add('on-btn');
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ── Prestations : label contextuel pres du portrait au survol/focus d'une card ── */
 (function () {
   const label = document.getElementById('prestContextLabel');
-  const cards = document.querySelectorAll('.prest-mgrid .prest-card[data-tag]');
+  const cards = document.querySelectorAll('.prest-mgrid .prest-card-flip[data-tag]');
   if (!label || !cards.length) return;
   const defaultText = label.textContent;
   const wrap = label.closest('.prest-photo-context');
@@ -314,6 +314,20 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('mouseleave', () => setTag(defaultText, false));
     card.addEventListener('focusin', () => setTag(tag, true));
     card.addEventListener('focusout', () => setTag(defaultText, false));
+  });
+}());
+
+/* ── Prestations : tap-to-flip sur tactile (pas de hover fiable) ── */
+(function () {
+  if (!window.matchMedia('(hover: none)').matches) return;
+  const cards = document.querySelectorAll('.prest-card-flip');
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // le lien CTA (face arriere) doit continuer a naviguer normalement
+      if (e.target.closest('a')) return;
+      cards.forEach(other => { if (other !== card) other.classList.remove('is-flipped'); });
+      card.classList.toggle('is-flipped');
+    });
   });
 }());
 
