@@ -6411,21 +6411,27 @@ a:hover .cta-arrow {
   text-decoration: none;
   line-height: 1.3;
   animation: prest-catalogue-float 4s ease-in-out infinite;
-  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease), background 0.24s var(--ease);
+  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease), background 0.24s var(--ease), color 0.24s var(--ease);
 }
 .prest-catalogue-btn:hover,
 .prest-catalogue-btn:focus-visible {
-  background: var(--mint-700);
+  background: var(--coral-500);
+  color: var(--ink-900);
   box-shadow: var(--sh-4);
   animation-play-state: paused;
   transform: translateY(-2px);
 }
+.prest-catalogue-btn:hover .prest-catalogue-icon,
+.prest-catalogue-btn:focus-visible .prest-catalogue-icon {
+  background: rgba(10, 30, 46, 0.12);
+}
 .prest-catalogue-icon {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
+  transition: background 0.24s var(--ease);
   display: flex;
   align-items: center;
   justify-content: center;
