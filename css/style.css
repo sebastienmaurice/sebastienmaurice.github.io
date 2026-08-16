@@ -6161,7 +6161,7 @@ a:hover .cta-arrow {
 /* Titre + banniere CTA, pleine largeur au-dessus du portrait et des cards */
 .prest-head-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: var(--sp-6);
   flex-wrap: wrap;
@@ -6181,7 +6181,6 @@ a:hover .cta-arrow {
   background: var(--coral-100);
   border-radius: var(--r-lg);
   padding: 14px 22px 14px 14px;
-  margin-top: 6px;
 }
 .prest-promo-icon {
   flex-shrink: 0;
@@ -6369,7 +6368,9 @@ a:hover .cta-arrow {
    plus de card qui grandit/pousse ses voisines, la surface se retourne sur elle-meme */
 .prest-card-flip {
   position: relative;
-  height: 222px;
+  /* assez de marge pour que la face arriere la plus chargee (Pack Lancement Web,
+     badge + sous-titre + 3 benefices + CTA) respire sans coller au bord bas */
+  height: 240px;
   perspective: 1200px;
 }
 .prest-card-flip-inner {
@@ -6532,7 +6533,7 @@ a:hover .cta-arrow {
   margin-bottom: 10px;
 }
 .prest-card-back-badge {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 /* Pack Lancement Web — seule card differenciee (les 5 autres restent au meme poids
@@ -6672,10 +6673,6 @@ a:hover .cta-arrow {
   .prest-mgrid {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-  /* un peu plus de hauteur en 1 colonne : la face arriere respire mieux au tap */
-  .prest-card-flip {
-    height: 240px;
   }
   .prestations-title {
     font-size: clamp(2rem, 8vw, 2.8rem);
