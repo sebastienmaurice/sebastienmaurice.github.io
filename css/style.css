@@ -171,6 +171,36 @@ html {
   --d-slow: 480ms;
 
   /* ============================================================
+     MOTION SYSTEM — durees / easings / distances / stagger nommes par
+     intention plutot que par valeur, pour que le mouvement soit un
+     systeme et non une succession de nombres arbitraires. Valeurs choisies
+     pour matcher les motifs deja dominants dans le site (mesures avant
+     d'ecrire ce bloc) plutot que des chiffres ronds arbitraires : zero
+     regression la ou les tokens remplacent une valeur litterale identique.
+     Une seule courbe signature (--ease) est utilisee dans tout le site —
+     le systeme varie la duree et la distance, pas la courbe. --ease-out
+     et --d-fast/--d-base/--d-slow restent disponibles mais ne sont plus
+     les canoniques (usage reel quasi nul avant ce jour).
+     ============================================================ */
+  /* Durees — 250ms = .cta-arrow (fleche CTA, motif le plus reutilise du
+     site) ; 320ms = box-shadow/border-color des cards (Prestations, etc.) ;
+     700ms = [data-reveal] (entree au scroll, motif le plus repete) */
+  --dur-micro: 250ms;
+  --dur-standard: 320ms;
+  --dur-expressive: 700ms;
+  --stagger-short: 50ms;
+  --stagger-standard: 100ms;
+  /* Easings */
+  --ease-micro: var(--ease);
+  --ease-standard: var(--ease);
+  --ease-expressive: var(--ease);
+  /* Distances — 2px = lift de hover le plus courant ; 28px = [data-reveal] */
+  --dist-micro: 2px;
+  --dist-small: 4px;
+  --dist-medium: 6px;
+  --dist-large: 28px;
+
+  /* ============================================================
      ALIAS — noms historiques du site, repointés vers les nouveaux
      tokens pour ne rien casser dans le reste de la feuille de style
      ============================================================ */
@@ -5368,10 +5398,10 @@ a.skill-tab-proof:hover .cta-arrow {
 /* DATA-REVEAL + LIGHTBOX + MISC */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(var(--dist-large));
   transition:
-    opacity 0.7s var(--ease),
-    transform 0.7s var(--ease);
+    opacity var(--dur-expressive) var(--ease-expressive),
+    transform var(--dur-expressive) var(--ease-expressive);
 }
 [data-reveal].revealed {
   opacity: 1;
@@ -5380,7 +5410,7 @@ a.skill-tab-proof:hover .cta-arrow {
 /* Fleches de CTA texte : meme logique de mouvement que les CTA a icone SVG (.b-hover-btn, .hero-scroll) */
 .cta-arrow {
   display: inline-block;
-  transition: transform 0.25s var(--ease);
+  transition: transform var(--dur-micro) var(--ease-micro);
 }
 a:hover .cta-arrow {
   transform: translateX(3px);
