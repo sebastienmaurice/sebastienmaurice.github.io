@@ -6632,11 +6632,43 @@ a:hover .cta-arrow {
 }
 
 /* Pack Lancement Web — 6e carte, meme gabarit fixe que les 5 autres offres ; seule
-   difference : double badge en tete et fond mint tres subtil (jamais une carte plus
-   grande ni une banniere a part) */
+   difference : double badge en tete et fond bleu nuit (meme ink-900 que le nav/footer)
+   avec contenu contraste en blanc/mint/corail, plutot qu'un simple fond mint pale
+   (jamais une carte plus grande ni une banniere a part) */
 .prest-card-launch .prest-card-face {
-  background: var(--mint-50);
-  border-color: rgba(47, 138, 114, 0.22);
+  background: var(--ink-900);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.prest-card-launch .prest-card-name,
+.prest-card-launch .prest-card-accroche {
+  color: var(--white);
+}
+.prest-card-launch .prest-price {
+  color: var(--mint-300);
+}
+.prest-card-launch .prest-includes li {
+  color: rgba(255, 255, 255, 0.75);
+}
+.prest-card-launch .prest-check {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--mint-300);
+}
+.prest-card-launch .prest-more {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.prest-card-launch .prest-check-more {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.45);
+}
+.prest-card-launch .prest-card-arrow {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--mint-300);
+}
+.prest-card-launch:hover .prest-card-arrow,
+.prest-card-launch:focus-within .prest-card-arrow,
+.prest-card-launch.is-revealed .prest-card-arrow {
+  background: var(--mint-500);
+  color: var(--ink-900);
 }
 
 /* "Et +" : meme nombre d'items que les 5 autres cards (3 benefices), le reste du
