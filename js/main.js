@@ -280,22 +280,6 @@ if (document.fonts && document.fonts.ready) {
   const btns   = document.querySelectorAll('.skill-tab-btn');
   const panels = document.querySelectorAll('.skill-tabs-panel');
 
-  /* Anime les anneaux SVG (jauges %) du panneau : trace l'arc en
-     animant stroke-dashoffset depuis sa longueur (caché) vers 0 (plein).
-     Cible le cercle de progression (celui qui porte stroke-dasharray),
-     pas le cercle de fond. */
-  function animateRings(panel) {
-    panel.querySelectorAll('.sk-ring circle[stroke-dasharray], .skill-tab-widget-ring circle[stroke-dasharray]').forEach(circle => {
-      const len = parseFloat(circle.getAttribute('stroke-dasharray')) || 0;
-      circle.style.transition = 'none';
-      circle.style.strokeDashoffset = len;
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        circle.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(.16,1,.3,1)';
-        circle.style.strokeDashoffset = '0';
-      }));
-    });
-  }
-
   function activateTab(tab) {
     btns.forEach(b => {
       const isActive = b.dataset.tab === tab;
@@ -303,19 +287,11 @@ if (document.fonts && document.fonts.ready) {
       b.setAttribute('aria-selected', isActive);
     });
     panels.forEach(p => {
-      const isActive = p.dataset.panel === tab;
-      p.style.display = isActive ? 'grid' : 'none';
-      if (isActive) animateRings(p);
+      p.style.display = p.dataset.panel === tab ? 'grid' : 'none';
     });
   }
 
   btns.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
-
-  function initBars() {
-    const fp = document.querySelector('.skill-tabs-panel[data-panel="front"]');
-    if (fp) animateRings(fp);
-  }
-  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', initBars) : initBars();
 })();
 
 /* ── Email reveal ── */

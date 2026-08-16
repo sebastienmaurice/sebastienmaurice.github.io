@@ -2833,7 +2833,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 .sk-chip {
   /* grammaire .b-skill-pill (bento-section) */
   display: grid;
-  grid-template-columns: 36px 1fr 46px;
+  grid-template-columns: 36px 1fr;
   align-items: center;
   gap: 10px;
   background: var(--white);
@@ -2897,20 +2897,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.sk-ring {
-  display: block;
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
-}
-/* le SVG inline garde des attributs stroke/fill penses pour un fond sombre (texte blanc,
-   piste quasi invisible) — surcharge CSS pour rester lisible sur .sk-chip desormais blanc */
-.sk-ring circle:first-child {
-  stroke: rgba(10, 30, 46, 0.08);
-}
-.sk-ring text {
-  fill: var(--ink-900);
-}
 .skill-tab-note {
   font-family: var(--f-disp);
   font-size: 0.9375rem;
@@ -2919,6 +2905,49 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   line-height: 1.65;
   padding-top: 14px;
   border-top: 1px solid rgba(10, 30, 46, 0.08);
+}
+/* Preuve : chaque onglet de competence renvoie vers un projet reel plutot que vers
+   une auto-evaluation en % — meme recette de lien que .cta-arrow (fleche qui glisse) */
+.skill-tab-proof {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px 8px;
+  margin-top: 12px;
+  font-family: var(--f-disp);
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+.skill-tab-proof-label,
+.skill-tab-proof .skill-tab-proof-label {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mint-700);
+}
+.skill-tab-proof-name {
+  font-weight: 700;
+  color: var(--ink-900);
+}
+a.skill-tab-proof:hover .skill-tab-proof-name {
+  color: var(--mint-700);
+}
+a.skill-tab-proof:hover .cta-arrow {
+  transform: translateX(3px);
+}
+.skill-tab-proof a {
+  color: var(--mint-700);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.skill-tab-proof a:hover {
+  color: var(--mint-900);
+}
+.skill-tab-proof .proof-sep {
+  color: rgba(10, 30, 46, 0.3);
 }
 .skill-tab-right {
   position: relative;
@@ -2969,14 +2998,6 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-.skill-tab-widget-ring {
-  flex-shrink: 0;
-  width: 42px;
-  height: 42px;
-}
-.skill-tab-widget-ring circle {
-  stroke-linecap: round;
 }
 .skill-tab-widget-body {
   display: flex;
