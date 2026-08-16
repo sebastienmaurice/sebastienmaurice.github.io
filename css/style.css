@@ -2265,6 +2265,59 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: var(--mint-600);
   color: #fff;
 }
+/* Ciné Délices : projet phare du carrousel — meme signature sombre que la
+   card "Pack Lancement Web" de Prestations (fond ink-900, contenu recontraste
+   en blanc/mint/corail) pour le distinguer des projets complementaires avant
+   meme de lire le texte, sans introduire une nouvelle couleur au systeme */
+.b-card-proj-flagship {
+  background: var(--ink-900);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 32px rgba(10, 30, 46, 0.28);
+}
+.b-card-proj-flagship:hover {
+  box-shadow: 0 16px 40px rgba(10, 30, 46, 0.34);
+}
+.b-card-proj-flagship .b-proj-name {
+  color: var(--white);
+}
+.b-card-proj-flagship .b-proj-desc {
+  color: rgba(255, 255, 255, 0.62);
+}
+.b-card-proj-flagship .b-proj-cat {
+  background: var(--coral-500);
+  color: var(--ink-900);
+}
+.b-card-proj-flagship .b-proj-tags span:not(.b-proj-cat) {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+}
+.b-card-proj-flagship .b-proj-arrow {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--mint-300);
+}
+.b-card-proj-flagship:hover .b-proj-arrow {
+  background: var(--mint-500);
+  color: var(--ink-900);
+}
+.b-proj-flagship-badge {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--f-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-900);
+  background: var(--coral-500);
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
 .b-btn-accent {
   display: inline-flex;
   align-items: center;
