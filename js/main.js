@@ -317,16 +317,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 }());
 
-/* ── Prestations : tap-to-flip sur tactile (pas de hover fiable) ── */
+/* ── Prestations : reveal au tap sur tactile (pas de hover fiable) ── */
 (function () {
   if (!window.matchMedia('(hover: none)').matches) return;
   const cards = document.querySelectorAll('.prest-card-flip');
   cards.forEach(card => {
     card.addEventListener('click', (e) => {
-      // le lien CTA (face arriere) doit continuer a naviguer normalement
+      // le lien CTA (face reveal) doit continuer a naviguer normalement
       if (e.target.closest('a')) return;
-      cards.forEach(other => { if (other !== card) other.classList.remove('is-flipped'); });
-      card.classList.toggle('is-flipped');
+      cards.forEach(other => { if (other !== card) other.classList.remove('is-revealed'); });
+      card.classList.toggle('is-revealed');
     });
   });
 }());
