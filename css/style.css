@@ -6341,8 +6341,8 @@ a:hover .cta-arrow {
 }
 .prest-deco-label.is-mint { color: rgba(47, 138, 114, 0.42); }
 .prest-deco-1 { top: 2%; left: -6%; animation-delay: -2s; }
-.prest-deco-2 { top: 20%; right: -4%; animation-delay: -6s; }
-.prest-deco-3 { bottom: 32%; right: -8%; animation-delay: -9s; }
+.prest-deco-2 { top: 20%; right: 8%; animation-delay: -6s; }
+.prest-deco-3 { bottom: 32%; right: 4%; animation-delay: -9s; }
 .prest-deco-4 { bottom: 8%; left: -14%; animation-delay: -4s; }
 
 /* Snippet de code : element de fond tres discret (pas une carte) — faible opacite,
@@ -6374,7 +6374,7 @@ a:hover .cta-arrow {
   pointer-events: none;
   animation: prest-deco-drift 13s ease-in-out infinite;
 }
-.prest-deco-dot-a { top: 12%; right: 2%; }
+.prest-deco-dot-a { top: 12%; right: 12%; }
 .prest-deco-dot-b { bottom: 16%; left: 4%; animation-delay: -7s; }
 
 @keyframes prest-deco-drift {
@@ -6386,14 +6386,15 @@ a:hover .cta-arrow {
   50% { transform: translate(2px, -2px); opacity: 0.7; }
 }
 
-/* Bouton telechargement catalogue : colle au personnage (bas du cadre, presque sur
-   l'epaule) et flotte tres legerement en continu — seul element du decor qui reste
-   au-dessus de lui (z-index eleve), le reste de la constellation restant en fond */
+/* Bouton telechargement catalogue : au-dessus de l'image, cote droit mais legerement
+   ramene vers le visage (pas cale sur le coin), et flotte tres legerement en continu —
+   seul element du decor qui reste au-dessus de lui (z-index eleve), le reste de la
+   constellation restant en fond */
 .prest-catalogue-btn {
   position: absolute;
   z-index: 4;
-  bottom: 6%;
-  right: 4%;
+  top: 2%;
+  right: 12%;
   display: flex;
   align-items: center;
   gap: 8px;
