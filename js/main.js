@@ -32,6 +32,49 @@
   });
 })();
 
+/* ── Hero : parallaxe legere entre le texte et la photo au scroll ──
+   Meme principe que la parallaxe de cine-delices.js (rAF, compositor-only,
+   easing, arret hors viewport) mais ecrite pour ce DOM. Utilise la
+   propriete CSS `translate` (independante de `transform`) pour ne jamais
+   entrer en conflit avec l'animation d'entree de .hero-photo. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // sous 1100px le hero passe en colonne (photo au-dessus du texte) : la
+  // parallaxe ne cree plus de relation de profondeur entre les deux, elle
+  // ajouterait juste du mouvement gratuit sur mobile/tablette
+  if (window.matchMedia('(max-width: 1100px)').matches) return;
+  const heroSection = document.getElementById('top');
+  const heroText = heroSection && heroSection.querySelector('.hero-l');
+  const heroPhoto = heroSection && heroSection.querySelector('.hero-photo');
+  if (!heroSection || !heroText || !heroPhoto) return;
+
+  const layers = [
+    { el: heroText, speed: 8 },
+    { el: heroPhoto, speed: 22 },
+  ];
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  let raf = null;
+  let inView = true;
+
+  function apply() {
+    const rect = heroSection.getBoundingClientRect();
+    const progress = Math.min(Math.max(-rect.top / (rect.height || 1), 0), 1);
+    const eased = easeOut(progress);
+    layers.forEach(l => { l.el.style.translate = `0 ${(eased * l.speed).toFixed(2)}px`; });
+    raf = null;
+  }
+  function requestTick() {
+    if (raf === null) raf = requestAnimationFrame(apply);
+  }
+
+  new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    if (inView) requestTick();
+  }, { threshold: 0 }).observe(heroSection);
+
+  window.addEventListener('scroll', () => { if (inView) requestTick(); }, { passive: true });
+}());
+
 /* ── Email obfuscation ── */
 (function(){ const u='overseb75',d='gmail',t='com'; window._em=u+'@'+d+'.'+t; })();
 function revealEmail(btnEl, displayEl){

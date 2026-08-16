@@ -774,7 +774,7 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
 }
 .hero-photo {
   position: absolute;
-  bottom: 60px;
+  bottom: 0;
   right: 0;
   width: clamp(460px, 50vw, 990px);
   height: auto;
@@ -786,6 +786,38 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   z-index: 3;
   pointer-events: none;
   animation: h-photoIn 1.2s var(--ease) 0.25s both;
+  will-change: transform;
+}
+/* Signature discrete : meme famille que la "constellation" de Prestations
+   (label mono + fil pointille) — relie le bloc texte au personnage pour que
+   la composition se lise comme un environnement, pas une photo posee a cote
+   du texte. Toujours derriere la photo (z-index sous .hero-photo). */
+.hero-signature {
+  position: absolute;
+  z-index: 1;
+  bottom: 26%;
+  right: clamp(18px, 3vw, 46px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+.hero-signature-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(10, 30, 46, 0.34);
+  white-space: nowrap;
+}
+.hero-signature-thread {
+  width: 1px;
+  height: clamp(120px, 22vh, 220px);
+  background-image: linear-gradient(rgba(10, 30, 46, 0.22) 50%, transparent 0);
+  background-size: 1px 7px;
+  background-repeat: repeat-y;
 }
 @keyframes h-photoIn {
   from {
@@ -5677,6 +5709,10 @@ a:hover .cta-arrow {
     padding: 0 clamp(20px, 5vw, 60px);
     position: relative;
     z-index: 2;
+  }
+  /* le fil/label ne relie plus rien une fois texte et photo empiles */
+  .hero-signature {
+    display: none;
   }
   .hero-photo {
     position: relative !important;
