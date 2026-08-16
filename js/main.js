@@ -297,26 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ── Prestations : label contextuel pres du portrait au survol/focus d'une card ── */
-(function () {
-  const label = document.getElementById('prestContextLabel');
-  const cards = document.querySelectorAll('.prest-mgrid .prest-card-flip[data-tag]');
-  if (!label || !cards.length) return;
-  const defaultText = label.textContent;
-  const wrap = label.closest('.prest-photo-context');
-  function setTag(text, active) {
-    label.textContent = text;
-    if (wrap) wrap.classList.toggle('is-active', active);
-  }
-  cards.forEach(card => {
-    const tag = card.dataset.tag;
-    card.addEventListener('mouseenter', () => setTag(tag, true));
-    card.addEventListener('mouseleave', () => setTag(defaultText, false));
-    card.addEventListener('focusin', () => setTag(tag, true));
-    card.addEventListener('focusout', () => setTag(defaultText, false));
-  });
-}());
-
 /* ── Prestations : reveal au tap sur tactile (pas de hover fiable) ── */
 (function () {
   if (!window.matchMedia('(hover: none)').matches) return;
