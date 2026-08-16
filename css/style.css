@@ -6308,18 +6308,24 @@ a:hover .cta-arrow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-4);
-  align-items: stretch;
 }
-.prest-mgrid .prest-card:nth-child(1) { transition-delay: 0.1s; }
-.prest-mgrid .prest-card:nth-child(2) { transition-delay: 0.15s; }
-.prest-mgrid .prest-card:nth-child(3) { transition-delay: 0.2s; }
-.prest-mgrid .prest-card:nth-child(4) { transition-delay: 0.25s; }
-.prest-mgrid .prest-card:nth-child(5) { transition-delay: 0.3s; }
-.prest-mgrid .prest-card:nth-child(6) { transition-delay: 0.35s; }
+.prest-mgrid .prest-cell:nth-child(1) .prest-card { transition-delay: 0.1s; }
+.prest-mgrid .prest-cell:nth-child(2) .prest-card { transition-delay: 0.15s; }
+.prest-mgrid .prest-cell:nth-child(3) .prest-card { transition-delay: 0.2s; }
+.prest-mgrid .prest-cell:nth-child(4) .prest-card { transition-delay: 0.25s; }
+.prest-mgrid .prest-cell:nth-child(5) .prest-card { transition-delay: 0.3s; }
+.prest-mgrid .prest-cell:nth-child(6) .prest-card { transition-delay: 0.35s; }
+
+.prest-cell {
+  position: relative;
+}
 
 .prest-card {
   /* micro-card compacte : card blanche/paper, recette .cs-mini-card / .b-card-proj —
      texte toujours lisible, seule l'elevation change au hover (comme les references) */
+  position: relative;
+  z-index: 1;
+  width: 100%;
   background: var(--white);
   border-radius: var(--r);
   border: 1px solid rgba(10, 30, 46, 0.1);
@@ -6333,13 +6339,77 @@ a:hover .cta-arrow {
 .prest-card[data-reveal] {
   transition: opacity 0.7s var(--ease), transform 0.32s var(--ease), box-shadow 0.32s, border-color 0.32s;
 }
-.prest-card:hover {
+.prest-card:hover,
+.prest-card:focus-within {
   transform: translateY(-4px);
   box-shadow: var(--sh-4);
   border-color: rgba(47, 138, 114, 0.35);
+  z-index: 20;
 }
-.prest-card:hover .prest-price {
+.prest-card:hover .prest-price,
+.prest-card:focus-within .prest-price {
   color: var(--mint-800);
+}
+/* sur pointeur precis (souris/trackpad) : la cellule prend une hauteur fixe (= hauteur
+   au repos) et la card devient absolument positionnee par-dessus en permanence, libre
+   de grandir au survol sans jamais faire bouger la grille (aucune ambiguite de calcul
+   de containing block grid, contrairement a une card grid-item elle-meme en absolute) */
+@media (hover: hover) and (pointer: fine) {
+  .prest-cell {
+    /* hauteur fixe = hauteur au repos (mesuree), la carte Lancement Web est plus
+       haute au repos (sous-titre + 2 badges) d'ou le modificateur dedie */
+    height: 265px;
+  }
+  .prest-cell-tall {
+    height: 328px;
+  }
+  .prest-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Divulgation progressive des benefices : hauteur/opacite reellement animees (pas de
+   display:none), grace au "grid-template-rows: 0fr -> 1fr" sur un wrapper overflow
+   hidden — recette CSS standard pour transitionner une hauteur intrinseque */
+.prest-card-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--ease);
+}
+.prest-card-expand-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.prest-includes {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .prest-card:hover .prest-card-expand,
+  .prest-card:focus-within .prest-card-expand {
+    grid-template-rows: 1fr;
+  }
+  .prest-card:hover .prest-includes,
+  .prest-card:focus-within .prest-includes {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+}
+/* pas de hover fiable (tactile) : benefices affiches directement, en version compacte,
+   plutot qu'une interaction au tap fragile */
+@media (hover: none) {
+  .prest-card-expand {
+    grid-template-rows: 1fr;
+  }
+  .prest-includes {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Ligne superieure : badge(s) a gauche, icone-role a droite (recette icon-box deja
@@ -6459,8 +6529,7 @@ a:hover .cta-arrow {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 28px;
-  flex: 1;
+  margin-bottom: 8px;
 }
 .prest-includes li {
   display: flex;
