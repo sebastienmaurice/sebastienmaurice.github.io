@@ -3694,8 +3694,11 @@ a.skill-tab-proof:hover .cta-arrow {
   background: rgba(10, 30, 46, 0.08);
 }
 /* PROCESS — bandeau 5 responsabilites (page Chef de Projet), une seule fois par
-   page : pas d'icone ni de %, seul le numero Fraunces italique mint-600 marque la
-   progression (systeme-design-moodboard section 14). Grille a filets fins (2px de
+   page. Le moodboard (section 14) prescrit un numero seul sans icone ; ecart
+   assume ici (choix explicite) pour rendre le flux plus lisible en un coup
+   d'oeil — pictogramme sobre par etape (meme vocabulaire que les icones
+   .b-skill-pill/.cvb-card-icon ailleurs sur le site, pas une banque generique)
+   + connecteur pointille reliant les cercles. Grille a filets fins (2px de
    fond ink translucide entre cases blanches) plutot que des cartes individuelles
    avec ombre — cinq etapes d'un meme process, pas cinq unites d'info separees. */
 .process-sec {
@@ -3710,16 +3713,60 @@ a.skill-tab-proof:hover .cta-arrow {
   overflow: hidden;
 }
 .process-step {
+  position: relative;
   background: var(--white);
   padding: 24px 20px;
+}
+.process-step .ps-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.process-step .ps-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--mint-100);
+  color: var(--mint-700);
+}
+.process-step .ps-icon svg {
+  width: 15px;
+  height: 15px;
 }
 .process-step .ps-num {
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 500;
-  font-size: 1.375rem;
+  font-size: 1.1rem;
   color: var(--mint-600);
-  margin-bottom: 10px;
+}
+/* connecteur pointille : contenu dans le padding de chaque etape (jamais
+   au-dela), pour rester robuste sans dependre de la geometrie du voisin */
+.process-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 62px;
+  right: 20px;
+  height: 0;
+  border-top: 1.5px dashed rgba(10, 30, 46, 0.22);
+}
+@media (max-width: 900px) {
+  .process-step:nth-child(2n)::after {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  /* meme specificite que la regle de base (:not(:last-child)::after) : le
+     second override gagne par ordre de source, sans avoir besoin d'!important */
+  .process-step:not(:last-child)::after {
+    display: none;
+  }
 }
 .process-step h4 {
   margin: 0 0 6px;
@@ -3741,6 +3788,101 @@ a.skill-tab-proof:hover .cta-arrow {
 }
 @media (max-width: 480px) {
   .process-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* DOMAINES D'EXPERTISE — vue d'ensemble fonctionnelle (page Chef de Projet),
+   entre le "comment" (Process) et la "preuve" (Parcours). Cartes .cv-card
+   standard (meme recette que le reste de la page) + une variante compacte
+   icone/titre/texte plutot qu'une nouvelle famille de composant. */
+.expertise-sec {
+  padding: 72px 0 0;
+}
+.expertise-title {
+  font-family: var(--f-serif);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+  margin: 14px 0 12px;
+  max-width: 640px;
+}
+.expertise-title em {
+  font-style: italic;
+  color: var(--color-accent-warm);
+}
+.expertise-sub {
+  font-family: var(--f-disp);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: rgba(10, 30, 46, 0.55);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.cv-card-expertise {
+  padding: 28px 26px;
+}
+.exp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--mint-100);
+  color: var(--mint-700);
+  margin-bottom: 16px;
+}
+.exp-icon svg {
+  width: 19px;
+  height: 19px;
+}
+.cv-card-expertise h3 {
+  margin: 0 0 8px;
+  font-family: var(--f-disp);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink-900);
+}
+.cv-card-expertise p {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(10, 30, 46, 0.6);
+}
+.expertise-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-family: var(--f-disp);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--ink-900);
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(10, 30, 46, 0.22);
+  padding-bottom: 3px;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.expertise-link:hover {
+  color: var(--mint-700);
+  border-color: var(--mint-500);
+}
+@media (max-width: 900px) {
+  .expertise-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .expertise-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -4659,6 +4801,21 @@ a.skill-tab-proof:hover .cta-arrow {
   color: rgba(10, 30, 46, 0.6);
   line-height: 1.75;
   max-width: 380px;
+}
+.cvb-response-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 20px;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  background: var(--mint-100);
+  color: var(--mint-700);
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .cvb-cards {
   /* email = action principale sur toute la largeur, les 4 autres canaux en 2x2 :
