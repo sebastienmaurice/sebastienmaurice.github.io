@@ -2060,24 +2060,68 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* sans ca, la largeur intrinseque (max-content) de .b-trust-marquee-track remonte
+     a travers ce parent flex jusqu'a la colonne 1fr de .b-trust-row, qui refuse alors
+     de retrecir sous cette taille et pousse .b-final-cta hors du cadre malgre le
+     overflow:hidden du carrousel plus bas dans l'arbre */
+  min-width: 0;
 }
-.b-trust-logo-list {
+/* Carrousel logos clients : meme mecanique que .story-bar/.techbar-track (bande
+   dupliquee 2x, translateX(-50%) en boucle, pause au survol) — fondu sur les bords en
+   --paper puisque .bento-section est sur fond paper (pas mint comme le techbar) */
+.b-trust-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.b-trust-marquee::before,
+.b-trust-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  z-index: 2;
+  pointer-events: none;
+}
+.b-trust-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--paper), transparent);
+}
+.b-trust-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--paper), transparent);
+}
+.b-trust-marquee-track {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
+  width: max-content;
+  animation: b-trust-scroll 34s linear infinite;
 }
-.b-trust-logo {
-  font-family: var(--f-serif);
-  font-weight: 700;
-  font-size: 17px;
-  color: rgba(10, 30, 46, 0.4);
-  letter-spacing: -0.01em;
+.b-trust-marquee-track:hover {
+  animation-play-state: paused;
 }
-.b-trust-logo-more {
-  font-family: var(--f-mono);
-  font-size: 11px;
-  color: var(--text-muted);
+@keyframes b-trust-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* Mode produit : mix-blend-mode:multiply fait disparaitre le fond blanc des logos
+   (le blanc se fond dans --paper derriere) sans toucher aux logos deja sur fond
+   colore, qui restent lisibles tels quels */
+.b-trust-logo-img {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+  mix-blend-mode: multiply;
+  filter: grayscale(0.15);
+  transition: filter 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.b-trust-logo-img:hover {
+  filter: grayscale(0);
+  transform: scale(1.08);
 }
 .b-final-cta {
   display: flex;
@@ -6270,7 +6314,9 @@ a:hover .cta-arrow {
     padding: 40px clamp(16px, 4vw, 28px) 40px;
   }
   .b-bottom-row {
-    height: 260px;
+    /* auto comme en desktop : la valeur fixe (260px) ne correspondait plus a la
+       hauteur reelle des cards (texte+tags) et debordait sur le bandeau logos suivant */
+    height: auto;
   }
   .b-carousel-track .b-card-proj {
     flex: 0 0 calc(100% - 0px);

@@ -473,10 +473,19 @@ function closeImgLightbox() {
 
   init();
   let resizeTO;
-  window.addEventListener('resize', () => {
+  function scheduleReinit() {
     clearTimeout(resizeTO);
     resizeTO = setTimeout(() => { stopAutoplay(); init(); }, 150);
-  });
+  }
+  /* ResizeObserver plutot que le seul 'resize' de window : plus fiable pour capter
+     un changement de largeur du carrousel quel qu'en soit le declencheur (bascule
+     responsive DevTools, rotation d'ecran...) — 'resize' seul pouvait laisser
+     visibleCount fige sur la valeur calculee au premier chargement */
+  if (window.ResizeObserver) {
+    new ResizeObserver(scheduleReinit).observe(carousel);
+  } else {
+    window.addEventListener('resize', scheduleReinit);
+  }
 })();
 
 /* ── Carte Maxilou : fenetre "Safari" a profondeur 3D multi-couches ──
