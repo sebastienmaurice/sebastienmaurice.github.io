@@ -3694,79 +3694,108 @@ a.skill-tab-proof:hover .cta-arrow {
   background: rgba(10, 30, 46, 0.08);
 }
 /* PROCESS — bandeau 5 responsabilites (page Chef de Projet), une seule fois par
-   page. Le moodboard (section 14) prescrit un numero seul sans icone ; ecart
-   assume ici (choix explicite) pour rendre le flux plus lisible en un coup
-   d'oeil — pictogramme sobre par etape (meme vocabulaire que les icones
-   .b-skill-pill/.cvb-card-icon ailleurs sur le site, pas une banque generique)
-   + connecteur pointille reliant les cercles. Grille a filets fins (2px de
-   fond ink translucide entre cases blanches) plutot que des cartes individuelles
-   avec ombre — cinq etapes d'un meme process, pas cinq unites d'info separees. */
+   page. Mise en page a 2 colonnes (intro a gauche, 5 cartes a droite) plutot
+   qu'un bandeau pleine largeur : chaque etape est une carte independante
+   (meme recette que .cv-card - blanc, radius, ombre, elevation au hover),
+   reliees par un connecteur pointille dans l'espace entre les cartes. Le
+   moodboard (section 14) prescrit un numero seul sans icone ; ecart assume
+   ici (choix explicite) pour rendre le flux plus lisible en un coup d'oeil —
+   pictogramme sobre par etape (meme vocabulaire que .b-skill-pill/.cvb-card-
+   icon ailleurs sur le site, pas une banque generique). */
 .process-sec {
   padding: 56px 0 0;
+}
+.process-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.process-intro {
+  padding-top: 2px;
+}
+.process-title {
+  font-family: var(--f-serif);
+  font-weight: 900;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+  margin: 14px 0 12px;
+}
+.process-title em {
+  font-style: italic;
+  color: var(--color-accent-warm);
+}
+.process-sub {
+  font-family: var(--f-disp);
+  font-size: 0.84375rem;
+  font-weight: 300;
+  color: rgba(10, 30, 46, 0.55);
+  line-height: 1.7;
 }
 .process-strip {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2px;
-  background: rgba(10, 30, 46, 0.1);
-  border-radius: var(--r-md);
-  overflow: hidden;
+  gap: 22px;
 }
 .process-step {
   position: relative;
   background: var(--white);
-  padding: 24px 20px;
+  border: 1px solid rgba(10, 30, 46, 0.08);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-2);
+  padding: 26px 20px;
+  transition:
+    border-color 0.32s var(--ease),
+    transform 0.32s var(--ease),
+    box-shadow 0.32s;
 }
-.process-step .ps-head {
+.process-step:hover {
+  border-color: rgba(10, 30, 46, 0.14);
+  transform: translateY(-4px);
+  box-shadow: var(--sh-4);
+}
+.process-step .ps-num-badge {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(64, 151, 135, 0.35);
+  color: var(--mint-700);
+  font-family: var(--f-disp);
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-bottom: 18px;
 }
 .process-step .ps-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: var(--mint-100);
   color: var(--mint-700);
+  margin-bottom: 18px;
 }
 .process-step .ps-icon svg {
-  width: 15px;
-  height: 15px;
+  width: 21px;
+  height: 21px;
 }
-.process-step .ps-num {
-  font-family: var(--f-serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: var(--mint-600);
-}
-/* connecteur pointille : contenu dans le padding de chaque etape (jamais
-   au-dela), pour rester robuste sans dependre de la geometrie du voisin */
+/* connecteur pointille : positionne dans l'espace (gap) entre deux cartes,
+   jamais au-dela — reste robuste sans dependre de la geometrie du voisin */
 .process-step:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 40px;
-  left: 62px;
-  right: 20px;
+  top: 83px;
+  right: -22px;
+  width: 22px;
   height: 0;
-  border-top: 1.5px dashed rgba(10, 30, 46, 0.22);
-}
-@media (max-width: 900px) {
-  .process-step:nth-child(2n)::after {
-    display: none;
-  }
-}
-@media (max-width: 480px) {
-  /* meme specificite que la regle de base (:not(:last-child)::after) : le
-     second override gagne par ordre de source, sans avoir besoin d'!important */
-  .process-step:not(:last-child)::after {
-    display: none;
-  }
+  border-top: 1.5px dashed rgba(10, 30, 46, 0.28);
+  z-index: 1;
 }
 .process-step h4 {
   margin: 0 0 6px;
@@ -3782,13 +3811,25 @@ a.skill-tab-proof:hover .cta-arrow {
   color: var(--ink-500);
 }
 @media (max-width: 900px) {
+  .process-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
   .process-strip {
     grid-template-columns: 1fr 1fr;
+  }
+  .process-step:nth-child(2n)::after {
+    display: none;
   }
 }
 @media (max-width: 480px) {
   .process-strip {
     grid-template-columns: 1fr;
+  }
+  /* meme specificite que la regle de base (:not(:last-child)::after) : le
+     second override gagne par ordre de source, sans avoir besoin d'!important */
+  .process-step:not(:last-child)::after {
+    display: none;
   }
 }
 
