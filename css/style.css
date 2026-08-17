@@ -6779,11 +6779,6 @@ a:hover .cta-arrow {
   gap: 12px;
   margin-bottom: 16px;
 }
-.prest-card-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
 .prest-card-icon {
   flex-shrink: 0;
   width: 38px;
@@ -6921,6 +6916,26 @@ a:hover .cta-arrow {
 .prest-card-launch .prest-badge-star {
   background: var(--coral-500);
   color: var(--ink-900);
+  /* taille reduite + tracking resserre : tient sur une seule ligne une fois
+     replace a cote de la fleche, plutot qu'en tete de carte sur toute sa largeur */
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  white-space: nowrap;
+}
+/* Ligne basse de la carte Pack Lancement : badge etoile a gauche, fleche a droite —
+   seule carte a avoir un 2e badge, replace ici plutot qu'en tete pour ne pas alourdir
+   .prest-card-top (qui reste badge delai + icone, comme les 5 autres cartes) */
+.prest-card-bottom-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.prest-card-launch .prest-card-arrow {
+  margin-top: 0;
+  align-self: auto;
 }
 .prest-card-launch .prest-card-arrow {
   background: rgba(255, 255, 255, 0.14);
