@@ -106,6 +106,9 @@ body::after {
 }
 
 /* ── NAV ── */
+/* memes tokens (rayon, blur/saturate, ombre) que nav.sitenav sur index.html — seule la
+   teinte mint reste propre a cette page (mint dominant assume sur Cine Delices, quand
+   index.html reserve le mint au hero et garde sa nav en blanc translucide) */
 .nav {
   position: fixed;
   top: 18px;
@@ -116,10 +119,10 @@ body::after {
   align-items: center;
   gap: 0;
   background: rgba(181, 244, 222, 0.82);
-  backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(190%);
   border: 1px solid rgba(10, 30, 46, 0.1);
   border-radius: var(--r-pill);
-  padding: 5px 6px 5px 18px;
+  padding: 5px 6px 5px 22px;
   box-shadow:
     0 2px 28px rgba(10, 30, 46, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -128,8 +131,11 @@ body::after {
     background 0.3s;
 }
 .nav.solid {
-  box-shadow: var(--sh-3);
   background: rgba(181, 244, 222, 0.96);
+  backdrop-filter: blur(28px) saturate(190%);
+  box-shadow:
+    0 8px 40px rgba(10, 30, 46, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .nav-back {
   display: inline-flex;
@@ -869,6 +875,99 @@ body::after {
 }
 
 /* ── DÉFI / PITCH ── */
+/* deux colonnes : texte + preuve chiffree a gauche, mockup du site a droite — meme
+   ratio et meme recette de fond pointille que .cs-card-mockup sur index.html,
+   adaptee a cette page plutot que copiee (mint-strong au lieu de mint-soft) */
+.defi-top {
+  display: grid;
+  grid-template-columns: 58fr 42fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+.defi-top .section-head {
+  margin-bottom: 0;
+}
+.defi-mockup {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.defi-mockup::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 6%;
+  width: 60%;
+  height: 70%;
+  border-radius: 50%;
+  background-image: radial-gradient(circle, rgba(10, 30, 46, 0.16) 1.4px, transparent 1.6px);
+  background-size: 11px 11px;
+  -webkit-mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
+  mask-image: radial-gradient(ellipse at 42% 42%, #000 42%, transparent 76%);
+  pointer-events: none;
+  z-index: 0;
+}
+.defi-mock-flat {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .defi-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ── RÉSULTATS (preuve chiffree, section 15 du moodboard) ── */
+.cd-results {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  row-gap: 14px;
+  margin-top: 28px;
+}
+.cd-result {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cd-result + .cd-result {
+  padding-left: 24px;
+  border-left: 1px solid rgba(10, 30, 46, 0.14);
+}
+.cd-result-val {
+  font-family: var(--f-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.cd-result-val sup {
+  font-size: 0.5em;
+  color: rgba(10, 30, 46, 0.65);
+  vertical-align: super;
+}
+.cd-result-lbl {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  color: rgba(10, 30, 46, 0.6);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+@media (max-width: 520px) {
+  /* en dessous de cette largeur, .cd-results passe a un item par ligne (flex-wrap) :
+     le sepateur vertical n'a plus de sens, on repasse en espacement vertical simple */
+  .cd-result + .cd-result {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
 .pitch-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1578,7 +1677,8 @@ body::after {
   font-family: var(--f-mono);
   font-size: 0.6875rem;
   color: var(--muted-2);
-  letter-spacing: 0.05em;
+  /* meme letter-spacing que .ft-copy/.ft-legal sur index.html */
+  letter-spacing: 0.03em;
   display: flex;
   align-items: center;
   justify-content: space-between;
