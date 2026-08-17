@@ -2049,22 +2049,41 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   background: rgba(255, 122, 89, 0.34);
   transform: scale(0.92);
 }
+/* Le libelle vit hors de .b-trust-row, au-dessus. Grid 2 colonnes x 2 lignes :
+   ligne 1 = marquee | final-cta (align-items:center les centre precisement l'un sur
+   l'autre, seule cette ligne compte pour leur hauteur) ; ligne 2 = la legende
+   "& bien d'autres...", placee automatiquement sous le marquee (colonne 1 seule,
+   .b-final-cta ne s'etend pas sur cette 2e ligne) sans affecter l'alignement de la
+   ligne 1 */
+.b-trust-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .b-trust-row {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 32px;
-  padding-top: 4px;
+  column-gap: 32px;
+  row-gap: 10px;
 }
-.b-trust-logos {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.b-trust-marquee {
   /* sans ca, la largeur intrinseque (max-content) de .b-trust-marquee-track remonte
-     a travers ce parent flex jusqu'a la colonne 1fr de .b-trust-row, qui refuse alors
-     de retrecir sous cette taille et pousse .b-final-cta hors du cadre malgre le
-     overflow:hidden du carrousel plus bas dans l'arbre */
+     jusqu'a la colonne 1fr de .b-trust-row, qui refuse alors de retrecir sous cette
+     taille et pousse .b-final-cta hors du cadre malgre son propre overflow:hidden */
   min-width: 0;
+  /* placement explicite (indep. de l'ordre DOM, choisi pour l'empilement mobile
+     naturel marquee -> legende -> final-cta) : ligne 1 seule, alignee avec .b-final-cta */
+  grid-column: 1;
+  grid-row: 1;
+}
+.b-trust-more {
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
 }
 /* Carrousel logos clients : meme mecanique que .story-bar/.techbar-track (bande
    dupliquee 2x, translateX(-50%) en boucle, pause au survol) — fondu sur les bords en
@@ -2124,6 +2143,10 @@ nav.sitenav.nav-open .nav-burger span:nth-child(3) {
   transform: scale(1.08);
 }
 .b-final-cta {
+  /* place explicitement en ligne 1 (colonne 2) : aligne pile avec .b-trust-marquee,
+     sans se soucier de la legende en ligne 2 sous les logos */
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -6107,6 +6130,14 @@ a:hover .cta-arrow {
   }
   .b-trust-row {
     grid-template-columns: 1fr;
+  }
+  /* reinitialise le placement explicite desktop : en 1 colonne, l'ordre naturel du DOM
+     (marquee -> legende -> final-cta) donne directement le bon empilement */
+  .b-trust-marquee,
+  .b-trust-more,
+  .b-final-cta {
+    grid-column: 1;
+    grid-row: auto;
   }
   .b-final-cta {
     white-space: normal;
