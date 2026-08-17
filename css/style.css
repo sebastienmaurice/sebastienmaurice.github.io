@@ -6427,9 +6427,9 @@ a:hover .cta-arrow {
   flex: 1 1 480px;
 }
 
-/* Banniere CTA courte, corail doux — meme grammaire que .prest-badge-star. Devenue un
-   vrai lien (prise de contact), donc traitee comme les autres CTA du site : legere
-   elevation au hover/focus, fleche qui glisse */
+/* Banniere CTA courte, corail doux. Devenue un vrai lien (prise de contact), donc
+   traitee comme les autres CTA du site : legere elevation au hover/focus, fleche qui
+   glisse */
 .prest-promo-pill {
   display: flex;
   align-items: center;
@@ -6745,7 +6745,7 @@ a:hover .cta-arrow {
    profondeur (crossfade + translate + tres leger tilt), jamais une rotation complete */
 .prest-card-flip {
   position: relative;
-  height: 300px;
+  height: 262px;
   perspective: 1200px;
 }
 .prest-card-flip-inner {
@@ -6906,9 +6906,8 @@ a:hover .cta-arrow {
   transform: translateX(2px);
 }
 
-/* Ligne basse de chaque carte : contenu variable a gauche (illustration+legende, ou
-   badge etoile pour la carte Lancement) + fleche a droite, toujours callee en bas via
-   margin-top:auto — remplace l'ancien positionnement individuel de la fleche */
+/* Ligne basse de chaque carte : illustration+legende a gauche, fleche a droite,
+   toujours callee en bas via margin-top:auto — identique sur les 6 cartes */
 .prest-card-bottom-row {
   margin-top: auto;
   display: flex;
@@ -6926,9 +6925,6 @@ a:hover .cta-arrow {
   gap: 10px;
   min-width: 0;
   flex: 1 1 auto;
-}
-.prest-card-illus-row-static {
-  margin: 2px 0 14px;
 }
 .prest-card-illus {
   flex-shrink: 0;
@@ -6988,22 +6984,6 @@ a:hover .cta-arrow {
   border-color: rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.45);
 }
-/* Le badge etoile (coral-100/coral-700, pense pour un fond clair) devient illisible
-   sur le fond bleu nuit — meme recette vivide que .prest-badge-coral (corail plein +
-   texte fonce) pour rester net */
-.prest-card-launch .prest-badge-star {
-  background: var(--coral-500);
-  color: var(--ink-900);
-  /* taille reduite + tracking resserre : tient sur une seule ligne une fois
-     replace a cote de la fleche, plutot qu'en tete de carte sur toute sa largeur */
-  font-size: 9.5px;
-  letter-spacing: 0.05em;
-  padding: 4px 9px;
-  white-space: nowrap;
-}
-/* Badge etoile a gauche, fleche a droite dans .prest-card-bottom-row (regle generique
-   plus haut) — seule carte a avoir un 2e badge, en plus de l'illustration+legende
-   juste au-dessus (.prest-card-illus-row-static) */
 .prest-card-launch .prest-card-arrow {
   background: rgba(255, 255, 255, 0.14);
   color: var(--mint-300);
