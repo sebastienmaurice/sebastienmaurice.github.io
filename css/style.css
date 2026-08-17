@@ -3693,6 +3693,58 @@ a.skill-tab-proof:hover .cta-arrow {
   height: 100%;
   background: rgba(10, 30, 46, 0.08);
 }
+/* PROCESS — bandeau 5 responsabilites (page Chef de Projet), une seule fois par
+   page : pas d'icone ni de %, seul le numero Fraunces italique mint-600 marque la
+   progression (systeme-design-moodboard section 14). Grille a filets fins (2px de
+   fond ink translucide entre cases blanches) plutot que des cartes individuelles
+   avec ombre — cinq etapes d'un meme process, pas cinq unites d'info separees. */
+.process-sec {
+  padding: 56px 0 0;
+}
+.process-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: rgba(10, 30, 46, 0.1);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.process-step {
+  background: var(--white);
+  padding: 24px 20px;
+}
+.process-step .ps-num {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.375rem;
+  color: var(--mint-600);
+  margin-bottom: 10px;
+}
+.process-step h4 {
+  margin: 0 0 6px;
+  font-family: var(--f-disp);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--ink-900);
+}
+.process-step p {
+  margin: 0;
+  font-size: 0.71875rem;
+  line-height: 1.5;
+  color: var(--ink-500);
+}
+@media (max-width: 900px) {
+  .process-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .process-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* CV SECTION */
 .cv-sec {
   padding: 80px 0 0;
@@ -5986,9 +6038,11 @@ a:hover .cta-arrow {
     margin-top: 76px;
   }
   .hero-photo-card {
-    position: relative !important;
-    right: auto !important;
-    bottom: auto !important;
+    /* meme specificite (0,0,1,0) que la regle desktop L868, meme apres elle dans le
+       fichier : le !important precedent n'etait pas necessaire, la cascade suffit */
+    position: relative;
+    right: auto;
+    bottom: auto;
     order: 0;
     width: 100%;
     height: auto;
@@ -7258,6 +7312,25 @@ a:hover .cta-arrow {
 }
 .profil-bento-feature {
   grid-column: 1 / -1;
+}
+/* Carte de parcours (page Chef de Projet) : meme coque que .cv-card (deja utilisee
+   plus bas sur cette page pour Competences/Formations/Differenciateur), remplace
+   l'ancienne classe .prest-card qui n'existait dans aucune regle CSS — les entrees
+   s'affichaient sans carte du tout, juste le badge et le texte flottants. */
+.cv-card-timeline {
+  padding: 28px 32px;
+}
+/* Les titres de poste sont plus longs et de longueur variable que les 6 offres
+   Prestations (source de la regle .prest-card-name) : la reservation de hauteur sur
+   2 lignes n'a pas de sens ici, elle laisserait un vide sous les titres courts. */
+.cv-card-timeline .prest-card-name {
+  min-height: 0;
+}
+.cv-card-timeline .prest-card-sub {
+  font-family: var(--f-mono);
+  font-size: 0.78125rem;
+  color: rgba(10, 30, 46, 0.5);
+  margin-top: 2px;
 }
 .profil-side-by-side {
   display: grid;
