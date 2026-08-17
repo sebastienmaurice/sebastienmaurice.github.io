@@ -6596,7 +6596,7 @@ a:hover .cta-arrow {
 }
 .prest-deco-label.is-mint { color: rgba(47, 138, 114, 0.42); }
 .prest-deco-1 { top: 2%; left: -6%; animation-delay: -2s; }
-.prest-deco-2 { top: 20%; right: 8%; animation-delay: -6s; }
+.prest-deco-2 { top: 47%; left: -9%; animation-delay: -6s; }
 .prest-deco-3 { bottom: 32%; right: 4%; animation-delay: -9s; }
 .prest-deco-4 { bottom: 8%; left: -14%; animation-delay: -4s; }
 
@@ -6696,6 +6696,37 @@ a:hover .cta-arrow {
   50% { transform: translateY(-5px); }
 }
 
+/* Legende sous le bouton catalogue : meme registre "annotation" que la constellation
+   .prest-deco-label, mais assumee comme un vrai petit mot manuscrit (serif italique)
+   relie au bouton par une fleche pointillee qui respire doucement */
+.prest-catalogue-hint {
+  position: absolute;
+  z-index: 3;
+  top: 16%;
+  right: 3%;
+  width: 158px;
+  text-align: right;
+  pointer-events: none;
+}
+.prest-catalogue-hint-arrow {
+  color: rgba(47, 138, 114, 0.45);
+  margin-bottom: 2px;
+  animation: prest-hint-arrow-breathe 3.2s var(--ease) infinite;
+}
+@keyframes prest-hint-arrow-breathe {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(3px); opacity: 1; }
+}
+.prest-catalogue-hint-text {
+  display: block;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: rgba(10, 30, 46, 0.55);
+}
+
 .prest-mgrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -6714,7 +6745,7 @@ a:hover .cta-arrow {
    profondeur (crossfade + translate + tres leger tilt), jamais une rotation complete */
 .prest-card-flip {
   position: relative;
-  height: 240px;
+  height: 300px;
   perspective: 1200px;
 }
 .prest-card-flip-inner {
@@ -6851,10 +6882,10 @@ a:hover .cta-arrow {
   opacity: 0.65;
 }
 
-/* Fleche discrete, seul indice d'interaction sur la face avant */
+/* Fleche discrete, seul indice d'interaction sur la face avant — vit desormais dans
+   .prest-card-bottom-row (qui gere elle-meme le margin-top:auto + l'alignement) */
 .prest-card-arrow {
-  margin-top: auto;
-  align-self: flex-end;
+  flex-shrink: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -6873,6 +6904,48 @@ a:hover .cta-arrow {
   background: var(--mint-500);
   color: var(--white);
   transform: translateX(2px);
+}
+
+/* Ligne basse de chaque carte : contenu variable a gauche (illustration+legende, ou
+   badge etoile pour la carte Lancement) + fleche a droite, toujours callee en bas via
+   margin-top:auto — remplace l'ancien positionnement individuel de la fleche */
+.prest-card-bottom-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Illustration + legende : petit pictogramme (meme langage graphique que les icones
+   de .prest-card-top, juste plus grand et non encarte) qui donne un aperçu concret du
+   resultat de chaque pack, plutot qu'un simple bloc texte/prix */
+.prest-card-illus-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.prest-card-illus-row-static {
+  margin: 2px 0 14px;
+}
+.prest-card-illus {
+  flex-shrink: 0;
+  color: var(--mint-600);
+}
+.prest-card-illus-caption {
+  font-family: var(--f-disp);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(10, 30, 46, 0.55);
+}
+.prest-card-launch .prest-card-illus {
+  color: var(--mint-300);
+}
+.prest-card-launch .prest-card-illus-caption {
+  color: rgba(255, 255, 255, 0.55);
 }
 
 /* Face reveal : accroche courte (pas le nom repete) + 3 benefices max + vrai CTA */
@@ -6928,20 +7001,9 @@ a:hover .cta-arrow {
   padding: 4px 9px;
   white-space: nowrap;
 }
-/* Ligne basse de la carte Pack Lancement : badge etoile a gauche, fleche a droite —
-   seule carte a avoir un 2e badge, replace ici plutot qu'en tete pour ne pas alourdir
-   .prest-card-top (qui reste badge delai + icone, comme les 5 autres cartes) */
-.prest-card-bottom-row {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-.prest-card-launch .prest-card-arrow {
-  margin-top: 0;
-  align-self: auto;
-}
+/* Badge etoile a gauche, fleche a droite dans .prest-card-bottom-row (regle generique
+   plus haut) — seule carte a avoir un 2e badge, en plus de l'illustration+legende
+   juste au-dessus (.prest-card-illus-row-static) */
 .prest-card-launch .prest-card-arrow {
   background: rgba(255, 255, 255, 0.14);
   color: var(--mint-300);
@@ -7098,6 +7160,11 @@ a:hover .cta-arrow {
     max-width: none;
     margin: 14px auto 0;
     animation: none;
+  }
+  /* le bouton n'est plus positionne dans le cadre du portrait a ce gabarit : la fleche
+     pointillee n'aurait plus rien vers quoi pointer */
+  .prest-catalogue-hint {
+    display: none;
   }
   .prest-mgrid {
     grid-template-columns: 1fr;
