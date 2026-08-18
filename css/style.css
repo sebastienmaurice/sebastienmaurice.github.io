@@ -3146,7 +3146,8 @@ a.skill-tab-proof:hover .cta-arrow {
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(10, 30, 46, 0.45);
+  /* 0.45 -> 0.62 : contraste insuffisant sur fond blanc (2.86:1, cible WCAG AA 4.5:1) */
+  color: rgba(10, 30, 46, 0.62);
   margin-bottom: 5px;
 }
 .approach-title {
@@ -3159,7 +3160,9 @@ a.skill-tab-proof:hover .cta-arrow {
 .approach-title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--green-accent);
+  /* --green-accent (mint-600) = 4.2:1 sur blanc, sous la cible WCAG AA 4.5:1 ;
+     mint-700 (deja utilise ailleurs sur le site) passe a 6.36:1 */
+  color: var(--mint-700);
 }
 .approach-steps {
   display: flex;
@@ -3189,7 +3192,8 @@ a.skill-tab-proof:hover .cta-arrow {
   font-size: 0.6875rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(10, 30, 46, 0.5);
+  /* 0.5 -> 0.62 : contraste insuffisant sur fond blanc (3.29:1, cible WCAG AA 4.5:1) */
+  color: rgba(10, 30, 46, 0.62);
   text-align: center;
   line-height: 1.4;
 }
@@ -7448,7 +7452,8 @@ a:hover .cta-arrow {
   font-family: var(--f-mono);
   font-size: 0.75rem;
   letter-spacing: 0.02em;
-  color: rgba(10, 30, 46, 0.45);
+  /* 0.45 -> 0.63 : contraste insuffisant sur fond paper (2.8:1, cible WCAG AA 4.5:1) */
+  color: rgba(10, 30, 46, 0.63);
 }
 .prest-hint svg { opacity: 0.6; flex-shrink: 0; }
 

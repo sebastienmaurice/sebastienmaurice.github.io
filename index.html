@@ -49,9 +49,9 @@
   <a href="#contact" class="nav-cta">Me contacter <span class="cta-arrow">→</span></a>
 </nav>
 
+<main id="main-content" tabindex="-1">
 <!-- HERO -->
 <section class="hero" id="top">
-  <div id="main-content"></div>
   <div class="hero-inner">
     <div class="hero-l">
       <div class="hero-eyebrow">
@@ -92,7 +92,9 @@
 
   <img
     src="assets/img/hero/dev-front-end-integrateur-wordpress-seb-2026.webp"
-    onerror="this.src='assets/profil-seb-2026.webp'"
+    srcset="assets/img/hero/dev-front-end-integrateur-wordpress-seb-2026-480w.webp 480w, assets/img/hero/dev-front-end-integrateur-wordpress-seb-2026-768w.webp 768w, assets/img/hero/dev-front-end-integrateur-wordpress-seb-2026-1200w.webp 1200w, assets/img/hero/dev-front-end-integrateur-wordpress-seb-2026.webp 1448w"
+    sizes="(max-width: 900px) 70vw, 50vw"
+    onerror="this.removeAttribute('srcset');this.src='assets/profil-seb-2026.webp'"
     alt="Sébastien Maurice, Intégrateur Web &amp; Concepteur UI"
     class="hero-photo"
     fetchpriority="high"
@@ -251,7 +253,7 @@
         <div class="b-card b-card-project-hero" id="projet-maxilou" data-reveal>
         <div class="b-hero-chrome"><span></span><span></span><span></span></div>
         <div class="b-hero-media">
-          <img src="assets/img/cms/maxilou.webp" alt="Maxilou, aperçu du site" loading="lazy"/>
+          <img src="assets/img/cms/maxilou.webp" srcset="assets/img/cms/maxilou-480w.webp 480w, assets/img/cms/maxilou-800w.webp 800w, assets/img/cms/maxilou-1200w.webp 1200w, assets/img/cms/maxilou.webp 1774w" sizes="(max-width: 900px) 90vw, 45vw" alt="Maxilou, aperçu du site" loading="lazy"/>
         </div>
         <div class="b-hero-content">
           <div class="b-project-badge"><span class="b-project-badge-dot"></span>Projet sélectionné</div>
@@ -285,10 +287,10 @@
           <a class="b-card b-card-proj" href="https://maxilou.fr/" target="_blank" rel="noopener" style="animation-delay:.42s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/maxilou.webp" alt="Maxilou" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/maxilou.webp" srcset="assets/img/cms/maxilou-480w.webp 480w, assets/img/cms/maxilou-800w.webp 800w, assets/img/cms/maxilou-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Maxilou" loading="lazy"/>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Maxilou</h4>
+              <h3 class="b-proj-name">Maxilou</h3>
               <p class="b-proj-desc">Location de matériel BTP & espaces verts — catalogue et devis en ligne.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">BTP</span><span>WordPress</span><span>Elementor</span></div>
@@ -301,10 +303,10 @@
           <a class="b-card b-card-proj" href="https://gsti62.com/" target="_blank" rel="noopener" style="animation-delay:.48s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/gsti62.webp" alt="GSTI62" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/gsti62.webp" srcset="assets/img/cms/gsti62-480w.webp 480w, assets/img/cms/gsti62-800w.webp 800w, assets/img/cms/gsti62-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="GSTI62" loading="lazy"/>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">GSTI62</h4>
+              <h3 class="b-proj-name">GSTI62</h3>
               <p class="b-proj-desc">Migration Wix vers WordPress/WooCommerce — catalogue B2B, devis en ligne.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">Industrie</span><span>WordPress</span><span>WooCommerce</span></div>
@@ -317,11 +319,11 @@
           <a class="b-card b-card-proj" href="https://www.petitchateauvercourt.com/" target="_blank" rel="noopener" style="animation-delay:.54s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/petit%20chateau%20vercourt.webp" alt="Petit Château Vercourt" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/petit%20chateau%20vercourt.webp" srcset="assets/img/cms/petit%20chateau%20vercourt-480w.webp 480w, assets/img/cms/petit%20chateau%20vercourt-800w.webp 800w, assets/img/cms/petit%20chateau%20vercourt-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Petit Château Vercourt" loading="lazy"/>
               <span class="b-malt-badge" aria-label="Mission trouvée via Malt"><img src="assets/img/cms/malt.webp" alt="Malt" loading="lazy"/></span>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Petit Château Vercourt</h4>
+              <h3 class="b-proj-name">Petit Château Vercourt</h3>
               <p class="b-proj-desc">Chambres d'hôtes en Picardie — réservation en ligne, FR &amp; EN.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">Hôtellerie</span><span>WordPress</span><span>Elementor</span></div>
@@ -334,11 +336,11 @@
           <a class="b-card b-card-proj" href="https://www.palimpseste-urbain.com/" target="_blank" rel="noopener" style="animation-delay:.60s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/Palimpseste%20Urbain.webp" alt="Palimpseste Urbain" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/Palimpseste%20Urbain.webp" srcset="assets/img/cms/Palimpseste%20Urbain-480w.webp 480w, assets/img/cms/Palimpseste%20Urbain-800w.webp 800w, assets/img/cms/Palimpseste%20Urbain-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Palimpseste Urbain" loading="lazy"/>
               <span class="b-malt-badge" aria-label="Mission trouvée via Malt"><img src="assets/img/cms/malt.webp" alt="Malt" loading="lazy"/></span>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Palimpseste Urbain</h4>
+              <h3 class="b-proj-name">Palimpseste Urbain</h3>
               <p class="b-proj-desc">Agence d'architecture &amp; urbanisme — refonte complète, SEO.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">Architecture</span><span>WordPress</span><span>SEO</span></div>
@@ -351,10 +353,10 @@
           <a class="b-card b-card-proj" href="https://onaturel.eu/" target="_blank" rel="noopener" style="animation-delay:.66s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/onaturel.webp" alt="Ô Natur'el" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/onaturel.webp" srcset="assets/img/cms/onaturel-480w.webp 480w, assets/img/cms/onaturel-800w.webp 800w, assets/img/cms/onaturel-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Ô Natur'el" loading="lazy"/>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Ô Natur'el</h4>
+              <h3 class="b-proj-name">Ô Natur'el</h3>
               <p class="b-proj-desc">Naturopathe &amp; hypnothérapeute — RDV en ligne, boutique intégrée.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">Bien-être</span><span>WordPress</span><span>Divi</span></div>
@@ -368,10 +370,10 @@
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-flagship-badge">★ Projet phare</span>
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/front-back/cine-delices/couverture-cine-delices.webp" alt="Ciné Délices" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/front-back/cine-delices/couverture-cine-delices.webp" srcset="assets/img/front-back/cine-delices/couverture-cine-delices-480w.webp 480w, assets/img/front-back/cine-delices/couverture-cine-delices-800w.webp 800w, assets/img/front-back/cine-delices/couverture-cine-delices-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Ciné Délices" loading="lazy"/>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Ciné Délices</h4>
+              <h3 class="b-proj-name">Ciné Délices</h3>
               <p class="b-proj-desc">Découverte de films &amp; séries avec recommandations personnalisées.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">Créatif · Full Stack</span><span>Node.js</span><span>PostgreSQL</span></div>
@@ -384,10 +386,10 @@
           <a class="b-card b-card-proj" href="https://www.galaxy-uniforme.com/" target="_blank" rel="noopener" style="animation-delay:.84s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/galaxy%20uniforme.webp" alt="Galaxy Uniforme" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/galaxy%20uniforme.webp" srcset="assets/img/cms/galaxy%20uniforme-480w.webp 480w, assets/img/cms/galaxy%20uniforme-800w.webp 800w, assets/img/cms/galaxy%20uniforme-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Galaxy Uniforme" loading="lazy"/>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Galaxy Uniforme</h4>
+              <h3 class="b-proj-name">Galaxy Uniforme</h3>
               <p class="b-proj-desc">E-commerce vêtements pro &amp; sécurité — catalogue multi-gammes.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">E-commerce</span><span>PrestaShop</span><span>SEO</span></div>
@@ -400,11 +402,11 @@
           <a class="b-card b-card-proj" href="https://alternativ-uniforme.fr/" target="_blank" rel="noopener" style="animation-delay:.9s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/Alternativ%20Uniforme.webp" alt="Alternativ' Uniforme" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/Alternativ%20Uniforme.webp" srcset="assets/img/cms/Alternativ%20Uniforme-480w.webp 480w, assets/img/cms/Alternativ%20Uniforme-800w.webp 800w, assets/img/cms/Alternativ%20Uniforme-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="Alternativ' Uniforme" loading="lazy"/>
               <span class="b-malt-badge" aria-label="Mission trouvée via Malt"><img src="assets/img/cms/malt.webp" alt="Malt" loading="lazy"/></span>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">Alternativ' Uniforme</h4>
+              <h3 class="b-proj-name">Alternativ' Uniforme</h3>
               <p class="b-proj-desc">PME vêtements pro — 100+ clients, 10 000 uniformes/an.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">E-commerce</span><span>WooCommerce</span><span>PrestaShop</span></div>
@@ -417,10 +419,10 @@
           <a class="b-card b-card-proj" href="https://www.pano-douai.fr/" target="_blank" rel="noopener" style="animation-delay:.96s">
             <div class="b-proj-thumb" onclick="event.preventDefault(); event.stopPropagation(); openImgLightbox(this);">
               <span class="b-proj-zoom-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-              <img class="b-card-proj-img" src="assets/img/cms/pano-douai.webp" alt="PANO Group Sign'Service" loading="lazy"/>
+              <img class="b-card-proj-img" src="assets/img/cms/pano-douai.webp" srcset="assets/img/cms/pano-douai-480w.webp 480w, assets/img/cms/pano-douai-800w.webp 800w, assets/img/cms/pano-douai-1200w.webp 1200w" sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 300px" alt="PANO Group Sign'Service" loading="lazy"/>
             </div>
             <div class="b-card-proj-body">
-              <h4 class="b-proj-name">PANO Sign'Service</h4>
+              <h3 class="b-proj-name">PANO Sign'Service</h3>
               <p class="b-proj-desc">Refonte WordPress Elementor — vitrine &amp; e-commerce signalétique.</p>
               <div class="b-proj-meta">
                 <div class="b-proj-tags"><span class="b-proj-cat">Signalétique</span><span>WordPress</span><span>WooCommerce</span></div>
@@ -887,7 +889,7 @@
           </div>
           <div class="skill-tab-right">
             <div class="skill-tab-img-wrap">
-              <img src="assets/img/cms/maxilou.webp" alt="Maxilou, projet WordPress/WooCommerce" loading="lazy"/>
+              <img src="assets/img/cms/maxilou.webp" srcset="assets/img/cms/maxilou-480w.webp 480w, assets/img/cms/maxilou-800w.webp 800w, assets/img/cms/maxilou-1200w.webp 1200w" sizes="(max-width: 900px) 90vw, 40vw" alt="Maxilou, projet WordPress/WooCommerce" loading="lazy"/>
               <div class="skill-tab-widget">
                 <div class="skill-tab-widget-body"><div class="skill-tab-widget-val">15<span style="font-size:.7em;opacity:.5">+</span></div><div class="skill-tab-widget-lbl">Projets clients</div></div>
                 <span class="skill-tab-widget-tag" style="background:rgba(114,223,184,.16);color:#72dfb8;border:1px solid rgba(114,223,184,.3)">WordPress</span>
@@ -1117,6 +1119,7 @@
   </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="site-footer" data-reveal>
