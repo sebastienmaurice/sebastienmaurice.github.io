@@ -29,8 +29,8 @@
     slides[current].classList.add('is-active');
     slides[current].inert = false;
     getDots()[current].classList.add('is-active');
-    track.style.transition = `transform ${fast ? '.65s' : '.9s'} cubic-bezier(.76,0,.24,1)`;
-    track.style.transform = `translateX(-${current * 100}%)`;
+    // fondu plus court en navigation manuelle, plus posé en défilement auto
+    track.style.setProperty('--slide-fade', fast ? '0.85s' : '1.3s');
     numEl.textContent = String(current + 1).padStart(2,'0');
     resetBar();
     resetTimer();

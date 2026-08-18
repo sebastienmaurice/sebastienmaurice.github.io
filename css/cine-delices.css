@@ -420,27 +420,37 @@ body::after {
   }
 }
 .slider-track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.9s var(--ease-out);
-}
-.slide {
-  flex: 0 0 100%;
-  height: 100%;
   position: relative;
+  height: 100%;
+}
+/* dissolve façon montage cinéma : les slides se superposent et se
+   fondent entre elles au lieu de se pousser horizontalement */
+.slide {
+  position: absolute;
+  inset: 0;
+  height: 100%;
   overflow: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity var(--slide-fade, 1.3s) ease;
+}
+.slide.is-active {
+  opacity: 1;
+  z-index: 2;
 }
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transform: scale(1.04);
-  transition: transform 1.2s var(--ease);
+  transform: scale(1);
+  transition: transform 7s linear;
   will-change: transform;
 }
+/* léger travelling avant (Ken Burns) qui se poursuit tant que la
+   slide reste affichée, pour un mouvement continu plutôt qu'un cut */
 .slide.is-active img {
-  transform: scale(1);
+  transform: scale(1.07);
 }
 .slide::before {
   content: "";
@@ -488,6 +498,15 @@ body::after {
   gap: 0;
   max-width: min(520px, 55%);
   pointer-events: all;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.9s ease 0.25s,
+    transform 0.9s var(--ease) 0.25s;
+}
+.slide.is-active .slider-head-text {
+  opacity: 1;
+  transform: translateY(0);
 }
 .slider-bottom {
   position: absolute;
