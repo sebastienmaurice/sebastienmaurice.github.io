@@ -9,21 +9,25 @@
   let current = 0;
   let timer, barTimer, startTs;
 
-  slides.forEach((_, i) => {
+  slides.forEach((slide, i) => {
     const d = document.createElement('button');
     d.className = 'slider-dot' + (i === 0 ? ' is-active' : '');
     d.setAttribute('aria-label', `Slide ${i+1}`);
     d.addEventListener('click', () => goTo(i, true));
     dotsWrap.appendChild(d);
+    // le texte/CTA des slides hors-champ ne doit pas rester focusable au clavier
+    slide.inert = i !== 0;
   });
 
   function getDots(){ return dotsWrap.querySelectorAll('.slider-dot'); }
 
   function goTo(idx, fast = false){
     slides[current].classList.remove('is-active');
+    slides[current].inert = true;
     getDots()[current].classList.remove('is-active');
     current = (idx + slides.length) % slides.length;
     slides[current].classList.add('is-active');
+    slides[current].inert = false;
     getDots()[current].classList.add('is-active');
     track.style.transition = `transform ${fast ? '.65s' : '.9s'} cubic-bezier(.76,0,.24,1)`;
     track.style.transform = `translateX(-${current * 100}%)`;
@@ -68,6 +72,15 @@
   resetTimer();
 })();
 
+// ── Scroll indicator du slider
+const sliderScroll = document.getElementById('sliderScroll');
+if (sliderScroll) {
+  sliderScroll.addEventListener('click', () => {
+    const next = document.querySelector('.section-defi');
+    if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 // ── Nav solid on scroll
 const nav = document.getElementById('nav');
 addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
@@ -100,7 +113,8 @@ const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lightbox-img');
 document.querySelectorAll('.slide').forEach(slide => {
   slide.style.cursor = 'zoom-in';
-  slide.addEventListener('click', () => {
+  slide.addEventListener('click', (e) => {
+    if (e.target.closest('a, button')) return;
     lbImg.src = slide.querySelector('img').src;
     lb.classList.add('open');
   });
