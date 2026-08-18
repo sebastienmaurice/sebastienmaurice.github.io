@@ -7210,6 +7210,31 @@ a:hover .cta-arrow {
   color: var(--mint-800);
 }
 
+/* Variante d'en-tete carte Parcours : titre a gauche, badge date pousse a droite
+   sur la meme ligne (au lieu d'empiler le badge au-dessus du titre) — utilisee
+   ponctuellement quand la carte n'a pas besoin d'accroche visuelle a part */
+.prest-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.prest-card-head .prest-card-name {
+  flex: 1;
+}
+.prest-card-head .prest-badge {
+  flex-shrink: 0;
+}
+@media (max-width: 560px) {
+  /* le titre peut passer sur 4 lignes en dessous de cette largeur : le badge
+     aligne en haut de ligne finit visuellement isole, on repasse en empilement */
+  .prest-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 /* Face avant : nom + prix, minimal (pas de liste de benefices, pas de CTA complet) */
 .prest-card-name {
   font-family: var(--f-disp);
