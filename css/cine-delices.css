@@ -1467,19 +1467,10 @@ body::after {
 }
 
 /* ── CD HERO overrides ── */
-.slider-viewport {
-  height: min(660px, 100svh) !important;
-  min-height: 340px !important;
-}
-@media (max-width: 900px) {
-  .slider-viewport {
-    height: min(560px, 100svh) !important;
-  }
-}
+/* le hero occupe l'ecran complet (regle de base .slider-viewport plus haut :
+   height: min(100vh, 900px)) - l'ancien plafond a 660/560/480px + !important
+   a ete retire, il ecrasait cette regle sans raison documentee */
 @media (max-width: 600px) {
-  .slider-viewport {
-    height: min(480px, 100svh) !important;
-  }
   .nav-back-label,
   .nav-cta-label {
     display: none;
