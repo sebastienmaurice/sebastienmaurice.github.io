@@ -40,6 +40,12 @@ button {
   --mint-strong: #2f8a72;
   --coral: #ff7a59;
   --coral-warm: #ff7a59;
+  /* variantes assombries de coral/mint-strong pour le texte (contraste WCAG AA
+     4.5:1/3:1 sur fond mint) : coral et mint-strong seuls sont trop clairs pour
+     du texte sur --mint, ok uniquement pour de grandes formes decoratives */
+  --coral-text: #915146;
+  --coral-large: #c4644f;
+  --mint-strong-text: #277263;
   --ink: #0a1e2e;
   --ink-700: #0d2f47;
   --ink-800: #0d2740;
@@ -47,7 +53,8 @@ button {
   --white: #ffffff;
   --line: rgba(10, 30, 46, 0.12);
   --line-strong: rgba(10, 30, 46, 0.22);
-  --muted: rgba(10, 30, 46, 0.6);
+  /* 0.6 -> 0.63 : contraste insuffisant sur fond mint (4.16:1, cible WCAG AA 4.5:1) */
+  --muted: rgba(10, 30, 46, 0.63);
   --muted-2: rgba(10, 30, 46, 0.45);
   --f-disp: "Cabinet Grotesk", sans-serif;
   --f-serif: "Fraunces", Georgia, serif;
@@ -444,7 +451,8 @@ body::after {
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--coral);
+  /* --coral seul = 2.07:1 sur --mint, sous la cible WCAG AA 4.5:1 (petit texte) */
+  color: var(--coral-text);
   margin-bottom: 18px;
 }
 .section-eyebrow::before {
@@ -469,7 +477,8 @@ body::after {
 }
 .section-title em {
   font-style: italic;
-  color: var(--coral);
+  /* --coral seul = 2.07:1 sur --mint, sous la cible WCAG AA pour grand texte (3:1) */
+  color: var(--coral-large);
 }
 .section-dark .section-title em {
   color: var(--mint);
@@ -765,22 +774,38 @@ body::after {
 }
 .slider-dots {
   display: flex;
-  gap: 7px;
+  /* les boutons font desormais 24px (cible tactile), le gap est reduit d'autant
+     pour garder les points visuels aussi rapproches qu'avant (6px + 7px de gap) */
+  gap: 0;
   align-items: center;
 }
+/* cible tactile 24x24 (WCAG 2.5.8) tout en gardant le petit point visuel :
+   le bouton est la zone cliquable invisible, ::after porte l'apparence */
 .slider-dot {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+.slider-dot::after {
+  content: "";
+  display: block;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  border: 0;
-  cursor: pointer;
-  padding: 0;
   transition:
     background 0.3s,
-    width 0.4s var(--ease);
+    width 0.4s var(--ease),
+    border-radius 0.4s var(--ease);
 }
-.slider-dot.is-active {
+.slider-dot.is-active::after {
   background: var(--mint);
   width: 22px;
   border-radius: var(--r-xs);
@@ -955,7 +980,8 @@ body::after {
 .cd-result-lbl {
   font-family: var(--f-mono);
   font-size: 0.6875rem;
-  color: rgba(10, 30, 46, 0.6);
+  /* 0.6 -> 0.63 : contraste insuffisant sur fond mint (4.16:1, cible WCAG AA 4.5:1) */
+  color: rgba(10, 30, 46, 0.63);
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -992,7 +1018,8 @@ body::after {
   font-family: var(--f-serif);
   font-size: 3rem;
   font-weight: 900;
-  color: var(--coral);
+  /* --coral seul = 2.39:1 sur --mint-soft, sous la cible WCAG AA pour grand texte (3:1) */
+  color: var(--coral-large);
   line-height: 1;
   margin-bottom: 14px;
   letter-spacing: -0.04em;
@@ -1047,7 +1074,9 @@ body::after {
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.4);
+  /* 0.4 -> 0.53 : contraste insuffisant sur le fond sombre de la barre d'onglets
+     (3.35:1, cible WCAG AA 4.5:1) */
+  color: rgba(255, 255, 255, 0.53);
   padding: 9px 20px;
   border-radius: var(--r-pill);
   cursor: pointer;
@@ -1504,7 +1533,7 @@ body::after {
   background: #1f6b58;
   color: #fff;
 }
-.road-text h4 {
+.road-text h3 {
   font-family: var(--f-serif);
   font-size: 1.125rem;
   font-weight: 700;
@@ -1536,7 +1565,8 @@ body::after {
   color: var(--mint-soft);
 }
 .section-dark .stack-pill-role {
-  color: rgba(181, 244, 222, 0.45);
+  /* 0.45 -> 0.54 : contraste insuffisant (3.62:1, cible WCAG AA 4.5:1) */
+  color: rgba(181, 244, 222, 0.54);
 }
 .section-dark .sec-card {
   background: rgba(255, 255, 255, 0.05);
@@ -1552,7 +1582,7 @@ body::after {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(181, 244, 222, 0.1);
 }
-.section-dark .road-text h4 {
+.section-dark .road-text h3 {
   color: var(--mint-soft);
 }
 .section-dark .road-text p {
@@ -1560,7 +1590,8 @@ body::after {
 }
 .section-dark .road-tag.later {
   background: rgba(255, 255, 255, 0.08);
-  color: rgba(229, 240, 231, 0.55);
+  /* 0.55 -> 0.58 : contraste insuffisant (4.22:1, cible WCAG AA 4.5:1) */
+  color: rgba(229, 240, 231, 0.58);
 }
 
 /* ── Défi section overrides ── */
@@ -1568,7 +1599,8 @@ body::after {
   background: var(--mint);
 }
 .section-defi .section-eyebrow {
-  color: var(--mint-strong);
+  /* --mint-strong seul = 3.39:1 sur --mint, sous la cible WCAG AA 4.5:1 */
+  color: var(--mint-strong-text);
 }
 .section-defi .section-eyebrow::before {
   background: var(--mint-strong);
@@ -1577,7 +1609,7 @@ body::after {
   color: var(--ink);
 }
 .section-defi .section-title em {
-  color: var(--coral);
+  color: var(--coral-large);
 }
 .section-defi .section-sub {
   color: var(--muted);
@@ -1588,7 +1620,7 @@ body::after {
   box-shadow: var(--sh-1);
 }
 .section-defi .pitch-num {
-  color: var(--coral);
+  color: var(--coral-large);
 }
 .section-defi .pitch-title {
   color: var(--ink);

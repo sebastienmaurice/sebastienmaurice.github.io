@@ -3801,7 +3801,7 @@ a.skill-tab-proof:hover .cta-arrow {
   border-top: 1.5px dashed rgba(10, 30, 46, 0.28);
   z-index: 1;
 }
-.process-step h4 {
+.process-step h3 {
   margin: 0 0 6px;
   font-family: var(--f-disp);
   font-weight: 700;

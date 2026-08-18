@@ -25,7 +25,7 @@
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-back">
+  <a href="index.html" class="nav-back" aria-label="Retour au portfolio">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
     <span class="nav-back-label">Portfolio</span>
   </a>
@@ -41,6 +41,7 @@
   </a>
 </nav>
 
+<main>
 <!-- HERO - Ciné Délices case study -->
 <section class="slider-section" aria-label="Ciné Délices - case study hero">
   <div class="slider-viewport" id="sliderViewport">
@@ -139,7 +140,7 @@
     <div class="section-head">
       <div class="section-eyebrow">4 décisions techniques</div>
       <h2 class="section-title">Du code qu'on relit <em>parce qu'il a une raison d'être.</em></h2>
-      <p class="section-sub">Chaque snippet ci-dessous résout un problème concret. Pas du code-vitrine : du code qui tourne en production sur <a href="https://cinedelices.com/" target="_blank" rel="noopener" style="color:var(--coral);border-bottom:1px solid currentColor;padding-bottom:1px">cinedelices.com</a>.</p>
+      <p class="section-sub">Chaque snippet ci-dessous résout un problème concret. Pas du code-vitrine : du code qui tourne en production sur <a href="https://cinedelices.com/" target="_blank" rel="noopener" style="color:var(--coral-text);border-bottom:1px solid currentColor;padding-bottom:1px">cinedelices.com</a>.</p>
     </div>
 
     <div class="tabs-shell">
@@ -582,34 +583,35 @@ input.<span class="tk-fn">addEventListener</span>(<span class="tk-str">'input'</
       <div class="road-row">
         <span class="road-tag done">Livré</span>
         <div class="road-text">
-          <h4>Déployé sur Render</h4>
+          <h3>Déployé sur Render</h3>
           <p>Hébergement Node.js sur Render, base PostgreSQL managée, déploiement continu depuis GitHub, domaine cinedelices.com.</p>
         </div>
       </div>
       <div class="road-row">
         <span class="road-tag">Sprint+1</span>
         <div class="road-text">
-          <h4>Recherche full-text Postgres</h4>
+          <h3>Recherche full-text Postgres</h3>
           <p>Index GIN + tsvector pour passer la recherche films à la milliseconde, avec ranking par pertinence.</p>
         </div>
       </div>
       <div class="road-row">
         <span class="road-tag">Sprint+2</span>
         <div class="road-text">
-          <h4>Recommandations contextuelles</h4>
+          <h3>Recommandations contextuelles</h3>
           <p>Système de scoring basé sur les genres + recettes appréciées + signaux d'engagement (temps, retours).</p>
         </div>
       </div>
       <div class="road-row">
         <span class="road-tag later">Refonte v2</span>
         <div class="road-text">
-          <h4>Front React + API découplée</h4>
+          <h3>Front React + API découplée</h3>
           <p>Migration progressive : extraction de l'API, front React/TanStack Query, conservation du back actuel.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="foot">
